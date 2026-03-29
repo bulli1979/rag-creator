@@ -9,9 +9,10 @@
     "chatBot/packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -k \"npm run dev:renderer\" \"npm run dev:main\"",
+    "dev": "concurrently -k -n renderer,main,api \"npm run dev:renderer\" \"npm run dev:main\" \"npm run dev:api\"",
     "dev:renderer": "npm run dev --workspace @rag/renderer",
-    "dev:main": "wait-on tcp:5173 && npm run dev --workspace @rag/main",
+    "dev:api": "node scripts/run-document-api.mjs",
+    "dev:main": "wait-on tcp:5173 tcp:8000 && npm run dev --workspace @rag/main",
     "build": "npm run build --workspace @rag/renderer && npm run build --workspace @rag/main",
     "start": "npm run build && npm run start --workspace @rag/main",
     "start:quick": "npm run start --workspace @rag/main",

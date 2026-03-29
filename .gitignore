@@ -1,43 +1,14 @@
-# --- Node / JS ---
-node_modules/
-dist/
-build/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# --- Vite / Electron build outputs ---
-apps/renderer/dist/
-apps/main/dist/
-apps/main/.vite/
-**/.vite/
-
-# --- Python ---
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.python-version
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.venv/
-venv/
-
-# --- OS / IDE ---
+node_modules
+dist
+build
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
-
-# --- Local runtime / app data ---
-RAGIngestStudio/
+*.log
+apps/renderer/dist
+apps/main/dist
+apps/main/.vite
+__pycache__
+.venv
+venv
+RAGIngestStudio
 settings.json
 chat_settings.json
-
-# --- Environment files ---
-.env
-.env.*
-!.env.example

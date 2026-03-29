@@ -1,18 +1,18 @@
 from __future__ import annotations
 
-import asyncio
 import json
-from typing import Any
 
 from openai import OpenAI
 
 from .config import (
+    _DEFAULT_SETTINGS,
     load_chat_settings,
     load_settings,
     save_chat_settings as persist_chat_settings,
 )
 from .crypto_service import CryptoService
 from .models import AppSettings, ChatMessage, ChatRequest, ChatResponse, ChatSettings
+from .services.thread_pool import run_in_worker_pool
 from .vector_service import PostgresVectorService
 from .worker import embed_texts
 
@@ -25,7 +25,7 @@ class ChatService:
     ) -> None:
         self._vs = vector_service
         self._crypto = crypto_service
-        self._settings: AppSettings = AppSettings()
+        self._settings: AppSettings = _DEFAULT_SETTINGS.model_copy(deep=True)
         self._chat_settings = load_chat_settings()
 
     def update_settings(self, app_settings: AppSettings) -> None:
@@ -42,7 +42,7 @@ class ChatService:
         history = request.history or []
         preferred_language = request.language
 
-        query_embedding = await asyncio.to_thread(
+        query_embedding = await run_in_worker_pool(
             embed_texts, self._settings.embedding_model, [query]
         )
         if not query_embedding.get("ok") or not query_embedding.get("vectors"):
@@ -54,8 +54,9 @@ class ChatService:
 
         query_vector = query_embedding["vectors"][0]
 
+        active_pg = self._settings.get_active_postgres()
         context_chunks = self._vs.similarity_search(
-            table_name=self._settings.db_table_name,
+            table_name=active_pg.db_table_name,
             query_vector=query_vector,
             top_k=self._chat_settings.top_k,
         )
@@ -104,13 +105,12 @@ class ChatService:
                 api_key=self._chat_settings.llm_api_key,
                 base_url=self._chat_settings.llm_base_url or None,
             )
-            completion = await asyncio.to_thread(
-                lambda: client.chat.completions.create(
-                    model=self._chat_settings.llm_model,
-                    messages=messages,
-                    temperature=self._chat_settings.temperature,
-                    max_tokens=self._chat_settings.max_tokens,
-                )
+            completion = await run_in_worker_pool(
+                client.chat.completions.create,
+                model=self._chat_settings.llm_model,
+                messages=messages,
+                temperature=self._chat_settings.temperature,
+                max_tokens=self._chat_settings.max_tokens,
             )
             answer = completion.choices[0].message.content or ""
         except Exception as exc:

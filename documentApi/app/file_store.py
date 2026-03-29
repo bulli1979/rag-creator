@@ -17,6 +17,16 @@ def to_safe_file_name(name: str) -> str:
     return re.sub(r"[^a-zA-Z0-9.\-_]", "_", name)
 
 
+def _upload_display_name(source_path: str) -> str:
+    """Dateiname fuer Metadaten: bei relativem Pfad (Ordner-Upload) ganzen Pfad, sonst nur Basename."""
+    s = (source_path or "unknown").strip()
+    if not s:
+        return "unknown"
+    if os.path.isabs(s):
+        return os.path.basename(s)
+    return s.replace("\\", "/")
+
+
 class FileStore:
     def __init__(self, files_dir: Path, corpus_dir: Path) -> None:
         self._files_dir = files_dir
@@ -35,9 +45,10 @@ class FileStore:
 
         file_hash = create_sha256(content)
         doc_id = file_hash
-        file_name = os.path.basename(source_path)
-        extension = os.path.splitext(file_name)[1].lower()
-        safe_name = to_safe_file_name(file_name)
+        file_name = _upload_display_name(source_path)
+        leaf = file_name.split("/")[-1]
+        extension = os.path.splitext(leaf)[1].lower()
+        safe_name = to_safe_file_name(leaf)
 
         dest_dir = self._files_dir / doc_id
         dest_dir.mkdir(parents=True, exist_ok=True)

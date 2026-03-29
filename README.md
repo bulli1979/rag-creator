@@ -1,217 +1,156 @@
-# RAG Creator Monorepo
+# RAG Ingest Studio
 
-Dieses Repository enthaelt drei Bausteine:
+Produktionsnahe Desktop-App (Electron + React + TypeScript) zur lokalen Vorbereitung von Dokumenten fuer RAG:
 
-- `documentApi` - FastAPI Backend (Port `8000`) fuer Ingest, Index, Health und Chat.
-- `documentHandling` - Electron Desktop-App fuer Upload, Chunking, Reindex und Corpus-Verwaltung.
-- `chatBot` - Electron Desktop-App fuer Fragen gegen den aufgebauten Vektorindex.
+- Upload per File Picker und Drag & Drop
+- Parsing + Chunking + lokale Embeddings (Python Worker)
+- Indexierung in Postgres mit `pgvector` (`rag_documents`)
+- Lokale Index-DB in SQLite (`better-sqlite3`)
+- Editierbarer Corpus als JSONL (und optional Markdown)
+- Reindex / Remove je Dokument oder im Bulk
 
-Ziel dieser Anleitung: **Clone -> installieren -> starten -> sofort arbeiten**.
+## Monorepo Struktur
 
-## Architektur auf einen Blick
+```text
+apps/
+  main/           Electron Main Process + Services
+  renderer/       React UI (Vite)
+  python_worker/  Parsing + Embedding Worker (Python)
+packages/
+  shared/         Gemeinsame TypeScript-Typen (IPC Contracts)
+```
 
-- Beide Desktop-Apps sprechen gegen `http://localhost:8000`.
-- Das Backend nutzt:
-  - PostgreSQL + `pgvector` (Vektorindex, Standard-DB `rag`, Tabelle `rag_documents`)
-  - lokale Dateien unter `~/RAGIngestStudio`
-- Persistenz lokal:
-  - `~/RAGIngestStudio/files`
-  - `~/RAGIngestStudio/corpus`
-  - `~/RAGIngestStudio/index.sqlite`
+## Systemdiagramm (Ingest + Reindex)
+
+```mermaid
+flowchart LR
+  UI[Renderer UI\nUpload / Dashboard / Corpus Viewer] --> IPC[IPC Contracts\npackages/shared]
+  IPC --> MAIN[Electron Main\napps/main]
+  MAIN --> FS[(Lokale Dateien\nfiles/<docId>/)]
+  MAIN --> CORPUS[(Corpus JSONL/MD\ncorpus/<docId>.*)]
+  MAIN --> SQLITE[(SQLite\nindex.sqlite)]
+  MAIN --> WORKER[Python Worker\napps/python_worker]
+  WORKER --> PGVECTOR[(Postgres + pgvector\nrag_documents)]
+  PGVECTOR --> MAIN
+  MAIN --> UI
+```
+
+### Was das Diagramm genau zeigt
+
+1. **UI startet den Prozess**  
+   Im Renderer waehlt der User Dateien aus (Picker oder Drag & Drop), sieht Status im Dashboard und kann Reindex/Remove ausloesen.
+
+2. **IPC entkoppelt Frontend und Backend**  
+   Die UI spricht nie direkt mit Dateisystem, Python oder Postgres. Sie sendet nur typisierte IPC-Requests ueber `packages/shared`.
+
+3. **Electron Main orchestriert alles**  
+   Der Main Process ist die zentrale Steuerung: Er nimmt Jobs an, schreibt Metadaten in SQLite, verwaltet Dateipfade und koordiniert den Worker.
+
+4. **Lokale Artefakte werden persistiert**  
+   Originaldateien landen in `files/<docId>/`.  
+   Der editierbare Corpus wird als `corpus/<docId>.jsonl` (optional `.md`) gespeichert und dient als Source of Truth fuer spaetere Reindex-Laeufe.
+
+5. **Python Worker macht Parsing + Embeddings**  
+   Der Worker liest den lokalen Input, fuehrt Parsing/Chunking aus und erzeugt Embeddings fuer die Chunks.
+
+6. **Postgres (pgvector) speichert die Vektoren fuer Retrieval**  
+   Die erzeugten Punkte werden in `rag_documents` geschrieben. Vor Reindex werden bestehende Punkte des Dokuments entfernt, damit der Zustand idempotent bleibt.
+
+7. **Rueckmeldung an die UI**  
+   Der Main Process aktualisiert Job-/Dokumentstatus in SQLite und liefert den Fortschritt zurueck an die UI, damit Dashboard und Corpus Viewer den aktuellen Stand anzeigen.
 
 ## Voraussetzungen
 
-Minimum:
+- Node.js 20+
+- Python 3.10+
+- Docker (fuer lokale Postgres-Instanz mit pgvector)
 
-- Windows 10/11 (PowerShell)
-- Git
-- Node.js `>= 20`
-- Python `>= 3.10`
-- PostgreSQL mit `pgvector`
+## 1) Postgres (pgvector) lokal starten
 
-Empfohlen:
-
-- Docker Desktop (einfachster Weg fuer Postgres+pgvector)
-- Optional fuer lokalen LLM-Betrieb im Chat: Ollama (`http://localhost:11434/v1`)
-
-## 1) Repository klonen
-
-```powershell
-git clone <DEIN-REPO-URL> rag-creator
-cd rag-creator
+```bash
+docker run --name rag-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=rag -p 5432:5432 -d pgvector/pgvector:pg16
 ```
 
-## 2) Node.js installieren und pruefen
+Danach ist Postgres auf `localhost:5432` erreichbar.
 
-Wenn Node.js noch fehlt (Windows mit winget):
+## 2) Python Worker einrichten
 
-```powershell
-winget install OpenJS.NodeJS.LTS
-```
+Im Verzeichnis `apps/python_worker`:
 
-Version pruefen:
-
-```powershell
-node -v
-npm -v
-```
-
-## 3) Python installieren und pruefen
-
-Wenn Python noch fehlt (Windows mit winget):
-
-```powershell
-winget install Python.Python.3.11
-```
-
-Version pruefen:
-
-```powershell
-python --version
-pip --version
-```
-
-## 4) PostgreSQL + pgvector starten
-
-### Option A (empfohlen): Docker
-
-```powershell
-docker run --name rag-pg `
-  -e POSTGRES_PASSWORD=postgres `
-  -e POSTGRES_USER=postgres `
-  -e POSTGRES_DB=rag `
-  -p 5432:5432 `
-  -d pgvector/pgvector:pg16
-```
-
-Container pruefen:
-
-```powershell
-docker ps
-```
-
-### Option B: Lokales PostgreSQL
-
-Wenn du PostgreSQL lokal installierst, stelle sicher:
-
-- DB Name: `rag`
-- User: `postgres`
-- Passwort: z. B. `postgres` (oder spaeter in den App-Settings eintragen)
-- Extension aktiv:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS vector;
-```
-
-## 5) Python-Umgebung fuer Backend einrichten
-
-Im Backend-Verzeichnis:
-
-```powershell
-cd documentApi
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+# Windows (PowerShell):
+.venv\Scripts\Activate.ps1
+# macOS/Linux:
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Hinweis: Beim ersten Start von Embeddings kann das Model (`all-MiniLM-L6-v2`) automatisch geladen werden.
+Wichtig: Stelle sicher, dass `python` im Terminal auf dieses venv zeigt, wenn du die App startest.
 
-## 6) Node-Dependencies im Monorepo installieren
+## 3) Node Dependencies installieren
 
-In einem **zweiten** Terminal (Repo-Root):
+Im Repository-Root:
 
-```powershell
-cd <PFAD>\rag-creator
+```bash
 npm install
 ```
 
-## 7) Backend starten (Terminal 1)
+## 4) Development starten
 
-Im aktivierten Python-venv:
+Im Repository-Root:
 
-```powershell
-cd <PFAD>\rag-creator\documentApi
-.\.venv\Scripts\Activate.ps1
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-```
-
-Health-Check:
-
-```powershell
-Invoke-RestMethod http://localhost:8000/api/health
-```
-
-## 8) Document Handling App starten (Terminal 2)
-
-Im Repo-Root:
-
-```powershell
-cd <PFAD>\rag-creator
+```bash
 npm run dev
 ```
 
 Das startet:
 
-- Renderer auf `http://localhost:5173`
-- Electron Main fuer `documentHandling`
+- **documentApi** (FastAPI/Uvicorn) auf `http://127.0.0.1:8000` — venv unter `documentApi/.venv` muss existieren (`pip install -r documentApi/requirements.txt`)
+- Vite Renderer auf `http://localhost:5173`
+- Electron Main Process (startet erst, wenn Renderer **und** Port 8000 bereit sind)
 
-## 9) Chat App starten (optional, Terminal 3)
+Nur die API in einem eigenen Terminal: `npm run dev:api`
 
-Im Repo-Root:
+## 5) Production Build
 
-```powershell
-cd <PFAD>\rag-creator
-npm run dev:chat
+```bash
+npm run build
 ```
 
-Das startet:
+## 6) Produktionsstart
 
-- Renderer auf `http://localhost:5174`
-- Electron Main fuer `chatBot`
-
-## 10) Erste Inbetriebnahme in der App
-
-1. `documentHandling` oeffnen.
-2. In **Settings** die DB-Daten pruefen:
-   - Host `localhost`
-   - Port `5432`
-   - Name `rag`
-   - User `postgres`
-   - Passwort entsprechend deiner Postgres-Config
-   - Tabellenname `rag_documents`
-3. **Connection Test** ausfuehren (muss `ok` sein).
-4. Dokumente hochladen.
-5. Nach erfolgreicher Indexierung `chatBot` starten und Fragen stellen.
-
-## Produktionsstart (ohne Dev-Server)
-
-Im Repo-Root:
-
-```powershell
-npm run build
+```bash
 npm run start
 ```
 
-Fuer die Chat-App:
+Das Skript baut zuerst Renderer + Main und startet danach Electron im Production-Modus.
 
-```powershell
-npm run build:chat
-npm run start:chat
-```
+## Datenablage / Offline Verhalten
 
-## Bekannte lokale Pfade
+Alle Artefakte liegen lokal in:
 
-- Arbeitsdaten: `C:\Users\<DEIN_USER>\RAGIngestStudio\`
-- API-Einstellungen: `documentApi\settings.json`
-- Chat-Einstellungen: `documentApi\chat_settings.json`
+`~/RAGIngestStudio/`
 
-## Fehlerbehebung (haeufig)
+Unterstruktur:
 
-- `POST /api/database/test-connection` fehlschlaegt:
-  - Postgres laeuft nicht, Port `5432` belegt oder falsche Zugangsdaten.
-- Upload klappt, aber Embedding/Index nicht:
-  - Python-Abhaengigkeiten im `documentApi` venv fehlen.
-- Chat antwortet nicht:
-  - API auf `8000` nicht gestartet oder LLM-Endpunkt in Chat-Settings falsch.
-- Electron startet, aber nur leeres Fenster:
-  - Dev-Server-Port bereits belegt (`5173`/`5174`) oder `npm install` wurde nicht im Root ausgefuehrt.
+- `files/<docId>/` - Originaldateien
+- `corpus/<docId>.jsonl` - editierbare Source of Truth
+- `corpus/<docId>.md` - optionaler Markdown-Export
+- `index.sqlite` - Dokumente + Jobs
+- `settings.json` - lokale Einstellungen
+
+## Kern-Funktionen
+
+- **Dashboard** mit Filter/Suche, Status, Chunk-Anzahl, Bulk-Aktionen
+- **Upload** per Picker oder Drag & Drop
+- **Corpus Viewer** (editierbar), Speichern + Reindex
+- **Settings** fuer DB Host/Port/Name/User/Passwort, Vector Table Name, Chunking, Embedding Model, Markdown Toggle
+- **Connection Test** fuer Postgres (Upload erst nach erfolgreichem Test moeglich)
+- **CSV Export** der Dokumentliste
+
+## Hinweise zu Idempotenz
+
+- Vor jedem Reindex werden bestehende Vektoren fuer `documentId` aus Postgres entfernt.
+- Point IDs sind deterministisch via `sha256(documentId + ":" + chunkIndex)`.
+- JSONL bleibt die editierbare Truth-Quelle fuer spaetere Reindex-Laeufe.

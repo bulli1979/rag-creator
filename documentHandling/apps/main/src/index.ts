@@ -8,6 +8,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const isDevelopment = process.env.NODE_ENV !== "production";
 
+/** DevTools triggern oft harmlose Chromium-Meldungen (z. B. Autofill.enable nicht gefunden). Mit RAG_OPEN_DEVTOOLS=0 nicht auto-öffnen. */
+const openDevToolsInDev =
+  isDevelopment &&
+  process.env.RAG_OPEN_DEVTOOLS !== "0" &&
+  process.env.RAG_OPEN_DEVTOOLS?.toLowerCase() !== "false";
+
 const API_BASE_URL = process.env.RAG_API_URL || "http://localhost:8000";
 
 const PRELOAD_PATH = path.join(__dirname, "preload.cjs");
@@ -36,7 +42,9 @@ async function createMainWindow(): Promise<void> {
 
   if (isDevelopment) {
     await mainWindow.loadURL("http://localhost:5173");
-    mainWindow.webContents.openDevTools({ mode: "detach" });
+    if (openDevToolsInDev) {
+      mainWindow.webContents.openDevTools({ mode: "detach" });
+    }
   } else {
     await mainWindow.loadFile(path.resolve(__dirname, "../../../apps/renderer/dist/index.html"));
   }

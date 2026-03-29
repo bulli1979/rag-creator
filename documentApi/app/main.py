@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+from .services.quiet_ml_env import apply_quiet_ml_env
+
+apply_quiet_ml_env()
+
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -13,35 +18,44 @@ from .dependencies import set_chat_service, set_ingest_service
 from .file_store import FileStore
 from .ingest_service import IngestService
 from .routers import chat, corpus, documents, health, jobs, settings
+from .services.thread_pool import init_thread_pool, shutdown_thread_pool
 from .vector_service import PostgresVectorService
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    ensure_directories()
-    paths = get_app_paths()
-    app_settings = load_settings()
+    init_thread_pool(max_workers=4)
+    try:
+        ensure_directories()
+        paths = get_app_paths()
+        app_settings = load_settings()
+        active_pg = app_settings.get_active_postgres()
 
-    db = IndexDatabase(paths["database"])
-    fs = FileStore(paths["files"], paths["corpus"])
-    vs = PostgresVectorService(
-        host=app_settings.db_host,
-        port=app_settings.db_port,
-        database=app_settings.db_name,
-        user=app_settings.db_user,
-        password=app_settings.db_password,
-    )
+        db = IndexDatabase(paths["database"])
+        fs = FileStore(paths["files"], paths["corpus"])
+        vs = PostgresVectorService(
+            host=active_pg.db_host,
+            port=active_pg.db_port,
+            database=active_pg.db_name,
+            user=active_pg.db_user,
+            password=active_pg.db_password,
+            schema=active_pg.db_schema,
+        )
 
-    svc = IngestService(db, fs, vs)
-    await svc.initialize()
-    set_ingest_service(svc)
+        svc = IngestService(db, fs, vs)
+        await svc.initialize()
+        set_ingest_service(svc)
 
-    crypto = CryptoService()
-    chat_svc = ChatService(vs, crypto)
-    chat_svc.update_settings(app_settings)
-    set_chat_service(chat_svc)
+        crypto = CryptoService()
+        chat_svc = ChatService(vs, crypto)
+        chat_svc.update_settings(app_settings)
+        set_chat_service(chat_svc)
 
-    yield
+        yield
+    finally:
+        shutdown_thread_pool(wait=False, cancel_futures=True)
 
 
 app = FastAPI(

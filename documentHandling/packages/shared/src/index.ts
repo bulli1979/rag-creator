@@ -31,18 +31,49 @@ export interface JobRecord {
   message: string;
 }
 
-export interface AppSettings {
+export interface PostgresEnvironment {
+  id: string;
+  name: string;
   dbHost: string;
   dbPort: number;
   dbName: string;
   dbUser: string;
   dbPassword: string;
+  /** Postgres-Schema fuer die Vektor-Tabelle (z. B. public, rag_a, rag_b). */
+  dbSchema: string;
   dbTableName: string;
+}
+
+export interface AppSettings {
+  activePostgresEnvironmentId: string;
+  postgresEnvironments: PostgresEnvironment[];
   chunkSize: number;
   chunkOverlap: number;
   embeddingModel: string;
   storeMarkdown: boolean;
 }
+
+/** Fallback, wenn die API (documentApi) nicht erreichbar ist. */
+export const defaultAppSettings: AppSettings = {
+  activePostgresEnvironmentId: "default",
+  postgresEnvironments: [
+    {
+      id: "default",
+      name: "Standard",
+      dbHost: "localhost",
+      dbPort: 5432,
+      dbName: "rag",
+      dbUser: "postgres",
+      dbPassword: "",
+      dbSchema: "public",
+      dbTableName: "rag_documents"
+    }
+  ],
+  chunkSize: 900,
+  chunkOverlap: 150,
+  embeddingModel: "all-MiniLM-L6-v2",
+  storeMarkdown: true
+};
 
 export interface UploadOptions {
   tags: string[];

@@ -4,9 +4,33 @@ import json
 import os
 from pathlib import Path
 
-from .models import AppSettings, ChatSettings
+from .models import AppSettings, ChatSettings, PostgresEnvironment
 
-_DEFAULT_SETTINGS = AppSettings()
+
+def _default_app_settings() -> AppSettings:
+    return AppSettings(
+        active_postgres_environment_id="default",
+        postgres_environments=[
+            PostgresEnvironment(
+                environment_id="default",
+                name="Standard",
+                db_host="localhost",
+                db_port=5432,
+                db_name="rag",
+                db_user="postgres",
+                db_password="",
+                db_schema="public",
+                db_table_name="rag_documents",
+            )
+        ],
+        chunk_size=900,
+        chunk_overlap=150,
+        embedding_model="all-MiniLM-L6-v2",
+        store_markdown=True,
+    )
+
+
+_DEFAULT_SETTINGS = _default_app_settings()
 _DEFAULT_CHAT_SETTINGS = ChatSettings()
 
 _PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +62,64 @@ def ensure_directories() -> None:
     paths["corpus"].mkdir(parents=True, exist_ok=True)
 
 
+_LEGACY_DB_KEYS = frozenset(
+    {
+        "dbHost",
+        "dbPort",
+        "dbName",
+        "dbUser",
+        "dbPassword",
+        "dbTableName",
+        "dbSchema",
+    }
+)
+
+
+def _migrate_settings_dict(data: dict) -> dict:
+    """Alte flache DB-Felder in postgresEnvironments / activePostgresEnvironmentId ueberfuehren."""
+    envs = data.get("postgresEnvironments")
+    if isinstance(envs, list) and len(envs) > 0:
+        merged = {**data}
+        active = merged.get("activePostgresEnvironmentId")
+        if not active:
+            first = envs[0]
+            if isinstance(first, dict) and first.get("id"):
+                merged["activePostgresEnvironmentId"] = str(first["id"])
+            else:
+                merged["activePostgresEnvironmentId"] = "default"
+        return merged
+
+    defaults = _DEFAULT_SETTINGS.model_dump(by_alias=True)
+    merged_flat = {**defaults, **data}
+    env = {
+        "id": "default",
+        "name": str(merged_flat.get("environmentDisplayName") or "Standard"),
+        "dbHost": merged_flat.get("dbHost", "localhost"),
+        "dbPort": int(merged_flat.get("dbPort", 5432)),
+        "dbName": merged_flat.get("dbName", "rag"),
+        "dbUser": merged_flat.get("dbUser", "postgres"),
+        "dbPassword": merged_flat.get("dbPassword", ""),
+        "dbSchema": merged_flat.get("dbSchema", "public"),
+        "dbTableName": merged_flat.get("dbTableName", "rag_documents"),
+    }
+    rest = {
+        k: v
+        for k, v in merged_flat.items()
+        if k not in _LEGACY_DB_KEYS and k != "environmentDisplayName"
+    }
+    rest["postgresEnvironments"] = [env]
+    rest["activePostgresEnvironmentId"] = "default"
+    return rest
+
+
 def load_settings() -> AppSettings:
     settings_path = get_app_paths()["settings"]
     try:
         raw = settings_path.read_text(encoding="utf-8")
         data = json.loads(raw)
-        return AppSettings(**{**_DEFAULT_SETTINGS.model_dump(by_alias=True), **data})
+        migrated = _migrate_settings_dict(data)
+        base = _DEFAULT_SETTINGS.model_dump(by_alias=True)
+        return AppSettings(**{**base, **migrated})
     except Exception:
         save_settings(_DEFAULT_SETTINGS)
         return _DEFAULT_SETTINGS

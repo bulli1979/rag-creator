@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from fastapi.responses import PlainTextResponse
 
 from ..dependencies import get_ingest_service
 from ..ingest_service import IngestService
 from ..models import UploadOptions
+
+_logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/documents", tags=["documents"])
 
@@ -32,10 +36,16 @@ async def upload_documents(
         file_tuples.append((f.filename or "unknown", content))
 
     try:
-        queued_ids = await svc.add_documents(file_tuples, options)
+        result = await svc.add_documents(file_tuples, options)
     except RuntimeError as exc:
-        raise HTTPException(status_code=400, detail=str(exc))
-    return {"queuedDocIds": queued_ids}
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        _logger.exception("upload_documents")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Upload fehlgeschlagen: {exc}",
+        ) from exc
+    return result.model_dump(by_alias=True)
 
 
 @router.delete("/{doc_id}")

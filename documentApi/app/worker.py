@@ -1,8 +1,15 @@
 from __future__ import annotations
 
 import hashlib
+import logging
 import os
 from typing import Any
+
+import numpy as np
+
+from .services.quiet_ml_env import apply_quiet_ml_env
+
+apply_quiet_ml_env()
 
 try:
     from unstructured.partition.auto import partition
@@ -15,6 +22,8 @@ except Exception:
     PdfReader = None
 
 from sentence_transformers import SentenceTransformer
+
+_logger = logging.getLogger(__name__)
 
 _MODEL_CACHE: dict[str, SentenceTransformer] = {}
 _BINARY_OFFICE_EXTENSIONS = {".pdf", ".docx", ".pptx"}
@@ -108,41 +117,109 @@ def _get_model(model_name: str) -> SentenceTransformer:
     return _MODEL_CACHE[model_name]
 
 
+def _vectors_from_encode_output(encoded: Any) -> list[list[float]]:
+    """sentence_transformers: ndarray (n, dim) oder bei einem Satz (dim,)."""
+    arr = np.asarray(encoded)
+    if arr.ndim == 1:
+        return [[float(v) for v in arr]]
+    return [[float(v) for v in row] for row in arr]
+
+
+# Pro Teilbatch: Speicher und tqdm-Noise begrenzen (grosse Dokumente).
+_EMBED_SUBBATCH = 128
+
+
+def _encode_one_batch(
+    model: SentenceTransformer, batch: list[str], internal_batch_size: int
+) -> list[list[float]]:
+    encoded = model.encode(
+        batch,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
+        batch_size=min(internal_batch_size, max(8, len(batch))),
+    )
+    return _vectors_from_encode_output(encoded)
+
+
 def embed_texts(model_name: str, texts: list[str]) -> dict[str, Any]:
     normalized = [t.strip() for t in texts if isinstance(t, str) and t.strip()]
     if not normalized:
         return {"ok": True, "vectors": []}
+    n = len(normalized)
+    _logger.info("embed_texts start: model=%s chunks=%s", model_name, n)
     try:
         model = _get_model(model_name)
+        internal_bs = min(64, max(16, _EMBED_SUBBATCH // 2))
         vectors: list[list[float]] = []
-        for idx, text in enumerate(normalized):
+
+        for start in range(0, n, _EMBED_SUBBATCH):
+            part = normalized[start : start + _EMBED_SUBBATCH]
             try:
-                vector = model.encode(
-                    text, convert_to_numpy=True, normalize_embeddings=True
+                part_vecs = _encode_one_batch(model, part, internal_bs)
+            except Exception as batch_err:
+                _logger.warning(
+                    "embed subbatch failed (start=%s len=%s): %s — fallback einzeln",
+                    start,
+                    len(part),
+                    batch_err,
                 )
-            except Exception as item_err:
-                preview = text[:120].replace("\n", " ")
+                part_vecs = []
+                for idx, text in enumerate(part):
+                    abs_idx = start + idx
+                    try:
+                        one = model.encode(
+                            text,
+                            convert_to_numpy=True,
+                            normalize_embeddings=True,
+                            show_progress_bar=False,
+                        )
+                        row = _vectors_from_encode_output(one)
+                        if len(row) != 1:
+                            return {
+                                "ok": False,
+                                "error": f"Embedding Rueckgabe unerwartet bei chunk {abs_idx}",
+                            }
+                        part_vecs.append(row[0])
+                    except Exception as item_err:
+                        preview = text[:120].replace("\n", " ")
+                        return {
+                            "ok": False,
+                            "error": (
+                                f"Embedding fehlgeschlagen bei chunk {abs_idx}: {item_err} "
+                                f"(text_preview={preview}); subbatch_error={batch_err}"
+                            ),
+                        }
+
+            if len(part_vecs) != len(part):
                 return {
                     "ok": False,
-                    "error": f"Embedding fehlgeschlagen bei chunk {idx}: {item_err} (text_preview={preview})",
+                    "error": (
+                        f"Embedding: Teilbatch start={start} "
+                        f"vektoren={len(part_vecs)} != erwartet={len(part)}"
+                    ),
                 }
+            vectors.extend(part_vecs)
+            if n > _EMBED_SUBBATCH:
+                _logger.info(
+                    "embed_texts Fortschritt: %s/%s Chunks",
+                    min(start + _EMBED_SUBBATCH, n),
+                    n,
+                )
 
-            as_list = vector.tolist() if hasattr(vector, "tolist") else list(vector)
-            if isinstance(as_list, list) and as_list and isinstance(as_list[0], list):
-                if len(as_list) != 1:
-                    return {
-                        "ok": False,
-                        "error": f"Embedding Rueckgabe unerwartet bei chunk {idx}: batch-groesse {len(as_list)}",
-                    }
-                vectors.append([float(v) for v in as_list[0]])
-            else:
-                vectors.append([float(v) for v in as_list])
+        if len(vectors) != n:
+            return {
+                "ok": False,
+                "error": f"Embedding: Gesamtvektoren ({len(vectors)}) != Texte ({n})",
+            }
+        _logger.info("embed_texts fertig: %s Vektoren", len(vectors))
         return {"ok": True, "vectors": vectors}
     except Exception as exc:
         sample_type = type(normalized[0]).__name__ if normalized else "none"
+        _logger.exception("embed_texts fehlgeschlagen")
         return {
             "ok": False,
-            "error": f"Embedding fehlgeschlagen: {exc} (texts_count={len(normalized)}, first_type={sample_type})",
+            "error": f"Embedding fehlgeschlagen: {exc} (texts_count={n}, first_type={sample_type})",
         }
 
 

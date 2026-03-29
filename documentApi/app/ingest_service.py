@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import csv
+import logging
 import io
 import json
 import time
@@ -9,21 +10,26 @@ import uuid
 from collections.abc import Callable
 from typing import Any
 
-from .config import load_settings, save_settings as persist_settings
+from .config import _DEFAULT_SETTINGS, load_settings, save_settings as persist_settings
 from .database import IndexDatabase
 from .file_store import FileStore, create_sha256
 from .models import (
+    AddDocumentsResult,
     AppSettings,
     DocumentRecord,
     DocumentStatus,
     JobRecord,
     JobStatus,
     JobType,
+    PostgresEnvironment,
     ProgressEventPayload,
     UploadOptions,
 )
+from .services.thread_pool import run_in_worker_pool
 from .vector_service import PostgresVectorService
 from .worker import embed_texts, parse_document
+
+_logger = logging.getLogger(__name__)
 
 
 class IngestService:
@@ -39,17 +45,42 @@ class IngestService:
         self._queue: list[dict] = []
         self._is_processing = False
         self._is_db_validated = False
-        self._settings: AppSettings = AppSettings()
+        # Bis initialize(): dieselben Defaults wie load_settings (leeres AppSettings() waere ungueltig).
+        self._settings: AppSettings = _DEFAULT_SETTINGS.model_copy(deep=True)
         self._progress_subscribers: list[Callable[[ProgressEventPayload], None]] = []
+
+    def _active_pg(self) -> PostgresEnvironment:
+        return self._settings.get_active_postgres()
 
     async def initialize(self) -> None:
         self._settings = load_settings()
+        pg = self._active_pg()
         self._vs.update_connection_config(
-            host=self._settings.db_host,
-            port=self._settings.db_port,
-            database=self._settings.db_name,
-            user=self._settings.db_user,
-            password=self._settings.db_password,
+            host=pg.db_host,
+            port=pg.db_port,
+            database=pg.db_name,
+            user=pg.db_user,
+            password=pg.db_password,
+            schema=pg.db_schema,
+        )
+        # In-Memory-Queue ist nach Neustart leer; SQLite kennt noch queued/processing.
+        n_reset, n_jobs = self._db.recover_after_api_restart()
+        if n_reset or n_jobs:
+            _logger.info(
+                "startup recovery: %s Docs (processing->queued), %s alte Jobs abgebrochen",
+                n_reset,
+                n_jobs,
+            )
+        pending = self._db.list_doc_ids_by_status(DocumentStatus.queued.value)
+        if pending:
+            _logger.info(
+                "startup: %s wartende Dokumente wieder in die Verarbeitungsqueue",
+                len(pending),
+            )
+        for doc_id in pending:
+            self._enqueue_job(doc_id, JobType.reindex)
+        asyncio.get_event_loop().call_soon(
+            lambda: asyncio.ensure_future(self._process_queue())
         )
 
     def subscribe_progress(
@@ -72,34 +103,94 @@ class IngestService:
         self,
         files: list[tuple[str, bytes]],
         options: UploadOptions,
-    ) -> list[str]:
+    ) -> AddDocumentsResult:
         self._ensure_db_validated()
         queued_ids: list[str] = []
+        skipped_ids: list[str] = []
+        messages: list[str] = []
+        seen_hashes: set[str] = set()
+
         for file_name, content in files:
-            stored = self._fs.copy_to_managed_storage(file_name, file_bytes=content)
-            doc_id = stored["docId"]
-            self._db.upsert_document(
-                doc_id=doc_id,
-                file_name=stored["fileName"],
-                file_path=stored["destinationPath"],
-                file_hash=stored["fileHash"],
-                file_type=stored["extension"] or "unknown",
-                status=DocumentStatus.queued,
-                tags=options.tags,
-                source=options.source,
-                corpus_path=self._fs.get_corpus_path(doc_id),
-                size_bytes=stored["sizeBytes"],
+            try:
+                doc_id = create_sha256(content)
+                if doc_id in seen_hashes:
+                    messages.append(
+                        f"Duplikat im selben Upload uebersprungen: {file_name}"
+                    )
+                    skipped_ids.append(doc_id)
+                    continue
+                seen_hashes.add(doc_id)
+
+                existing = self._db.get_document(doc_id)
+                if existing is not None:
+                    if (
+                        existing.status == DocumentStatus.done
+                        and existing.chunk_count > 0
+                    ):
+                        messages.append(
+                            f"Bereits indexiert, uebersprungen: {file_name}"
+                        )
+                        skipped_ids.append(doc_id)
+                        continue
+                    if existing.status in (
+                        DocumentStatus.queued,
+                        DocumentStatus.processing,
+                    ):
+                        # Kein erneutes Kopieren: Job erneut anstossen (Queue war evtl. nach Neustart leer).
+                        if self._enqueue_job(doc_id, JobType.reindex):
+                            messages.append(
+                                f"Verarbeitung erneut angestossen: {file_name}"
+                            )
+                            queued_ids.append(doc_id)
+                        else:
+                            messages.append(
+                                f"Bereits in der aktuellen Verarbeitungsqueue: {file_name}"
+                            )
+                            skipped_ids.append(doc_id)
+                        continue
+
+                stored = self._fs.copy_to_managed_storage(
+                    file_name, file_bytes=content
+                )
+                doc_id = stored["docId"]
+                self._db.upsert_document(
+                    doc_id=doc_id,
+                    file_name=stored["fileName"],
+                    file_path=stored["destinationPath"],
+                    file_hash=stored["fileHash"],
+                    file_type=stored["extension"] or "unknown",
+                    status=DocumentStatus.queued,
+                    tags=options.tags,
+                    source=options.source,
+                    corpus_path=self._fs.get_corpus_path(doc_id),
+                    size_bytes=stored["sizeBytes"],
+                )
+                self._enqueue_job(doc_id, JobType.reindex)
+                queued_ids.append(doc_id)
+            except Exception as exc:
+                _logger.exception("add_documents file=%s", file_name)
+                messages.append(f"Fehler bei {file_name}: {exc}")
+
+        if not queued_ids and files:
+            messages.append(
+                "Hinweis: Kein neuer Job angelegt (alles uebersprungen oder nur Duplikate). "
+                "Wartende Dokumente werden beim API-Start automatisch fortgesetzt; "
+                "Ordner erneut hochladen stoesst wartende Eintraege ohne erneuten Speicher an."
             )
-            self._enqueue_job(doc_id, JobType.reindex)
-            queued_ids.append(doc_id)
-        asyncio.get_event_loop().call_soon(lambda: asyncio.ensure_future(self._process_queue()))
-        return queued_ids
+        asyncio.get_event_loop().call_soon(
+            lambda: asyncio.ensure_future(self._process_queue())
+        )
+        return AddDocumentsResult(
+            queued_doc_ids=queued_ids,
+            skipped_doc_ids=skipped_ids,
+            messages=messages,
+        )
 
     async def remove_document(self, doc_id: str) -> None:
         doc = self._db.get_document(doc_id)
         if not doc:
             return
-        self._vs.remove_document(self._settings.db_table_name, doc_id)
+        self._vs.remove_document(self._active_pg().db_table_name, doc_id)
         self._fs.delete_document_artifacts(doc_id)
         self._db.delete_document(doc_id)
 
@@ -133,31 +224,68 @@ class IngestService:
     def get_settings(self) -> AppSettings:
         return self._settings
 
+    def _merge_db_passwords_from_stored(self, incoming: AppSettings) -> AppSettings:
+        """Leeres dbPassword im Formular ueberschreibt nicht das zuletzt gespeicherte Passwort (wie pgAdmin)."""
+        by_id = {e.environment_id: e for e in self._settings.postgres_environments}
+        merged_envs: list[PostgresEnvironment] = []
+        for env in incoming.postgres_environments:
+            prev = by_id.get(env.environment_id)
+            if prev is not None and (env.db_password is None or str(env.db_password).strip() == ""):
+                merged_envs.append(env.model_copy(update={"db_password": prev.db_password}))
+            else:
+                merged_envs.append(env)
+        return incoming.model_copy(update={"postgres_environments": merged_envs})
+
     async def save_settings(self, settings: AppSettings) -> AppSettings:
-        self._settings = persist_settings(settings)
+        merged = self._merge_db_passwords_from_stored(settings)
+        self._settings = persist_settings(merged)
         self._is_db_validated = False
+        pg = self._active_pg()
         self._vs.update_connection_config(
-            host=settings.db_host,
-            port=settings.db_port,
-            database=settings.db_name,
-            user=settings.db_user,
-            password=settings.db_password,
+            host=pg.db_host,
+            port=pg.db_port,
+            database=pg.db_name,
+            user=pg.db_user,
+            password=pg.db_password,
+            schema=pg.db_schema,
         )
+        from .dependencies import get_chat_service
+
+        try:
+            get_chat_service().update_settings(self._settings)
+        except RuntimeError:
+            pass
         return self._settings
 
     def is_database_connection_ready(self) -> bool:
         return self._is_db_validated
 
-    async def test_database_connection(self) -> dict:
+    async def test_database_connection(
+        self,
+        working_settings: AppSettings | None = None,
+    ) -> dict:
+        """
+        Testet Postgres + pgvector-Schema.
+        Wenn working_settings gesetzt ist (Formular aus der UI), werden diese Werte genutzt —
+        bei Erfolg werden sie persistiert (wie „Speichern“ nach erfolgreichem Test).
+        """
+        merged_working: AppSettings | None = None
+        if working_settings is not None:
+            merged_working = self._merge_db_passwords_from_stored(working_settings)
+            app_for_pg = merged_working
+        else:
+            app_for_pg = self._settings
+        pg = app_for_pg.get_active_postgres()
         try:
             import psycopg2
 
             conn = psycopg2.connect(
-                host=self._settings.db_host,
-                port=self._settings.db_port,
-                dbname=self._settings.db_name,
-                user=self._settings.db_user,
-                password=self._settings.db_password,
+                host=pg.db_host,
+                port=pg.db_port,
+                dbname=pg.db_name,
+                user=pg.db_user,
+                password=pg.db_password,
+                connect_timeout=15,
             )
             conn.autocommit = True
             cur = conn.cursor()
@@ -169,11 +297,39 @@ class IngestService:
             return {"status": "error", "message": f"connection test failed: {exc}"}
 
         try:
-            self._vs.ensure_schema(self._settings.db_table_name)
+            # Gleiche Zugangsdaten wie der direkte Connect (Pool kann veraltet sein)
+            vs = PostgresVectorService(
+                host=pg.db_host,
+                port=pg.db_port,
+                database=pg.db_name,
+                user=pg.db_user,
+                password=pg.db_password,
+                schema=pg.db_schema,
+            )
+            vs.ensure_schema(pg.db_table_name)
+            self._vs.update_connection_config(
+                host=pg.db_host,
+                port=pg.db_port,
+                database=pg.db_name,
+                user=pg.db_user,
+                password=pg.db_password,
+                schema=pg.db_schema,
+            )
             self._is_db_validated = True
+            if merged_working is not None:
+                self._settings = persist_settings(merged_working)
+                from .dependencies import get_chat_service
+
+                try:
+                    get_chat_service().update_settings(self._settings)
+                except RuntimeError:
+                    pass
             return {
                 "status": "ok",
-                "message": f"connection test success, schema ready ({self._settings.db_table_name})",
+                "message": (
+                    f"connection test success, schema ready "
+                    f"({pg.db_schema}.{pg.db_table_name}, {pg.db_name}@{pg.db_host})"
+                ),
             }
         except Exception as exc:
             self._is_db_validated = False
@@ -228,7 +384,10 @@ class IngestService:
                 "Bitte zuerst Connection Test erfolgreich ausfuehren."
             )
 
-    def _enqueue_job(self, doc_id: str, job_type: JobType) -> None:
+    def _enqueue_job(self, doc_id: str, job_type: JobType) -> bool:
+        """Neuen Job einreihen. False, wenn fuer doc_id bereits ein Eintrag in der Queue ist."""
+        if any(j.get("docId") == doc_id for j in self._queue):
+            return False
         job_id = str(uuid.uuid4())
         self._queue.append({"jobId": job_id, "docId": doc_id, "type": job_type})
         self._db.upsert_job(
@@ -239,6 +398,7 @@ class IngestService:
             progress=0,
             message="Job eingeplant.",
         )
+        return True
 
     async def _process_queue(self) -> None:
         if self._is_processing:
@@ -271,7 +431,7 @@ class IngestService:
         ))
 
         try:
-            self._vs.remove_document(self._settings.db_table_name, doc_id)
+            self._vs.remove_document(self._active_pg().db_table_name, doc_id)
             self._emit_progress(ProgressEventPayload(
                 docId=doc_id, jobId=job_id, type=job_type,
                 progress=0.12, message="Bestehende Vektoren bereinigt.", status=JobStatus.running,
@@ -282,7 +442,7 @@ class IngestService:
                 corpus_lines = []
 
             if not corpus_lines:
-                parsed = await asyncio.to_thread(
+                parsed = await run_in_worker_pool(
                     parse_document,
                     doc.file_path,
                     self._settings.chunk_size,
@@ -326,7 +486,14 @@ class IngestService:
             if not embedding_inputs:
                 raise RuntimeError("Keine gueltigen Text-Chunks fuer Embeddings vorhanden.")
 
-            embedding_result = await asyncio.to_thread(
+            n_chunks = len(embedding_inputs)
+            _logger.info(
+                "job %s: embeddings start doc=%s… chunks=%s",
+                job_id[:8],
+                doc_id[:12],
+                n_chunks,
+            )
+            embedding_result = await run_in_worker_pool(
                 embed_texts,
                 self._settings.embedding_model,
                 [text for _, text in embedding_inputs],
@@ -338,7 +505,13 @@ class IngestService:
             if not vectors:
                 raise RuntimeError("Keine Embeddings erzeugt.")
 
-            self._vs.ensure_schema(self._settings.db_table_name)
+            _logger.info(
+                "job %s: pg vector upsert start doc=%s… vectors=%s",
+                job_id[:8],
+                doc_id[:12],
+                len(vectors),
+            )
+            self._vs.ensure_schema(self._active_pg().db_table_name)
             payloads = [
                 {
                     "documentId": doc_id,
@@ -353,7 +526,7 @@ class IngestService:
                 for line, _ in embedding_inputs
             ]
             self._vs.upsert_document_chunks(
-                self._settings.db_table_name, doc_id, vectors, payloads,
+                self._active_pg().db_table_name, doc_id, vectors, payloads,
             )
 
             self._db.set_document_index_result(doc_id, len(vectors))

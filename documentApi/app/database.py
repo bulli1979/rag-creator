@@ -203,3 +203,39 @@ class IndexDatabase:
             "SELECT * FROM jobs ORDER BY updatedAt DESC LIMIT 200"
         ).fetchall()
         return [_row_to_job(row) for row in rows]
+
+    def list_doc_ids_by_status(self, status: str) -> list[str]:
+        rows = self._conn.execute(
+            "SELECT docId FROM documents WHERE status = ? ORDER BY updatedAt ASC",
+            (status,),
+        ).fetchall()
+        return [str(r["docId"]) for r in rows]
+
+    def recover_after_api_restart(self) -> tuple[int, int]:
+        """
+        Nach Prozess-Neustart: es laeuft kein Worker mehr.
+        - processing -> queued (wird wieder eingeplant)
+        - alte Jobs queued/running -> error (werden durch neue Jobs ersetzt)
+        """
+        now = int(time.time() * 1000)
+        cur_docs = self._conn.execute(
+            """
+            UPDATE documents
+            SET status = 'queued', errorMessage = NULL, updatedAt = ?
+            WHERE status = 'processing'
+            """,
+            (now,),
+        )
+        cur_jobs = self._conn.execute(
+            """
+            UPDATE jobs
+            SET status = 'error',
+                message = ?,
+                progress = 1.0,
+                updatedAt = ?
+            WHERE status IN ('queued', 'running')
+            """,
+            ("Unterbrochen (API-Neustart — wird neu eingeplant).", now),
+        )
+        self._conn.commit()
+        return (int(cur_docs.rowcount or 0), int(cur_jobs.rowcount or 0))

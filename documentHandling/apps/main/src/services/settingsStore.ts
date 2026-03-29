@@ -2,12 +2,20 @@ import fs from "node:fs/promises";
 import type { AppSettings } from "@rag/shared";
 
 export const defaultSettings: AppSettings = {
-  dbHost: "localhost",
-  dbPort: 5432,
-  dbName: "rag",
-  dbUser: "postgres",
-  dbPassword: "",
-  dbTableName: "rag_documents",
+  activePostgresEnvironmentId: "default",
+  postgresEnvironments: [
+    {
+      id: "default",
+      name: "Standard",
+      dbHost: "localhost",
+      dbPort: 5432,
+      dbName: "rag",
+      dbUser: "postgres",
+      dbPassword: "",
+      dbSchema: "public",
+      dbTableName: "rag_documents"
+    }
+  ],
   chunkSize: 900,
   chunkOverlap: 150,
   embeddingModel: "all-MiniLM-L6-v2",
