@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import json
+import re
 import time
 
 from openai import OpenAI
@@ -8,14 +8,58 @@ from openai import OpenAI
 from .config import (
     _DEFAULT_SETTINGS,
     load_chat_settings,
-    load_settings,
     save_chat_settings as persist_chat_settings,
 )
 from .crypto_service import CryptoService
-from .models import AppSettings, ChatMessage, ChatRequest, ChatResponse, ChatSettings
+from .models import AppSettings, ChatRequest, ChatResponse, ChatSettings
 from .services.thread_pool import run_in_worker_pool
 from .vector_store.protocol import VectorStore
 from .worker import embed_texts
+
+
+_TOKEN_RE = re.compile(r"[a-zA-Z0-9_\-/\.]+")
+_NUMBER_RE = re.compile(r"[-+]?\d+(?:\.\d+)?")
+
+
+def _tokenize(text: str) -> set[str]:
+    return {t.lower() for t in _TOKEN_RE.findall(text or "") if len(t) > 1}
+
+
+def _extract_numbers(text: str) -> set[str]:
+    return set(_NUMBER_RE.findall(text or ""))
+
+
+def _rerank_chunks(query: str, chunks: list[dict], top_k: int) -> list[dict]:
+    """Blend vector similarity with lexical and numeric matching for higher QA precision."""
+    if not chunks:
+        return []
+
+    q_tokens = _tokenize(query)
+    q_numbers = _extract_numbers(query)
+
+    scored: list[tuple[float, dict]] = []
+    for chunk in chunks:
+        text = str(chunk.get("text", ""))
+        c_tokens = _tokenize(text)
+        c_numbers = _extract_numbers(text)
+
+        sim = float(chunk.get("similarity", 0.0) or 0.0)
+        lexical = (len(q_tokens & c_tokens) / len(q_tokens)) if q_tokens else 0.0
+        numeric = (len(q_numbers & c_numbers) / len(q_numbers)) if q_numbers else 0.0
+
+        # Prioritize semantic match, but boost exact lexical and numeric overlap.
+        score = (0.65 * sim) + (0.25 * lexical) + (0.10 * numeric)
+        scored.append((score, chunk))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [c for _, c in scored[: max(1, top_k)]]
+
+
+def _trim_context_text(text: str, max_chars: int = 1200) -> str:
+    cleaned = " ".join((text or "").split())
+    if len(cleaned) <= max_chars:
+        return cleaned
+    return cleaned[: max_chars - 3] + "..."
 
 
 class ChatService:
@@ -57,14 +101,21 @@ class ChatService:
         query_vector = query_embedding["vectors"][0]
 
         active_pg = self._settings.get_active_postgres()
-        context_chunks = self._vs.similarity_search(
+        # Retrieve a wider candidate pool, then rerank for QA precision.
+        candidate_k = max(self._chat_settings.top_k, min(self._chat_settings.top_k * 4, 30))
+        candidate_chunks = self._vs.similarity_search(
             table_name=active_pg.db_table_name,
             query_vector=query_vector,
+            top_k=candidate_k,
+        )
+        context_chunks = _rerank_chunks(
+            query=query,
+            chunks=candidate_chunks,
             top_k=self._chat_settings.top_k,
         )
 
         context_text = "\n\n---\n\n".join(
-            f"[{chunk['fileName']} | Chunk {chunk['chunkIndex']}]\n{chunk['text']}"
+            f"[{chunk['fileName']} | Chunk {chunk['chunkIndex']}]\n{_trim_context_text(chunk['text'])}"
             for chunk in context_chunks
         )
 
@@ -98,7 +149,9 @@ class ChatService:
             f"{self._chat_settings.system_prompt}\n\n"
             f"{language_instruction}\n"
             "Use ONLY the following context to answer. "
-            "If the context does not contain relevant information, say so.\n\n"
+            "If the context does not contain relevant information, say so explicitly.\n"
+            "For factual questions (numbers, commands, limits), prefer exact values from context and cite the chunk/file names.\n"
+            "If context snippets disagree, mention the conflict instead of guessing.\n\n"
             f"--- CONTEXT ---\n{context_text}\n--- END CONTEXT ---"
         )
 

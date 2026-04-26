@@ -17,7 +17,7 @@ from .database import IndexDatabase
 from .dependencies import set_chat_service, set_ingest_service
 from .file_store import FileStore
 from .ingest_service import IngestService
-from .routers import chat, corpus, documents, health, jobs, settings
+from .routers import chat, corpus, documents, health, jobs, llm, settings
 from .services.thread_pool import init_thread_pool, shutdown_thread_pool
 from .vector_store.factory import create_vector_store
 
@@ -69,6 +69,7 @@ app.include_router(settings.router)
 app.include_router(health.router)
 app.include_router(jobs.router)
 app.include_router(chat.router)
+app.include_router(llm.router)
 
 
 @app.get("/")

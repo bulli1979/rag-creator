@@ -173,6 +173,113 @@ body {
   background: #111827;
 }
 
+.models-panel__intro {
+  margin-top: 0;
+  max-width: 52rem;
+}
+
+.model-provider-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.model-provider-card {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #0b1220;
+}
+
+.model-provider-card--system {
+  border-color: #0f766e;
+  background: linear-gradient(135deg, #0b1220 0%, #0f172a 100%);
+}
+
+.model-provider-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.model-provider-card__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.model-provider-card__badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #134e4a;
+  color: #ccfbf1;
+  border: 1px solid #2dd4bf;
+}
+
+.model-provider-card__description {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #94a3b8;
+}
+
+.model-provider-card__endpoint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.model-provider-card__endpoint-label {
+  flex: 0 0 auto;
+}
+
+.model-provider-card__endpoint-value {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #0b1220;
+  border: 1px solid #334155;
+  color: #a5f3fc;
+}
+
+.ollama-models-toolbar {
+  margin-top: 12px;
+}
+
+.ollama-models-error {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(127, 29, 29, 0.35);
+  border: 1px solid #b91c1c;
+  color: #fecaca;
+  font-size: 13px;
+}
+
+.ollama-models-empty {
+  margin-top: 8px;
+}
+
+.ollama-models-table-wrap {
+  margin-top: 12px;
+}
+
+.ollama-models-table {
+  font-size: 13px;
+}
+
 .two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;

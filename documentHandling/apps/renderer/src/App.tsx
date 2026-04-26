@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   defaultAppSettings,
   type AppSettings,
@@ -8,6 +8,7 @@ import {
   type VectorBackend
 } from "@rag/shared";
 import { useI18n } from "./i18n";
+import type { OllamaModelRow } from "./types/global";
 
 interface UploadFormState {
   tagsInput: string;
@@ -19,6 +20,20 @@ function parseTags(tagsInput: string): string[] {
     .split(",")
     .map((entry) => entry.trim())
     .filter((entry) => entry.length > 0);
+}
+
+function formatBytes(n: number | null | undefined): string {
+  if (n == null || n < 0 || !Number.isFinite(n)) {
+    return "—";
+  }
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let value = n;
+  let unitIndex = 0;
+  while (value >= 1024 && unitIndex < units.length - 1) {
+    value /= 1024;
+    unitIndex += 1;
+  }
+  return unitIndex === 0 ? `${Math.round(value)} ${units[unitIndex]}` : `${value.toFixed(1)} ${units[unitIndex]}`;
 }
 
 function formatErrorDetail(err: unknown): string {
@@ -81,7 +96,7 @@ export default function App() {
   const { t, locale, setLocale } = useI18n();
   const tRef = useRef(t);
   tRef.current = t;
-  const [activeTab, setActiveTab] = useState<"documents" | "settings">("documents");
+  const [activeTab, setActiveTab] = useState<"documents" | "models" | "settings">("documents");
   const [documents, setDocuments] = useState<DocumentRecord[]>([]);
   const [selectedDocumentIds, setSelectedDocumentIds] = useState<string[]>([]);
   const [searchText, setSearchText] = useState("");
@@ -102,6 +117,38 @@ export default function App() {
   const [folderIngestRunning, setFolderIngestRunning] = useState(false);
   const [folderActionLog, setFolderActionLog] = useState<string>("");
   const [reindexAllRunning, setReindexAllRunning] = useState(false);
+  const [ollamaModels, setOllamaModels] = useState<OllamaModelRow[]>([]);
+  const [ollamaModelsBaseUrl, setOllamaModelsBaseUrl] = useState("");
+  const [ollamaModelsLoading, setOllamaModelsLoading] = useState(false);
+  const [ollamaModelsError, setOllamaModelsError] = useState("");
+
+  const loadOllamaModels = useCallback(async () => {
+    if (!window.ragApi?.listOllamaModels) {
+      setOllamaModelsError(t("models.apiUnavailable"));
+      return;
+    }
+    setOllamaModelsLoading(true);
+    setOllamaModelsError("");
+    try {
+      const res = await window.ragApi.listOllamaModels();
+      setOllamaModels(res.models);
+      setOllamaModelsBaseUrl(res.ollamaBaseUrl);
+    } catch (err: unknown) {
+      setOllamaModelsError(err instanceof Error ? err.message : String(err));
+      setOllamaModels([]);
+      setOllamaModelsBaseUrl("");
+    } finally {
+      setOllamaModelsLoading(false);
+    }
+  }, [t]);
+
+  useEffect(() => {
+    if (activeTab !== "models") {
+      return undefined;
+    }
+    void loadOllamaModels();
+    return undefined;
+  }, [activeTab, loadOllamaModels]);
 
   function appendFolderLog(line: string): void {
     const stamp = new Date().toLocaleTimeString();
@@ -580,6 +627,13 @@ export default function App() {
             </button>
             <button
               type="button"
+              className={`tab-button ${activeTab === "models" ? "active" : ""}`}
+              onClick={() => setActiveTab("models")}
+            >
+              {t("tabs.models")}
+            </button>
+            <button
+              type="button"
               className={`tab-button ${activeTab === "settings" ? "active" : ""}`}
               onClick={() => setActiveTab("settings")}
             >
@@ -864,6 +918,74 @@ export default function App() {
             </section>
           ) : null}
         </>
+      )}
+
+      {activeTab === "models" && (
+        <section className="panel models-panel">
+          <h2>{t("models.title")}</h2>
+          <p className="upload-hint models-panel__intro">{t("models.intro")}</p>
+          <ul className="model-provider-list" aria-label={t("models.title")}>
+            <li className="model-provider-card model-provider-card--system">
+              <div className="model-provider-card__header">
+                <span className="model-provider-card__name">{t("models.ollama.name")}</span>
+                <span className="model-provider-card__badge">{t("models.badgeBuiltin")}</span>
+              </div>
+              <p className="model-provider-card__description">{t("models.ollama.description")}</p>
+              {ollamaModelsBaseUrl ? (
+                <p className="model-provider-card__endpoint">
+                  <span className="model-provider-card__endpoint-label">{t("models.ollamaEndpoint")}</span>
+                  <code className="model-provider-card__endpoint-value">{ollamaModelsBaseUrl}</code>
+                </p>
+              ) : null}
+              <div className="ollama-models-toolbar">
+                <button
+                  type="button"
+                  onClick={() => void loadOllamaModels()}
+                  disabled={ollamaModelsLoading}
+                >
+                  {ollamaModelsLoading ? t("models.loading") : t("models.refresh")}
+                </button>
+              </div>
+              {ollamaModelsError ? (
+                <p className="ollama-models-error" role="alert">
+                  {ollamaModelsError}
+                </p>
+              ) : null}
+              {!ollamaModelsLoading && !ollamaModelsError && ollamaModels.length === 0 ? (
+                <p className="upload-hint ollama-models-empty">{t("models.empty")}</p>
+              ) : null}
+              {ollamaModels.length > 0 ? (
+                <div className="table-wrapper ollama-models-table-wrap">
+                  <table className="ollama-models-table">
+                    <thead>
+                      <tr>
+                        <th>{t("models.colName")}</th>
+                        <th>{t("models.colSize")}</th>
+                        <th>{t("models.colModified")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ollamaModels.map((row) => (
+                        <tr key={row.name}>
+                          <td className="mono-cell">{row.name}</td>
+                          <td>{formatBytes(row.size)}</td>
+                          <td>
+                            {row.modifiedAt
+                              ? (() => {
+                                  const d = Date.parse(row.modifiedAt);
+                                  return Number.isNaN(d) ? row.modifiedAt : new Date(d).toLocaleString();
+                                })()
+                              : "—"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+            </li>
+          </ul>
+        </section>
       )}
 
       {activeTab === "settings" && (

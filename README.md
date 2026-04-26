@@ -1,5 +1,7 @@
 # RAG Ingest Studio + RAG Chat
 
+**Sprache:** [Deutsch](README.md) | [English](README.en.md)
+
 Desktop-Stack (Electron + React + TypeScript + FastAPI) fuer lokale Dokument-Ingestion und Chat ueber Vektor-Retrieval:
 
 - Upload per File Picker, Drag & Drop und rekursiver Ordner-Ingest
@@ -20,6 +22,7 @@ documentHandling/    Dokumentverwaltung + Ingestion UI (Electron)
 chatBot/             Chat UI (Electron)
 documentApi/         FastAPI Backend + Worker + Vector Stores
 scripts/             Startskripte (u. a. documentApi Runner)
+batchTest/           Batch-Chat gegen die API + Excel-Export (Python)
 ```
 
 ## Systemdiagramm (Ingest + Reindex)
@@ -166,6 +169,55 @@ Unterstruktur:
 - **Connection Test** backend-spezifisch (Postgres/SQLite/Qdrant)
 - **CSV Export** der Dokumentliste
 - **Chat** mit Quellenanzeige, "Website"-Button (externer Browser), Copy-Button und Antwort-Metriken
+
+## batchTest (Batch-Chat + Excel)
+
+Im Ordner `batchTest/` liegt ein kleines **Python**-Tool, das viele Chat-Fragen gegen die laufende **documentApi** schickt und eine **Excel-Arbeitsmappe** mit Antworten, Token-Metriken, Geschwindigkeit und den gezogenen Kontext-Chunks schreibt.
+
+> English: [README.en.md](README.en.md) — same **batchTest** section.
+
+### Voraussetzungen
+
+- **documentApi** erreichbar (gleiche URL wie die App, Standard `http://localhost:8000`)
+- Derselbe Index/Vektor-Backend wie im Chat, damit das Retrieval zu euren Dokumenten passt
+- Abhaengigkeiten: `pip install -r batchTest/requirements.txt` (`httpx`, `openpyxl`)
+
+### Kurzstart
+
+```bash
+cd batchTest
+pip install -r requirements.txt
+cp batch_config.example.json batch_config.json
+# batch_config.json anpassen (Fragen, API-URL, optionale Chat-Settings)
+python batch_chat.py --config batch_config.json
+```
+
+Unter Windows (PowerShell) geht `cp` nicht immer; dann z. B. `Copy-Item batch_config.example.json batch_config.json`.
+
+### Konfiguration (`batch_config.json`)
+
+| Bereich | Bedeutung |
+|--------|-----------|
+| `apiBaseUrl` | Basis-URL der documentApi (ohne abschliessenden Slash) |
+| `requestTimeoutSeconds` | HTTP-Timeout pro Anfrage |
+| `questions` | Liste von Fragen (Strings) |
+| `questionsFile` | Optionaler Pfad zu einer Textdatei: eine Frage pro Zeile; Zeilen mit `#` sind Kommentare |
+| `language` | `"de"` oder `"en"`, oder weglassen (wie in der API) |
+| `history` | Optional Liste aus `{"role":"user"|"assistant","content":"..."}` (wie Chat-API) |
+| `applyChatSettings` | Bei `true`: aktuelle Einstellungen per `GET /api/chat/settings` laden, mit `chatSettings` mergen, danach per `PUT` speichern |
+| `chatSettings` | Gleiche Felder wie im App-Chat: `llmApiKey`, `llmBaseUrl`, `llmModel`, `temperature`, `maxTokens`, `topK`, `systemPrompt`, `encryptionKey` (CamelCase wie in der API) |
+| `restoreChatSettingsAfterRun` | Bei `true`: nach dem Lauf die zuvor gesicherten Settings wiederherstellen |
+| `outputExcel` | Pfad zur `.xlsx`-Ausgabe (relative Pfade beziehen sich auf das **aktuelle Arbeitsverzeichnis**) |
+
+### Excel-Ausgabe
+
+Die Arbeitsmappe enthaelt:
+
+- **Meta** – Zeitstempel (UTC), API-URL, Konfigurationspfad, optional angewendete `chatSettings`
+- **Ergebnisse** – eine Zeile pro Frage: Antwort, HTTP-Fehler (falls vorhanden), `elapsedMs`, Prompt-/Completion-/Total-Tokens, Tokens/s, Chunk-Anzahl, Kurzliste der Chunks, ausfuehrlicher Chunk-Text
+- **Chunks** – eine Zeile pro abgerufenem Chunk: Frage-Nr., Position, Dateiname, `chunkIndex`, `documentId`, Aehnlichkeit, Quelle, Textauszug
+
+Lange Texte werden bei Bedarf wegen Excel-Zelllimits gekuerzt.
 
 ## Hinweise zu Idempotenz
 

@@ -19,6 +19,10 @@ const UPLOAD_RETRY_BASE_MS = 3_000;
 const UPLOAD_RETRY_MAX_MS = 120_000;
 const FOLDER_SCAN_BATCH_SIZE = 300;
 
+/** Antwort GET /api/llm/ollama/models */
+export type OllamaModelRow = { name: string; size: number | null; modifiedAt: string | null };
+export type OllamaModelsResult = { ollamaBaseUrl: string; models: OllamaModelRow[] };
+
 export class ApiClient {
   private baseUrl: string;
   private abortController: AbortController | null = null;
@@ -352,6 +356,11 @@ export class ApiClient {
 
   public async getDatabaseConnectionState(): Promise<{ ready: boolean }> {
     return this.get<{ ready: boolean }>("/api/database/connection-state");
+  }
+
+  /** Lokal installierte Ollama-Modelle (Adresse aus Chat-Einstellungen llmBaseUrl). */
+  public async listOllamaModels(): Promise<OllamaModelsResult> {
+    return this.get<OllamaModelsResult>("/api/llm/ollama/models", DEFAULT_REQUEST_TIMEOUT_MS);
   }
 
   public async runHealthCheck(): Promise<{

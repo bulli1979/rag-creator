@@ -39,11 +39,23 @@ _DEFAULT_CHAT_SETTINGS = ChatSettings()
 _PROJECT_DIR = Path(__file__).resolve().parent.parent
 
 
+def _optional_data_root() -> Path | None:
+    """Wenn gesetzt (z. B. Docker-Volume), liegen settings, Chat-Settings und Nutzerdaten unter diesem Pfad."""
+    raw = os.environ.get("RAG_DATA_ROOT", "").strip()
+    return Path(raw) if raw else None
+
+
 def get_base_directory() -> Path:
+    root = _optional_data_root()
+    if root is not None:
+        return root
     return Path.home() / "RAGIngestStudio"
 
 
 def get_settings_path() -> Path:
+    root = _optional_data_root()
+    if root is not None:
+        return root / "settings.json"
     return _PROJECT_DIR / "settings.json"
 
 
@@ -132,6 +144,7 @@ def load_settings() -> AppSettings:
 
 def save_settings(settings: AppSettings) -> AppSettings:
     settings_path = get_app_paths()["settings"]
+    settings_path.parent.mkdir(parents=True, exist_ok=True)
     settings_path.write_text(
         json.dumps(settings.model_dump(by_alias=True), indent=2, ensure_ascii=False),
         encoding="utf-8",
@@ -140,6 +153,9 @@ def save_settings(settings: AppSettings) -> AppSettings:
 
 
 def get_chat_settings_path() -> Path:
+    root = _optional_data_root()
+    if root is not None:
+        return root / "chat_settings.json"
     return _PROJECT_DIR / "chat_settings.json"
 
 
@@ -148,16 +164,25 @@ def load_chat_settings() -> ChatSettings:
     try:
         raw = path.read_text(encoding="utf-8")
         data = json.loads(raw)
-        return ChatSettings(
+        settings = ChatSettings(
             **{**_DEFAULT_CHAT_SETTINGS.model_dump(by_alias=True), **data}
         )
     except Exception:
-        save_chat_settings(_DEFAULT_CHAT_SETTINGS)
-        return _DEFAULT_CHAT_SETTINGS
+        settings = _DEFAULT_CHAT_SETTINGS.model_copy()
+        env_url = os.environ.get("LLM_BASE_URL", "").strip()
+        if env_url:
+            settings = settings.model_copy(update={"llm_base_url": env_url})
+        save_chat_settings(settings)
+    else:
+        env_url = os.environ.get("LLM_BASE_URL", "").strip()
+        if env_url:
+            settings = settings.model_copy(update={"llm_base_url": env_url})
+    return settings
 
 
 def save_chat_settings(settings: ChatSettings) -> ChatSettings:
     path = get_chat_settings_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(settings.model_dump(by_alias=True), indent=2, ensure_ascii=False),
         encoding="utf-8",

@@ -1,0 +1,24 @@
+{
+  "apiBaseUrl": "http://localhost:8000",
+  "requestTimeoutSeconds": 600,
+  "applyChatSettings": true,
+  "chatSettings": {
+    "llmApiKey": "ollama",
+    "llmBaseUrl": "http://localhost:11434/v1",
+    "llmModel": "llama3.2",
+    "temperature": 0.3,
+    "maxTokens": 2048,
+    "topK": 5,
+    "systemPrompt": "You are a helpful assistant that answers questions based on provided documents. Always cite the source file name when possible. Be precise and thorough.",
+    "encryptionKey": ""
+  },
+  "restoreChatSettingsAfterRun": false,
+  "language": "de",
+  "history": [],
+  "questions": [
+    "Was steht in den Dokumenten zum Thema X?",
+    "Liste die wichtigsten Punkte auf."
+  ],
+  "questionsFile": null,
+  "outputExcel": "batch_results.xlsx"
+}

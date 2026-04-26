@@ -1,0 +1,33 @@
+# Start im Ordner documentApi:  docker compose up -d --build
+#
+# API: http://localhost:8000  |  Ollama nur intern (Service-Name: ollama, Port 11434).
+# Chat/Modellliste nutzen LLM_BASE_URL=http://ollama:11434/v1 automatisch.
+#
+# Postgres: Standard-Settings zeigen auf localhost:5432 — aus dem API-Container
+# ist das der Container selbst. Entweder postgres-Service ergänzen oder
+# dbHost in den Einstellungen auf host.docker.internal (Windows/Mac Docker Desktop)
+# oder die Docker-Host-IP setzen.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  api:
+    build: .
+    depends_on:
+      - ollama
+    ports:
+      - "8000:8000"
+    environment:
+      LLM_BASE_URL: http://ollama:11434/v1
+      RAG_DATA_ROOT: /data
+    volumes:
+      - rag_api_data:/data
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  rag_api_data:

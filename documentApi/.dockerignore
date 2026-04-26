@@ -1,0 +1,9 @@
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.git
+*.sqlite
+settings.json
+chat_settings.json
