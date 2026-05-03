@@ -76,6 +76,10 @@ class ChatService:
     def update_settings(self, app_settings: AppSettings) -> None:
         self._settings = app_settings
 
+    def set_vector_store(self, vector_service: VectorStore) -> None:
+        """Muss nach IngestService._rebuild_vector_store() aufgerufen werden (gleiche DB-Datei / gleicher Store)."""
+        self._vs = vector_service
+
     def get_chat_settings(self) -> ChatSettings:
         return self._chat_settings
 

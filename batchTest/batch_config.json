@@ -1,7 +1,7 @@
 {
   "apiBaseUrl": "http://localhost:8000",
   "requestTimeoutSeconds": 600,
-  "activePostgresEnvironmentId": "default",
+  "activePostgresEnvironmentId": "c0a463df-77b2-440d-844d-dac16223dbac",
   "applyAppSettings": false,
   "appSettings": {},
   "restoreAppSettingsAfterRun": false,
@@ -12,7 +12,7 @@
     "llmModel": "llama3.2",
     "temperature": 0.3,
     "maxTokens": 2048,
-    "topK": 50,
+    "topK": 5,
     "systemPrompt": "You are a helpful assistant that answers questions based on provided documents. Always cite the source file name when possible. Be precise and thorough.",
     "encryptionKey": ""
   },

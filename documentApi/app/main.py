@@ -40,8 +40,9 @@ async def lifespan(app: FastAPI):
         set_ingest_service(svc)
 
         crypto = CryptoService()
-        chat_svc = ChatService(vs, crypto)
-        chat_svc.update_settings(app_settings)
+        # Nach initialize() zeigt IngestService ggf. einen neuen Vector-Store (load_settings + _rebuild).
+        chat_svc = ChatService(svc._vs, crypto)
+        chat_svc.update_settings(svc.get_settings())
         set_chat_service(chat_svc)
 
         yield
