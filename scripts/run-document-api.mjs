@@ -23,7 +23,9 @@ if (!fs.existsSync(python)) {
 
 // Qdrant embedded: exklusive Sperre auf dem Ordner — mit uvicorn --reload kann der Reloader/Worker kurz ueberlappen
 // und die API startet nicht. Standard: ohne Reload; bei Bedarf: DOCUMENT_API_RELOAD=1
-const argv = ["-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"];
+// DOCUMENT_API_HOST: z. B. 0.0.0.0 fuer Zugriff im LAN (Clients dann RAG_API_URL auf Host-IP setzen)
+const host = process.env.DOCUMENT_API_HOST?.trim() || "127.0.0.1";
+const argv = ["-m", "uvicorn", "app.main:app", "--host", host, "--port", "8000"];
 const reload =
   process.env.DOCUMENT_API_RELOAD === "1" || process.env.DOCUMENT_API_RELOAD === "true";
 if (reload) {
