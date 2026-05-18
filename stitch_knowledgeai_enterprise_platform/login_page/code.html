@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#380d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003fb1",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary": "#852b00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "on-background": "#111c2d",
+                        "surface-dim": "#cfdaf2",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error-container": "#ffdad6",
+                        "outline": "#737686",
+                        "background": "#f9f9ff",
+                        "primary-container": "#1a56db",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#263143",
+                        "secondary-container": "#d5e0f8",
+                        "on-secondary-container": "#586377",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-primary-container": "#d4dcff",
+                        "surface-tint": "#1353d8",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-container": "#ad3b00",
+                        "on-surface": "#111c2d",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-surface-variant": "#434654",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "secondary": "#545f73",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffd4c5",
+                        "surface-bright": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "secondary-fixed": "#d8e3fb",
+                        "inverse-primary": "#b5c4ff",
+                        "outline-variant": "#c3c5d7",
+                        "on-secondary-fixed": "#111c2d",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #003fb1 0%, #1a56db 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen items-center justify-center p-4">
+<!-- Supressed Shell Components: Navigation hidden for Login Task Flow -->
+<main class="w-full max-w-[420px] flex flex-col items-center">
+<!-- Logo Section -->
+<div class="mb-8 flex flex-col items-center gap-3">
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-container text-white">
+<span class="material-symbols-outlined text-3xl" data-icon="psychology">psychology</span>
+</div>
+<h1 class="text-lg font-black tracking-tight text-on-surface">KnowledgeAI</h1>
+</div>
+<!-- Login Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-[0_10px_40px_rgba(0,63,177,0.06)] p-8">
+<div class="text-center mb-8">
+<h2 class="text-[24px] font-bold leading-tight mb-2">Willkommen zurueck</h2>
+<p class="text-[14px] text-on-surface-variant leading-relaxed">
+                    Melden Sie sich an, um auf die Wissensplattform zuzugreifen
+                </p>
+</div>
+<form class="space-y-5">
+<!-- E-Mail -->
+<div class="space-y-1.5">
+<label class="text-[12px] font-semibold text-on-surface-variant px-1" for="email">E-Mail</label>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg bg-surface-container-low border-transparent focus:border-primary focus:ring-4 focus:ring-primary-fixed/50 text-sm transition-all duration-200" id="email" placeholder="name@firma.de" type="email"/>
+</div>
+</div>
+<!-- Passwort -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center px-1">
+<label class="text-[12px] font-semibold text-on-surface-variant" for="password">Passwort</label>
+<a class="text-[12px] font-medium text-primary hover:underline" href="#">Vergessen?</a>
+</div>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg bg-surface-container-low border-transparent focus:border-primary focus:ring-4 focus:ring-primary-fixed/50 text-sm transition-all duration-200" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-2 px-1 py-1">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary-fixed cursor-pointer" id="remember" type="checkbox"/>
+<label class="text-[13px] text-on-surface-variant cursor-pointer select-none" for="remember">Angemeldet bleiben</label>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-12 btn-gradient text-white font-semibold rounded-lg text-sm shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform" type="submit">
+                    Anmelden
+                </button>
+</form>
+<!-- Divider -->
+<div class="relative my-8">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant opacity-30"></div>
+</div>
+<div class="relative flex justify-center text-[11px] font-bold tracking-widest uppercase text-on-surface-variant">
+<span class="bg-surface-container-lowest px-4">ODER</span>
+</div>
+</div>
+<!-- SSO Button -->
+<button class="w-full h-12 flex items-center justify-center gap-3 bg-surface-container-low text-on-surface font-medium rounded-lg text-sm hover:bg-surface-container transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="cloud_done">cloud_done</span>
+                Mit Active Directory anmelden
+            </button>
+</div>
+<!-- Footer -->
+<footer class="mt-8 text-center">
+<p class="text-[12px] text-[#9CA3AF] font-medium tracking-tight">
+                © 2024 KnowledgeAI Enterprise Solutions. Alle Rechte vorbehalten.
+            </p>
+</footer>
+</main>
+<!-- Background Decoration (Subtle Tonal Shapes) -->
+<div class="fixed top-0 left-0 -z-10 w-full h-full overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-surface-container-highest/40 rounded-full blur-[80px]"></div>
+</div>
+</body></html>

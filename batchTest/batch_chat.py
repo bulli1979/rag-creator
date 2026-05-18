@@ -1,15 +1,15 @@
 """
-Batch-Aufrufe der documentApi Chat-Route (/api/chat) mit Konfiguration aus JSON.
-Schreibt eine Excel-Datei mit Fragen, Antworten, Metriken, Kontext-Chunks und
-Spalten zur manuellen Bewertung nach RAG-Triad (+ typabhängiger 4. Dimension).
+Batch calls to documentApi POST /api/chat using JSON config.
+Writes an English Excel workbook: questions, answers, metrics, retrieved chunks,
+manual RAG-triad + type-specific Dim4 scores, and optional LLM-as-judge (0–1).
 
-Aktives Vector-/DB-Umgebung: Top-Level activePostgresEnvironmentId in der JSON-Config und/oder
---environment ID (CLI überschreibt). Zusätzlich applyAppSettings + appSettings für weitere App-Felder.
+Active DB/vector environment: `activePostgresEnvironmentId` in config and/or `--environment`.
+Optional `applyAppSettings` + `appSettings` for other app fields.
 
-Optional evaluateAnswers: LLM-Judge (0–1) angelehnt an rag-creator evaluate_fragerunden.py; Excel-Blatt Eval_Diagramme.
+Optional `evaluateAnswers`: OpenAI-compatible judge; adds sheet `Eval_Charts`.
 
-Abhängigkeiten: pip install -r requirements.txt
-Aufruf: python batch_chat.py --config batch_config.json
+Dependencies: pip install -r requirements.txt
+Run: python batch_chat.py --config batch_config.json
 """
 
 from __future__ import annotations
@@ -36,41 +36,53 @@ _SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_CONFIG = str(_SCRIPT_DIR / "batch_config.json")
 EXCEL_MAX_CELL = 32000
 
-# Excel: Kernspalten + manuelle Bewertung (RAG-Triad + Dim4, jeweils 0–2; Summe max. 8)
+# Excel: core columns + manual RAG triad + Dim4 (each 0–2; sum max 8). Headers are human-readable.
 RESULT_HEADERS_CORE: tuple[str, ...] = (
-    "Nr",
-    "ID",
-    "Typ",
-    "Frage",
-    "answerField",
-    "Antwort",
-    "Fehler_HTTP",
-    "Antwortzeit_ms",
-    "Prompt_Tokens",
-    "Completion_Tokens",
-    "Total_Tokens",
-    "Tokens_pro_Sekunde",
-    "Anzahl_Chunks",
-    "Chunks_Kurzliste",
-    "Chunks_Detail",
+    "Row no.",
+    "Question ID",
+    "Question type",
+    "Question text",
+    "Ground truth (answerField)",
+    "Model answer",
+    "HTTP or request error",
+    "Latency (ms)",
+    "Prompt tokens",
+    "Completion tokens",
+    "Total tokens",
+    "Tokens per second",
+    "Number of context chunks",
+    "Retrieved chunks (summary)",
+    "Retrieved chunks (full text for judge)",
 )
-# LLM-Judge (0–1), angelehnt an RAG-Creator evaluate_fragerunden.py
+# LLM-as-judge (0–1)
 RESULT_HEADERS_AUTO: tuple[str, ...] = (
-    "Auto_Answer_Relevanz_0_1",
-    "Auto_Context_Relevanz_0_1",
-    "Auto_Groundedness_0_1",
-    "Auto_Answer_Correctness_0_1",
-    "AutoEval_Notizen",
-    "AutoEval_Fehler",
+    "Judge: answer relevance (0–1)",
+    "Judge: context relevance (0–1)",
+    "Judge: groundedness (0–1)",
+    "Judge: answer correctness (0–1)",
+    "Judge notes",
+    "Judge error",
 )
 RESULT_HEADERS_EVAL: tuple[str, ...] = (
-    "Bew_Context_Relevanz",
-    "Bew_Groundedness",
-    "Bew_Antwort_Relevanz",
-    "Bew_Dim4_Kriterium",
-    "Bew_Dim4_Score",
-    "Bew_Summe_0_8",
+    "Human score: context relevance (0–2)",
+    "Human score: groundedness (0–2)",
+    "Human score: answer relevance (0–2)",
+    "Human score: Dim4 criterion (hint)",
+    "Human score: Dim4 (0–2)",
+    "Human score: total (0–8)",
 )
+
+# Excel display: swap columns G (7) and P (16): Judge answer relevance next to model block; HTTP error after metrics.
+_JUDGE_FLOAT_DISPLAY_COLS_1BASED: tuple[int, ...] = (7, 17, 18, 19)
+_JUDGE_FLOAT_NUMBER_FORMAT = "0.000000"
+
+
+def _swap_results_columns_g_and_p(seq: list[Any]) -> list[Any]:
+    """Reorder one row/header for Results: Excel G ↔ P (0-based indices 6 ↔ 15)."""
+    if len(seq) < 16:
+        return list(seq)
+    s = list(seq)
+    return s[:6] + [s[15]] + s[7:15] + [s[6]] + s[16:]
 
 
 def _dim4_kriterium_label(qtype: str) -> str:
@@ -83,7 +95,7 @@ def _dim4_kriterium_label(qtype: str) -> str:
 
 
 def _eval_score_column_indices_1based(manual_prefix_col_count: int) -> tuple[int, int, int, int]:
-    """Spalten 0–2: Context, Groundedness, Antwort-Relevanz, Dim4 (ohne Textspalte Kriterium, ohne Summe)."""
+    """1-based columns: context, groundedness, answer relevance, Dim4 score (excludes criterion text and total)."""
     o = manual_prefix_col_count
     return (o + 1, o + 2, o + 3, o + 5)
 
@@ -94,15 +106,109 @@ def _eval_sum_formula(data_row: int, manual_prefix_col_count: int) -> str:
     return f"=SUM({refs})"
 
 
+def _parse_auto_metric_cell(raw: Any) -> float | None:
+    if raw is None or raw == "":
+        return None
+    try:
+        return float(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def aggregate_auto_eval_from_rows(
+    rows: list[list[Any]],
+    *,
+    core_col_count: int,
+    n_metric_cols: int = 4,
+) -> dict[str, Any]:
+    """
+    Eine Quelle für Mittelwerte: Spalten core…core+3 = Auto-Antwortrelevanz, Kontext, Groundedness,
+    Answer correctness (0–1). Zusätzlich Objective-Accuracy-Varianten für Auswertung/Konsole.
+    """
+    sums = [0.0] * n_metric_cols
+    counts = [0] * n_metric_cols
+    by_type: dict[str, list[list[float]]] = {}
+    idx_correctness = 3
+    obj_corr: list[float] = []
+
+    for row in rows:
+        if len(row) < core_col_count + n_metric_cols:
+            continue
+        typ = str(row[2] or "").strip() or "?"
+        if typ not in by_type:
+            by_type[typ] = [[] for _ in range(n_metric_cols)]
+        for i in range(n_metric_cols):
+            v = _parse_auto_metric_cell(row[core_col_count + i])
+            if v is None:
+                continue
+            sums[i] += v
+            counts[i] += 1
+            by_type[typ][i].append(v)
+            if i == idx_correctness and typ == "Objective":
+                obj_corr.append(v)
+
+    def _mean(vals: list[float]) -> float | None:
+        return sum(vals) / len(vals) if vals else None
+
+    return {
+        "sums": sums,
+        "counts": counts,
+        "by_type": by_type,
+        "mean_per_metric": [
+            (sums[i] / counts[i]) if counts[i] else None for i in range(n_metric_cols)
+        ],
+        "accuracy_objective_mean": _mean(obj_corr),
+        "n_objective_scored": len(obj_corr),
+    }
+
+
+def _print_auto_eval_accuracy_summary(agg: dict[str, Any] | None, *, had_judge: bool) -> None:
+    """Stdout summary after each run (matches Excel auto-eval aggregation)."""
+    print("", flush=True)
+    print("— Auto evaluation (LLM judge) —", flush=True)
+    if not had_judge:
+        print(
+            "  Accuracy / auto metrics: not computed (evaluateAnswers: false).",
+            flush=True,
+        )
+        return
+    if agg is None:
+        print("  No rows to aggregate.", flush=True)
+        return
+    labels_en = (
+        "Answer relevance",
+        "Context relevance",
+        "Groundedness",
+        "Answer correctness (Objective + answerField only)",
+    )
+    means: list[float | None] = agg["mean_per_metric"]
+    counts: list[int] = agg["counts"]
+    for i, lab in enumerate(labels_en):
+        m = means[i]
+        c = counts[i]
+        if m is not None:
+            print(f"  Mean {lab}: {m:.4f}  (n={c})", flush=True)
+        else:
+            print(f"  Mean {lab}: —  (n=0)", flush=True)
+    ao = agg.get("accuracy_objective_mean")
+    no = int(agg.get("n_objective_scored") or 0)
+    print(
+        "  Accuracy (mean of those correctness values, Objective + reference only): "
+        f"{ao:.4f}  (n={no})" if ao is not None else f"  Accuracy: —  (no Objective rows with reference and score, n={no})",
+        flush=True,
+    )
+
+
 def _append_eval_diagram_sheet(
     wb: Workbook,
     *,
-    ws_data: Any,
-    data_last_row: int,
-    auto_start_col_1based: int,
+    aggregated: dict[str, Any],
 ) -> None:
-    """Mittelwerte der Auto-Metriken + Balkendiagramme (nach Spalte auto_start…+3)."""
-    if data_last_row < 2:
+    """Mittelwerte der Auto-Metriken + Balkendiagramme (Aggregation aus Zeilen, konsistent mit Konsole)."""
+    sums: list[float] = aggregated["sums"]
+    counts: list[int] = aggregated["counts"]
+    by_type: dict[str, list[list[float]]] = aggregated["by_type"]
+    if sum(counts) == 0:
         return
     labels = (
         "Answer relevance",
@@ -110,31 +216,10 @@ def _append_eval_diagram_sheet(
         "Groundedness",
         "Answer correctness",
     )
-    sums = [0.0, 0.0, 0.0, 0.0]
-    counts = [0, 0, 0, 0]
-    by_type: dict[str, list[list[float | None]]] = {}
 
-    for r in range(2, data_last_row + 1):
-        typ = str(ws_data.cell(row=r, column=3).value or "").strip() or "?"
-        if typ not in by_type:
-            by_type[typ] = [[], [], [], []]
-        for i in range(4):
-            col = auto_start_col_1based + i
-            raw = ws_data.cell(row=r, column=col).value
-            v: float | None = None
-            if raw is not None and raw != "":
-                try:
-                    v = float(raw)
-                except (TypeError, ValueError):
-                    v = None
-            if v is not None:
-                sums[i] += v
-                counts[i] += 1
-                by_type[typ][i].append(v)
-
-    ws = wb.create_sheet("Eval_Diagramme")
-    ws["A1"] = "Metrik (Auto, 0–1)"
-    ws["B1"] = "Mittelwert"
+    ws = wb.create_sheet("Eval_Charts")
+    ws["A1"] = "Metric (auto, 0–1)"
+    ws["B1"] = "Mean"
     for i, lab in enumerate(labels):
         ws.cell(row=2 + i, column=1, value=lab)
         mean_v = sums[i] / counts[i] if counts[i] else None
@@ -143,9 +228,9 @@ def _append_eval_diagram_sheet(
     if any(counts):
         chart1 = BarChart()
         chart1.type = "col"
-        chart1.title = "Durchschnittliche LLM-Bewertung (0–1)"
-        chart1.y_axis.title = "Mittelwert"
-        chart1.x_axis.title = "Metrik"
+        chart1.title = "Mean LLM scores (0–1)"
+        chart1.y_axis.title = "Mean"
+        chart1.x_axis.title = "Metric"
         chart1.height = 10
         chart1.width = 18
         dref = Reference(ws, min_col=2, min_row=1, max_row=5)
@@ -154,11 +239,22 @@ def _append_eval_diagram_sheet(
         chart1.set_categories(cref)
         ws.add_chart(chart1, "D2")
     else:
-        ws["D2"] = "Keine numerischen Auto-Scores (Spalten leer oder Fehler)."
+        ws["D2"] = "No numeric auto scores (empty cells or judge errors)."
+
+    ao = aggregated.get("accuracy_objective_mean")
+    no = int(aggregated.get("n_objective_scored") or 0)
+    ws["A7"] = "Accuracy (Objective + answerField, mean correctness)"
+    ws["B7"] = round(ao, 4) if ao is not None else ""
+    ws["C7"] = f"n={no}"
+    ws["A8"] = (
+        "Note: “Judge: answer correctness (0–1)” is filled only for Objective rows with a non-empty "
+        "ground truth (answerField); the Answer correctness bar is the mean over those rows only."
+    )
+    ws["A8"].alignment = Alignment(wrap_text=True, vertical="top")
 
     # Zweites Diagramm: gleiche Metriken nach Frage-Typ (Mittel pro Typ)
-    start_row = 10
-    ws.cell(row=start_row, column=1, value="Frage-Typ")
+    start_row = 12
+    ws.cell(row=start_row, column=1, value="Question type")
     for j, lab in enumerate(labels, start=2):
         ws.cell(row=start_row, column=j, value=lab)
     row_off = 1
@@ -174,7 +270,7 @@ def _append_eval_diagram_sheet(
     if last > start_row:
         chart2 = BarChart()
         chart2.type = "col"
-        chart2.title = "Mittelwerte nach Frage-Typ (geclustert)"
+        chart2.title = "Mean scores by question type (clustered)"
         chart2.grouping = "clustered"
         chart2.height = 10
         chart2.width = 22
@@ -185,71 +281,73 @@ def _append_eval_diagram_sheet(
         ws.add_chart(chart2, "D18")
 
     for col in range(1, 7):
-        ws.column_dimensions[get_column_letter(col)].width = 22 if col == 1 else 14
+        ws.column_dimensions[get_column_letter(col)].width = 52 if col == 1 else 16
 
 
 def _append_rubric_sheet(wb: Workbook, insert_at: int | None = None) -> None:
     if insert_at is not None:
-        ws = wb.create_sheet("Bewertungsleitfaden", insert_at)
+        ws = wb.create_sheet("Rubric", insert_at)
     else:
-        ws = wb.create_sheet("Bewertungsleitfaden")
-    ws["A1"] = "RAG-Triad + Dim4 (manuelle Eintragung in „Ergebnisse“)"
+        ws = wb.create_sheet("Rubric")
+    ws["A1"] = "RAG triad + Dim4 (manual entry on sheet “Results”)"
     ws["A1"].font = Font(bold=True)
+    ws["A1"].alignment = Alignment(wrap_text=True, vertical="top")
     rows: list[tuple[str, ...]] = [
-        ("Kriterium", "Inhalt", "0 Punkte", "1 Punkt", "2 Punkte"),
+        ("Criterion", "Description", "0 points", "1 point", "2 points"),
         (
-            "Context Relevance",
-            "Relevanz der durch das Retrieval identifizierten Dokumentsegmente zur Frage",
-            "unzureichend / nicht relevant",
-            "eingeschränkt relevant / teilweise passend",
-            "vollständig relevant",
+            "Context relevance",
+            "Relevance of retrieved document segments to the question",
+            "insufficient / not relevant",
+            "partially relevant / somewhat fitting",
+            "fully relevant",
         ),
         (
             "Groundedness",
-            "Nachvollziehbarkeit der Antwort aus den bereitgestellten Kontextinformationen",
-            "nicht nachvollziehbar / Halluzination",
-            "teilweise aus dem Kontext ableitbar",
-            "vollständig im Kontext begründet",
+            "How well the answer is supported by the provided context",
+            "not traceable / hallucination",
+            "partially derivable from context",
+            "fully grounded in context",
         ),
         (
-            "Answer Relevance",
-            "Inhaltliche Korrektheit, Vollständigkeit und Verständlichkeit der Antwort",
-            "falsch / unverständlich / unzureichend",
-            "teilweise korrekt oder unvollständig",
-            "vollständig korrekt und verständlich",
+            "Answer relevance",
+            "Correctness, completeness, and clarity of the answer content",
+            "wrong / unclear / insufficient",
+            "partially correct or incomplete",
+            "fully correct and understandable",
         ),
         (
-            "Dim4: Accuracy (nur Objective)",
-            "Faktische Genauigkeit der Antwort (ggf. vs. answerField / Referenz)",
-            "falsch / nicht belegbar",
-            "teilweise korrekt",
-            "vollständig korrekt",
+            "Dim4: Accuracy (Objective only)",
+            "Factual accuracy of the answer (vs. answerField / reference where applicable)",
+            "wrong / not verifiable",
+            "partially correct",
+            "fully correct",
         ),
         (
-            "Dim4: Completeness (nur Subjective)",
-            "Inhaltliche Vollständigkeit der Antwort zur Fragestellung",
-            "wesentliche Aspekte fehlen",
-            "überwiegend, mit Lücken",
-            "inhaltlich vollständig",
+            "Dim4: Completeness (Subjective only)",
+            "How completely the answer covers the question",
+            "major aspects missing",
+            "mostly covered, with gaps",
+            "content complete",
         ),
         ("", "", "", "", ""),
-        ("Skala", "Alle genannten Bewertungskriterien (Dim1–Dim4): einheitlich 0–2.", "", "", ""),
-        ("Maximum", "8 Punkte pro Frage (Summe der vier 0–2-Spalten).", "", "", ""),
+        ("Scale", "All manual criteria (Dim1–Dim4): uniformly 0–2.", "", "", ""),
+        ("Maximum", "8 points per question (sum of the four 0–2 score columns).", "", "", ""),
     ]
     for r, row in enumerate(rows, start=3):
         for c, val in enumerate(row, start=1):
-            ws.cell(row=r, column=c, value=val)
+            cell = ws.cell(row=r, column=c, value=val)
+            if r == 3:
+                cell.font = Font(bold=True)
+            cell.alignment = Alignment(wrap_text=True, vertical="top")
     for col in range(1, 6):
-        ws.column_dimensions[get_column_letter(col)].width = 28 if col == 1 else 36
-    for r in range(3, 3 + len(rows)):
-        for c in range(1, 6):
-            ws.cell(row=r, column=c).alignment = Alignment(wrap_text=True, vertical="top")
+        ws.column_dimensions[get_column_letter(col)].width = 30 if col == 1 else 40
+    ws.row_dimensions[1].height = 36
 
 
 def _truncate(s: str, max_len: int = EXCEL_MAX_CELL) -> str:
     if len(s) <= max_len:
         return s
-    return s[: max_len - 40] + "\n… [gekürzt wegen Excel-Zellenlimit]"
+    return s[: max_len - 40] + "\n… [truncated due to Excel cell size limit]"
 
 
 def _normalize_question_type(raw: Any) -> str:
@@ -333,11 +431,11 @@ def format_chunks_for_row(chunks: list[dict[str, Any]]) -> str:
             text = text[:1997] + "..."
         parts.append(
             f"--- Chunk {i} ---\n"
-            f"Datei: {fn}\n"
+            f"File: {fn}\n"
             f"chunkIndex: {idx}\n"
             f"documentId: {doc_id}\n"
-            f"Ähnlichkeit: {sim}\n"
-            f"Quelle: {src}\n"
+            f"Similarity: {sim}\n"
+            f"Source: {src}\n"
             f"Text:\n{text}"
         )
     return "\n\n".join(parts) if parts else ""
@@ -560,7 +658,7 @@ def main() -> None:
             flush=True,
         )
 
-    result_headers = (
+    result_headers = _swap_results_columns_g_and_p(
         list(RESULT_HEADERS_CORE) + list(RESULT_HEADERS_AUTO) + list(RESULT_HEADERS_EVAL)
     )
     manual_prefix_col_count = len(RESULT_HEADERS_CORE) + len(RESULT_HEADERS_AUTO)
@@ -569,14 +667,14 @@ def main() -> None:
     rows: list[list[Any]] = []
     chunk_rows: list[list[Any]] = []
     chunk_headers = [
-        "Frage_Nr",
-        "Chunk_Pos",
-        "Dateiname",
-        "chunkIndex",
-        "documentId",
-        "Ähnlichkeit",
-        "Quelle",
-        "Text_Auszug",
+        "Question row no.",
+        "Chunk position",
+        "File name",
+        "Chunk index",
+        "Document ID",
+        "Similarity",
+        "Source",
+        "Text excerpt",
     ]
     snapshot_before: dict[str, Any] | None = None
     snapshot_app_before: dict[str, Any] | None = None
@@ -707,7 +805,7 @@ def main() -> None:
     if evaluate_answers:
         jc = resolve_eval_judge_config(cfg)
         print(
-            f"LLM-Judge-Bewertung (Modell {jc['llmModel']!r} @ {jc['llmBaseUrl']}) …",
+            f"LLM judge scoring (model {jc['llmModel']!r} @ {jc['llmBaseUrl']}) …",
             flush=True,
         )
         with httpx.Client(base_url=jc["llmBaseUrl"], timeout=jc["requestTimeoutSeconds"]) as jclient:
@@ -738,40 +836,45 @@ def main() -> None:
                 row[off] = judged["answer_relevance"] if judged["answer_relevance"] is not None else ""
                 row[off + 1] = judged["context_relevance"] if judged["context_relevance"] is not None else ""
                 row[off + 2] = judged["groundedness"] if judged["groundedness"] is not None else ""
-                row[off + 3] = judged["answer_correctness"] if judged["answer_correctness"] is not None else ""
+                # Correctness column only for Objective + reference (avoids skewed means)
+                if qtype.strip() == "Objective" and af:
+                    ac = judged["answer_correctness"]
+                    row[off + 3] = ac if ac is not None else ""
+                else:
+                    row[off + 3] = ""
                 row[off + 4] = judged.get("notes", "")
                 row[off + 5] = _truncate(str(judged.get("error", "")), 4000)
                 if (row_idx + 1) % 5 == 0:
-                    print(f"  bewertet: {row_idx + 1}/{len(rows)}", flush=True)
-        print("LLM-Judge fertig.", flush=True)
+                    print(f"  scored: {row_idx + 1}/{len(rows)}", flush=True)
+        print("LLM judge done.", flush=True)
 
     out_path = resolve_output_path(cfg)
     wb = Workbook()
     ws = wb.active
-    ws.title = "Ergebnisse"
+    ws.title = "Results"
 
     meta = wb.create_sheet("Meta", 0)
-    meta["A1"] = "Erstellt (UTC)"
+    meta["A1"] = "Created (UTC)"
     meta["B1"] = datetime.now(timezone.utc).isoformat()
     meta["A2"] = "API"
     meta["B2"] = base
-    meta["A3"] = "Konfiguration"
+    meta["A3"] = "Configuration"
     meta["B3"] = str(config_path.resolve())
-    meta["A4"] = "Test-Umgebung (ID)"
+    meta["A4"] = "Test environment (ID)"
     meta["B4"] = run_env_id or "—"
-    meta["A5"] = "Test-Umgebung (Name)"
+    meta["A5"] = "Test environment (name)"
     meta["B5"] = run_env_name
-    meta["A6"] = "Fragen (Anzahl)"
+    meta["A6"] = "Questions (count)"
     meta["B6"] = len(questions)
-    meta["A7"] = "Bewertung"
+    meta["A7"] = "Scoring"
     meta["B7"] = (
-        "Spalten Auto_*: optional LLM-Judge 0–1 (siehe evaluateAnswers). "
-        "Spalten Bew_* … manuell 0–2; Bew_Summe_0_8 = Summe der vier Score-Spalten. "
-        "Raster: „Bewertungsleitfaden“; Diagramme: „Eval_Diagramme“."
+        "Columns starting with “Judge:” are optional LLM-as-judge scores 0–1 (see evaluateAnswers). "
+        "Columns starting with “Human score:” are manual 0–2; “Human score: total (0–8)” sums the four "
+        "numeric score columns. Rubric: sheet “Rubric”; charts: sheet “Eval_Charts”."
     )
     meta["B7"].alignment = Alignment(wrap_text=True, vertical="top")
     if apply_settings and chat_overlay:
-        meta["A8"] = "Chat-Einstellungen"
+        meta["A8"] = "Chat settings (applied)"
         meta["B8"] = json.dumps(chat_overlay, ensure_ascii=False, indent=2)
         meta["B8"].alignment = Alignment(wrap_text=True, vertical="top")
     for col in range(1, 3):
@@ -780,42 +883,71 @@ def main() -> None:
     ws.append(result_headers)
     for cell in ws[1]:
         cell.font = Font(bold=True)
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
 
     for row in rows:
-        ws.append(row)
+        ws.append(_swap_results_columns_g_and_p(list(row)))
 
     ws_chunks = wb.create_sheet("Chunks")
     ws_chunks.append(chunk_headers)
     for cell in ws_chunks[1]:
         cell.font = Font(bold=True)
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
     for crow in chunk_rows:
         ws_chunks.append(crow)
 
-    wide_cols = {4: 48, 5: 40, 6: 60, 14: 48, 15: 60}
+    # Readable widths for long headers (row 1 uses wrap text).
+    # Widths match post–G/P swap layout (col 7 = first judge score, col 16 = HTTP error).
+    result_col_widths: dict[int, float] = {
+        1: 9,
+        2: 14,
+        3: 16,
+        4: 44,
+        5: 30,
+        6: 52,
+        7: 30,
+        8: 14,
+        9: 14,
+        10: 16,
+        11: 14,
+        12: 18,
+        13: 12,
+        14: 38,
+        15: 48,
+        16: 26,
+        17: 30,
+        18: 22,
+        19: 32,
+        20: 26,
+        21: 22,
+        22: 30,
+        23: 28,
+        24: 30,
+        25: 28,
+        26: 22,
+        27: 22,
+    }
     for col_idx in range(1, len(result_headers) + 1):
         letter = get_column_letter(col_idx)
-        if col_idx in wide_cols:
-            ws.column_dimensions[letter].width = wide_cols[col_idx]
-            for r in range(2, ws.max_row + 1):
-                c = ws.cell(row=r, column=col_idx)
-                c.alignment = Alignment(wrap_text=True, vertical="top")
-        else:
-            ws.column_dimensions[letter].width = 14
-
-    c0 = len(RESULT_HEADERS_CORE)
-    auto_widths = (12, 12, 12, 12, 30, 22)
-    for j, w in enumerate(auto_widths):
-        letter = get_column_letter(c0 + 1 + j)
+        w = result_col_widths.get(col_idx, 14)
         ws.column_dimensions[letter].width = w
-        if j == 4:
-            for r in range(2, ws.max_row + 1):
-                ws.cell(row=r, column=c0 + 1 + j).alignment = Alignment(wrap_text=True, vertical="top")
+        wrap_cols = {4, 5, 6, 14, 15, 16, 20, 21}
+        for r in range(2, ws.max_row + 1):
+            c = ws.cell(row=r, column=col_idx)
+            if col_idx in wrap_cols:
+                c.alignment = Alignment(wrap_text=True, vertical="top")
+
+    for jc in _JUDGE_FLOAT_DISPLAY_COLS_1BASED:
+        for r in range(2, ws.max_row + 1):
+            cell = ws.cell(row=r, column=jc)
+            v = cell.value
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                cell.number_format = _JUDGE_FLOAT_NUMBER_FORMAT
 
     for col_idx in range(1, len(chunk_headers) + 1):
         letter = get_column_letter(col_idx)
-        w = 12
-        if col_idx in (3, 7, 8):
-            w = 36 if col_idx == 3 else (28 if col_idx == 7 else 70)
+        chunk_widths = {1: 16, 2: 14, 3: 28, 4: 12, 5: 14, 6: 12, 7: 28, 8: 70}
+        w = chunk_widths.get(col_idx, 14)
         ws_chunks.column_dimensions[letter].width = w
         if col_idx == 8:
             for r in range(2, ws_chunks.max_row + 1):
@@ -825,14 +957,13 @@ def main() -> None:
 
     _append_rubric_sheet(wb, insert_at=1)
 
-    if evaluate_answers and ws.max_row >= 2:
-        auto_start = len(RESULT_HEADERS_CORE) + 1
-        _append_eval_diagram_sheet(
-            wb,
-            ws_data=ws,
-            data_last_row=ws.max_row,
-            auto_start_col_1based=auto_start,
+    auto_eval_agg: dict[str, Any] | None = None
+    if evaluate_answers and rows:
+        auto_eval_agg = aggregate_auto_eval_from_rows(
+            rows, core_col_count=len(RESULT_HEADERS_CORE)
         )
+    if evaluate_answers and ws.max_row >= 2 and auto_eval_agg is not None:
+        _append_eval_diagram_sheet(wb, aggregated=auto_eval_agg)
 
     eval_score_cols = _eval_score_column_indices_1based(manual_prefix_col_count)
     if ws.max_row >= 2:
@@ -846,25 +977,14 @@ def main() -> None:
                 formula2=2,
                 allow_blank=True,
             )
-            dv.error = "Nur 0, 1 oder 2 (oder leer)."
-            dv.errorTitle = "Bewertung"
+            dv.error = "Only 0, 1, or 2 (or leave blank)."
+            dv.errorTitle = "Score"
             ws.add_data_validation(dv)
             dv.add(f"{letter}2:{letter}{end_row}")
-        c_ctx, c_gr, c_ar, c_d4 = eval_score_cols
-        c_crit, c_sum = c_ar + 1, c_d4 + 1
-        for col_idx, w in (
-            (c_ctx, 12),
-            (c_gr, 12),
-            (c_ar, 14),
-            (c_crit, 16),
-            (c_d4, 12),
-            (c_sum, 12),
-        ):
-            if col_idx <= len(result_headers):
-                ws.column_dimensions[get_column_letter(col_idx)].width = w
 
+    _print_auto_eval_accuracy_summary(auto_eval_agg, had_judge=evaluate_answers)
     wb.save(out_path)
-    print(f"Excel geschrieben: {out_path}")
+    print(f"Excel written: {out_path}", flush=True)
 
 
 if __name__ == "__main__":

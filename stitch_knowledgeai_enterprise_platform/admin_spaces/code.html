@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#380d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003fb1",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary": "#852b00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "on-background": "#111c2d",
+                        "surface-dim": "#cfdaf2",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error-container": "#ffdad6",
+                        "outline": "#737686",
+                        "background": "#f9f9ff",
+                        "primary-container": "#1a56db",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#263143",
+                        "secondary-container": "#d5e0f8",
+                        "on-secondary-container": "#586377",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-primary-container": "#d4dcff",
+                        "surface-tint": "#1353d8",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-container": "#ad3b00",
+                        "on-surface": "#111c2d",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-surface-variant": "#434654",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "secondary": "#545f73",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffd4c5",
+                        "surface-bright": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "secondary-fixed": "#d8e3fb",
+                        "inverse-primary": "#b5c4ff",
+                        "outline-variant": "#c3c5d7",
+                        "on-secondary-fixed": "#111c2d",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(240, 243, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #003fb1 0%, #1a56db 100%);
+        }
+        .editorial-shadow {
+            box-shadow: 0 10px 40px rgba(0, 63, 177, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 bg-slate-800 dark:bg-slate-950 h-full w-64 z-50">
+<div class="p-6 flex flex-col gap-1">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">school</span>
+</div>
+<div>
+<h2 class="text-xl font-bold tracking-tight text-white">KnowledgeAI</h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Enterprise Admin</p>
+</div>
+</div>
+<button class="mb-6 w-full py-3 primary-gradient text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600">add</span>
+<span>New Chat</span>
+</button>
+<nav class="flex flex-col gap-1">
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 hover:bg-slate-700/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 hover:bg-slate-700/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Users</span>
+</a>
+<!-- Active Item: Spaces -->
+<a class="bg-blue-600 text-white rounded-lg px-4 py-2 font-semibold flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">workspaces</span>
+<span>Spaces</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 hover:bg-slate-700/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Documents</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 hover:bg-slate-700/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-slate-700/50">
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 hover:bg-slate-700/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span>Back to Chat</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-8 ml-64 bg-white/70 backdrop-blur-xl fixed top-0 right-0 left-0 z-40 transition-all duration-300">
+<div class="flex items-center gap-6">
+<nav class="flex items-center gap-8">
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Recent</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Pinned</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Shared</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary/20 w-64 transition-all outline-none" placeholder="Suche in Spaces..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ml-2 ring-2 ring-white">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male administrator in a brightly lit office setting, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo19tiWK5XM0NyHf9t53JyDSvxXiAQX_8tQezylFTB3XXPA4YolA7GXUvm6bsbzmo17ZAyIXAqWSpkvbn7J3pyBXugRap_XWIGzDk9oo_pcQZ05Ml-rSG3-qgGDbgSruzzxcsHBVYSScDTD-LkP4wEp_s4hnTL3VqzNYuta6gDaLsK2VVNYDy8dQ02UsECsNbwtGYAsRqh6u2TKC6M9eaeTxT9--kDMJA8u5Cv9QQ15LnttJtOTOrkjHg80VxNFOELrHFOQP9okNwv"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 p-12 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="max-w-2xl">
+<nav class="flex items-center gap-2 text-on-surface-variant text-sm font-medium mb-4">
+<span>Admin</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary">Spaces</span>
+</nav>
+<h1 class="text-5xl font-black tracking-tight text-on-surface mb-4">Space-Verwaltung.</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                    Organisieren Sie Ihre betrieblichen Wissensressourcen. Erstellen Sie neue Wissensräume oder verwalten Sie bestehende Abteilungsstrukturen und Governance-Vorgaben.
+                </p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-surface-container-lowest text-primary font-bold rounded-xl editorial-shadow hover:bg-surface-container-low transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">filter_list</span>
+<span>Filter</span>
+</button>
+<button class="px-8 py-3 primary-gradient text-white font-bold rounded-xl editorial-shadow hover:scale-[0.98] transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 700">add</span>
+<span>Neuen Space erstellen</span>
+</button>
+</div>
+</div>
+<!-- Dashboard Stats (Editorial Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-1">
+<span class="text-on-surface-variant font-semibold text-xs uppercase tracking-widest">Aktive Spaces</span>
+<span class="text-4xl font-black text-on-surface">24</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-1">
+<span class="text-on-surface-variant font-semibold text-xs uppercase tracking-widest">Dokumente Gesamt</span>
+<span class="text-4xl font-black text-on-surface">1,482</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-1">
+<span class="text-on-surface-variant font-semibold text-xs uppercase tracking-widest">Wissensabdeckung</span>
+<span class="text-4xl font-black text-primary">94%</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-1">
+<span class="text-on-surface-variant font-semibold text-xs uppercase tracking-widest">Team-Zugriffe</span>
+<span class="text-4xl font-black text-on-surface">186</span>
+</div>
+</div>
+<!-- Spaces Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- HR Space -->
+<div class="bg-surface-container-lowest p-8 rounded-[1.5rem] editorial-shadow hover:translate-y-[-4px] transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.4)]"></div>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold tracking-tight text-on-surface">HR</h3>
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">Abteilung</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex gap-8 mb-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Dokumente</span>
+<span class="text-xl font-bold">45</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Nutzer</span>
+<span class="text-xl font-bold">42</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant italic">Aktualisiert vor 2 Std</span>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+                        Dokumente verwalten
+                        <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Sales Space -->
+<div class="bg-surface-container-lowest p-8 rounded-[1.5rem] editorial-shadow hover:translate-y-[-4px] transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.4)]"></div>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold tracking-tight text-on-surface">Sales</h3>
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">Abteilung</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex gap-8 mb-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Dokumente</span>
+<span class="text-xl font-bold">31</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Nutzer</span>
+<span class="text-xl font-bold">15</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant italic">Aktualisiert vor 5 Std</span>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+                        Dokumente verwalten
+                        <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- IT Space -->
+<div class="bg-surface-container-lowest p-8 rounded-[1.5rem] editorial-shadow hover:translate-y-[-4px] transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.4)]"></div>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold tracking-tight text-on-surface">IT</h3>
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">Abteilung</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex gap-8 mb-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Dokumente</span>
+<span class="text-xl font-bold">52</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Nutzer</span>
+<span class="text-xl font-bold">35</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant italic">Aktualisiert vor 1 Std</span>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+                        Dokumente verwalten
+                        <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Richtlinien Space -->
+<div class="bg-surface-container-lowest p-8 rounded-[1.5rem] editorial-shadow hover:translate-y-[-4px] transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-teal-100 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-teal-500 shadow-[0_0_12px_rgba(20,184,166,0.4)]"></div>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold tracking-tight text-on-surface">Richtlinien</h3>
+<span class="inline-block px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">Governance</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex gap-8 mb-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Dokumente</span>
+<span class="text-xl font-bold">34</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Nutzer</span>
+<span class="text-xl font-bold">47</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant italic">Aktualisiert vor 12 Std</span>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+                        Dokumente verwalten
+                        <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Prozesse Space -->
+<div class="bg-surface-container-lowest p-8 rounded-[1.5rem] editorial-shadow hover:translate-y-[-4px] transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.4)]"></div>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold tracking-tight text-on-surface">Prozesse</h3>
+<span class="inline-block px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">Governance</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex gap-8 mb-8">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Dokumente</span>
+<span class="text-xl font-bold">27</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Nutzer</span>
+<span class="text-xl font-bold">47</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant italic">Aktualisiert vor 8 Std</span>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+                        Dokumente verwalten
+                        <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Placeholder for 'Add New' -->
+<div class="bg-surface-container-low border-2 border-dashed border-outline-variant p-8 rounded-[1.5rem] flex flex-col items-center justify-center text-center gap-4 cursor-pointer hover:bg-surface-container transition-colors group">
+<div class="w-14 h-14 rounded-full bg-white flex items-center justify-center editorial-shadow group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Neuen Space anlegen</h4>
+<p class="text-xs text-on-surface-variant">Definieren Sie neue Bereiche</p>
+</div>
+</div>
+</div>
+<!-- System Logs / Asymmetric Section -->
+<div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2 glass-panel p-8 rounded-3xl">
+<h4 class="text-xl font-bold mb-6">Kürzliche Aktivitäten</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/50 rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-500">upload_file</span>
+<div>
+<p class="text-sm font-bold">12 neue Dokumente in 'IT' hinzugefügt</p>
+<p class="text-xs text-on-surface-variant">Gerade eben von System Admin</p>
+</div>
+</div>
+<button class="text-xs font-bold text-primary">Details</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/50 rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-blue-500">person_add</span>
+<div>
+<p class="text-sm font-bold">5 Nutzer zu 'Sales' hinzugefügt</p>
+<p class="text-xs text-on-surface-variant">Vor 45 Minuten</p>
+</div>
+</div>
+<button class="text-xs font-bold text-primary">Details</button>
+</div>
+</div>
+</div>
+<div class="bg-inverse-surface p-8 rounded-3xl text-white flex flex-col justify-between">
+<div>
+<h4 class="text-xl font-bold mb-4">Speicherplatz</h4>
+<p class="text-slate-400 text-sm mb-6">Wissensbasis Belegung über alle Spaces hinweg.</p>
+<div class="relative h-2 w-full bg-slate-700 rounded-full overflow-hidden mb-2">
+<div class="absolute left-0 top-0 h-full bg-blue-500 w-[68%]"></div>
+</div>
+<div class="flex justify-between text-xs font-bold">
+<span>6.8 GB genutzt</span>
+<span>10 GB Gesamt</span>
+</div>
+</div>
+<button class="mt-8 w-full py-3 bg-slate-700 hover:bg-slate-600 transition-colors rounded-xl font-bold text-sm">
+                    Upgrade anfragen
+                </button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,1154 @@
+openapi: 3.0.3
+info:
+  title: KnowledgeAI Backend API
+  version: 1.0.0
+  description: |
+    OpenAPI specification for KnowledgeAi-BE.
+    Covers authentication, user/group/space management, document ingestion,
+    chat (RAG), prompt templates, audit logs, settings, and system health.
+servers:
+  - url: https://api.knowledgeai.local/v1
+    description: Production-like
+  - url: http://localhost:8080/v1
+    description: Local development
+tags:
+  - name: Auth
+  - name: Users
+  - name: Groups
+  - name: Spaces
+  - name: Documents
+  - name: Chat
+  - name: PromptTemplates
+  - name: Audit
+  - name: Settings
+  - name: System
+security:
+  - bearerAuth: []
+paths:
+  /auth/keycloak/callback:
+    post:
+      tags: [Auth]
+      summary: Exchange authorization code for tokens (Keycloak standard flow)
+      description: |
+        Used by frontend after redirect from Keycloak Authorization Code flow (PKCE).
+        Backend does not process username/password directly.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizationCodeExchangeRequest'
+      responses:
+        '200':
+          description: Auth tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokenResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Refresh access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Refreshed tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokenResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Logout user session
+      responses:
+        '204':
+          description: Logged out
+  /auth/me:
+    get:
+      tags: [Auth]
+      summary: Get current user profile and claims
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /users:
+    get:
+      tags: [Users]
+      summary: List users
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Sort'
+        - in: query
+          name: search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUsers'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    post:
+      tags: [Users]
+      summary: Create user (Admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+  /users/{userId}:
+    get:
+      tags: [Users]
+      summary: Get user by id
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    patch:
+      tags: [Users]
+      summary: Update user roles/status/groups (Admin only)
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /groups:
+    get:
+      tags: [Groups]
+      summary: List groups
+      responses:
+        '200':
+          description: Group list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+    post:
+      tags: [Groups]
+      summary: Create group (Admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+      responses:
+        '201':
+          description: Group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+  /groups/{groupId}:
+    patch:
+      tags: [Groups]
+      summary: Update group
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+      responses:
+        '200':
+          description: Group updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    delete:
+      tags: [Groups]
+      summary: Delete group
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      responses:
+        '204':
+          description: Group deleted
+  /groups/{groupId}/members:
+    post:
+      tags: [Groups]
+      summary: Add user to group
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupMembershipRequest'
+      responses:
+        '204':
+          description: User added to group
+    delete:
+      tags: [Groups]
+      summary: Remove user from group
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupMembershipRequest'
+      responses:
+        '204':
+          description: User removed from group
+
+  /spaces:
+    get:
+      tags: [Spaces]
+      summary: List spaces visible to caller
+      responses:
+        '200':
+          description: Space list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Space'
+    post:
+      tags: [Spaces]
+      summary: Create space (Admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpaceRequest'
+      responses:
+        '201':
+          description: Space created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+  /spaces/{spaceId}:
+    get:
+      tags: [Spaces]
+      summary: Get space by id
+      parameters:
+        - $ref: '#/components/parameters/SpaceId'
+      responses:
+        '200':
+          description: Space details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    patch:
+      tags: [Spaces]
+      summary: Update space metadata
+      parameters:
+        - $ref: '#/components/parameters/SpaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpaceRequest'
+      responses:
+        '200':
+          description: Space updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+  /spaces/{spaceId}/permissions:
+    put:
+      tags: [Spaces]
+      summary: Set read/write permissions for space
+      description: |
+        Enforces business rules:
+        - Space read access only for assigned users/groups.
+        - Space write access only for Admin or RAG Creator who are assigned.
+      parameters:
+        - $ref: '#/components/parameters/SpaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpacePermissions'
+      responses:
+        '200':
+          description: Updated permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpacePermissions'
+
+  /documents:
+    get:
+      tags: [Documents]
+      summary: List documents (filtered by caller permissions)
+      parameters:
+        - in: query
+          name: spaceId
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: status
+          schema:
+            $ref: '#/components/schemas/DocumentStatus'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Paginated documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocuments'
+  /documents/upload:
+    post:
+      tags: [Documents]
+      summary: Upload a document
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [spaceId, file]
+              properties:
+                spaceId:
+                  type: string
+                  format: uuid
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '202':
+          description: Accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+  /documents/{documentId}:
+    get:
+      tags: [Documents]
+      summary: Get document metadata
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Document metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+    delete:
+      tags: [Documents]
+      summary: Delete document
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '204':
+          description: Document deleted
+
+  /chat/messages:
+    post:
+      tags: [Chat]
+      summary: Ask a question (RAG)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Chat response with sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+  /chat/messages/{messageId}/feedback:
+    post:
+      tags: [Chat]
+      summary: Submit message feedback
+      parameters:
+        - in: path
+          name: messageId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+      responses:
+        '204':
+          description: Feedback stored
+
+  /prompt-templates:
+    get:
+      tags: [PromptTemplates]
+      summary: List prompt templates
+      parameters:
+        - in: query
+          name: scope
+          schema:
+            $ref: '#/components/schemas/TemplateScope'
+        - in: query
+          name: spaceId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Template list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromptTemplate'
+    post:
+      tags: [PromptTemplates]
+      summary: Create prompt template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePromptTemplateRequest'
+      responses:
+        '201':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptTemplate'
+  /prompt-templates/{templateId}:
+    patch:
+      tags: [PromptTemplates]
+      summary: Update prompt template
+      parameters:
+        - in: path
+          name: templateId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePromptTemplateRequest'
+      responses:
+        '200':
+          description: Template updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptTemplate'
+    delete:
+      tags: [PromptTemplates]
+      summary: Delete prompt template
+      parameters:
+        - in: path
+          name: templateId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Template deleted
+
+  /audit/logs:
+    get:
+      tags: [Audit]
+      summary: Query audit logs
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: userId
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: action
+          schema:
+            type: string
+        - in: query
+          name: spaceId
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Paginated audit logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAuditEvents'
+  /audit/logs/export:
+    get:
+      tags: [Audit]
+      summary: Export audit logs
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            enum: [csv, json]
+      responses:
+        '200':
+          description: Export stream
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditEvent'
+
+  /settings:
+    get:
+      tags: [Settings]
+      summary: Get system settings
+      responses:
+        '200':
+          description: Settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+    put:
+      tags: [Settings]
+      summary: Replace system settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Settings'
+      responses:
+        '200':
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+
+  /health:
+    get:
+      tags: [System]
+      summary: Liveness probe
+      security: []
+      responses:
+        '200':
+          description: Alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+  /ready:
+    get:
+      tags: [System]
+      summary: Readiness probe
+      security: []
+      responses:
+        '200':
+          description: Ready
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ready
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+        format: uuid
+    GroupId:
+      in: path
+      name: groupId
+      required: true
+      schema:
+        type: string
+        format: uuid
+    SpaceId:
+      in: path
+      name: spaceId
+      required: true
+      schema:
+        type: string
+        format: uuid
+    DocumentId:
+      in: path
+      name: documentId
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Page:
+      in: query
+      name: page
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
+    Sort:
+      in: query
+      name: sort
+      schema:
+        type: string
+        example: createdAt:desc
+  responses:
+    BadRequestError:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Role:
+      type: string
+      enum: [User, Admin, RAG Creator]
+    UserStatus:
+      type: string
+      enum: [ACTIVE, INACTIVE]
+    DocumentStatus:
+      type: string
+      enum: [UPLOADED, PROCESSING, READY, FAILED]
+    TemplateScope:
+      type: string
+      enum: [GLOBAL, SPACE]
+
+    AuthorizationCodeExchangeRequest:
+      type: object
+      required: [code, redirectUri, codeVerifier]
+      properties:
+        code:
+          type: string
+        redirectUri:
+          type: string
+          format: uri
+        codeVerifier:
+          type: string
+        state:
+          type: string
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+    AuthTokenResponse:
+      type: object
+      required: [accessToken, refreshToken, expiresIn]
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        tokenType:
+          type: string
+          example: Bearer
+        expiresIn:
+          type: integer
+          example: 900
+
+    User:
+      type: object
+      required: [id, email, displayName, roles, groupIds, status]
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        displayName:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        groupIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        createdAt:
+          type: string
+          format: date-time
+    CreateUserRequest:
+      type: object
+      required: [email, displayName, roles]
+      properties:
+        email:
+          type: string
+          format: email
+        displayName:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        groupIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    UpdateUserRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        groupIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+
+    Group:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+    CreateGroupRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    UpdateGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    GroupMembershipRequest:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          type: string
+          format: uuid
+
+    Space:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+          enum: [DEPARTMENT, GOVERNANCE, CUSTOM]
+        documentCount:
+          type: integer
+        userCount:
+          type: integer
+    CreateSpaceRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [DEPARTMENT, GOVERNANCE, CUSTOM]
+    UpdateSpaceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [DEPARTMENT, GOVERNANCE, CUSTOM]
+    SpacePermissions:
+      type: object
+      properties:
+        readGroupIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        writeGroupIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        readUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        writeUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+
+    Document:
+      type: object
+      required: [id, spaceId, fileName, status, version]
+      properties:
+        id:
+          type: string
+          format: uuid
+        spaceId:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        mimeType:
+          type: string
+        sizeBytes:
+          type: integer
+        version:
+          type: integer
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        uploadedBy:
+          type: string
+          format: uuid
+        uploadedAt:
+          type: string
+          format: date-time
+
+    ChatRequest:
+      type: object
+      required: [question]
+      properties:
+        conversationId:
+          type: string
+          format: uuid
+        question:
+          type: string
+        spaceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        templateId:
+          type: string
+          format: uuid
+    ChatResponse:
+      type: object
+      required: [messageId, answer, sources]
+      properties:
+        messageId:
+          type: string
+          format: uuid
+        answer:
+          type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceReference'
+    SourceReference:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentName:
+          type: string
+        spaceId:
+          type: string
+          format: uuid
+        score:
+          type: number
+          format: float
+    FeedbackRequest:
+      type: object
+      required: [helpful]
+      properties:
+        helpful:
+          type: boolean
+        comment:
+          type: string
+
+    PromptTemplate:
+      type: object
+      required: [id, name, content, scope]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        content:
+          type: string
+        scope:
+          $ref: '#/components/schemas/TemplateScope'
+        spaceId:
+          type: string
+          format: uuid
+        usageCount:
+          type: integer
+    CreatePromptTemplateRequest:
+      type: object
+      required: [name, content, scope]
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+        scope:
+          $ref: '#/components/schemas/TemplateScope'
+        spaceId:
+          type: string
+          format: uuid
+    UpdatePromptTemplateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+
+    AuditEvent:
+      type: object
+      required: [id, timestamp, action]
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        userId:
+          type: string
+          format: uuid
+        action:
+          type: string
+        spaceId:
+          type: string
+          format: uuid
+        details:
+          type: object
+          additionalProperties: true
+
+    Settings:
+      type: object
+      properties:
+        general:
+          type: object
+          properties:
+            appName:
+              type: string
+            welcomeMessage:
+              type: string
+        auth:
+          type: object
+          properties:
+            keycloakRealm:
+              type: string
+            ssoEnabled:
+              type: boolean
+            sessionTimeoutMinutes:
+              type: integer
+        security:
+          type: object
+          properties:
+            passwordPolicy:
+              type: string
+            twoFactorRequired:
+              type: boolean
+        ai:
+          type: object
+          properties:
+            systemPrompt:
+              type: string
+            modelName:
+              type: string
+
+    PaginatedUsers:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedMeta'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+    PaginatedDocuments:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedMeta'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+    PaginatedAuditEvents:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedMeta'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AuditEvent'
+    PaginatedMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        correlationId:
+          type: string

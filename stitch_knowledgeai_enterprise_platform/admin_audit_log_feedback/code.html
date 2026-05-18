@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#380d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003fb1",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary": "#852b00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "on-background": "#111c2d",
+                        "surface-dim": "#cfdaf2",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error-container": "#ffdad6",
+                        "outline": "#737686",
+                        "background": "#f9f9ff",
+                        "primary-container": "#1a56db",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#263143",
+                        "secondary-container": "#d5e0f8",
+                        "on-secondary-container": "#586377",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-primary-container": "#d4dcff",
+                        "surface-tint": "#1353d8",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-container": "#ad3b00",
+                        "on-surface": "#111c2d",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-surface-variant": "#434654",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "secondary": "#545f73",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffd4c5",
+                        "surface-bright": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "secondary-fixed": "#d8e3fb",
+                        "inverse-primary": "#b5c4ff",
+                        "outline-variant": "#c3c5d7",
+                        "on-secondary-fixed": "#111c2d",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .glass-panel {
+            background: rgba(240, 243, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Component -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 bg-slate-800 dark:bg-slate-950 text-white w-64 z-50 shadow-xl shadow-blue-900/10 font-inter antialiased">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white">neurology</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-white">KnowledgeAI</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400">Enterprise Admin</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-2 transition-colors hover:bg-slate-700/50 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[14px] leading-6">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-2 transition-colors hover:bg-slate-700/50 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-[14px] leading-6">Users</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-2 transition-colors hover:bg-slate-700/50 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="workspaces">workspaces</span>
+<span class="text-[14px] leading-6">Spaces</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-2 transition-colors hover:bg-slate-700/50 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[14px] leading-6">Documents</span>
+</a>
+<!-- Active State Logic: Audit & Feedback represents administrative oversight/settings -->
+<a class="flex items-center gap-3 bg-blue-600 text-white rounded-lg px-4 py-2 font-semibold shadow-lg shadow-blue-600/20" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[14px] leading-6">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Chat
+            </button>
+<div class="mt-4 pt-4 border-t border-slate-700/50">
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[14px] leading-6">Back to Chat</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center h-16 px-8 bg-white/70 backdrop-blur-xl sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-slate-900 tracking-tight">Audit Log</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Recent</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Pinned</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Shared</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Suchen..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<img alt="User profile" class="w-8 h-8 rounded-full border-2 border-primary-fixed" data-alt="Professional portrait of a male administrator in a clean office setting, soft corporate lighting, minimalist style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhwjiVWaeWGu4KZUEGfF5yDI7DzpBXvglNg4j3LDaoy2safuDlIUdqORM8Gr_pM1qaL_c5Pygo_8yxsp_RbqpQMKtmWzl5F3GNO194RBbOOKjoxJXWpiyuSRxKbBimFh7AmMJq1iw03AY3m3ngiEkXX_Ta5uBv8uNU6Ykkg1S8JulXpvKbk_1pT5wun-3F5uHLR_gx2xrVxbX_A5nQJC3aegs11S4-9kPDFHUh-mBTfKHkdOUWoPOL5A8COOCDI9z4p1y2T8vqOUfQ"/>
+</div>
+</header>
+<div class="p-8 max-w-[1400px] mx-auto">
+<!-- Header Section -->
+<div class="mb-10">
+<h2 class="text-[32px] font-extrabold text-on-surface tracking-tight mb-2">Audit-Log &amp; Feedback</h2>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span>System Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-medium text-primary">Compliance &amp; Logs</span>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-8 mb-8">
+<!-- Feedback Overview (Bento Style Cards) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 shadow-[0_10px_40px_rgba(0,63,177,0.04)] h-full">
+<h3 class="text-sm font-semibold text-on-surface-variant mb-6 flex items-center justify-between">
+                            Feedback-Uebersicht
+                            <span class="material-symbols-outlined text-primary">insights</span>
+</h3>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-black text-on-surface">89%</span>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase tracking-wider">Positives Feedback</span>
+</div>
+<div class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 89%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-black text-on-surface">11%</span>
+<span class="text-xs font-bold text-error bg-error-container/20 px-2 py-0.5 rounded uppercase tracking-wider">Negatives Feedback</span>
+</div>
+<div class="w-full h-3 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 11%"></div>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/10">
+<p class="text-sm text-on-surface-variant leading-relaxed italic">
+                                    "Die KI-gestützte Dokumentenanalyse spart unserem HR-Team wöchentlich ca. 12 Stunden."
+                                </p>
+<div class="mt-2 flex items-center gap-2 text-[11px] font-bold text-primary tracking-widest uppercase">
+                                    Verifiziertes Nutzerfeedback
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 shadow-[0_10px_40px_rgba(0,63,177,0.04)] h-full">
+<h3 class="text-sm font-semibold text-on-surface-variant mb-6">Protokoll-Filter</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Date range</label>
+<div class="relative">
+<input class="w-full text-sm bg-surface-container-low border-none rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary/20" type="text" value="15.04.2026 - Heute"/>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">User</label>
+<select class="w-full text-sm bg-surface-container-low border-none rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary/20 appearance-none">
+<option>Alle Benutzer</option>
+<option>Max Keller</option>
+<option>Anna Schmidt</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Action type</label>
+<select class="w-full text-sm bg-surface-container-low border-none rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary/20 appearance-none">
+<option>Alle Aktionen</option>
+<option>Upload</option>
+<option>Delete</option>
+<option>Login</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Space</label>
+<select class="w-full text-sm bg-surface-container-low border-none rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary/20 appearance-none">
+<option>Alle Spaces</option>
+<option>HR</option>
+<option>Finance</option>
+<option>IT</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end gap-3 pt-4 border-t border-outline-variant/10">
+<button class="px-6 py-2 text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">Exportieren</button>
+<button class="px-6 py-2 text-sm font-semibold bg-gradient-to-br from-primary to-primary-container text-white rounded-lg shadow-lg shadow-blue-900/10 active:scale-[0.98] transition-all">Filter anwenden</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Log Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 shadow-[0_10px_40px_rgba(0,63,177,0.04)] overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-widest">Detailliertes Aktivitätsprotokoll</h3>
+<div class="flex items-center gap-4">
+<span class="text-xs text-on-surface-variant font-medium">Zeige 1-10 von 1.240 Einträgen</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Zeitstempel</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Benutzer</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Aktion</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Details</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Space</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Upload (Demo Data) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-mono text-[13px] text-on-surface-variant">15.04.2026 14:32</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary-fixed rounded-full flex items-center justify-center text-[10px] font-bold text-primary">MK</div>
+<span class="text-sm font-medium">Max Keller</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Dokument hochgeladen</span>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">"Lohnnebenleistungen_2026.xlsx"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold uppercase tracking-tight">HR</span>
+</td>
+</tr>
+<!-- Row 2: Login -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-mono text-[13px] text-on-surface-variant">15.04.2026 13:15</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-secondary-fixed rounded-full flex items-center justify-center text-[10px] font-bold text-on-secondary-container">AS</div>
+<span class="text-sm font-medium">Anna Schmidt</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">System Login</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">IP: 192.168.1.142 - Web Client</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[11px] font-bold uppercase tracking-tight">Global</span>
+</td>
+</tr>
+<!-- Row 3: Delete -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-mono text-[13px] text-on-surface-variant">15.04.2026 11:05</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-tertiary-fixed rounded-full flex items-center justify-center text-[10px] font-bold text-on-tertiary-fixed-variant">JH</div>
+<span class="text-sm font-medium">Jan Hoffmann</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-error bg-error-container/20 px-2 py-1 rounded">Loesch. Dokument</span>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">"Internal_Audit_Draft_v1.pdf"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold uppercase tracking-tight">Finance</span>
+</td>
+</tr>
+<!-- Row 4: Upload -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-mono text-[13px] text-on-surface-variant">15.04.2026 09:44</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary-fixed rounded-full flex items-center justify-center text-[10px] font-bold text-primary">MK</div>
+<span class="text-sm font-medium">Max Keller</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Dokument hochgeladen</span>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">"Onboarding_Flow_v2.docx"</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold uppercase tracking-tight">HR</span>
+</td>
+</tr>
+<!-- Row 5: Action -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-mono text-[13px] text-on-surface-variant">15.04.2026 08:20</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">robot_2</span>
+<span class="text-sm font-medium italic">System Bot</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary-container bg-primary-fixed px-2 py-1 rounded">Indizierung</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Vektorisierung von 14 neuen Dokumenten abgeschlossen</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold uppercase tracking-tight">System</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low/30 flex justify-center">
+<button class="text-sm font-semibold text-primary hover:underline underline-offset-4">Vollständiges Protokoll laden</button>
+</div>
+</div>
+<!-- Footer Meta-Data -->
+<footer class="mt-12 flex justify-between items-center text-[12px] text-on-surface-variant border-t border-outline-variant/10 pt-6 pb-12">
+<div class="flex gap-4">
+<span>Server Status: <span class="text-emerald-600 font-bold">Operational</span></span>
+<span>Database: <span class="font-bold">knowledge_prod_db_4</span></span>
+</div>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Security Audit 2026</a>
+<a class="hover:text-primary transition-colors" href="#">Export Compliance</a>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

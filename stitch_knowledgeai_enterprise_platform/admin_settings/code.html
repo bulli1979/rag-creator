@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#380d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003fb1",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary": "#852b00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "on-background": "#111c2d",
+                        "surface-dim": "#cfdaf2",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "error-container": "#ffdad6",
+                        "outline": "#737686",
+                        "background": "#f9f9ff",
+                        "primary-container": "#1a56db",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#263143",
+                        "secondary-container": "#d5e0f8",
+                        "on-secondary-container": "#586377",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-primary-container": "#d4dcff",
+                        "surface-tint": "#1353d8",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-container": "#ad3b00",
+                        "on-surface": "#111c2d",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-surface-variant": "#434654",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "secondary": "#545f73",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffd4c5",
+                        "surface-bright": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "secondary-fixed": "#d8e3fb",
+                        "inverse-primary": "#b5c4ff",
+                        "outline-variant": "#c3c5d7",
+                        "on-secondary-fixed": "#111c2d",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(240, 243, 255, 0.7); backdrop-filter: blur(12px); }
+        input:focus, textarea:focus, select:focus { outline: none; box-shadow: 0 0 0 3px rgba(19, 83, 216, 0.2); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 bg-slate-800 dark:bg-slate-950 text-[14px] leading-6 font-inter antialiased docked left-0 h-full w-64 shadow-xl shadow-blue-900/10 z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">psychology</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-white">KnowledgeAI</h1>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-widest">Enterprise Admin</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 rounded-lg hover:bg-slate-700/50" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 rounded-lg hover:bg-slate-700/50" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Users</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 rounded-lg hover:bg-slate-700/50" href="#">
+<span class="material-symbols-outlined" data-icon="workspaces">workspaces</span>
+<span>Spaces</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 transition-colors flex items-center gap-3 rounded-lg hover:bg-slate-700/50" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Documents</span>
+</a>
+<a class="bg-blue-600 text-white rounded-lg px-4 py-2 font-semibold flex items-center gap-3 shadow-lg shadow-blue-600/20" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full bg-slate-700/50 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="chat_bubble">chat_bubble</span>
+<span>Back to Chat</span>
+</button>
+<div class="pt-4 border-t border-slate-700/50 flex items-center gap-3">
+<img alt="User profile" class="w-8 h-8 rounded-full bg-slate-600" data-alt="professional portrait of an enterprise administrator in a clean office setting, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCakyNhH3AtalPjy9H3QjMyX5RWNkx60D1J-DWAmvb-4oW0fjzDfq5u5wHqM0lSlavVBzw5BnFkuuH4-wDOnAp65oO_wsH05Scqx1E_9ZjPvRTk7N3nhD9s1ALcyuy9w6Ub6xyaPARTELi0ah6jJSpuYZ-ea0q702NDk3Vq2XhtzDyUG8U_Tj971gkfiTXqM9qGh-WknScdFetoM8xicoj148oBDqyb7vuEX41DDbFSnhsdWkXamtcECUPVOsOP5HdwTFwriVwgBvSE"/>
+<div class="flex-1 min-w-0">
+<p class="text-white font-medium truncate">Admin User</p>
+<p class="text-slate-500 text-xs truncate">admin@knowledgeai.io</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="flex justify-between items-center h-16 px-8 bg-white/70 backdrop-blur-xl docked top-0 w-full z-40 sticky">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-slate-900">KnowledgeAI</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Recent</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Pinned</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-all" href="#">Shared</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search settings..." type="text"/>
+</div>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-12 max-w-5xl mx-auto w-full flex-grow pb-32">
+<header class="mb-12">
+<nav class="flex items-center gap-2 text-sm text-on-surface-variant mb-4">
+<span>Admin</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="font-medium text-primary">Einstellungen</span>
+</nav>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Einstellungen</h1>
+<p class="text-on-surface-variant mt-2 text-lg">Konfigurieren Sie Ihre Knowledge-Plattform und KI-Parameter.</p>
+</header>
+<div class="space-y-8">
+<!-- Section: Allgemein -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ring-1 ring-on-surface/5">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-10 h-10 bg-primary-fixed rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<h2 class="text-xl font-bold text-on-surface">Allgemein</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">App-Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface font-medium" type="text" value="KnowledgeAI"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Logo</label>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container border-2 border-dashed border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="image">image</span>
+</div>
+<button class="px-4 py-2 text-sm font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors">Logo hochladen</button>
+</div>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Willkommensnachricht</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface" type="text" value="Willkommen bei Ihrer Enterprise Knowledge Cloud."/>
+</div>
+</div>
+</section>
+<!-- Section: Authentifizierung -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ring-1 ring-on-surface/5">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-10 h-10 bg-secondary-fixed rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="vpn_key">vpn_key</span>
+</div>
+<h2 class="text-xl font-bold text-on-surface">Authentifizierung</h2>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+<div>
+<p class="font-bold text-on-surface">Interne Benutzerverwaltung</p>
+<p class="text-sm text-on-surface-variant">Benutzer direkt in KnowledgeAI verwalten.</p>
+</div>
+<button class="w-12 h-6 bg-primary rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 border border-outline-variant/30 rounded-xl">
+<div>
+<p class="font-bold text-on-surface">Active Directory / LDAP</p>
+<p class="text-sm text-on-surface-variant">Anbindung an den unternehmensweiten Verzeichnisdienst.</p>
+</div>
+<button class="w-12 h-6 bg-outline-variant rounded-full relative transition-colors">
+<span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section: Sicherheit -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ring-1 ring-on-surface/5">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<h2 class="text-xl font-bold text-on-surface">Sicherheit</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Passwort-Regeln</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface">
+<option>Stark (8+ Zeichen, Sonderzeichen)</option>
+<option>Mittel (6+ Zeichen)</option>
+<option>Standard</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Sitzungs-Timeout</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface">
+<option>30 Minuten</option>
+<option>1 Stunde</option>
+<option>8 Stunden</option>
+<option>Nie</option>
+</select>
+</div>
+<div class="md:col-span-2 flex items-center justify-between py-4 border-t border-outline-variant/10">
+<div>
+<p class="font-bold text-on-surface">Zwei-Faktor-Authentifizierung (2FA)</p>
+<p class="text-sm text-on-surface-variant">Erfordert einen zusätzlichen Code beim Login.</p>
+</div>
+<button class="w-12 h-6 bg-primary rounded-full relative">
+<span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section: KI-Konfiguration -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ring-1 ring-on-surface/5">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="neurology">neurology</span>
+</div>
+<h2 class="text-xl font-bold text-on-surface">KI-Konfiguration</h2>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="text-sm font-semibold text-on-surface-variant block">Globaler System-Prompt</label>
+<span class="text-xs font-mono text-outline">v2.4.0-stable</span>
+</div>
+<textarea class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface font-mono text-sm leading-relaxed" placeholder="Enter System Prompt here..." rows="6">Du bist eine hilfreiche KI für die Wissensverwaltung. Antworte stets präzise auf Basis der bereitgestellten Dokumente. Wenn du keine Antwort findest, gib dies ehrlich zu. Nutze eine professionelle, höfliche Sprache.</textarea>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+<span>Dieser Prompt definiert das Basis-Verhalten der KI über alle Chats hinweg.</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Sticky Footer -->
+<footer class="fixed bottom-0 right-0 left-64 glass-panel border-t border-outline-variant/10 px-12 py-6 z-30">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-green-600" data-icon="check_circle">check_circle</span>
+<span class="text-sm font-medium">Alle Felder sind valide.</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2.5 font-bold text-on-surface-variant hover:text-on-surface transition-colors">Abbrechen</button>
+<button class="px-8 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform flex items-center gap-2">
+<span>Aenderungen speichern</span>
+<span class="material-symbols-outlined text-sm" data-icon="save">save</span>
+</button>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

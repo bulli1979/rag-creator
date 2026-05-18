@@ -12,3 +12,6 @@ venv
 RAGIngestStudio
 settings.json
 chat_settings.json
+batchTest/answerFolder/
+batchTest/batch_config.json
+batchTest/batch_results.xlsx
