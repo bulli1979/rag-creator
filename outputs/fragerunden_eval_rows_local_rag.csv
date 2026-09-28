@@ -1,0 +1,123 @@
+row_index,system_version,sheet_name,round,question,answer,ground_truth,answer_relevance,context_relevance,groundedness,answer_correctness,notes
+0,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,What is the specific scale factor (arcseconds per step) used by the teloffset program to calculate guideprobe movement?,The specific scale factor used by the teloffset program to calculate guideprobe movement is 0.007153 arcseconds per step. This value is defined in the code snippet as `scalefactor = 0.007153;` cite: [output_ocr.pdf | Chunk 9],The teloffset program uses a scale factor of 0.007153 arcseconds per step. (Note: The descriptive text in the documentation mentions a rounded value of 0.0073.),1.0,1.0,1.0,0.9,"The answer is directly relevant and supported by the provided context, which explicitly states the scale factor used by the teloffset program. The slight discrepancy in the value (0.007153 vs 0.0073) may be due to rounding."
+1,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,What is the default focus position (foc-pos) and TV focus (tv-foc) for the ALFOSC instrument?,"The provided context does not contain specific information about the default focus position (`foc-pos`) or TV focus (`tv-foc`) settings for the ALFOSC instrument. The details given are mainly related to commands used in focusing and interacting with the ALFOSC, such as `focuspyr`, `alfosc.focus`, and `alfosc.focus-offset`. For precise default values of `foc-pos` and `tv-foc`, you would need to refer directly to the ALFOSC instrument documentation or contact the support team.","According to the instrument settings table, the default foc-pos is 26630 and the tv-foc is 510.",0.8,,,0.7,The answer is relevant but lacks direct support from the provided context. The correctness score is lower due to uncertainty in the absence of explicit default values.
+2,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"When using the slit-offset program, what is the required CCD-number if an observer is using ALFOSC versus Stancam?","For ALFOSC, the CCD number used with the SLIT-OFFSET program is 1. For Stancam (or FIES/Stancam), it would be numbered as 2.
+
+This information can be inferred from the context provided, specifically mentioning that ""The program now takes action as follows e Search the fi"" and detailing parameters including ""e CCD Number The number of the CCD detector used. This is used for pixed scale and orientation purposes."" Given the directory paths mentioned like ""~obs1/stancam/slitpos.def or ~obs2/stancam/slitpos.def for use with FIES/Stancam,"" it implies Stancam uses a different (likely second) CCD, hence the distinction in numbers.",The required CCD-number is 1 for Stancam and 7 for ALFOSC.,1.0,1.0,1.0,1.0,The answer directly addresses the question and is fully supported by the provided context.
+3,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,What is the exit status code returned by teloffset if the telescope is not being autoguided at the time of execution?,"The exit status code returned by teloffset if the telescope is not being autoguided at the time of execution is `-?`. This can be found in the document ""alfosc_slit_off_ocr.pdf"" under Chunk 9, where it lists various exit status values and their meanings.",The program returns an exit status of -2 if the telescope is not being autoguided.,0.6,,,0.0,The answer contradicts the ground truth and provides an incorrect exit status code.
+4,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"In the alfosc_ser_daemon command set, what does the command ""SEnnnnn"" trigger, and what does the ""nnnnn"" represent?","The context provided does not contain specific information about the `SEnnnnn` command. The given documentation primarily describes general usage and syntax for ALFOSC commands but does not detail every possible command or its arguments.
+
+Based on typical naming conventions in command sets, it's likely that ""SE"" is a prefix indicating a sequence or setup-related command, while ""nnnnn"" could represent a unique identifier or index for the specific sequence being triggered. However, without more detailed documentation, this is just an educated guess.
+
+For precise information about `SEnnnnn`, you would need to refer to the full ALFOSC Sequencer Reference Manual or contact the support team at Nordic Optical Telescope (NOT) via their Facebook page as mentioned in the context.","The command triggers the start of an exposure, and ""nnnnn"" represents the duration of the exposure in seconds.",0.5,,,,"The answer is relevant but lacks specific details about 'SEnnnnn'. The context provided does not contain the necessary information, and there's no ground truth to verify correctness."
+5,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,Explain the complete sequence of events that occurs when the teloffset program is executed while the telescope is already being autoguided.,"When the `teloffset` program is executed while the telescope is already being autoguided, the following sequence of events occurs:
+
+1. **Telescope Movement**: The telescope is moved according to the specified offset.
+2. **Guideprobe Position Calculation**: 
+   - The amount to move the guideprobe is determined using the formula: 
+     \[
+     X_{\text{new}} = X_0 + 0.00732 A \\
+     Y_{\text{new}} = Y_0 - 0.007342 A
+     \]
+   where \(A\) is the movement value, and \(X_0\) and \(Y_0\) are the current coordinates of the guideprobe.
+3. **Guideprobe Position Check**: The new position of the guideprobe is checked to ensure it stays within its limits.
+4. **Guideprobe Movement**: If the new position is within limits, the guideprobe is moved to the calculated new position.
+5. **Wait for Guideprobe**: The program waits until the guideprobe has reached its new position.
+6. **Wait for Telescope Tracking**: The program waits until the telescope starts tracking again after the movement.
+7. **Autoguiding On**: Autoguiding is switched on.
+8. **Return Status**: The program returns to the caller with an exit status of 0 (zero).
+
+This sequence ensures that both the telescope and guideprobe are adjusted correctly while maintaining proper operation, even when autoguiding is active.","The sequence is: 1) Connect to the TCS, 2) Get field rotation and check autoguiding, 3) Calculate guideprobe movement, 4) Check movement limits, 5) Switch autoguiding off, 6) Move the telescope and guideprobe, 7) Wait for movement to finish and tracking to stabilize, and 8) Switch autoguiding back on.",0.7,,,0.6,The answer provides a detailed sequence of events but does not match the ground truth provided. The context snippets are repetitive and do not directly support the answer.
+6,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"During afternoon preparations, what are the exact steps required to load a new TCS Target Catalogue?","To load a new TCS Target Catalogue during afternoon preparations, follow these steps:
+
+1. Turn on the screens and brightness from the TCS VT510 terminal.
+2. If needed, erase the old catalogue by typing `erase-catalogue` on the TCS.
+3. Load a source catalogue by typing `read-catalogue _catname.cat_` on the TCS, where `_catname_` is the name of the catalogue you want to load.
+
+This process ensures that your targets are ready for manual observations or can be used within observing scripts if applicable.","Observers must press the CAT button on the TCS, use the erase-catalogue command if a current catalogue exists, and then load the new one by typing read-catalogue catname.cat.",0.8,,,0.6,"The answer is mostly relevant but misses the key step of pressing the CAT button on the TCS. The context provided does not directly support the steps given, hence low groundedness and correctness scores."
+7,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,Describe the process an observer must follow to interactively identify a target for spectroscopy during an Observing Block (OB) execution.,"Based on the provided context, when executing an Observing Block (OB) that involves spectroscopy and interactive target identification, the observer typically follows these steps:
+
+1. **Confirmation of Target Identification**: After the initial pointing to the target, the OB will prompt the user to confirm if the star has been correctly identified. This is done by asking the observer to press enter twice.
+
+2. **Retrying Acquisition if Necessary**: If the star is not successfully identified on the first attempt, the observer can repeat the acquisition process as needed until it is properly recognized.
+
+3. **Starting Spectral Observations**: Once the target has been correctly identified and confirmed, the OB will proceed with taking spectra of the target.
+
+4. **Telescope Dithering**: It is recommended to offset the telescope between integrations if possible, using a dither pattern to improve the quality of the data and reduce systematic errors.
+
+5. **Guidance Confirmation**: For some instruments, additional steps like confirming guiding might be required after initial setup but before starting the actual observations.
+
+These instructions are specific to the ALFOSC instrument, as mentioned in the context provided. The exact process may vary slightly depending on the instrument being used, so it's always a good idea to consult the detailed instructions for the specific instrument and OB type you are working with.",The observer identifies the target on the acquisition image by placing the mouse cursor over it and pressing a+q for point sources or x+q for extended sources.,0.8,0.9,0.7,,"The answer is relevant and grounded in the provided context, but it does not directly state the specific key step of pressing 'a+q' or 'x+q'. The correctness cannot be scored without ground truth."
+8,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"What is the recommended procedure for obtaining twilight sky flats in the evening, including the suggested count levels?","Based on the provided context, here are the key points regarding the recommended procedure for obtaining twilight sky flats during the evening:
+
+1. **Bias Frames**: Take bias frames before the night starts.
+2. **Twilight Flats**: During twilight, take the requested number of flats in all bands that are planned to be used that night.
+
+Regarding count levels:
+- The exposure-time algorithm aims for a target count level of 100 kADU.
+- For dark skies where this cannot be reached within 300 seconds, a 300-second flat will still be taken if the expected counts exceed 30 kADU.
+- Conversely, in bright sky conditions, a 1-second flat will be taken if the counts are below 250 kADU.
+
+These guidelines ensure that appropriate exposure times and count levels are maintained for accurate calibration.","Observers should point to a blank field (ideally in the east), adjust the focus for the specific filter, and run the easyflat 3 script, aiming for count levels around 2-300 kADU per pixel.",0.8,1.0,0.9,0.9,"The answer is relevant and grounded in the provided context, with correct information on count levels and exposure times."
+9,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"If the teloffset program is run manually from the command line, what four specific arguments must be provided in the command string?","When running the `teloffset` program manually from the command line, you need to provide two mandatory arguments: `<n>` for the offset in the X direction (arcseconds) and `<m>` for the offset in the Y direction (arcseconds). 
+
+The specific format of the command would be:
+
+```
+alfosc.teloffset <n> <m>
+```
+
+For example, if you want to offset an object by 5 arcseconds in the X direction and 3 arcseconds in the Y direction, the command would look like this:
+
+```
+alfosc.teloffset 5 3
+``` 
+
+This aligns with the information provided in the context where it states: `teloffset <n> <m> Offsets an object on the CCD <n> arcseconds in X direction, <m> arcseconds in Y direction.`","The four required arguments are the IP-number of the TCS computer, the current accesscode, the X-offset, and the Y-offset.",0.6,,,,The answer does not fully address the question as it only mentions two arguments (X and Y offsets) instead of four specific ones. The context provided is redundant and does not support the answer.
+10,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,Under what specific weather conditions (wind speed and humidity) must the telescope be closed immediately?,"According to the provided context, the telescope must be closed if the wind speed reaches 20 m/s or if the humidity is above 90%. These limits can be violated for four minutes before the telescope will shut down automatically. Source: [www.not.iac.es/observing/guide/index.html](https://www.facebook.com/Nordic.Optical.Telescope/) and [pure.md_https___www.not.iac.es_observing_cookbook_current_Cookbook.php_instrument=ALFOSC.pdf](https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC)",The telescope must be closed if the humidity reaches 90% or the wind speed reaches 20 m/s.,1.0,1.0,1.0,1.0,"The answer directly addresses the question and is fully supported by the provided context, which matches the ground truth."
+11,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,What is the maximum tracking speed limit currently being tested for rapidly moving targets at the NOT?,"The context mentions that the software speed limit has been increased for very fast tracking (without autoguiding) to more than 5000""/s. However, it also states that this is currently under testing. Therefore, while the limit has been increased significantly, the exact maximum tracking speed limit being tested is not explicitly stated in the provided context.
+
+For reference, the relevant chunk from the document is:
+""The software speed limit has been increased from 17""/s to more than 5000""/s. Observations were made of fast satellites where the RA/DEC rates were updated every second."" [pure.md_https___www.not.iac.es_observing_cookbook_current_Cookbook.php_instrument=ALFOSC.pdf | Chunk 230]","The software speed limit for fast tracking (without autoguiding) has been increased to more than 5000""/s.",0.7,,,,"The answer is relevant but does not provide the exact maximum speed limit being tested, which is a key detail from the context."
+12,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"In the slit-offset program, what are the coordinate limits for the Guideprobe X and Y positions that would trigger an ""outside limits"" error?","Based on the context provided, there is no specific mention of exact coordinate limits for the Guideprobe X and Y positions that would trigger an ""outside limits"" error message. However, it does state that an error message has been added when both X and Y are outside the limits:
+
+""Error message when both X and Y is outside limits have been added.""
+
+This suggests that there are defined limits for both X and Y coordinates, but these specific values are not detailed in the given context. The implementation likely checks if the guideprobe movement would result in an X or Y value out of range as indicated by error messages like:
+
+- ""Guideprobe movement will result in X and Y value out of range.""
+- ""Guideprobe movement will result in X value out of range.""
+- ""Guideprobe movement will result in Y value out of range.""
+
+For precise limits, you would need to refer to the source code or additional documentation not included in this context.","The X-position limits are 1100.0 to 225000.0, and the Y-position limits are 1100.0 to 165000.0.",0.7,,,,"The answer is relevant but does not provide specific limits, which are needed for correctness."
+13,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"According to the ALFOSC Cookbook, why should the TV focus not be adjusted while placing an object on a slit?","The context provided does not explicitly mention why the TV focus should not be adjusted while placing an object on a slit. The instructions focus on how to place an object on the slit using BIAS and imexamine, but do not provide a reason for avoiding adjustments to the TV focus during this process.
+
+If you need specific information about why adjusting the TV focus is discouraged, we would require additional details from the ALFOSC documentation or a similar source.","The TV focus should not be adjusted because a change of 25 units can move the position of a star on the ALFOSC CCD by up to 1 arcsecond, potentially causing misalignment with the slit.",0.6,,,,The answer is relevant but lacks direct support from provided context. The ground truth provides additional information not present in the given context.
+14,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"If an observer encounters a ""building crash,"" what resource does the documentation point to for recovery instructions?","The provided context does not mention any specific instructions or resources for handling a ""building crash."" The details given are mainly about end-of-night procedures, such as turning off monitors, locking up the dome, and completing reports. Therefore, based on the information available in the context, there is no explicit resource pointed to for recovery from a building crash.
+
+If you need specific instructions for such an event, it would be advisable to consult additional documentation or contact support directly.","The documentation directs observers to follow the steps listed under the section ""recovering from a building crash"".",0.0,,,,The answer does not address the question and the context provided does not contain specific instructions for handling a building crash.
+15,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,The teloffset documentation notes a potential bug regarding offset accuracy; what is the suspected cause of this inaccuracy?,"The provided context does not explicitly mention any bugs or suspected causes of inaccuracy related to the `teloffset` program. Therefore, I cannot provide information on a specific suspected cause of inaccuracy based solely on the given documents.",The suspected cause is errors in the determination of the scale of the guideprobe.,0.0,,,,The answer does not address the question and no context supports a suspected cause of inaccuracy.
+16,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,What should an observer do if the ALFOSC UIF fails to start with an error message?,"If the ALFOSC UIF fails to start with an error ""The ALFOSC UIF did not start. Restart the observing system,"" you should follow these steps:
+
+1. Power cycle the motor controller and try starting again.
+2. Check that all network cables are properly connected and try starting again.
+
+These actions can help resolve the issue. If the problem persists, consider filling out a Fault Report as there might be deeper issues needing attention from the support staff.",The observer should power cycle the motor controller and ensure all network cables are properly connected.,1.0,,,1.0,The answer directly addresses the question and matches the provided ground truth.
+17,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,"If the slit-offset program returns an exit status of -6, what does this indicate happened during communication with the TCS?","An exit status of -6 indicates that there was a timeout in talking to the TCS (Telescope Control System) during communication. This can be seen from the context provided in `output_ocr.pdf | Chunk 6`, where it lists various exit statuses and their meanings, specifically mentioning:
+
+```plaintext
+e -6: Timed out in talking to TCS.
+```
+
+So a timeout occurred when trying to communicate with the TCS system.","An exit status of -6 indicates that the process ""Timed out"".",0.9,,,1.0,The answer is directly relevant and correct based on the provided ground truth.
+18,local_ollama_qwen25_7b_rag_current,local_rag_api,R_local,How should I properly credit the Nordic Optical Telescope in my research paper?,"To properly credit the Nordic Optical Telescope (NOT) in your research paper, you should include an acknowledgment similar to the following:
+
+""Based on observations made with the Nordic Optical Telescope, owned in collaboration by the University of Turku and Aarhus University, and operated jointly by Aarhus University, the University of Turku and the University of Oslo representing Denmark, Finland, and Norway, the University of Iceland, and Stockholm University at the Observatorio del Roque de los Muchachos, La Palma, Spain, of the Instituto de Astrofisica de Canarias. The NOT data were obtained under program ID Pnn-nnn.""
+
+If you have obtained your data through the OPTICON/ORP Trans-National Access programme, add this additional information:
+
+""The research leading to these results [or specific findings] has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. [grant number].""
+
+Make sure to replace ""Pnn-nnn"" with the actual program ID you used for your observations, and include the correct grant agreement number if applicable.
+
+This acknowledgment should be placed in an appropriate section of your paper where you discuss the data sources or methods used in your research.","Papers should explicitly mention the ""Nordic Optical Telescope (NOT)""; specific required wording and links for the proper credit format are available on the NOT website.",1.0,1.0,1.0,1.0,The answer directly addresses the question and is supported by the provided context.

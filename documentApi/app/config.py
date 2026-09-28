@@ -68,10 +68,16 @@ def get_base_directory() -> Path:
     root = _optional_data_root()
     if root is not None:
         return root
+    explicit = os.environ.get("DOCUMENT_API_BASE_DIR", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     return Path.home() / "RAGIngestStudio"
 
 
 def get_settings_path() -> Path:
+    explicit = os.environ.get("DOCUMENT_API_SETTINGS_PATH", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     root = _optional_data_root()
     if root is not None:
         return root / "settings.json"
@@ -172,6 +178,9 @@ def save_settings(settings: AppSettings) -> AppSettings:
 
 
 def get_chat_settings_path() -> Path:
+    explicit = os.environ.get("DOCUMENT_API_CHAT_SETTINGS_PATH", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     root = _optional_data_root()
     if root is not None:
         return root / "chat_settings.json"

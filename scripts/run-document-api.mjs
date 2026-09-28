@@ -25,14 +25,25 @@ if (!fs.existsSync(python)) {
 // und die API startet nicht. Standard: ohne Reload; bei Bedarf: DOCUMENT_API_RELOAD=1
 // DOCUMENT_API_HOST: z. B. 0.0.0.0 fuer Zugriff im LAN (Clients dann RAG_API_URL auf Host-IP setzen)
 const host = process.env.DOCUMENT_API_HOST?.trim() || "127.0.0.1";
-const argv = ["-m", "uvicorn", "app.main:app", "--host", host, "--port", "8000"];
+const port = process.env.DOCUMENT_API_PORT?.trim() || "8000";
+const argv = ["-m", "uvicorn", "app.main:app", "--host", host, "--port", port];
+
+// Profile-based env vars
+const profile = process.env.DOCUMENT_API_PROFILE?.trim();
+const profileEnv = {};
+if (profile) {
+  const home = process.env.HOME || process.env.USERPROFILE || "";
+  profileEnv.DOCUMENT_API_BASE_DIR = path.join(home, `RAGIngestStudio-${profile}`);
+  profileEnv.DOCUMENT_API_SETTINGS_PATH = path.join(apiDir, "profiles", profile, "settings.json");
+  profileEnv.DOCUMENT_API_CHAT_SETTINGS_PATH = path.join(apiDir, "profiles", profile, "chat_settings.json");
+}
 const reload =
   process.env.DOCUMENT_API_RELOAD === "1" || process.env.DOCUMENT_API_RELOAD === "true";
 if (reload) {
   argv.push("--reload");
 }
 
-const child = spawn(python, argv, { cwd: apiDir, stdio: "inherit", shell: false });
+const child = spawn(python, argv, { cwd: apiDir, stdio: "inherit", shell: false, env: { ...process.env, ...profileEnv } });
 
 child.on("exit", (code, signal) => {
   if (signal) {
