@@ -1,10 +1,11 @@
 # RAG Ingest Studio + RAG Chat
 
+**Sprache:** [Deutsch](README.md) | [English](README.en.md)
+
 Desktop-Stack (Electron + React + TypeScript + FastAPI) fuer lokale Dokument-Ingestion und Chat ueber Vektor-Retrieval:
 
 - Upload per File Picker, Drag & Drop und rekursiver Ordner-Ingest
-- **Aufbereitung vor der Indexierung:** Rohdatei wird geparst und strukturiert (u. a. `unstructured`, `pypdf`), daraus entsteht der editierbare **Corpus als JSONL**; erst danach folgen Embeddings und Schreiben in den Vektor-Store
-- Lokale Embeddings im **documentApi**-Prozess (`app/worker.py`, Sentence-Transformers) ueber einen **Worker-Threadpool** — nicht als separater Subprozess im Standardpfad
+- Parsing + Chunking + lokale Embeddings (Python Worker)
 - Vektor-Backends pro Umgebung:
   - `postgres` (pgvector)
   - `sqlite_embedded` (ohne separaten Server)
@@ -17,106 +18,83 @@ Desktop-Stack (Electron + React + TypeScript + FastAPI) fuer lokale Dokument-Ing
 ## Monorepo Struktur
 
 ```text
-documentHandling/    Dokumentverwaltung + Ingestion UI (Electron + Vite)
-  apps/main/         Electron Main — spricht per HTTP mit documentApi
-  apps/renderer/     React UI
-  apps/python_worker/ Optionaler Standalone-Worker (Legacy); Standardweg ist documentApi
-  packages/shared/   IPC-Typen und gemeinsame Typen fuer die Handling-App
-chatBot/             Chat UI (Electron); Main spricht ebenfalls per HTTP mit documentApi
-documentApi/         FastAPI (Standard-Port 8000), IngestService, ChatService, Parsing, Embeddings, Vector Stores
-scripts/             Startskripte (u. a. documentApi Runner mit documentApi/.venv)
+documentHandling/    Dokumentverwaltung + Ingestion UI (Electron)
+chatBot/             Chat UI (Electron)
+documentApi/         FastAPI Backend + Worker + Vector Stores
+scripts/             Startskripte (u. a. documentApi Runner)
+batchTest/           Batch-Chat gegen die API + Excel-Export (Python)
 ```
 
-## Systemdiagramm (Komponenten)
-
-Zwei Electron-Apps teilen sich **dieselbe** FastAPI-Instanz und dieselbe Datenablage unter `~/RAGIngestStudio/`.
-
-```mermaid
-flowchart TB
-  subgraph DH[Document Handling]
-    UI[Renderer\nUpload / Dashboard / Corpus]
-    IPC[packages/shared\nIPC-Typen]
-    MAIN[Electron Main\nOrchestrierung + Dateizugriff]
-    UI --> IPC --> MAIN
-  end
-
-  subgraph CB[Chat Bot]
-    CUI[Renderer\nChat UI]
-    CMAIN[Electron Main]
-    CUI --> CMAIN
-  end
-
-  API[documentApi\nFastAPI Port 8000\nIngest + Chat + Jobs]
-
-  MAIN -->|HTTP REST\nBasis-URL konfigurierbar| API
-  CMAIN -->|HTTP REST\nBasis-URL konfigurierbar| API
-
-  subgraph dataStore ["~/RAGIngestStudio"]
-    FILES[files/\nOriginaldateien]
-    CORPUS[corpus/\nJSONL + optional MD]
-    IDX[index.sqlite\nDocs + Jobs]
-    SET[settings.json]
-  end
-
-  API --> FILES
-  API --> CORPUS
-  API --> IDX
-  API --> SET
-
-  subgraph VEC[Vektor-Backend waehlbar]
-    PG[(Postgres\npgvector)]
-    SQL[(sqlite_embedded)]
-    QD[(qdrant_embedded)]
-  end
-
-  API --> VEC
-```
-
-### Was dieses Diagramm zeigt
-
-1. **Zwei Frontends, ein Backend** — Ingest-UI und Chat-App sprechen beide mit **documentApi**; Metadaten und Vektoren liegen konsolidiert vor.
-2. **IPC nur in Document Handling** — Die Renderer-UI nutzt typisierte IPC-Aufrufe zum Main-Prozess; **kein** direkter Zugriff auf Python oder Vektor-DBs aus dem Renderer.
-3. **Electron Main als Client der REST-API** — Main bündelt Aktionen und ruft die API per HTTP auf (u. a. Upload, Jobs, Corpus, Settings). Die **Basis-URL** ist nicht auf `localhost` festgelegt (siehe Abschnitt *API-Basis-URL*). Die persistente Arbeit (Parsing, Queue, Embeddings) laeuft im **documentApi**-Prozess.
-4. **Gemeinsame Artefakte** — Originaldateien, Corpus, SQLite-Index und Einstellungen liegen unter derselben Basis; das Backend liest/schreibt diese Pfade.
-
-## Ingest-Pipeline mit Dokument-Aufbereitung
-
-Vor Embeddings und Vektor-Speicherung werden Dokumente **aufbereitet**: Aus der Rohdatei werden strukturierte Text-Chunks erzeugt und als **Corpus (JSONL)** abgelegt — editierbar im UI, Grundlage fuer jeden Reindex.
+## Systemdiagramm (Ingest + Reindex)
 
 ```mermaid
 flowchart LR
-  UP[Upload\nOrdner-Import] --> APIJ[documentApi\nJob Reindex]
-  APIJ --> FILE[(Original\nfiles)]
-  APIJ --> CLR[Alte Vektoren\npro documentId\nentfernen]
-
-  CLR --> CORP{Giltiger\nCorpus\nJSONL?}
-
-  CORP -->|Nein| PRE[Aufbereitung\nParsing, Strukturierung\nunstructured, pypdf\nText-Extraktion]
-  PRE --> JSONL[(Corpus\nJSONL\noptional MD)]
-
-  CORP -->|Ja| JSONL
-
-  JSONL --> CHUNK[Chunking\naus Corpus-Zeilen]
-  CHUNK --> EMB[Embeddings\nSentence-Transformers\nWorker-Threadpool]
-  EMB --> VS[(Vektor-Store\nje nach Setting\nPostgres SQLite\nQdrant embedded)]
-  VS --> META[(Status Metadaten\nindex.sqlite)]
-  META --> UI[Fortschritt\nDashboard]
+  UI[Renderer UI\nUpload / Dashboard / Corpus Viewer] --> IPC[IPC Contracts\npackages/shared]
+  IPC --> MAIN[Electron Main\napps/main]
+  MAIN --> FS[(Lokale Dateien\nfiles/<docId>/)]
+  MAIN --> CORPUS[(Corpus JSONL/MD\ncorpus/<docId>.*)]
+  MAIN --> SQLITE[(SQLite\nindex.sqlite)]
+  MAIN --> WORKER[Python Worker\napps/python_worker]
+  WORKER --> PGVECTOR[(Postgres + pgvector\nrag_documents)]
+  PGVECTOR --> MAIN
+  MAIN --> UI
 ```
 
-### Schritte der Pipeline
+### Was das Diagramm genau zeigt
 
-1. **Import** — Datei landet unter `files/<docId>/`, Eintrag in `index.sqlite`, Job wird eingereiht.
-2. **Bereinigung** — Vor Reindex werden Vektoreintraege des Dokuments im gewaehlten Backend entfernt (idempotent).
-3. **Aufbereitung (wenn kein nutzbarer Corpus existiert)** — `parse_document` im **documentApi** extrahiert und normalisiert Inhalt; daraus werden JSONL-Zeilen mit Text und Metadaten gebaut und unter `corpus/` gespeichert (optional Markdown-Export).
-4. **Bestehender Corpus** — Wurde der Text im Corpus Viewer geaendert, wird **ohne** erneutes Parsing der Datei aus JSONL weiterindexiert.
-5. **Embeddings & Upsert** — Chunk-Texte werden im Threadpool eingebettet und in den konfigurierten Vektor-Store geschrieben.
-6. **Rueckmeldung** — Job-Status und Chunk-Zaehlung in SQLite; SSE/Progress fuer die UI.
+1. **UI startet den Prozess**  
+   Im Renderer waehlt der User Dateien aus (Picker oder Drag & Drop), sieht Status im Dashboard und kann Reindex/Remove ausloesen.
+
+2. **IPC entkoppelt Frontend und Backend**  
+   Die UI spricht nie direkt mit Dateisystem, Python oder Postgres. Sie sendet nur typisierte IPC-Requests ueber `packages/shared`.
+
+3. **Electron Main orchestriert alles**  
+   Der Main Process ist die zentrale Steuerung: Er nimmt Jobs an, schreibt Metadaten in SQLite, verwaltet Dateipfade und koordiniert den Worker.
+
+4. **Lokale Artefakte werden persistiert**  
+   Originaldateien landen in `files/<docId>/`.  
+   Der editierbare Corpus wird als `corpus/<docId>.jsonl` (optional `.md`) gespeichert und dient als Source of Truth fuer spaetere Reindex-Laeufe.
+
+5. **Python Worker macht Parsing + Embeddings**  
+   Der Worker liest den lokalen Input, fuehrt Parsing/Chunking aus und erzeugt Embeddings fuer die Chunks.
+
+6. **Postgres (pgvector) speichert die Vektoren fuer Retrieval**  
+   Die erzeugten Punkte werden in `rag_documents` geschrieben. Vor Reindex werden bestehende Punkte des Dokuments entfernt, damit der Zustand idempotent bleibt.
+
+7. **Rueckmeldung an die UI**  
+   Der Main Process aktualisiert Job-/Dokumentstatus in SQLite und liefert den Fortschritt zurueck an die UI, damit Dashboard und Corpus Viewer den aktuellen Stand anzeigen.
 
 ## Voraussetzungen
 
 - Node.js 20+
-- Python 3.10+ (fuer lokale Entwicklung: venv unter `documentApi/.venv`, siehe unten)
+- Python 3.10+
 - Docker (optional, nur fuer Postgres/pgvector)
+
+## Docker-Setup fuer Backend (empfohlen)
+
+Wenn du API + Vektor-DB + Ollama als Container starten willst, nutze die Compose-Datei im Repo-Root:
+
+```bash
+docker compose up -d --build
+```
+
+Services danach:
+
+- API: `http://localhost:8000`
+- Postgres/pgvector: `localhost:5432`
+- Ollama: `http://localhost:11434`
+
+Stoppen:
+
+```bash
+docker compose down
+```
+
+Alle persistierten Container-Daten entfernen (nur wenn wirklich gewuenscht):
+
+```bash
+docker compose down -v
+```
 
 ## 1) Postgres (pgvector) lokal starten
 
@@ -139,13 +117,11 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Wichtig: Alle API-Abhaengigkeiten (z. B. `qdrant-client`, `sentence-transformers`) in genau dieser venv installieren:
+Wichtig: Alle API-Abhaengigkeiten (z. B. `qdrant-client`) in genau dieser venv installieren:
 
 ```bash
 documentApi\.venv\Scripts\python.exe -m pip install -r documentApi/requirements.txt
 ```
-
-Das Startskript `npm run dev:api` erwartet `documentApi\.venv\Scripts\python.exe` (siehe `scripts/run-document-api.mjs`).
 
 ## 3) Node Dependencies installieren
 
@@ -157,7 +133,7 @@ npm install
 
 ## 4) Development starten
 
-**Document Handling** (Ingest-App) — im Repository-Root:
+Im Repository-Root:
 
 ```bash
 npm run dev
@@ -165,37 +141,11 @@ npm run dev
 
 Das startet:
 
-- **documentApi** (FastAPI/Uvicorn) standardmaessig auf `http://127.0.0.1:8000` (siehe *API-Basis-URL* fuer LAN oder anderen Host)
+- **documentApi** (FastAPI/Uvicorn) auf `http://127.0.0.1:8000`
 - Vite Renderer auf `http://localhost:5173`
-- Electron Main Process (startet erst, wenn Renderer **und** TCP-Port **8000 auf dieser Maschine** bereit sind — typisch die lokale API)
+- Electron Main Process (startet erst, wenn Renderer **und** Port 8000 bereit sind)
 
 Nur die API in einem eigenen Terminal: `npm run dev:api`
-
-**Chat Bot** — separat, ebenfalls gegen dieselbe (oder eine andere erreichbare) API-Instanz:
-
-```bash
-npm run dev:chat
-```
-
-### API-Basis-URL (localhost, LAN-IP oder anderer Host)
-
-Die Electron-Apps (**documentHandling** und **chatBot**) lesen die API-Adresse aus der Umgebungsvariable **`RAG_API_URL`**. Standard ist `http://localhost:8000`, es kann aber z. B. `http://192.168.1.10:8000` oder ein anderer erreichbarer Host sein (gleiches Netzwerk, VPN, entfernter Server).
-
-- **Server im LAN erreichbar machen:** Uvicorn lauscht im Standard nur auf `127.0.0.1`. Fuer Zugriff von anderen Geraeten im Netzwerk **`DOCUMENT_API_HOST=0.0.0.0`** setzen und die API starten (Port **8000** in Firewall freigeben). Beispiel PowerShell:
-
-```powershell
-$env:DOCUMENT_API_HOST="0.0.0.0"
-npm run dev:api
-```
-
-- **Clients auf dieselbe URL zeigen:** Vor dem Start der jeweiligen Electron-App `RAG_API_URL` setzen, z. B.:
-
-```powershell
-$env:RAG_API_URL="http://192.168.1.10:8000"
-npm run dev
-```
-
-**Hinweis:** `npm run dev` startet weiterhin eine **lokale** documentApi und wartet auf lokalen Port 8000. Wenn die API **nur** auf einem anderen Rechner laeuft, starte API und Clients dort passend getrennt (ohne die gebündelte lokale API), oder nutze oben `DOCUMENT_API_HOST`, damit ein Rechner im LAN dieselbe Maschine anspricht.
 
 Hinweis zu `qdrant_embedded`: Der API-Runner startet standardmaessig **ohne** `uvicorn --reload`, da der Qdrant-Ordner exklusiv gelockt wird.  
 Reload nur explizit aktivieren:
@@ -218,7 +168,7 @@ npm run build
 npm run start
 ```
 
-Das Skript baut zuerst Renderer + Main (Document Handling) und startet danach Electron im Production-Modus.
+Das Skript baut zuerst Renderer + Main und startet danach Electron im Production-Modus.
 
 ## Datenablage / Offline Verhalten
 
@@ -229,7 +179,7 @@ Alle Artefakte liegen lokal in:
 Unterstruktur:
 
 - `files/<docId>/` - Originaldateien
-- `corpus/<docId>.jsonl` - editierbare Source of Truth (nach Aufbereitung bzw. manueller Bearbeitung)
+- `corpus/<docId>.jsonl` - editierbare Source of Truth
 - `corpus/<docId>.md` - optionaler Markdown-Export
 - `index.sqlite` - Dokumente + Jobs
 - `settings.json` - lokale Einstellungen (inkl. Vektor-Backend pro Umgebung)
@@ -246,8 +196,57 @@ Unterstruktur:
 - **CSV Export** der Dokumentliste
 - **Chat** mit Quellenanzeige, "Website"-Button (externer Browser), Copy-Button und Antwort-Metriken
 
+## batchTest (Batch-Chat + Excel)
+
+Im Ordner `batchTest/` liegt ein kleines **Python**-Tool, das viele Chat-Fragen gegen die laufende **documentApi** schickt und eine **Excel-Arbeitsmappe** mit Antworten, Token-Metriken, Geschwindigkeit und den gezogenen Kontext-Chunks schreibt.
+
+> English: [README.en.md](README.en.md) — same **batchTest** section.
+
+### Voraussetzungen
+
+- **documentApi** erreichbar (gleiche URL wie die App, Standard `http://localhost:8000`)
+- Derselbe Index/Vektor-Backend wie im Chat, damit das Retrieval zu euren Dokumenten passt
+- Abhaengigkeiten: `pip install -r batchTest/requirements.txt` (`httpx`, `openpyxl`)
+
+### Kurzstart
+
+```bash
+cd batchTest
+pip install -r requirements.txt
+cp batch_config.example.json batch_config.json
+# batch_config.json anpassen (Fragen, API-URL, optionale Chat-Settings)
+python batch_chat.py --config batch_config.json
+```
+
+Unter Windows (PowerShell) geht `cp` nicht immer; dann z. B. `Copy-Item batch_config.example.json batch_config.json`.
+
+### Konfiguration (`batch_config.json`)
+
+| Bereich | Bedeutung |
+|--------|-----------|
+| `apiBaseUrl` | Basis-URL der documentApi (ohne abschliessenden Slash) |
+| `requestTimeoutSeconds` | HTTP-Timeout pro Anfrage |
+| `questions` | Liste von Fragen (Strings) |
+| `questionsFile` | Optionaler Pfad zu einer Textdatei: eine Frage pro Zeile; Zeilen mit `#` sind Kommentare |
+| `language` | `"de"` oder `"en"`, oder weglassen (wie in der API) |
+| `history` | Optional Liste aus `{"role":"user"|"assistant","content":"..."}` (wie Chat-API) |
+| `applyChatSettings` | Bei `true`: aktuelle Einstellungen per `GET /api/chat/settings` laden, mit `chatSettings` mergen, danach per `PUT` speichern |
+| `chatSettings` | Gleiche Felder wie im App-Chat: `llmApiKey`, `llmBaseUrl`, `llmModel`, `temperature`, `maxTokens`, `topK`, `systemPrompt`, `encryptionKey` (CamelCase wie in der API) |
+| `restoreChatSettingsAfterRun` | Bei `true`: nach dem Lauf die zuvor gesicherten Settings wiederherstellen |
+| `outputExcel` | Pfad zur `.xlsx`-Ausgabe (relative Pfade beziehen sich auf das **aktuelle Arbeitsverzeichnis**) |
+
+### Excel-Ausgabe
+
+Die Arbeitsmappe enthaelt:
+
+- **Meta** – Zeitstempel (UTC), API-URL, Konfigurationspfad, optional angewendete `chatSettings`
+- **Ergebnisse** – eine Zeile pro Frage: Antwort, HTTP-Fehler (falls vorhanden), `elapsedMs`, Prompt-/Completion-/Total-Tokens, Tokens/s, Chunk-Anzahl, Kurzliste der Chunks, ausfuehrlicher Chunk-Text
+- **Chunks** – eine Zeile pro abgerufenem Chunk: Frage-Nr., Position, Dateiname, `chunkIndex`, `documentId`, Aehnlichkeit, Quelle, Textauszug
+
+Lange Texte werden bei Bedarf wegen Excel-Zelllimits gekuerzt.
+
 ## Hinweise zu Idempotenz
 
-- Vor jedem Reindex werden bestehende Vektoren fuer `documentId` im jeweiligen Vektor-Backend entfernt.
+- Vor jedem Reindex werden bestehende Vektoren fuer `documentId` aus Postgres entfernt.
 - Point IDs sind deterministisch via `sha256(documentId + ":" + chunkIndex)`.
-- JSONL bleibt die editierbare Truth-Quelle fuer spaetere Reindex-Laeufe (wenn vorhanden, entfaellt erneutes Parsing der Originaldatei).
+- JSONL bleibt die editierbare Truth-Quelle fuer spaetere Reindex-Laeufe.

@@ -1,0 +1,6 @@
+{
+  "_comment": "fileName substring → score multiplier applied during RAG reranking. Keys are matched case-insensitively as substrings of the chunk fileName. Multiplier > 1.0 boosts, < 1.0 demotes, 1.0 is a no-op. File is re-read on every query — no restart needed.",
+  "INSTRUCTIONS": 1.0,
+  "safety": 1.0,
+  "emergency": 1.0
+}

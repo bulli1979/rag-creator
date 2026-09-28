@@ -1,0 +1,25 @@
+question,ground_truth
+What are the central wavelength and dispersion for the BLUENOT (G#18) VPHG grism?,The central wavelength is 430 nm and the dispersion is 0.918 Å/px.
+Beyond what specific wavelength does ALFOSC grism #4 suffer from severe second-order contamination?,It suffers from severe contamination beyond ~5800 Å.
+What is the plate scale for ALFOSC mentioned in the 2nd-order contamination report?,The scale is 0.19 arcseconds per pixel.
+What is the physical pixel size (in microns) of the SITe SI-003A CCD?,Each pixel measures 24 µm x 24 µm.
+What is the pixel scale of the relay optics for the PolCor ""Lucky"" instrument?,The relay optics have a pixel scale of 0.12 arcsec/pixel.
+What are the three available sizes for coronagraphic disks in the PolCor instrument?,"The disks are available in diameters of 1.5, 3, and 6 arcseconds."
+What are the four readout speeds provided by the ALFOSC detector controller (CCD3) introduced in 2011?,"The speeds are 113, 200, 400, and 800 kpix/sec."
+What is the fundamental frequency of the pick-up noise observed with the ALFOSC controller?,The frequency is 13.28 KHz.
+What is the measured readout noise (RON) for Amplifier A in high-gain mode for the E2V CCD42-40?,The RON is 3.25 ± 0.05 e-.
+At what temperature must the ALFOSC E2V (non-AIMO type) CCD be cooled to suppress dark current for RON-limited noise in long exposures?,It must be cooled to -120°C.
+What is the focal plane scale of the 2.56-meter Nordic Optical Telescope?,The scale is 7.33 arcsec/mm.
+According to wavefront sensor analysis 100nm of measured astigmatism is equivalent to how many units on the Telescope Control System (TCS)?",100nm is equivalent to -0.43 on the TCS.
+What is the maximum total weight allowed for an instrument mounted at the Cassegrain focus of the NOT?,The maximum weight is approximately 250 kg.
+During the winter period (November to April) travelers are advised not to use the ORM mountain road before and after which specific times?,Not before 9:30 in the morning or after 18:00.
+What is the initial maximum duration allowed for a "Large Observing Proposal" at the NOT?,The maximum is 3 years.
+What is the maximum field of view diameter (in arcminutes) for the Nordic Optical Telescope?,The maximum diameter is 30 arcmin.
+What is the focal plane scale of the Nordic Optical Telescope in arcsec/mm?,The focal plane scale is 7.33 arcsec/mm.
+Can you list the 4 readout speeds for the new detector controller?, "The new detector controller for ALFOSC provides the following four readout speeds 113 kpix/sec, 200 kpix/sec, 400 kpix/sec, and 800 kpix/sec."
+What are the three available diameters for coronagraphic disks in the PolCor instrument?,The diameters are 1.5 and 3 and 6 arcseconds.
+What is the default focus position (foc-pos) and TV focus (tv-foc) for the ALFOSC instrument?,"According to the instrument settings table, the default foc-pos is 26630 and the tv-foc is 510."
+Explain the complete sequence of events that occurs when the teloffset program is executed while the telescope is already being autoguided.,"The sequence is: 1) Connect to the TCS, 2) Get field rotation and check autoguiding, 3) Calculate guideprobe movement, 4) Check movement limits, 5) Switch autoguiding off, 6) Move the telescope and guideprobe, 7) Wait for movement to finish and tracking to stabilize, and 8) Switch autoguiding back on."
+Describe the process an observer must follow to interactively identify a target for spectroscopy during an Observing Block (OB) execution.,The observer identifies the target on the acquisition image by placing the mouse cursor over it and pressing a+q for point sources or x+q for extended sources.
+Under what specific weather conditions (wind speed and humidity) must the telescope be closed immediately?,The telescope must be closed if the humidity reaches 90% or the wind speed reaches 20 m/s.
+What should an observer do if the ALFOSC UIF fails to start with an error message?,The observer should power cycle the motor controller and ensure all network cables are properly connected.

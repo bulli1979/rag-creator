@@ -139,6 +139,7 @@ export function registerIpcHandlers(mainWindow: BrowserWindow, apiClient: ApiCli
     }
   });
   ipcMain.handle("database:connection-state", () => apiClient.getDatabaseConnectionState());
+  ipcMain.handle("llm:list-ollama-models", () => apiClient.listOllamaModels());
   ipcMain.handle("health:check", () => apiClient.runHealthCheck());
   ipcMain.handle("documents:export-csv", () => apiClient.exportDocumentsCsv());
 

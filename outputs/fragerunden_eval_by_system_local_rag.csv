@@ -1,2 +1,0 @@
-system_version,answer_relevance_count,answer_relevance_mean,answer_relevance_std,answer_relevance_min,answer_relevance_max,context_relevance_count,context_relevance_mean,context_relevance_std,context_relevance_min,context_relevance_max,groundedness_count,groundedness_mean,groundedness_std,groundedness_min,groundedness_max,answer_correctness_count,answer_correctness_mean,answer_correctness_std,answer_correctness_min,answer_correctness_max
-local_ollama_qwen25_7b_rag_current,19,0.7105,0.2961,0.0,1.0,6,0.9833,0.0408,0.9,1.0,6,0.9333,0.1211,0.7,1.0,11,0.7909,0.3081,0.0,1.0

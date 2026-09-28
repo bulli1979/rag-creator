@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOTBot Admin</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>NOTBot Admin</h1>
+  <div id="health-badge" class="health offline"><span class="dot red"></span> Checking…</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="chat">Chat</button>
+  <button class="tab-btn" data-tab="llm">LLM Settings</button>
+  <button class="tab-btn" data-tab="db">DB Environments</button>
+</nav>
+
+<div class="content">
+
+  <!-- ── CHAT TAB ──────────────────────────────────────────────────── -->
+  <div id="tab-chat" class="tab-pane active">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div id="chat-messages">
+        <div class="empty-state">Ask a question about the documents…</div>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <select id="lang-select" title="Response language">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+      </select>
+      <textarea id="chat-input" rows="2" placeholder="Type a message… (Enter to send, Shift+Enter for newline)"></textarea>
+      <button id="send-btn" class="btn btn-primary">Send</button>
+    </div>
+
+    <div id="active-env-bar" class="active-env-bar"></div>
+  </div>
+
+  <!-- ── LLM SETTINGS TAB ──────────────────────────────────────────── -->
+  <div id="tab-llm" class="tab-pane">
+    <div class="card">
+      <h2>LLM Configuration</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Base URL</label>
+          <input type="text" id="llm-base-url" placeholder="http://localhost:11434/v1" />
+        </div>
+        <div class="form-group">
+          <label>Model</label>
+          <input type="text" id="llm-model" placeholder="llama3.2" />
+          <div id="model-list" class="model-list"></div>
+        </div>
+        <div class="form-group">
+          <label>API Key</label>
+          <input type="password" id="llm-api-key" placeholder="ollama" />
+        </div>
+        <div class="form-group">
+          <label>Temperature <span id="temp-val" class="val-badge">0.3</span></label>
+          <input type="range" id="llm-temperature" min="0" max="2" step="0.05" value="0.3" />
+        </div>
+        <div class="form-group">
+          <label>Max Tokens</label>
+          <input type="number" id="llm-max-tokens" min="128" max="32768" step="128" value="2048" />
+        </div>
+        <div class="form-group">
+          <label>Top K (context chunks)</label>
+          <input type="number" id="llm-top-k" min="1" max="20" value="5" />
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:8px">
+        <label>System Prompt</label>
+        <textarea id="llm-system-prompt" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Encryption Key <span class="hint">(leave blank to disable)</span></label>
+        <input type="password" id="llm-encryption-key" placeholder="optional" />
+      </div>
+      <div class="btn-row">
+        <button id="llm-save-btn" class="btn btn-primary">Save LLM Settings</button>
+        <button id="llm-reload-btn" class="btn btn-secondary">Reload</button>
+        <button id="llm-fetch-models-btn" class="btn btn-secondary">Fetch Models from Ollama</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DB ENVIRONMENTS TAB ───────────────────────────────────────── -->
+  <div id="tab-db" class="tab-pane">
+    <div class="card">
+      <h2>Postgres Environments</h2>
+      <div id="env-list"></div>
+      <button id="env-add-btn" class="btn btn-secondary" style="margin-top:8px">+ Add Environment</button>
+    </div>
+
+    <div class="card" id="env-editor" style="display:none">
+      <h2 id="env-editor-title">Edit Environment</h2>
+      <input type="hidden" id="env-id" />
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="env-name" placeholder="Production" />
+        </div>
+        <div class="form-group">
+          <label>Vector Backend</label>
+          <select id="env-backend">
+            <option value="postgres">postgres (pgvector)</option>
+            <option value="sqlite_embedded">sqlite_embedded</option>
+            <option value="qdrant_embedded">qdrant_embedded</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Host</label>
+          <input type="text" id="env-host" placeholder="localhost" />
+        </div>
+        <div class="form-group">
+          <label>Port</label>
+          <input type="number" id="env-port" value="5432" />
+        </div>
+        <div class="form-group">
+          <label>Database</label>
+          <input type="text" id="env-db" placeholder="rag" />
+        </div>
+        <div class="form-group">
+          <label>User</label>
+          <input type="text" id="env-user" placeholder="postgres" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="env-password" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label>Schema</label>
+          <input type="text" id="env-schema" placeholder="public" />
+        </div>
+        <div class="form-group">
+          <label>Table</label>
+          <input type="text" id="env-table" placeholder="rag_documents" />
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="env-save-btn" class="btn btn-primary">Save Environment</button>
+        <button id="env-cancel-btn" class="btn btn-secondary">Cancel</button>
+        <button id="env-delete-btn" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<div id="toast" class="toast" style="display:none"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

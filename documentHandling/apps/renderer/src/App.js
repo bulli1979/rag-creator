@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { defaultAppSettings } from "@rag/shared";
 import { useI18n } from "./i18n";
 function parseTags(tagsInput) {
@@ -7,6 +7,19 @@ function parseTags(tagsInput) {
         .split(",")
         .map((entry) => entry.trim())
         .filter((entry) => entry.length > 0);
+}
+function formatBytes(n) {
+    if (n == null || n < 0 || !Number.isFinite(n)) {
+        return "—";
+    }
+    const units = ["B", "KB", "MB", "GB", "TB"];
+    let value = n;
+    let unitIndex = 0;
+    while (value >= 1024 && unitIndex < units.length - 1) {
+        value /= 1024;
+        unitIndex += 1;
+    }
+    return unitIndex === 0 ? `${Math.round(value)} ${units[unitIndex]}` : `${value.toFixed(1)} ${units[unitIndex]}`;
 }
 function formatErrorDetail(err) {
     if (err instanceof Error) {
@@ -81,6 +94,38 @@ export default function App() {
     const [folderIngestRunning, setFolderIngestRunning] = useState(false);
     const [folderActionLog, setFolderActionLog] = useState("");
     const [reindexAllRunning, setReindexAllRunning] = useState(false);
+    const [ollamaModels, setOllamaModels] = useState([]);
+    const [ollamaModelsBaseUrl, setOllamaModelsBaseUrl] = useState("");
+    const [ollamaModelsLoading, setOllamaModelsLoading] = useState(false);
+    const [ollamaModelsError, setOllamaModelsError] = useState("");
+    const loadOllamaModels = useCallback(async () => {
+        if (!window.ragApi?.listOllamaModels) {
+            setOllamaModelsError(t("models.apiUnavailable"));
+            return;
+        }
+        setOllamaModelsLoading(true);
+        setOllamaModelsError("");
+        try {
+            const res = await window.ragApi.listOllamaModels();
+            setOllamaModels(res.models);
+            setOllamaModelsBaseUrl(res.ollamaBaseUrl);
+        }
+        catch (err) {
+            setOllamaModelsError(err instanceof Error ? err.message : String(err));
+            setOllamaModels([]);
+            setOllamaModelsBaseUrl("");
+        }
+        finally {
+            setOllamaModelsLoading(false);
+        }
+    }, [t]);
+    useEffect(() => {
+        if (activeTab !== "models") {
+            return undefined;
+        }
+        void loadOllamaModels();
+        return undefined;
+    }, [activeTab, loadOllamaModels]);
     function appendFolderLog(line) {
         const stamp = new Date().toLocaleTimeString();
         const row = `[${stamp}] ${line}`;
@@ -519,7 +564,7 @@ export default function App() {
         anchorElement.click();
         URL.revokeObjectURL(url);
     }
-    return (_jsxs("div", { className: "app-shell", children: [_jsxs("header", { className: "top-bar", children: [_jsxs("div", { className: "top-bar-left", children: [_jsx("h1", { children: t("app.title") }), _jsxs("div", { className: "tab-row", children: [_jsx("button", { type: "button", className: `tab-button ${activeTab === "documents" ? "active" : ""}`, onClick: () => setActiveTab("documents"), children: t("tabs.documents") }), _jsx("button", { type: "button", className: `tab-button ${activeTab === "settings" ? "active" : ""}`, onClick: () => setActiveTab("settings"), children: t("tabs.settings") })] })] }), _jsxs("div", { className: "button-row", children: [activeTab === "documents" && (_jsxs(_Fragment, { children: [_jsx("button", { type: "button", onClick: () => void uploadWithPicker(), children: t("header.addDocuments") }), _jsx("button", { onClick: () => void reindexSelectedDocuments(), disabled: selectedDocumentIds.length === 0, children: t("header.reindexSelected") }), _jsx("button", { type: "button", onClick: () => void reindexAllDocuments(), disabled: !isConnectionReady || documents.length === 0 || reindexAllRunning, children: reindexAllRunning ? t("header.reindexAllRunning") : t("header.reindexAll") }), _jsx("button", { onClick: () => void removeSelectedDocuments(), disabled: selectedDocumentIds.length === 0, children: t("header.removeSelected") }), _jsx("button", { onClick: () => void removeNotIngestedDocuments(), children: "Alle nicht eingelesenen entfernen" }), _jsx("button", { onClick: () => void exportCsv(), children: t("header.exportCsv") })] })), _jsxs("div", { className: "lang-switcher", children: [_jsxs("span", { children: [t("settings.language"), ":"] }), _jsx("button", { className: `lang-toggle ${locale === "de" ? "active" : ""}`, onClick: () => setLocale("de"), type: "button", children: "DE" }), _jsx("button", { className: `lang-toggle ${locale === "en" ? "active" : ""}`, onClick: () => setLocale("en"), type: "button", children: "EN" })] })] })] }), activeTab === "documents" && (_jsxs(_Fragment, { children: [_jsx("section", { className: `drop-zone ${isDropActive ? "drop-zone-active" : ""}`, onDragOver: (event) => {
+    return (_jsxs("div", { className: "app-shell", children: [_jsxs("header", { className: "top-bar", children: [_jsxs("div", { className: "top-bar-left", children: [_jsx("h1", { children: t("app.title") }), _jsxs("div", { className: "tab-row", children: [_jsx("button", { type: "button", className: `tab-button ${activeTab === "documents" ? "active" : ""}`, onClick: () => setActiveTab("documents"), children: t("tabs.documents") }), _jsx("button", { type: "button", className: `tab-button ${activeTab === "models" ? "active" : ""}`, onClick: () => setActiveTab("models"), children: t("tabs.models") }), _jsx("button", { type: "button", className: `tab-button ${activeTab === "settings" ? "active" : ""}`, onClick: () => setActiveTab("settings"), children: t("tabs.settings") })] })] }), _jsxs("div", { className: "button-row", children: [activeTab === "documents" && (_jsxs(_Fragment, { children: [_jsx("button", { type: "button", onClick: () => void uploadWithPicker(), children: t("header.addDocuments") }), _jsx("button", { onClick: () => void reindexSelectedDocuments(), disabled: selectedDocumentIds.length === 0, children: t("header.reindexSelected") }), _jsx("button", { type: "button", onClick: () => void reindexAllDocuments(), disabled: !isConnectionReady || documents.length === 0 || reindexAllRunning, children: reindexAllRunning ? t("header.reindexAllRunning") : t("header.reindexAll") }), _jsx("button", { onClick: () => void removeSelectedDocuments(), disabled: selectedDocumentIds.length === 0, children: t("header.removeSelected") }), _jsx("button", { onClick: () => void removeNotIngestedDocuments(), children: "Alle nicht eingelesenen entfernen" }), _jsx("button", { onClick: () => void exportCsv(), children: t("header.exportCsv") })] })), _jsxs("div", { className: "lang-switcher", children: [_jsxs("span", { children: [t("settings.language"), ":"] }), _jsx("button", { className: `lang-toggle ${locale === "de" ? "active" : ""}`, onClick: () => setLocale("de"), type: "button", children: "DE" }), _jsx("button", { className: `lang-toggle ${locale === "en" ? "active" : ""}`, onClick: () => setLocale("en"), type: "button", children: "EN" })] })] })] }), activeTab === "documents" && (_jsxs(_Fragment, { children: [_jsx("section", { className: `drop-zone ${isDropActive ? "drop-zone-active" : ""}`, onDragOver: (event) => {
                             if (!isConnectionReady)
                                 return;
                             event.preventDefault();
@@ -547,7 +592,12 @@ export default function App() {
                                             }) })] }) })] }), _jsxs("section", { className: "panel", children: [_jsx("h2", { children: t("jobs.title") }), _jsx("div", { className: "events-list", children: progressEvents.map((event) => (_jsxs("div", { className: "event-card", children: [_jsx("strong", { children: event.type }), " | ", event.status, " | ", Math.round(event.progress * 100), "%", _jsxs("div", { children: [event.docId.slice(0, 12), "... - ", event.message] })] }, `${event.jobId}-${event.progress}-${event.status}`))) })] }), corpusDocumentId ? (_jsxs("section", { className: "panel", children: [_jsxs("h2", { children: [t("corpus.title"), " - ", corpusDocumentId] }), _jsx("textarea", { value: corpusContent, onChange: (event) => setCorpusContent(event.target.value), rows: 18 }), _jsxs("div", { className: "button-row", children: [_jsx("button", { onClick: () => void saveCorpusAndReindex(), children: t("corpus.saveAndReindex") }), _jsx("button", { onClick: () => {
                                             setCorpusDocumentId(null);
                                             setCorpusContent("");
-                                        }, children: t("corpus.close") })] })] })) : null] })), activeTab === "settings" && (_jsxs("section", { className: "panel", children: [_jsx("h2", { children: t("settings.title") }), _jsxs("div", { className: "input-grid", children: [_jsxs("div", { className: "button-row", style: { gridColumn: "1 / -1" }, children: [_jsxs("label", { style: { display: "flex", flexDirection: "column", gap: 4, flex: 1 }, children: [t("settings.activePostgresEnv"), _jsx("select", { value: settings.activePostgresEnvironmentId, onChange: (event) => {
+                                        }, children: t("corpus.close") })] })] })) : null] })), activeTab === "models" && (_jsxs("section", { className: "panel models-panel", children: [_jsx("h2", { children: t("models.title") }), _jsx("p", { className: "upload-hint models-panel__intro", children: t("models.intro") }), _jsx("ul", { className: "model-provider-list", "aria-label": t("models.title"), children: _jsxs("li", { className: "model-provider-card model-provider-card--system", children: [_jsxs("div", { className: "model-provider-card__header", children: [_jsx("span", { className: "model-provider-card__name", children: t("models.ollama.name") }), _jsx("span", { className: "model-provider-card__badge", children: t("models.badgeBuiltin") })] }), _jsx("p", { className: "model-provider-card__description", children: t("models.ollama.description") }), ollamaModelsBaseUrl ? (_jsxs("p", { className: "model-provider-card__endpoint", children: [_jsx("span", { className: "model-provider-card__endpoint-label", children: t("models.ollamaEndpoint") }), _jsx("code", { className: "model-provider-card__endpoint-value", children: ollamaModelsBaseUrl })] })) : null, _jsx("div", { className: "ollama-models-toolbar", children: _jsx("button", { type: "button", onClick: () => void loadOllamaModels(), disabled: ollamaModelsLoading, children: ollamaModelsLoading ? t("models.loading") : t("models.refresh") }) }), ollamaModelsError ? (_jsx("p", { className: "ollama-models-error", role: "alert", children: ollamaModelsError })) : null, !ollamaModelsLoading && !ollamaModelsError && ollamaModels.length === 0 ? (_jsx("p", { className: "upload-hint ollama-models-empty", children: t("models.empty") })) : null, ollamaModels.length > 0 ? (_jsx("div", { className: "table-wrapper ollama-models-table-wrap", children: _jsxs("table", { className: "ollama-models-table", children: [_jsx("thead", { children: _jsxs("tr", { children: [_jsx("th", { children: t("models.colName") }), _jsx("th", { children: t("models.colSize") }), _jsx("th", { children: t("models.colModified") })] }) }), _jsx("tbody", { children: ollamaModels.map((row) => (_jsxs("tr", { children: [_jsx("td", { className: "mono-cell", children: row.name }), _jsx("td", { children: formatBytes(row.size) }), _jsx("td", { children: row.modifiedAt
+                                                                ? (() => {
+                                                                    const d = Date.parse(row.modifiedAt);
+                                                                    return Number.isNaN(d) ? row.modifiedAt : new Date(d).toLocaleString();
+                                                                })()
+                                                                : "—" })] }, row.name))) })] }) })) : null] }) })] })), activeTab === "settings" && (_jsxs("section", { className: "panel", children: [_jsx("h2", { children: t("settings.title") }), _jsxs("div", { className: "input-grid", children: [_jsxs("div", { className: "button-row", style: { gridColumn: "1 / -1" }, children: [_jsxs("label", { style: { display: "flex", flexDirection: "column", gap: 4, flex: 1 }, children: [t("settings.activePostgresEnv"), _jsx("select", { value: settings.activePostgresEnvironmentId, onChange: (event) => {
                                                     const nextId = event.target.value;
                                                     setSettings((old) => (old ? { ...old, activePostgresEnvironmentId: nextId } : old));
                                                     setIsConnectionReady(false);

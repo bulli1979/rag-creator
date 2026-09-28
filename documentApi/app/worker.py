@@ -210,7 +210,9 @@ def parse_document(
 
 def _get_model(model_name: str) -> SentenceTransformer:
     if model_name not in _MODEL_CACHE:
-        _MODEL_CACHE[model_name] = SentenceTransformer(model_name)
+        import torch
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        _MODEL_CACHE[model_name] = SentenceTransformer(model_name, device=device)
     return _MODEL_CACHE[model_name]
 
 

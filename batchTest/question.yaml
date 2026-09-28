@@ -1,0 +1,136 @@
+# Fragen für den Batch-Chat (questionsFile).
+# type: Subjective | Objective
+# answerField: optional, z. B. erwartete Kurzantwort oder Referenztext
+questions:
+  - id: q01
+    type: Subjective
+    question: What is the protocol in heavy rain? Should I wait down at the residencia until it might pass?
+  - id: q02
+    type: Subjective
+    question: What would you do if you start a 1.3 max seeing ob when the seeing is about 1", and then halfway through it shoots to 2" and stays there for a while?
+  - id: q03
+    type: Subjective
+    question: Does any of you know where I can find the "new liquid nitrogen filling report"?
+  - id: q04
+    type: Subjective
+    question: Does anyone know how to do polarimetric dome flats (I have to do morning flats)?
+  - id: q05
+    type: Subjective
+    question: Wind is constantly jumping above 15 m/s, so I need to observe downwind. Should I do the flats in a non-parked position, or is it better to potentially do morning flats, hoping that the weather will improve?
+  - id: q06
+    type: Subjective
+    question: I am trying to for Grism 20 into slot 3 and it simply seems that it does not fit. Does the different slots have different dimensions?
+  - id: q07
+    type: Subjective
+    question: Getting errors about no TCS data in database and TCS client waiting for Database server.
+  - id: q08
+    type: Subjective
+    question: Dome cooling does not switch off and staircase cooling does not start when opening hatches - any suggestions?
+  - id: q09
+    type: Subjective
+    question: Hi! I'm getting the warning "counterweights wrong for this instrument?", I've had this before and if remember right it was just some command that needed to be given to TCS but don't remember what. Help!
+  - id: q10
+    type: Subjective
+    question: Hi, for some reason the notcam buzzer just went off. I turned it off, is that ok? Should I do something else?
+  - id: q11
+    type: Subjective
+    question: If the visitors have issues with sofin, should they write fault reports on those, and who should be assigned?
+  - id: q12
+    type: Subjective
+    question: Have never used the vertical offset slit before. No clue what the mounting orientation would change, other than the ypos of the slit on the ccd
+  - id: q13
+    type: Objective
+    question: What are the central wavelength and dispersion for the BLUENOT (G#18) VPHG grism?
+    answerField: The central wavelength is 430 nm and the dispersion is 0.918 Å/px.
+  - id: q14
+    type: Objective
+    question: Beyond what specific wavelength does ALFOSC grism #4 suffer from severe second-order contamination?
+    answerField: It suffers from severe contamination beyond ~5800 Å.
+  - id: q15
+    type: Objective
+    question: What is the plate scale for ALFOSC mentioned in the 2nd-order contamination report?
+    answerField: The scale is 0.19 arcseconds per pixel.
+  - id: q16
+    type: Objective
+    question: What is the physical pixel size (in microns) of the SITe SI-003A CCD?
+    answerField: Each pixel measures 24 µm x 24 µm.
+  - id: q17
+    type: Objective
+    question: What is the pixel scale of the relay optics for the PolCor "Lucky" instrument?
+    answerField: The relay optics have a pixel scale of 0.12 arcsec/pixel.
+  - id: q18
+    type: Objective
+    question: What are the three available sizes for coronagraphic disks in the PolCor instrument?
+    answerField: The disks are available in diameters of 1.5, 3, and 6 arcseconds.
+  - id: q19
+    type: Objective
+    question: What are the four readout speeds provided by the ALFOSC detector controller (CCD3) introduced in 2011?
+    answerField: The speeds are 113, 200, 400, and 800 kpix/sec.
+  - id: q20
+    type: Objective
+    question: What is the fundamental frequency of the pick-up noise observed with the ALFOSC controller?
+    answerField: The frequency is 13.28 KHz.
+  - id: q21
+    type: Objective
+    question: What is the measured readout noise (RON) for Amplifier A in high-gain mode for the E2V CCD42-40?
+    answerField: The RON is 3.25 ± 0.05 e-.
+  - id: q22
+    type: Objective
+    question: At what temperature must the ALFOSC E2V (non-AIMO type) CCD be cooled to suppress dark current for RON-limited noise in long exposures?
+    answerField: It must be cooled to -120°C.
+  - id: q23
+    type: Objective
+    question: What is the focal plane scale of the 2.56-meter Nordic Optical Telescope?
+    answerField: The scale is 7.33 arcsec/mm.
+  - id: q24
+    type: Objective
+    question: According to wavefront sensor analysis 100nm of measured astigmatism is equivalent to how many units on the Telescope Control System (TCS)?
+    answerField: 100nm is equivalent to -0.43 on the TCS.
+  - id: q25
+    type: Objective
+    question: What is the maximum total weight allowed for an instrument mounted at the Cassegrain focus of the NOT?
+    answerField: The maximum weight is approximately 250 kg.
+  - id: q26
+    type: Objective
+    question: During the winter period (November to April) travelers are advised not to use the ORM mountain road before and after which specific times?
+    answerField: Not before 9:30 in the morning or after 18:00.
+  - id: q27
+    type: Objective
+    question: What is the initial maximum duration allowed for a "Large Observing Proposal" at the NOT?
+    answerField: The maximum is 3 years.
+  - id: q28
+    type: Objective
+    question: What is the maximum field of view diameter (in arcminutes) for the Nordic Optical Telescope?
+    answerField: The maximum diameter is 30 arcmin.
+  - id: q29
+    type: Objective
+    question: What is the focal plane scale of the Nordic Optical Telescope in arcsec/mm?
+    answerField: The focal plane scale is 7.33 arcsec/mm.
+  - id: q30
+    type: Objective
+    question: Can you list the 4 readout speeds for the new detector controller?
+    answerField: The new detector controller for ALFOSC provides the following four readout speeds 113 kpix/sec, 200 kpix/sec, 400 kpix/sec, and 800 kpix/sec.
+  - id: q31
+    type: Objective
+    question: What are the three available diameters for coronagraphic disks in the PolCor instrument?
+    answerField: The diameters are 1.5 and 3 and 6 arcseconds.
+  - id: q32
+    type: Objective
+    question: What is the default focus position (foc-pos) and TV focus (tv-foc) for the ALFOSC instrument?
+    answerField: According to the instrument settings table, the default foc-pos is 26630 and the tv-foc is 510.
+  - id: q33
+    type: Objective
+    question: Explain the complete sequence of events that occurs when the teloffset program is executed while the telescope is already being autoguided.
+    answerField: "The sequence is: 1) Connect to the TCS, 2) Get field rotation and check autoguiding, 3) Calculate guideprobe movement, 4) Check movement limits, 5) Switch autoguiding off, 6) Move the telescope and guideprobe, 7) Wait for movement to finish and tracking to stabilize, and 8) Switch autoguiding back on."
+  - id: q34
+    type: Objective
+    question: Describe the process an observer must follow to interactively identify a target for spectroscopy during an Observing Block (OB) execution.
+    answerField: The observer identifies the target on the acquisition image by placing the mouse cursor over it and pressing a+q for point sources or x+q for extended sources.
+  - id: q35
+    type: Objective
+    question: Under what specific weather conditions (wind speed and humidity) must the telescope be closed immediately?
+    answerField: The telescope must be closed if the humidity reaches 90% or the wind speed reaches 20 m/s.
+  - id: q36
+    type: Objective
+    question: What should an observer do if the ALFOSC UIF fails to start with an error message?
+    answerField: The observer should power cycle the motor controller and ensure all network cables are properly connected.

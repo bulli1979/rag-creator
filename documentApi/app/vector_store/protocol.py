@@ -27,3 +27,15 @@ class VectorStore(Protocol):
         query_vector: list[float],
         top_k: int = 5,
     ) -> list[dict]: ...
+
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
+    ) -> list[dict]:
+        """Return up to top_k chunks whose fileName contains pattern (case-insensitive),
+        ordered by vector similarity. Used to guarantee boosted sources appear in the
+        reranking candidate pool even when their raw similarity rank is too low."""
+        ...

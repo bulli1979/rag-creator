@@ -160,3 +160,44 @@ class QdrantEmbeddedVectorStore:
                 }
             )
         return out
+
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
+    ) -> list[dict]:
+        """Return top_k chunks whose file_name contains pattern (case-insensitive), ordered by similarity."""
+        from qdrant_client.models import Filter, FieldCondition, MatchText
+        name = _sanitize_collection(table_name)
+        try:
+            resp = self._client.query_points(
+                collection_name=name,
+                query=query_vector,
+                query_filter=Filter(must=[FieldCondition(key="file_name", match=MatchText(text=pattern))]),
+                limit=max(1, top_k),
+                with_payload=True,
+            )
+            hits = getattr(resp, "points", None) or []
+        except Exception:
+            return []
+        out: list[dict] = []
+        for h in hits:
+            raw = getattr(h, "payload", None) or {}
+            p = dict(raw) if not isinstance(raw, dict) else raw
+            score = getattr(h, "score", None)
+            if pattern.lower() not in str(p.get("file_name", "")).lower():
+                continue
+            out.append(
+                {
+                    "text": p.get("text_content", ""),
+                    "documentId": p.get("document_id", ""),
+                    "fileName": p.get("file_name", ""),
+                    "chunkIndex": int(p.get("chunk_index", 0)),
+                    "sourcePath": p.get("source_path", ""),
+                    "source": p.get("source", ""),
+                    "similarity": float(score) if score is not None else 0.0,
+                }
+            )
+        return out

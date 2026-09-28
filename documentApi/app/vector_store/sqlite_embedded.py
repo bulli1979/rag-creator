@@ -177,3 +177,50 @@ class SqliteEmbeddedVectorStore:
                 }
             )
         return out
+
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
+    ) -> list[dict]:
+        """Return top_k chunks whose file_name contains pattern (case-insensitive), ordered by similarity."""
+        t = _sanitize_table_name(table_name)
+        q = np.asarray(query_vector, dtype=np.float64)
+        qn = np.linalg.norm(q)
+        if qn > 0:
+            q = q / qn
+        pat = pattern.lower()
+        with self._lock:
+            conn = self._connect()
+            try:
+                cur = conn.execute(
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding FROM "{t}"'
+                    f' WHERE lower(file_name) LIKE ?',
+                    (f"%{pat}%",),
+                )
+                all_rows = cur.fetchall()
+            finally:
+                conn.close()
+        scored: list[tuple[float, tuple]] = []
+        for row in all_rows:
+            emb = np.asarray(json.loads(row[6]), dtype=np.float64)
+            en = np.linalg.norm(emb)
+            if en > 0:
+                emb = emb / en
+            sim = float(np.dot(q, emb))
+            scored.append((sim, row[:6]))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [
+            {
+                "text": row[0],
+                "documentId": row[1],
+                "fileName": row[2],
+                "chunkIndex": row[3],
+                "sourcePath": row[4],
+                "source": row[5],
+                "similarity": sim,
+            }
+            for sim, row in scored[: max(1, top_k)]
+        ]

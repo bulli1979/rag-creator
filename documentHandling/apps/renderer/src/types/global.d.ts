@@ -1,5 +1,8 @@
 import type { AppSettings, DocumentRecord, JobRecord, ProgressEventPayload, UploadOptions } from "@rag/shared";
 
+export type OllamaModelRow = { name: string; size: number | null; modifiedAt: string | null };
+export type OllamaModelsResult = { ollamaBaseUrl: string; models: OllamaModelRow[] };
+
 /** Antwort von POST /api/documents/upload (Main-Prozess leitet durch). */
 export type DocumentUploadResult = {
   queuedDocIds: string[];
@@ -33,6 +36,7 @@ declare global {
         settings?: AppSettings
       ) => Promise<{ status: "ok" | "error"; message: string }>;
       getDatabaseConnectionState: () => Promise<{ ready: boolean }>;
+      listOllamaModels: () => Promise<OllamaModelsResult>;
       runHealthCheck: () => Promise<{
         postgres: { status: "ok" | "error"; message: string };
         vectorDatabase?: { status: "ok" | "error"; message: string };

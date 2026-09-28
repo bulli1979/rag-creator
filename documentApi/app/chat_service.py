@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import re
 import time
 
@@ -9,7 +8,7 @@ from openai import OpenAI
 from .config import (
     _DEFAULT_SETTINGS,
     load_chat_settings,
-    load_settings,
+    load_source_boosts,
     save_chat_settings as persist_chat_settings,
 )
 from .crypto_service import CryptoService
@@ -21,6 +20,9 @@ from .worker import embed_texts
 
 _TOKEN_RE = re.compile(r"[a-zA-Z0-9_\-/\.]+")
 _NUMBER_RE = re.compile(r"[-+]?\d+(?:\.\d+)?")
+_MAX_QUERY_CHARS = 8_000
+_MAX_HISTORY_MESSAGES = 20
+_MAX_HISTORY_CHARS = 40_000
 
 
 def _tokenize(text: str) -> set[str]:
@@ -31,13 +33,24 @@ def _extract_numbers(text: str) -> set[str]:
     return set(_NUMBER_RE.findall(text or ""))
 
 
-def _rerank_chunks(query: str, chunks: list[dict], top_k: int) -> list[dict]:
-    """Blend vector similarity with lexical and numeric matching for higher QA precision."""
+def _rerank_chunks(
+    query: str,
+    chunks: list[dict],
+    top_k: int,
+    source_boosts: dict[str, float] | None = None,
+) -> list[dict]:
+    """Blend vector similarity with lexical and numeric matching for higher QA precision.
+
+    source_boosts: optional map of fileName substring (case-insensitive) → score multiplier.
+    Multipliers are applied after the composite score is computed, so the internal
+    semantic/lexical/numeric weight balance is preserved; boosts only affect relative ranking.
+    """
     if not chunks:
         return []
 
     q_tokens = _tokenize(query)
     q_numbers = _extract_numbers(query)
+    boosts = {k.lower(): v for k, v in (source_boosts or {}).items() if v != 1.0}
 
     scored: list[tuple[float, dict]] = []
     for chunk in chunks:
@@ -51,6 +64,14 @@ def _rerank_chunks(query: str, chunks: list[dict], top_k: int) -> list[dict]:
 
         # Prioritize semantic match, but boost exact lexical and numeric overlap.
         score = (0.65 * sim) + (0.25 * lexical) + (0.10 * numeric)
+
+        if boosts:
+            file_name_lower = str(chunk.get("fileName", "")).lower()
+            for pattern, multiplier in boosts.items():
+                if pattern in file_name_lower:
+                    score *= multiplier
+                    break  # apply only the first matching boost per chunk
+
         scored.append((score, chunk))
 
     scored.sort(key=lambda x: x[0], reverse=True)
@@ -62,6 +83,27 @@ def _trim_context_text(text: str, max_chars: int = 1200) -> str:
     if len(cleaned) <= max_chars:
         return cleaned
     return cleaned[: max_chars - 3] + "..."
+
+
+def _bounded_history(history: list[ChatMessage]) -> list[ChatMessage]:
+    selected: list[ChatMessage] = []
+    remaining_chars = _MAX_HISTORY_CHARS
+
+    for message in reversed(history[-_MAX_HISTORY_MESSAGES:]):
+        content = message.content.strip()
+        if not content:
+            continue
+        if len(content) > remaining_chars:
+            content = content[-remaining_chars:]
+        selected.append(message.model_copy(update={"content": content}))
+        remaining_chars -= len(content)
+        if remaining_chars == 0:
+            break
+
+    selected.reverse()
+    if selected and selected[0].role == "assistant":
+        selected.pop(0)
+    return selected
 
 
 class ChatService:
@@ -78,6 +120,10 @@ class ChatService:
     def update_settings(self, app_settings: AppSettings) -> None:
         self._settings = app_settings
 
+    def set_vector_store(self, vector_service: VectorStore) -> None:
+        """Muss nach IngestService._rebuild_vector_store() aufgerufen werden (gleiche DB-Datei / gleicher Store)."""
+        self._vs = vector_service
+
     def get_chat_settings(self) -> ChatSettings:
         return self._chat_settings
 
@@ -86,8 +132,8 @@ class ChatService:
 
     async def chat(self, request: ChatRequest) -> ChatResponse:
         started_at = time.perf_counter()
-        query = request.message
-        history = request.history or []
+        query = request.message.strip()[:_MAX_QUERY_CHARS]
+        history = _bounded_history(request.history or [])
         preferred_language = request.language
 
         query_embedding = await run_in_worker_pool(
@@ -110,10 +156,40 @@ class ChatService:
             query_vector=query_vector,
             top_k=candidate_k,
         )
+
+        # Guarantee every *effectively* boosted source appears in the candidate pool.
+        # Only patterns with multiplier != 1.0 are considered — weight=1.0 is a no-op
+        # and must not alter the candidate set (preserves identical behavior to pre-boost).
+        # Matches the same filtering applied inside _rerank_chunks.
+        #
+        # Safety cap: injected extra chunks are limited to top_k // 3 sources (min 1).
+        # This prevents a large number of boosted-but-irrelevant sources from consuming
+        # the entire context window and degrading answers for unrelated queries.
+        boosts = load_source_boosts()
+        effective_boosts = {k: v for k, v in boosts.items() if v != 1.0}
+        if effective_boosts:
+            represented = {c["fileName"].lower() for c in candidate_chunks}
+            inject_cap = max(1, self._chat_settings.top_k // 3)
+            injected = 0
+            for pattern in effective_boosts:
+                if injected >= inject_cap:
+                    break
+                if not any(pattern in fname for fname in represented):
+                    extra = self._vs.search_by_filename(
+                        table_name=active_pg.db_table_name,
+                        pattern=pattern,
+                        query_vector=query_vector,
+                        top_k=2,
+                    )
+                    if extra:
+                        candidate_chunks.extend(extra)
+                        injected += 1
+
         context_chunks = _rerank_chunks(
             query=query,
             chunks=candidate_chunks,
             top_k=self._chat_settings.top_k,
+            source_boosts=boosts,
         )
 
         context_text = "\n\n---\n\n".join(

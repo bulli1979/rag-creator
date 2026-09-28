@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld("ragApi", {
   saveSettings: (settings) => ipcRenderer.invoke("settings:save", settings),
   testDatabaseConnection: (settings) => ipcRenderer.invoke("database:test-connection", settings),
   getDatabaseConnectionState: () => ipcRenderer.invoke("database:connection-state"),
+  listOllamaModels: () => ipcRenderer.invoke("llm:list-ollama-models"),
   runHealthCheck: () => ipcRenderer.invoke("health:check"),
   exportDocumentsCsv: () => ipcRenderer.invoke("documents:export-csv"),
   onJobProgress: (handler) => {

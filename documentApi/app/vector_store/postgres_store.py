@@ -246,6 +246,45 @@ class PostgresVectorStore:
         finally:
             self._put_conn(conn)
 
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
+    ) -> list[dict]:
+        """Return top_k chunks whose file_name contains pattern (case-insensitive), ordered by similarity."""
+        qualified = self._qualified_table(table_name)
+        vector_literal = f"[{','.join(str(v) for v in query_vector)}]"
+        like_pattern = f"%{pattern.lower()}%"
+        conn = self._get_conn()
+        try:
+            with conn.cursor() as cur:
+                cur.execute(
+                    f"""SELECT text_content, document_id, file_name, chunk_index, source_path, source,
+                               1 - (embedding <=> %s::vector) AS similarity
+                        FROM {qualified}
+                        WHERE lower(file_name) LIKE %s
+                        ORDER BY embedding <=> %s::vector
+                        LIMIT %s""",
+                    (vector_literal, like_pattern, vector_literal, max(1, top_k)),
+                )
+                rows = cur.fetchall()
+            return [
+                {
+                    "text": row[0],
+                    "documentId": row[1],
+                    "fileName": row[2],
+                    "chunkIndex": row[3],
+                    "sourcePath": row[4],
+                    "source": row[5],
+                    "similarity": float(row[6]),
+                }
+                for row in rows
+            ]
+        finally:
+            self._put_conn(conn)
+
     def _get_conn(self):
         if not self._pool:
             self._try_create_pool()

@@ -14,14 +14,11 @@ _SKIP_DIR_NAMES = {
     ".vs",
 }
 
-_ALLOWED_EXTENSIONS = {".pdf", ".txt", ".md"}
-
 
 def iter_files_recursive(root_dir: str) -> list[tuple[str, str]]:
     """
     Gibt Dateien unter root rekursiv zurueck:
     (absoluter_pfad, relativer_pfad_mit_slash).
-    Filtert nur PDF und TXT Dateien.
     """
     root = Path(root_dir).resolve()
     if not root.exists() or not root.is_dir():
@@ -32,8 +29,6 @@ def iter_files_recursive(root_dir: str) -> list[tuple[str, str]]:
         if not path.is_file():
             continue
         if any(part in _SKIP_DIR_NAMES for part in path.parts):
-            continue
-        if path.suffix.lower() not in _ALLOWED_EXTENSIONS:
             continue
         rel = path.relative_to(root).as_posix()
         result.append((str(path), rel))

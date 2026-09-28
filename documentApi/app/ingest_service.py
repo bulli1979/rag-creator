@@ -88,6 +88,14 @@ class IngestService:
     def _rebuild_vector_store(self) -> None:
         self._vs = create_vector_store(self._active_pg(), get_app_paths()["base"])
 
+    def _sync_chat_vector_store(self) -> None:
+        from .dependencies import get_chat_service
+
+        try:
+            get_chat_service().set_vector_store(self._vs)
+        except RuntimeError:
+            pass
+
     async def initialize(self) -> None:
         self._settings = load_settings()
         self._rebuild_vector_store()
@@ -404,6 +412,7 @@ class IngestService:
 
         try:
             get_chat_service().update_settings(self._settings)
+            self._sync_chat_vector_store()
         except RuntimeError:
             pass
         return self._settings
@@ -498,6 +507,8 @@ class IngestService:
                 get_chat_service().update_settings(self._settings)
             except RuntimeError:
                 pass
+        # Immer: Chat nutzt dieselbe Vector-Store-Instanz wie Ingest (z. B. neues SQLite nach Test).
+        self._sync_chat_vector_store()
         msg = self._connection_test_success_message(pg, base)
         return {"status": "ok", "message": msg}
 

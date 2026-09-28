@@ -1,2 +1,0 @@
-system_version,answer_relevance_count,answer_relevance_mean,answer_relevance_std,answer_relevance_min,answer_relevance_max,context_relevance_count,context_relevance_mean,context_relevance_std,context_relevance_min,context_relevance_max,groundedness_count,groundedness_mean,groundedness_std,groundedness_min,groundedness_max,answer_correctness_count,answer_correctness_mean,answer_correctness_std,answer_correctness_min,answer_correctness_max
-legacy_ollama_en_qwen25_7b,7,1.0,0.0,1.0,1.0,7,1.0,0.0,1.0,1.0,7,1.0,0.0,1.0,1.0,7,1.0,0.0,1.0,1.0
