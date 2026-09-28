@@ -1,0 +1,17 @@
+# deepseek-r1:7b — Reasoning, laengerer Denkprozess (~4.7 GB)
+name: rag-ollama-deepseek-r1
+
+services:
+  ollama-deepseek-r1:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/deepseek-r1-7b/Dockerfile
+    container_name: rag-ollama-deepseek-r1
+    restart: unless-stopped
+    ports:
+      - "11441:11434"
+    volumes:
+      - ollama_deepseek_r1_data:/root/.ollama
+
+volumes:
+  ollama_deepseek_r1_data:

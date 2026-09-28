@@ -1,0 +1,15 @@
+# Web-Chat (qa_site)
+services:
+  chat-web:
+    profiles: [chat, full]
+    container_name: rag-chat-web
+    build:
+      context: ../..
+      dockerfile: docker/chat/Dockerfile
+      args:
+        DEFAULT_API_URL: ${CHAT_DEFAULT_API_URL:-http://localhost:8000}
+        DEFAULT_API_KEY: ${CHAT_DEFAULT_API_KEY:-${RAG_DEFAULT_API_KEY:-}}
+    restart: unless-stopped
+    networks: [rag-net]
+    ports:
+      - "${CHAT_WEB_PORT:-8080}:80"

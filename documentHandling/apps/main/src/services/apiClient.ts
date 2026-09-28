@@ -23,16 +23,50 @@ const FOLDER_SCAN_BATCH_SIZE = 300;
 export type OllamaModelRow = { name: string; size: number | null; modifiedAt: string | null };
 export type OllamaModelsResult = { ollamaBaseUrl: string; models: OllamaModelRow[] };
 
+/** Chat-/LLM-Einstellungen (GET/PUT /api/chat/settings) */
+export type ChatSettings = {
+  llmApiKey: string;
+  llmBaseUrl: string;
+  llmModel: string;
+  temperature: number;
+  maxTokens: number;
+  topK: number;
+  rerankSimilarityWeight: number;
+  rerankLexicalWeight: number;
+  rerankNumericWeight: number;
+  systemPrompt: string;
+  encryptionKey: string;
+};
+
 export class ApiClient {
   private baseUrl: string;
+  private apiKey: string;
   private abortController: AbortController | null = null;
 
-  public constructor(baseUrl = DEFAULT_BASE_URL) {
+  public constructor(baseUrl = DEFAULT_BASE_URL, apiKey = "") {
     this.baseUrl = baseUrl;
+    this.apiKey = apiKey;
   }
 
   public getBaseUrl(): string {
     return this.baseUrl;
+  }
+
+  public getApiKey(): string {
+    return this.apiKey;
+  }
+
+  public setCredentials(baseUrl: string, apiKey: string): void {
+    this.baseUrl = baseUrl.trim().replace(/\/$/, "");
+    this.apiKey = apiKey.trim();
+  }
+
+  private authHeaders(extra: Record<string, string> = {}): Record<string, string> {
+    const headers: Record<string, string> = { ...extra };
+    if (this.apiKey) {
+      headers["X-API-Key"] = this.apiKey;
+    }
+    return headers;
   }
 
   private static fetchErrorDetail(err: unknown): string {
@@ -74,6 +108,7 @@ export class ApiClient {
     try {
       return await fetch(url, {
         ...init,
+        headers: this.authHeaders(init.headers as Record<string, string> | undefined),
         signal: init.signal ?? controller.signal
       });
     } catch (err) {
@@ -181,6 +216,9 @@ export class ApiClient {
             folderPath,
             tags: options.tags ?? [],
             source: options.source || "lokal",
+            ...(options.embeddingModel?.trim()
+              ? { embeddingModel: options.embeddingModel.trim() }
+              : {}),
             offset,
             batchSize: FOLDER_SCAN_BATCH_SIZE
           })
@@ -270,6 +308,9 @@ export class ApiClient {
 
     formData.append("tags", options.tags.join(","));
     formData.append("source", options.source || "lokal");
+    if (options.embeddingModel?.trim()) {
+      formData.append("embeddingModel", options.embeddingModel.trim());
+    }
 
     const response = await this.fetchWithTimeout(
       `${this.baseUrl}/api/documents/upload`,
@@ -363,6 +404,14 @@ export class ApiClient {
     return this.get<OllamaModelsResult>("/api/llm/ollama/models", DEFAULT_REQUEST_TIMEOUT_MS);
   }
 
+  public async getChatSettings(): Promise<ChatSettings> {
+    return this.get<ChatSettings>("/api/chat/settings");
+  }
+
+  public async saveChatSettings(settings: ChatSettings): Promise<ChatSettings> {
+    return this.put<ChatSettings>("/api/chat/settings", settings);
+  }
+
   public async runHealthCheck(): Promise<{
     postgres: { status: "ok" | "error"; message: string };
     vectorDatabase?: { status: "ok" | "error"; message: string };
@@ -384,11 +433,16 @@ export class ApiClient {
   }
 
   public subscribeProgress(handler: (event: ProgressEventPayload) => void): () => void {
+    this.abortController?.abort();
     this.abortController = new AbortController();
     const signal = this.abortController.signal;
+    const keyQuery = this.apiKey ? `?api_key=${encodeURIComponent(this.apiKey)}` : "";
 
     const connect = () => {
-      fetch(`${this.baseUrl}/api/jobs/progress`, { signal, headers: { Accept: "text/event-stream" } })
+      fetch(`${this.baseUrl}/api/jobs/progress${keyQuery}`, {
+        signal,
+        headers: this.authHeaders({ Accept: "text/event-stream" })
+      })
         .then(async (response) => {
           if (!response.ok || !response.body) {
             return;
@@ -441,6 +495,55 @@ export class ApiClient {
       this.abortController?.abort();
       this.abortController = null;
     };
+  }
+
+  public async getAuthMe(): Promise<{ keyId: string; label: string; isAdmin: boolean }> {
+    return this.get("/api/auth/me");
+  }
+
+  public async listApiKeys(): Promise<
+    Array<{ keyId: string; label: string; isAdmin: boolean; createdAt: number; revokedAt?: number | null }>
+  > {
+    return this.get("/api/admin/keys");
+  }
+
+  public async createApiKey(
+    label: string,
+    isAdmin = false
+  ): Promise<{ keyId: string; label: string; isAdmin: boolean; apiKey: string; createdAt: number }> {
+    return this.post("/api/admin/keys", { label, isAdmin });
+  }
+
+  public async revokeApiKey(keyId: string): Promise<void> {
+    await this.delete(`/api/admin/keys/${encodeURIComponent(keyId)}`);
+  }
+
+  public static async testConnection(
+    baseUrl: string,
+    apiKey: string
+  ): Promise<{ ok: boolean; isAdmin: boolean; message: string }> {
+    const url = baseUrl.trim().replace(/\/$/, "");
+    try {
+      const response = await fetch(`${url}/api/auth/me`, {
+        headers: { "X-API-Key": apiKey.trim() }
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        return { ok: false, isAdmin: false, message: `HTTP ${response.status}: ${text}` };
+      }
+      const data = (await response.json()) as { isAdmin?: boolean; label?: string };
+      return {
+        ok: true,
+        isAdmin: Boolean(data.isAdmin),
+        message: data.label ? `Verbunden (${data.label})` : "Verbunden"
+      };
+    } catch (err) {
+      return {
+        ok: false,
+        isAdmin: false,
+        message: err instanceof Error ? err.message : String(err)
+      };
+    }
   }
 
   private async get<T>(path: string, timeoutMs: number = DEFAULT_REQUEST_TIMEOUT_MS): Promise<T> {

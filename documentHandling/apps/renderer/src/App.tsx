@@ -1,18 +1,24 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
+  DEFAULT_EMBEDDING_MODEL_ID,
+  EMBEDDING_MODEL_OPTIONS,
   defaultAppSettings,
   type AppSettings,
   type DocumentRecord,
   type PostgresEnvironment,
   type ProgressEventPayload,
+  type UploadOptions,
   type VectorBackend
 } from "@rag/shared";
 import { useI18n } from "./i18n";
-import type { OllamaModelRow } from "./types/global";
+import type { ChatSettings, OllamaModelRow } from "./types/global";
+import ApiKeysPanel from "./ApiKeysPanel";
+import { useConnection } from "./ConnectionGate";
 
 interface UploadFormState {
   tagsInput: string;
   source: string;
+  embeddingModel: string;
 }
 
 function parseTags(tagsInput: string): string[] {
@@ -20,6 +26,14 @@ function parseTags(tagsInput: string): string[] {
     .split(",")
     .map((entry) => entry.trim())
     .filter((entry) => entry.length > 0);
+}
+
+function buildUploadOptions(form: UploadFormState): UploadOptions {
+  return {
+    tags: parseTags(form.tagsInput),
+    source: form.source.trim() || "lokal",
+    embeddingModel: form.embeddingModel.trim() || undefined
+  };
 }
 
 function formatBytes(n: number | null | undefined): string {
@@ -34,6 +48,55 @@ function formatBytes(n: number | null | undefined): string {
     unitIndex += 1;
   }
   return unitIndex === 0 ? `${Math.round(value)} ${units[unitIndex]}` : `${value.toFixed(1)} ${units[unitIndex]}`;
+}
+
+const DEFAULT_RERANK = {
+  rerankSimilarityWeight: 0.9,
+  rerankLexicalWeight: 0.05,
+  rerankNumericWeight: 0.05
+} as const;
+
+function normalizeChatSettings(settings: ChatSettings): ChatSettings {
+  return {
+    ...settings,
+    rerankSimilarityWeight: Math.max(
+      0,
+      Number.isFinite(settings.rerankSimilarityWeight)
+        ? settings.rerankSimilarityWeight
+        : DEFAULT_RERANK.rerankSimilarityWeight
+    ),
+    rerankLexicalWeight: Math.max(
+      0,
+      Number.isFinite(settings.rerankLexicalWeight)
+        ? settings.rerankLexicalWeight
+        : DEFAULT_RERANK.rerankLexicalWeight
+    ),
+    rerankNumericWeight: Math.max(
+      0,
+      Number.isFinite(settings.rerankNumericWeight)
+        ? settings.rerankNumericWeight
+        : DEFAULT_RERANK.rerankNumericWeight
+    )
+  };
+}
+
+function rerankWeightPercents(settings: ChatSettings): {
+  similarity: number;
+  lexical: number;
+  numeric: number;
+} {
+  const sim = Math.max(0, settings.rerankSimilarityWeight);
+  const lex = Math.max(0, settings.rerankLexicalWeight);
+  const num = Math.max(0, settings.rerankNumericWeight);
+  const total = sim + lex + num;
+  if (total <= 0) {
+    return { similarity: 100, lexical: 0, numeric: 0 };
+  }
+  return {
+    similarity: Math.round((sim / total) * 1000) / 10,
+    lexical: Math.round((lex / total) * 1000) / 10,
+    numeric: Math.round((num / total) * 1000) / 10
+  };
 }
 
 function formatErrorDetail(err: unknown): string {
@@ -65,10 +128,21 @@ function addPostgresEnvironment(settings: AppSettings): AppSettings {
   if (!template) {
     return settings;
   }
+  const familyId = template.familyId || template.id;
+  const familyName = template.familyName || template.name || "Umgebung";
   const clone: PostgresEnvironment = {
     ...template,
     id: newId,
-    name: `${template.name} (Kopie)`
+    familyId,
+    familyName,
+    name: `${template.name} (Kopie)`,
+    embeddingModel: template.embeddingModel || settings.embeddingModel,
+    chunkSize: template.chunkSize || settings.chunkSize,
+    chunkOverlap: template.chunkOverlap ?? settings.chunkOverlap,
+    dbTableName: `rag_${newId.replace(/[^a-zA-Z0-9_]/g, "_").slice(0, 24)}`,
+    sqliteFilePath: "",
+    qdrantLocalPath: "",
+    isMatrixVariant: false
   };
   return {
     ...settings,
@@ -94,6 +168,7 @@ function removePostgresEnvironment(settings: AppSettings, id: string): AppSettin
 
 export default function App() {
   const { t, locale, setLocale } = useI18n();
+  const { reopenConnectionSetup, isAdmin } = useConnection();
   const tRef = useRef(t);
   tRef.current = t;
   const [activeTab, setActiveTab] = useState<"documents" | "models" | "settings">("documents");
@@ -103,7 +178,11 @@ export default function App() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [tagFilter, setTagFilter] = useState<string>("all");
-  const [uploadFormState, setUploadFormState] = useState<UploadFormState>({ tagsInput: "", source: "lokal" });
+  const [uploadFormState, setUploadFormState] = useState<UploadFormState>({
+    tagsInput: "",
+    source: "lokal",
+    embeddingModel: DEFAULT_EMBEDDING_MODEL_ID
+  });
   const [settings, setSettings] = useState<AppSettings>(defaultAppSettings);
   const [isConnectionReady, setIsConnectionReady] = useState(false);
   const [healthMessage, setHealthMessage] = useState("");
@@ -121,18 +200,34 @@ export default function App() {
   const [ollamaModelsBaseUrl, setOllamaModelsBaseUrl] = useState("");
   const [ollamaModelsLoading, setOllamaModelsLoading] = useState(false);
   const [ollamaModelsError, setOllamaModelsError] = useState("");
+  const [chatSettings, setChatSettings] = useState<ChatSettings | null>(null);
+  const [activeModelSaving, setActiveModelSaving] = useState(false);
+  const [activeModelMessage, setActiveModelMessage] = useState("");
+  const [rankingSaving, setRankingSaving] = useState(false);
+  const [rankingMessage, setRankingMessage] = useState("");
 
-  const loadOllamaModels = useCallback(async () => {
+  const rankingPercents = useMemo(
+    () => (chatSettings ? rerankWeightPercents(chatSettings) : null),
+    [chatSettings]
+  );
+
+  const loadModelsTab = useCallback(async () => {
     if (!window.ragApi?.listOllamaModels) {
       setOllamaModelsError(t("models.apiUnavailable"));
       return;
     }
     setOllamaModelsLoading(true);
     setOllamaModelsError("");
+    setActiveModelMessage("");
     try {
-      const res = await window.ragApi.listOllamaModels();
-      setOllamaModels(res.models);
-      setOllamaModelsBaseUrl(res.ollamaBaseUrl);
+      const [modelsRes, settings] = await Promise.all([
+        window.ragApi.listOllamaModels(),
+        window.ragApi.getChatSettings()
+      ]);
+      setOllamaModels(modelsRes.models);
+      setOllamaModelsBaseUrl(modelsRes.ollamaBaseUrl);
+      setChatSettings(normalizeChatSettings(settings));
+      setRankingMessage("");
     } catch (err: unknown) {
       setOllamaModelsError(err instanceof Error ? err.message : String(err));
       setOllamaModels([]);
@@ -146,9 +241,58 @@ export default function App() {
     if (activeTab !== "models") {
       return undefined;
     }
-    void loadOllamaModels();
+    void loadModelsTab();
     return undefined;
-  }, [activeTab, loadOllamaModels]);
+  }, [activeTab, loadModelsTab]);
+
+  async function selectActiveModel(modelName: string): Promise<void> {
+    if (!chatSettings || !modelName || chatSettings.llmModel === modelName || activeModelSaving) {
+      return;
+    }
+    setActiveModelSaving(true);
+    setActiveModelMessage("");
+    try {
+      const saved = await window.ragApi.saveChatSettings({
+        ...chatSettings,
+        llmModel: modelName
+      });
+      setChatSettings(normalizeChatSettings(saved));
+      setActiveModelMessage(t("models.activeSaved", modelName));
+    } catch (err: unknown) {
+      setActiveModelMessage(
+        `${t("models.activeSaveError")}: ${err instanceof Error ? err.message : String(err)}`
+      );
+    } finally {
+      setActiveModelSaving(false);
+    }
+  }
+
+  function patchRankingWeight(
+    key: "rerankSimilarityWeight" | "rerankLexicalWeight" | "rerankNumericWeight",
+    value: number
+  ): void {
+    setChatSettings((prev) => (prev ? { ...prev, [key]: Math.max(0, value) } : prev));
+    setRankingMessage("");
+  }
+
+  async function saveRankingWeights(): Promise<void> {
+    if (!chatSettings || rankingSaving) {
+      return;
+    }
+    setRankingSaving(true);
+    setRankingMessage("");
+    try {
+      const saved = await window.ragApi.saveChatSettings(normalizeChatSettings(chatSettings));
+      setChatSettings(normalizeChatSettings(saved));
+      setRankingMessage(t("models.ranking.saved"));
+    } catch (err: unknown) {
+      setRankingMessage(
+        `${t("models.ranking.saveError")}: ${err instanceof Error ? err.message : String(err)}`
+      );
+    } finally {
+      setRankingSaving(false);
+    }
+  }
 
   function appendFolderLog(line: string): void {
     const stamp = new Date().toLocaleTimeString();
@@ -182,6 +326,16 @@ export default function App() {
       }
     });
 
+    void api.getChatSettings()
+      .then((settings) => {
+        if (alive) {
+          setChatSettings(normalizeChatSettings(settings));
+        }
+      })
+      .catch((err: unknown) => {
+        console.error("getChatSettings", err);
+      });
+
     void (async () => {
       let loadedSettings: AppSettings;
       try {
@@ -199,6 +353,10 @@ export default function App() {
         return;
       }
       setSettings(loadedSettings);
+      setUploadFormState((old) => ({
+        ...old,
+        embeddingModel: loadedSettings.embeddingModel || old.embeddingModel
+      }));
 
       const activeEnv = getActivePostgresEnv(loadedSettings);
       const vb = activeEnv?.vectorBackend ?? "postgres";
@@ -334,10 +492,7 @@ export default function App() {
     }
     appendFolderLog("pick files: Dialog öffnen …");
     try {
-      const up = await window.ragApi.pickAndUploadDocuments({
-        tags: parseTags(uploadFormState.tagsInput),
-        source: uploadFormState.source.trim() || "lokal"
-      });
+      const up = await window.ragApi.pickAndUploadDocuments(buildUploadOptions(uploadFormState));
       appendFolderLog(
         `pick files: eingeplant=${up.queuedDocIds.length} uebersprungen=${up.skippedDocIds.length}`
       );
@@ -425,10 +580,7 @@ export default function App() {
     setFolderIngestRunning(true);
     appendFolderLog(`uploadFolder: Start für „${selectedFolderPath}“`);
     try {
-      const result = await window.ragApi.uploadFolderFromPath(selectedFolderPath, {
-        tags: parseTags(uploadFormState.tagsInput),
-        source: uploadFormState.source.trim() || "lokal"
-      });
+      const result = await window.ragApi.uploadFolderFromPath(selectedFolderPath, buildUploadOptions(uploadFormState));
       appendFolderLog(
         `uploadFolder: fileCount=${result.fileCount} queued=${result.queuedDocIds.length} skipped=${result.skippedDocIds.length}`
       );
@@ -475,10 +627,7 @@ export default function App() {
     }
     appendFolderLog(`drop: ${filePaths.length} Datei(en)`);
     try {
-      const up = await window.ragApi.uploadFiles(filePaths, {
-        tags: parseTags(uploadFormState.tagsInput),
-        source: uploadFormState.source.trim() || "lokal"
-      });
+      const up = await window.ragApi.uploadFiles(filePaths, buildUploadOptions(uploadFormState));
       appendFolderLog(
         `drop: eingeplant=${up.queuedDocIds.length} uebersprungen=${up.skippedDocIds.length}`
       );
@@ -569,6 +718,10 @@ export default function App() {
   async function saveSettings(): Promise<void> {
     const persisted = await window.ragApi.saveSettings(settings);
     setSettings(persisted);
+    setUploadFormState((old) => ({
+      ...old,
+      embeddingModel: persisted.embeddingModel || old.embeddingModel
+    }));
     setIsConnectionReady(false);
     setSelectedDocumentIds([]);
     await reloadDocuments();
@@ -617,6 +770,17 @@ export default function App() {
       <header className="top-bar">
         <div className="top-bar-left">
           <h1>{t("app.title")}</h1>
+          <button
+            type="button"
+            className="active-model-chip"
+            title={t("models.activeChipHint")}
+            onClick={() => setActiveTab("models")}
+          >
+            <span className="active-model-chip__label">{t("models.activeChipLabel")}</span>
+            <code className="active-model-chip__value">
+              {chatSettings?.llmModel?.trim() || t("models.activeChipUnknown")}
+            </code>
+          </button>
           <div className="tab-row">
             <button
               type="button"
@@ -700,7 +864,28 @@ export default function App() {
               if (!isConnectionReady) return;
               event.preventDefault();
               setIsDropActive(false);
-              const droppedFilePaths = Array.from(event.dataTransfer.files)
+              const files = Array.from(event.dataTransfer.files);
+              if (files.length === 0) {
+                return;
+              }
+              if (typeof window.ragApi.uploadBrowserFiles === "function") {
+                void (async () => {
+                  try {
+                    appendFolderLog(`drop: ${files.length} Datei(en) (Browser)`);
+                    const up = await window.ragApi.uploadBrowserFiles!(files, buildUploadOptions(uploadFormState));
+                    appendFolderLog(
+                      `drop: eingeplant=${up.queuedDocIds.length} uebersprungen=${up.skippedDocIds.length}`
+                    );
+                    await reloadDocuments();
+                  } catch (err) {
+                    const detail = formatErrorDetail(err);
+                    appendFolderLog(`drop FEHLER: ${detail}`);
+                    setHealthMessage(`${t("upload.dropError")} ${detail}`);
+                  }
+                })();
+                return;
+              }
+              const droppedFilePaths = files
                 .map((file) => (file as File & { path?: string }).path)
                 .filter((value): value is string => Boolean(value));
               void uploadFromDrop(droppedFilePaths);
@@ -788,7 +973,32 @@ export default function App() {
                   onChange={(event) => setUploadFormState((old) => ({ ...old, source: event.target.value }))}
                 />
               </label>
+              <label>
+                {t("upload.embeddingModel")}
+                <select
+                  value={uploadFormState.embeddingModel}
+                  onChange={(event) =>
+                    setUploadFormState((old) => ({ ...old, embeddingModel: event.target.value }))
+                  }
+                >
+                  {EMBEDDING_MODEL_OPTIONS.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.label}
+                      {model.recommended ? " ★" : ""} ({model.dimensions}d · {model.languages})
+                    </option>
+                  ))}
+                  {!EMBEDDING_MODEL_OPTIONS.some((m) => m.id === uploadFormState.embeddingModel) &&
+                  uploadFormState.embeddingModel ? (
+                    <option value={uploadFormState.embeddingModel}>{uploadFormState.embeddingModel}</option>
+                  ) : null}
+                </select>
+              </label>
             </div>
+            <p className="upload-hint">
+              {EMBEDDING_MODEL_OPTIONS.find((m) => m.id === uploadFormState.embeddingModel)?.description ??
+                t("upload.embeddingModelHint")}
+            </p>
+            <p className="upload-hint">{t("upload.embeddingModelHint")}</p>
           </section>
 
           <section className="panel">
@@ -937,15 +1147,57 @@ export default function App() {
                   <code className="model-provider-card__endpoint-value">{ollamaModelsBaseUrl}</code>
                 </p>
               ) : null}
-              <div className="ollama-models-toolbar">
-                <button
-                  type="button"
-                  onClick={() => void loadOllamaModels()}
-                  disabled={ollamaModelsLoading}
-                >
-                  {ollamaModelsLoading ? t("models.loading") : t("models.refresh")}
-                </button>
+
+              <div className="models-active-picker">
+                <label className="models-active-picker__label" htmlFor="active-llm-model">
+                  {t("models.activeLabel")}
+                </label>
+                <div className="models-active-picker__row">
+                  <select
+                    id="active-llm-model"
+                    value={chatSettings?.llmModel ?? ""}
+                    disabled={!chatSettings || activeModelSaving || ollamaModels.length === 0}
+                    onChange={(e) => void selectActiveModel(e.target.value)}
+                  >
+                    {chatSettings?.llmModel &&
+                    !ollamaModels.some((m) => m.name === chatSettings.llmModel) ? (
+                      <option value={chatSettings.llmModel}>
+                        {chatSettings.llmModel} ({t("models.notInstalled")})
+                      </option>
+                    ) : null}
+                    {ollamaModels.map((row) => (
+                      <option key={row.name} value={row.name}>
+                        {row.name}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={() => void loadModelsTab()}
+                    disabled={ollamaModelsLoading || activeModelSaving}
+                  >
+                    {ollamaModelsLoading ? t("models.loading") : t("models.refresh")}
+                  </button>
+                </div>
+                {chatSettings?.llmModel ? (
+                  <p className="models-active-current">
+                    {t("models.activeCurrent")}: <code>{chatSettings.llmModel}</code>
+                  </p>
+                ) : null}
+                {activeModelMessage ? (
+                  <p
+                    className={`models-active-feedback${
+                      activeModelMessage.startsWith(t("models.activeSaveError"))
+                        ? " models-active-feedback--err"
+                        : " models-active-feedback--ok"
+                    }`}
+                    role="status"
+                  >
+                    {activeModelMessage}
+                  </p>
+                ) : null}
               </div>
+
               {ollamaModelsError ? (
                 <p className="ollama-models-error" role="alert">
                   {ollamaModelsError}
@@ -962,27 +1214,153 @@ export default function App() {
                         <th>{t("models.colName")}</th>
                         <th>{t("models.colSize")}</th>
                         <th>{t("models.colModified")}</th>
+                        <th>{t("models.colAction")}</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {ollamaModels.map((row) => (
-                        <tr key={row.name}>
-                          <td className="mono-cell">{row.name}</td>
-                          <td>{formatBytes(row.size)}</td>
-                          <td>
-                            {row.modifiedAt
-                              ? (() => {
-                                  const d = Date.parse(row.modifiedAt);
-                                  return Number.isNaN(d) ? row.modifiedAt : new Date(d).toLocaleString();
-                                })()
-                              : "—"}
-                          </td>
-                        </tr>
-                      ))}
+                      {ollamaModels.map((row) => {
+                        const isActive = chatSettings?.llmModel === row.name;
+                        return (
+                          <tr
+                            key={row.name}
+                            className={isActive ? "ollama-models-row--active" : undefined}
+                          >
+                            <td className="mono-cell">{row.name}</td>
+                            <td>{formatBytes(row.size)}</td>
+                            <td>
+                              {row.modifiedAt
+                                ? (() => {
+                                    const d = Date.parse(row.modifiedAt);
+                                    return Number.isNaN(d)
+                                      ? row.modifiedAt
+                                      : new Date(d).toLocaleString();
+                                  })()
+                                : "—"}
+                            </td>
+                            <td>
+                              {isActive ? (
+                                <span className="models-active-badge">{t("models.activeBadge")}</span>
+                              ) : (
+                                <button
+                                  type="button"
+                                  disabled={activeModelSaving || !chatSettings}
+                                  onClick={() => void selectActiveModel(row.name)}
+                                >
+                                  {t("models.select")}
+                                </button>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
               ) : null}
+            </li>
+
+            <li className="model-provider-card">
+              <div className="model-provider-card__header">
+                <span className="model-provider-card__name">{t("models.ranking.title")}</span>
+              </div>
+              <p className="model-provider-card__description">{t("models.ranking.intro")}</p>
+              {chatSettings && rankingPercents ? (
+                <div className="ranking-weights">
+                  <label className="ranking-weight-row">
+                    <span className="ranking-weight-row__label">
+                      {t("models.ranking.similarity")}
+                      <span className="ranking-weight-row__pct">{rankingPercents.similarity}%</span>
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={Math.round(chatSettings.rerankSimilarityWeight * 100)}
+                      disabled={rankingSaving}
+                      onChange={(e) =>
+                        patchRankingWeight("rerankSimilarityWeight", Number(e.target.value) / 100)
+                      }
+                    />
+                  </label>
+                  <label className="ranking-weight-row">
+                    <span className="ranking-weight-row__label">
+                      {t("models.ranking.lexical")}
+                      <span className="ranking-weight-row__pct">{rankingPercents.lexical}%</span>
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={Math.round(chatSettings.rerankLexicalWeight * 100)}
+                      disabled={rankingSaving}
+                      onChange={(e) =>
+                        patchRankingWeight("rerankLexicalWeight", Number(e.target.value) / 100)
+                      }
+                    />
+                  </label>
+                  <label className="ranking-weight-row">
+                    <span className="ranking-weight-row__label">
+                      {t("models.ranking.numeric")}
+                      <span className="ranking-weight-row__pct">{rankingPercents.numeric}%</span>
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={Math.round(chatSettings.rerankNumericWeight * 100)}
+                      disabled={rankingSaving}
+                      onChange={(e) =>
+                        patchRankingWeight("rerankNumericWeight", Number(e.target.value) / 100)
+                      }
+                    />
+                  </label>
+                  <p className="ranking-weights__hint">{t("models.ranking.hint")}</p>
+                  <div className="models-active-picker__row">
+                    <button
+                      type="button"
+                      onClick={() => void saveRankingWeights()}
+                      disabled={rankingSaving}
+                    >
+                      {rankingSaving ? t("models.ranking.saving") : t("models.ranking.save")}
+                    </button>
+                    <button
+                      type="button"
+                      className="btn-ghost-inline"
+                      disabled={rankingSaving}
+                      onClick={() => {
+                        setChatSettings((prev) =>
+                          prev
+                            ? {
+                                ...prev,
+                                ...DEFAULT_RERANK
+                              }
+                            : prev
+                        );
+                        setRankingMessage("");
+                      }}
+                    >
+                      {t("models.ranking.reset")}
+                    </button>
+                  </div>
+                  {rankingMessage ? (
+                    <p
+                      className={`models-active-feedback${
+                        rankingMessage.startsWith(t("models.ranking.saveError"))
+                          ? " models-active-feedback--err"
+                          : " models-active-feedback--ok"
+                      }`}
+                      role="status"
+                    >
+                      {rankingMessage}
+                    </p>
+                  ) : null}
+                </div>
+              ) : (
+                <p className="upload-hint">{t("models.ranking.loading")}</p>
+              )}
             </li>
           </ul>
         </section>
@@ -992,6 +1370,12 @@ export default function App() {
         <section className="panel">
           <h2>{t("settings.title")}</h2>
             <div className="input-grid">
+              <div className="button-row" style={{ gridColumn: "1 / -1" }}>
+                <button type="button" onClick={reopenConnectionSetup}>
+                  API-Verbindung ändern
+                </button>
+              </div>
+              {isAdmin ? <ApiKeysPanel /> : null}
               <div className="button-row" style={{ gridColumn: "1 / -1" }}>
                 <label style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1 }}>
                   {t("settings.activePostgresEnv")}
@@ -1177,21 +1561,42 @@ export default function App() {
                 {t("settings.chunkOverlap")}
                 <input
                   type="number"
+                  min={0}
+                  max={90}
                   value={settings.chunkOverlap}
                   onChange={(event) =>
-                    setSettings((old) => (old ? { ...old, chunkOverlap: Number(event.target.value) } : old))
+                    setSettings((old) =>
+                      old
+                        ? { ...old, chunkOverlap: Math.max(0, Math.min(90, Number(event.target.value) || 0)) }
+                        : old
+                    )
                   }
                 />
               </label>
               <label>
                 {t("settings.embeddingModel")}
-                <input
+                <select
                   value={settings.embeddingModel}
                   onChange={(event) =>
                     setSettings((old) => (old ? { ...old, embeddingModel: event.target.value } : old))
                   }
-                />
+                >
+                  {EMBEDDING_MODEL_OPTIONS.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.label}
+                      {model.recommended ? " ★" : ""} ({model.dimensions}d · {model.languages})
+                    </option>
+                  ))}
+                  {!EMBEDDING_MODEL_OPTIONS.some((m) => m.id === settings.embeddingModel) &&
+                  settings.embeddingModel ? (
+                    <option value={settings.embeddingModel}>{settings.embeddingModel}</option>
+                  ) : null}
+                </select>
               </label>
+              <p className="upload-hint">
+                {EMBEDDING_MODEL_OPTIONS.find((m) => m.id === settings.embeddingModel)?.description ??
+                  t("settings.embeddingModelHint")}
+              </p>
               <label className="checkbox-label">
                 <input
                   type="checkbox"

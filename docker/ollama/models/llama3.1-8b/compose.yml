@@ -1,0 +1,17 @@
+# llama3.1:8b — bessere Antwortqualitaet (~4.7 GB)
+name: rag-ollama-llama31-8b
+
+services:
+  ollama-llama31-8b:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/llama3.1-8b/Dockerfile
+    container_name: rag-ollama-llama31-8b
+    restart: unless-stopped
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama_llama31_8b_data:/root/.ollama
+
+volumes:
+  ollama_llama31_8b_data:

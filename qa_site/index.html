@@ -47,6 +47,18 @@
         <article class="card answer-card">
           <h2>Answer</h2>
           <p id="answerText" class="answer-text"></p>
+          <div id="feedbackPanel" class="feedback-panel hidden">
+            <p class="feedback-title">Was this answer helpful?</p>
+            <div class="feedback-actions">
+              <button id="feedbackUpBtn" type="button" class="btn-ghost feedback-btn" aria-label="Helpful">👍 Helpful</button>
+              <button id="feedbackDownBtn" type="button" class="btn-ghost feedback-btn" aria-label="Not helpful">👎 Not helpful</button>
+            </div>
+            <label class="field feedback-comment-field">
+              <span>Optional comment</span>
+              <textarea id="feedbackComment" rows="2" placeholder="What worked well or what was missing?"></textarea>
+            </label>
+            <p id="feedbackStatus" class="feedback-status"></p>
+          </div>
         </article>
 
         <article class="card sources-card">
@@ -72,6 +84,10 @@
             <span>API Base URL</span>
             <input id="apiBaseUrl" type="text" value="http://127.0.0.1:8000" />
           </label>
+          <label class="field">
+            <span>API Key</span>
+            <input id="apiKey" type="password" placeholder="rag_..." autocomplete="off" />
+          </label>
           <label class="field field-sm">
             <span>Language</span>
             <select id="language">
@@ -83,6 +99,7 @@
       </section>
     </main>
 
+    <script src="./config.js"></script>
     <script src="./app.js" defer></script>
   </body>
 </html>

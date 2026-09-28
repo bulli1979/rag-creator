@@ -1,0 +1,17 @@
+# qwen2.5:7b — sehr gut DE/EN, empfohlen fuer RAG-Tests (~4.7 GB)
+name: rag-ollama-qwen25
+
+services:
+  ollama-qwen25:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/qwen2.5-7b/Dockerfile
+    container_name: rag-ollama-qwen25
+    restart: unless-stopped
+    ports:
+      - "11438:11434"
+    volumes:
+      - ollama_qwen25_data:/root/.ollama
+
+volumes:
+  ollama_qwen25_data:

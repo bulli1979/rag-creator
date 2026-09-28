@@ -1,0 +1,30 @@
+# Modulares RAG-Stack Compose — nur starten, was du brauchst (Profile).
+#
+# Vorbereitung:
+#   cd docker
+#   cp .env.example .env
+#   docker network create rag-net 2>nul || true   # Windows PowerShell: Fehler ignorieren
+#   docker volume create rag_api_data
+#   docker volume create rag_postgres_data
+#   docker volume create rag_qdrant_data
+#   docker volume create rag_ollama_data
+#
+# Beispiele:
+#   docker compose --profile backend --profile ollama up -d --build
+#   docker compose --profile postgres --profile backend --profile ollama up -d --build
+#   docker compose --profile full up -d --build
+#   docker compose --profile ollama --profile model-qwen25 run --rm ollama-pull-qwen25
+#
+# Siehe README.md fuer alle Profile und LLM-Empfehlungen.
+
+name: rag
+
+include:
+  - path: compose/network.compose.yml
+  - path: compose/postgres.compose.yml
+  - path: compose/qdrant.compose.yml
+  - path: compose/ollama.compose.yml
+  - path: compose/ollama-models.compose.yml
+  - path: compose/backend.compose.yml
+  - path: compose/chat.compose.yml
+  - path: compose/admin.compose.yml

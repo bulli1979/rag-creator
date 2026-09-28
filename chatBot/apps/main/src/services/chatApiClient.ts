@@ -1,4 +1,4 @@
-import type { ChatLocale, ChatMessage, ChatResponse, ChatSettings } from "@ragchat/shared";
+import type { ChatFeedbackRequest, ChatFeedbackRecord, ChatLocale, ChatMessage, ChatResponse, ChatSettings } from "@ragchat/shared";
 
 const DEFAULT_BASE_URL = "http://localhost:8000";
 
@@ -24,9 +24,24 @@ export interface AppSettings {
 
 export class ChatApiClient {
   private baseUrl: string;
+  private apiKey: string;
 
-  public constructor(baseUrl = DEFAULT_BASE_URL) {
+  public constructor(baseUrl = DEFAULT_BASE_URL, apiKey = "") {
     this.baseUrl = baseUrl;
+    this.apiKey = apiKey;
+  }
+
+  public setCredentials(baseUrl: string, apiKey: string): void {
+    this.baseUrl = baseUrl.trim().replace(/\/$/, "");
+    this.apiKey = apiKey.trim();
+  }
+
+  private authHeaders(extra: Record<string, string> = {}): Record<string, string> {
+    const headers: Record<string, string> = { ...extra };
+    if (this.apiKey) {
+      headers["X-API-Key"] = this.apiKey;
+    }
+    return headers;
   }
 
   public async sendMessage(
@@ -34,7 +49,22 @@ export class ChatApiClient {
     history: ChatMessage[],
     language?: ChatLocale
   ): Promise<ChatResponse> {
-    return this.post<ChatResponse>("/api/chat", { message, history, language });
+    return this.post<ChatResponse>("/api/chat", {
+      message,
+      history,
+      language,
+      clientSource: "chatbot"
+    });
+  }
+
+  public async submitFeedback(
+    requestId: string,
+    feedback: ChatFeedbackRequest
+  ): Promise<ChatFeedbackRecord> {
+    return this.post<ChatFeedbackRecord>(
+      `/api/chat/requests/${encodeURIComponent(requestId)}/feedback`,
+      feedback
+    );
   }
 
   public async getChatSettings(): Promise<ChatSettings> {
@@ -57,8 +87,38 @@ export class ChatApiClient {
     return this.put<AppSettings>("/api/settings", settings);
   }
 
+  public static async testConnection(
+    baseUrl: string,
+    apiKey: string
+  ): Promise<{ ok: boolean; isAdmin: boolean; message: string }> {
+    const url = baseUrl.trim().replace(/\/$/, "");
+    try {
+      const response = await fetch(`${url}/api/auth/me`, {
+        headers: { "X-API-Key": apiKey.trim() }
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        return { ok: false, isAdmin: false, message: `HTTP ${response.status}: ${text}` };
+      }
+      const data = (await response.json()) as { isAdmin?: boolean; label?: string };
+      return {
+        ok: true,
+        isAdmin: Boolean(data.isAdmin),
+        message: data.label ? `Verbunden (${data.label})` : "Verbunden"
+      };
+    } catch (err) {
+      return {
+        ok: false,
+        isAdmin: false,
+        message: err instanceof Error ? err.message : String(err)
+      };
+    }
+  }
+
   private async get<T>(path: string): Promise<T> {
-    const response = await fetch(`${this.baseUrl}${path}`);
+    const response = await fetch(`${this.baseUrl}${path}`, {
+      headers: this.authHeaders()
+    });
     if (!response.ok) {
       throw new Error(`GET ${path} fehlgeschlagen: ${response.status}`);
     }
@@ -68,7 +128,7 @@ export class ChatApiClient {
   private async post<T>(path: string, body?: unknown): Promise<T> {
     const response = await fetch(`${this.baseUrl}${path}`, {
       method: "POST",
-      headers: body ? { "Content-Type": "application/json" } : {},
+      headers: this.authHeaders(body ? { "Content-Type": "application/json" } : {}),
       body: body ? JSON.stringify(body) : undefined
     });
     if (!response.ok) {
@@ -81,7 +141,7 @@ export class ChatApiClient {
   private async put<T>(path: string, body: unknown): Promise<T> {
     const response = await fetch(`${this.baseUrl}${path}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: this.authHeaders({ "Content-Type": "application/json" }),
       body: JSON.stringify(body)
     });
     if (!response.ok) {

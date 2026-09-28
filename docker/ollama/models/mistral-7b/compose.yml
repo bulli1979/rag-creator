@@ -1,0 +1,17 @@
+# mistral:7b — stark mehrsprachig, gut fuer DE/EN (~4.1 GB)
+name: rag-ollama-mistral
+
+services:
+  ollama-mistral:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/mistral-7b/Dockerfile
+    container_name: rag-ollama-mistral
+    restart: unless-stopped
+    ports:
+      - "11436:11434"
+    volumes:
+      - ollama_mistral_data:/root/.ollama
+
+volumes:
+  ollama_mistral_data:

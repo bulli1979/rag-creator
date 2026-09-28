@@ -1,4 +1,4 @@
-import type { ChatLocale, ChatMessage, ChatResponse, ChatSettings } from "@ragchat/shared";
+import type { ChatFeedbackRequest, ChatFeedbackRecord, ChatLocale, ChatMessage, ChatResponse, ChatSettings } from "@ragchat/shared";
 
 interface PostgresEnvironment {
   id: string;
@@ -20,6 +20,13 @@ interface AppSettings {
   postgresEnvironments: PostgresEnvironment[];
 }
 
+interface ConnectionConfig {
+  apiBaseUrl: string;
+  apiKey: string;
+}
+
+type ConnectionTestResult = { ok: boolean; isAdmin: boolean; message: string };
+
 declare global {
   interface Window {
     chatApi: {
@@ -30,6 +37,10 @@ declare global {
       getSettings: () => Promise<AppSettings>;
       saveSettings: (settings: AppSettings) => Promise<AppSettings>;
       openExternal: (url: string) => Promise<void>;
+      submitFeedback: (requestId: string, feedback: ChatFeedbackRequest) => Promise<ChatFeedbackRecord>;
+      connectionGet: () => Promise<ConnectionConfig | null>;
+      connectionSave: (config: ConnectionConfig) => Promise<ConnectionConfig>;
+      connectionTest: (config: ConnectionConfig) => Promise<ConnectionTestResult>;
     };
   }
 }

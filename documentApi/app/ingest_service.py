@@ -78,6 +78,8 @@ class IngestService:
         # Bis initialize(): dieselben Defaults wie load_settings (leeres AppSettings() waere ungueltig).
         self._settings: AppSettings = _DEFAULT_SETTINGS.model_copy(deep=True)
         self._progress_subscribers: list[Callable[[ProgressEventPayload], None]] = []
+        self._family_reindex: dict[str, Any] | None = None
+        self._family_reindex_cancel = False
 
     def _active_pg(self) -> PostgresEnvironment:
         return self._settings.get_active_postgres()
@@ -142,6 +144,7 @@ class IngestService:
         options: UploadOptions,
     ) -> AddDocumentsResult:
         self._ensure_db_validated()
+        self.apply_upload_embedding_model(options)
         queued_ids: list[str] = []
         skipped_ids: list[str] = []
         messages: list[str] = []
@@ -200,7 +203,7 @@ class IngestService:
                     status=DocumentStatus.queued,
                     tags=options.tags,
                     source=options.source,
-                    corpus_path=self._fs.get_corpus_path(doc_id),
+                    corpus_path=self._fs.get_corpus_path(doc_id, self._active_environment_id()),
                     size_bytes=stored["sizeBytes"],
                 )
                 self._enqueue_job(doc_id, JobType.reindex)
@@ -233,6 +236,8 @@ class IngestService:
         batch_size: int = 400,
     ) -> tuple[AddDocumentsResult, int, int, bool]:
         self._ensure_db_validated()
+        if offset <= 0:
+            self.apply_upload_embedding_model(options)
         files = iter_files_recursive(folder_path)
         file_count = len(files)
         if not files:
@@ -304,7 +309,7 @@ class IngestService:
                     status=DocumentStatus.queued,
                     tags=options.tags,
                     source=options.source,
-                    corpus_path=self._fs.get_corpus_path(doc_id),
+                    corpus_path=self._fs.get_corpus_path(doc_id, self._active_environment_id()),
                     size_bytes=stored["sizeBytes"],
                 )
                 self._enqueue_job(doc_id, JobType.reindex)
@@ -328,12 +333,98 @@ class IngestService:
         )
 
     async def remove_document(self, doc_id: str) -> None:
-        doc = self._db.get_document(doc_id, self._active_environment_id())
+        env_id = self._active_environment_id()
+        doc = self._db.get_document(doc_id, env_id)
         if not doc:
             return
         self._vs.remove_document(self._active_pg().db_table_name, doc_id)
-        self._fs.delete_document_artifacts(doc_id)
-        self._db.delete_document(doc_id)
+        remaining = self._db.count_document_envs(doc_id)
+        if remaining <= 1:
+            self._fs.delete_document_artifacts(doc_id)
+        else:
+            self._fs.delete_document_artifacts(doc_id, environment_id=env_id)
+        self._db.delete_document(doc_id, env_id)
+
+    async def reindex_document(self, doc_id: str) -> None:
+        self._enqueue_job(doc_id, JobType.reindex, force_rechunk=True)
+        asyncio.get_event_loop().call_soon(lambda: asyncio.ensure_future(self._process_queue()))
+
+    async def reindex_documents(self, doc_ids: list[str]) -> None:
+        for doc_id in doc_ids:
+            self._enqueue_job(doc_id, JobType.reindex, force_rechunk=True)
+        asyncio.get_event_loop().call_soon(lambda: asyncio.ensure_future(self._process_queue()))
+
+    def get_family_reindex_status(self) -> dict[str, Any] | None:
+        return self._family_reindex
+
+    def cancel_family_reindex(self) -> bool:
+        if not self._family_reindex or self._family_reindex.get("status") not in ("queued", "running"):
+            return False
+        self._family_reindex_cancel = True
+        self._family_reindex["message"] = "Abbruch angefordert …"
+        return True
+
+    async def start_family_reindex(
+        self,
+        *,
+        family_id: str | None = None,
+        source_environment_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Kopiert Docs der Quelle in alle Familien-Instanzen und indexiert sequentiell neu (Re-Chunk)."""
+        if self._family_reindex and self._family_reindex.get("status") in ("queued", "running"):
+            raise RuntimeError("Familien-Indexierung läuft bereits.")
+
+        settings = self._settings
+        active = settings.get_active_postgres()
+        fid = (family_id or "").strip() or (active.family_id or active.environment_id)
+        instances = settings.list_family_instances(fid)
+        if not instances:
+            raise ValueError(f"Keine Instanzen für Familie: {fid}")
+
+        source_id = (source_environment_id or "").strip() or self._active_environment_id()
+        source_docs = self._db.list_documents(source_id)
+        if not source_docs:
+            # Fallback: erste Instanz der Familie mit Dokumenten
+            for env in instances:
+                docs = self._db.list_documents(env.environment_id)
+                if docs:
+                    source_id = env.environment_id
+                    source_docs = docs
+                    break
+        if not source_docs:
+            raise ValueError(
+                "Keine Dokumente in der Familie gefunden. Bitte zuerst in einer Instanz hochladen."
+            )
+
+        run_id = str(uuid.uuid4())
+        self._family_reindex_cancel = False
+        self._family_reindex = {
+            "runId": run_id,
+            "status": "queued",
+            "familyId": fid,
+            "familyName": instances[0].family_name or fid,
+            "sourceEnvironmentId": source_id,
+            "instanceTotal": len(instances),
+            "instanceIndex": 0,
+            "documentTotal": len(source_docs),
+            "documentIndex": 0,
+            "currentEnvironmentId": "",
+            "currentEnvironmentName": "",
+            "message": "Warteschlange …",
+            "error": "",
+            "finishedAt": None,
+        }
+        asyncio.create_task(
+            self._execute_family_reindex(
+                run_id=run_id,
+                family_id=fid,
+                source_id=source_id,
+                source_docs=list(source_docs),
+                instance_ids=[e.environment_id for e in instances],
+                restore_env_id=self._active_environment_id(),
+            )
+        )
+        return dict(self._family_reindex)
 
     async def remove_documents(self, doc_ids: list[str]) -> None:
         for doc_id in doc_ids:
@@ -354,14 +445,110 @@ class IngestService:
             await self.remove_document(doc_id)
         return len(to_remove)
 
-    async def reindex_document(self, doc_id: str) -> None:
-        self._enqueue_job(doc_id, JobType.reindex)
-        asyncio.get_event_loop().call_soon(lambda: asyncio.ensure_future(self._process_queue()))
+    async def _execute_family_reindex(
+        self,
+        *,
+        run_id: str,
+        family_id: str,
+        source_id: str,
+        source_docs: list[DocumentRecord],
+        instance_ids: list[str],
+        restore_env_id: str,
+    ) -> None:
+        state = self._family_reindex
+        if not state or state.get("runId") != run_id:
+            return
+        state["status"] = "running"
+        try:
+            # Queue leeren lassen, bevor wir die Umgebung wechseln
+            await self._wait_queue_idle()
+            for idx, env_id in enumerate(instance_ids, start=1):
+                if self._family_reindex_cancel:
+                    state["status"] = "cancelled"
+                    state["message"] = "Abgebrochen."
+                    state["finishedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+                    return
 
-    async def reindex_documents(self, doc_ids: list[str]) -> None:
-        for doc_id in doc_ids:
-            self._enqueue_job(doc_id, JobType.reindex)
-        asyncio.get_event_loop().call_soon(lambda: asyncio.ensure_future(self._process_queue()))
+                env = next(
+                    (e for e in self._settings.postgres_environments if e.environment_id == env_id),
+                    None,
+                )
+                state["instanceIndex"] = idx
+                state["currentEnvironmentId"] = env_id
+                state["currentEnvironmentName"] = (env.name if env else env_id)
+                state["documentIndex"] = 0
+                state["message"] = f"Instanz {idx}/{len(instance_ids)}: {state['currentEnvironmentName']}"
+
+                updated = self._settings.model_copy(update={"active_postgres_environment_id": env_id})
+                await self.save_settings(updated)
+                # Connection für diese Instanz prüfen / Schema anlegen
+                test = await self.test_database_connection()
+                if test.get("status") != "ok":
+                    raise RuntimeError(
+                        f"Connection Test fehlgeschlagen für {state['currentEnvironmentName']}: "
+                        f"{test.get('message') or test}"
+                    )
+
+                for doc_i, src in enumerate(source_docs, start=1):
+                    if self._family_reindex_cancel:
+                        self._queue.clear()
+                        break
+                    state["documentIndex"] = doc_i
+                    state["message"] = (
+                        f"Instanz {idx}/{len(instance_ids)} · Doc {doc_i}/{len(source_docs)}: {src.file_name}"
+                    )
+                    corpus_path = self._fs.get_corpus_path(src.doc_id, env_id)
+                    self._db.upsert_document(
+                        environment_id=env_id,
+                        doc_id=src.doc_id,
+                        file_name=src.file_name,
+                        file_path=src.file_path,
+                        file_hash=src.file_hash,
+                        file_type=src.file_type,
+                        status=DocumentStatus.queued,
+                        tags=list(src.tags or []),
+                        source=src.source or "",
+                        corpus_path=corpus_path,
+                        size_bytes=int(src.size_bytes or 0),
+                    )
+                    self._enqueue_job(src.doc_id, JobType.reindex, force_rechunk=True)
+
+                if self._family_reindex_cancel:
+                    self._queue.clear()
+                    break
+
+                await self._process_queue()
+                await self._wait_queue_idle()
+
+            if self._family_reindex_cancel:
+                state["status"] = "cancelled"
+                state["message"] = "Abgebrochen."
+            else:
+                state["status"] = "done"
+                state["message"] = (
+                    f"Fertig: {len(instance_ids)} Instanzen × {len(source_docs)} Dokumente."
+                )
+            state["finishedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        except Exception as exc:
+            _logger.exception("family reindex failed family=%s", family_id)
+            state["status"] = "error"
+            state["error"] = str(exc)
+            state["message"] = f"Fehler: {exc}"
+            state["finishedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        finally:
+            # Ursprüngliche Umgebung wiederherstellen
+            try:
+                if restore_env_id and restore_env_id != self._active_environment_id():
+                    restored = self._settings.model_copy(
+                        update={"active_postgres_environment_id": restore_env_id}
+                    )
+                    await self.save_settings(restored)
+            except Exception:
+                _logger.exception("family reindex: restore active env failed")
+
+    async def _wait_queue_idle(self) -> None:
+        while self._queue or self._is_processing:
+            await asyncio.sleep(0.25)
 
     async def get_corpus(self, doc_id: str) -> str:
         doc = self._db.get_document(doc_id, self._active_environment_id())
@@ -374,11 +561,40 @@ class IngestService:
         if not doc:
             raise ValueError("Dokument nicht gefunden.")
         lines = [line for line in jsonl_content.split("\n") if line.strip()]
-        self._fs.write_corpus_jsonl(doc_id, lines)
-        self._db.set_document_status(doc_id, DocumentStatus.queued)
+        env_id = self._active_environment_id()
+        self._fs.write_corpus_jsonl(
+            doc_id, lines, environment_id=env_id, corpus_path=doc.corpus_path or None
+        )
+        self._db.set_document_status(doc_id, DocumentStatus.queued, environment_id=env_id)
 
     def get_settings(self) -> AppSettings:
         return self._settings
+
+    def apply_upload_embedding_model(self, options: UploadOptions) -> str:
+        """Setzt optional das Embedding-Modell aus dem Upload und persistiert es (Chat nutzt dasselbe)."""
+        from .embedding_models import is_allowed_embedding_model, normalize_embedding_model
+
+        requested = (options.embedding_model or "").strip()
+        if not requested:
+            return self._settings.embedding_model
+        if not is_allowed_embedding_model(requested):
+            raise ValueError(
+                f"Unbekanntes Embedding-Modell: {requested}. "
+                "Bitte eines der vorgegebenen Modelle wählen."
+            )
+        model = normalize_embedding_model(requested, fallback=self._settings.embedding_model)
+        if model == self._settings.embedding_model:
+            return model
+        updated = self._settings.model_copy(update={"embedding_model": model})
+        self._settings = persist_settings(updated)
+        from .dependencies import get_chat_service
+
+        try:
+            get_chat_service().update_settings(self._settings)
+        except Exception:
+            pass
+        _logger.info("Embedding-Modell für Upload gesetzt: %s", model)
+        return model
 
     def _merge_db_passwords_from_stored(self, incoming: AppSettings) -> AppSettings:
         """Leeres dbPassword im Formular ueberschreibt nicht das zuletzt gespeicherte Passwort (wie pgAdmin)."""
@@ -571,12 +787,19 @@ class IngestService:
                 "Bitte zuerst Connection Test erfolgreich ausfuehren."
             )
 
-    def _enqueue_job(self, doc_id: str, job_type: JobType) -> bool:
+    def _enqueue_job(self, doc_id: str, job_type: JobType, *, force_rechunk: bool = False) -> bool:
         """Neuen Job einreihen. False, wenn fuer doc_id bereits ein Eintrag in der Queue ist."""
         if any(j.get("docId") == doc_id for j in self._queue):
             return False
         job_id = str(uuid.uuid4())
-        self._queue.append({"jobId": job_id, "docId": doc_id, "type": job_type})
+        self._queue.append(
+            {
+                "jobId": job_id,
+                "docId": doc_id,
+                "type": job_type,
+                "forceRechunk": bool(force_rechunk),
+            }
+        )
         self._db.upsert_job(
             environment_id=self._active_environment_id(),
             job_id=job_id,
@@ -603,6 +826,7 @@ class IngestService:
         doc_id = job["docId"]
         job_id = job["jobId"]
         job_type = job["type"]
+        force_rechunk = bool(job.get("forceRechunk"))
         env_id = self._active_environment_id()
 
         doc = self._db.get_document(doc_id, env_id)
@@ -614,7 +838,9 @@ class IngestService:
             job_id=job_id, doc_id=doc_id, job_type=job_type,
             status=JobStatus.running, progress=0.05, message="Verarbeitung gestartet.",
         )
-        self._db.set_document_status(doc_id, DocumentStatus.processing)
+        self._db.set_document_status(
+            doc_id, DocumentStatus.processing, environment_id=env_id
+        )
         self._emit_progress(ProgressEventPayload(
             docId=doc_id, jobId=job_id, type=job_type,
             progress=0.05, message="Verarbeitung gestartet.", status=JobStatus.running,
@@ -627,9 +853,11 @@ class IngestService:
                 progress=0.12, message="Bestehende Vektoren bereinigt.", status=JobStatus.running,
             ))
 
-            corpus_lines = self._try_load_corpus(doc.corpus_path, doc_id)
-            if self._contains_binary_pdf(corpus_lines):
-                corpus_lines = []
+            corpus_lines: list[dict] = []
+            if not force_rechunk:
+                corpus_lines = self._try_load_corpus(doc.corpus_path, doc_id)
+                if self._contains_binary_pdf(corpus_lines):
+                    corpus_lines = []
 
             if not corpus_lines:
                 parsed = await run_in_worker_pool(
@@ -653,14 +881,19 @@ class IngestService:
                         }
                     )
                 serialized = [json.dumps(line) for line in corpus_lines]
-                self._fs.write_corpus_jsonl(doc_id, serialized)
+                self._fs.write_corpus_jsonl(
+                    doc_id,
+                    serialized,
+                    environment_id=env_id,
+                    corpus_path=doc.corpus_path or None,
+                )
 
                 if self._settings.store_markdown:
                     md = "\n\n".join(
                         f"## Chunk {line['chunkIndex']}\n\n{line['text']}"
                         for line in corpus_lines
                     )
-                    self._fs.write_corpus_markdown(doc_id, md)
+                    self._fs.write_corpus_markdown(doc_id, md, environment_id=env_id)
 
             self._emit_progress(ProgressEventPayload(
                 docId=doc_id, jobId=job_id, type=job_type,
@@ -725,7 +958,7 @@ class IngestService:
                 self._active_pg().db_table_name, doc_id, vectors, payloads,
             )
 
-            self._db.set_document_index_result(doc_id, len(vectors))
+            self._db.set_document_index_result(doc_id, len(vectors), environment_id=env_id)
             self._db.upsert_job(
                 environment_id=env_id,
                 job_id=job_id, doc_id=doc_id, job_type=job_type,
@@ -738,7 +971,7 @@ class IngestService:
 
         except Exception as exc:
             msg = str(exc)
-            self._db.set_document_status(doc_id, DocumentStatus.error, msg)
+            self._db.set_document_status(doc_id, DocumentStatus.error, msg, environment_id=env_id)
             self._db.upsert_job(
                 environment_id=env_id,
                 job_id=job_id, doc_id=doc_id, job_type=job_type,

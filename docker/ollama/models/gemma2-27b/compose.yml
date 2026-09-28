@@ -1,0 +1,17 @@
+# gemma2:27b — hohe Qualitaet, viel RAM/GPU (~16 GB)
+name: rag-ollama-gemma2-27b
+
+services:
+  ollama-gemma2-27b:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/gemma2-27b/Dockerfile
+    container_name: rag-ollama-gemma2-27b
+    restart: unless-stopped
+    ports:
+      - "11444:11434"
+    volumes:
+      - ollama_gemma2_27b_data:/root/.ollama
+
+volumes:
+  ollama_gemma2_27b_data:

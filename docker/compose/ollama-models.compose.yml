@@ -1,0 +1,124 @@
+# Einmaliges Laden von Modellen in den gemeinsamen rag-ollama-Container
+# Beispiel: docker compose -f compose.yml --profile ollama --profile model-llama32 up -d
+#           docker compose -f compose.yml --profile model-mistral run --rm ollama-pull-mistral
+services:
+  ollama-pull-llama32:
+    profiles: [model-llama32]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull llama3.2"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-llama31-8b:
+    profiles: [model-llama31-8b]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull llama3.1:8b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-mistral:
+    profiles: [model-mistral]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull mistral:7b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-gemma2:
+    profiles: [model-gemma2]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull gemma2:9b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-qwen25:
+    profiles: [model-qwen25]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull qwen2.5:7b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-qwen25-32b:
+    profiles: [model-qwen25-32b]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull qwen2.5:32b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-gemma2-27b:
+    profiles: [model-gemma2-27b]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull gemma2:27b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-phi3:
+    profiles: [model-phi3]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull phi3:mini"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-mixtral:
+    profiles: [model-mixtral]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull mixtral:8x7b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-deepseek-r1:
+    profiles: [model-deepseek-r1]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull deepseek-r1:7b"]
+    depends_on:
+      ollama:
+        condition: service_started
+
+  ollama-pull-command-r:
+    profiles: [model-command-r]
+    image: ollama/ollama:latest
+    networks: [rag-net]
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull command-r7b"]
+    depends_on:
+      ollama:
+        condition: service_started

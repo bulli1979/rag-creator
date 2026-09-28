@@ -21,11 +21,19 @@ contextBridge.exposeInMainWorld("ragApi", {
   testDatabaseConnection: (settings) => ipcRenderer.invoke("database:test-connection", settings),
   getDatabaseConnectionState: () => ipcRenderer.invoke("database:connection-state"),
   listOllamaModels: () => ipcRenderer.invoke("llm:list-ollama-models"),
+  getChatSettings: () => ipcRenderer.invoke("chat:settings:get"),
+  saveChatSettings: (settings) => ipcRenderer.invoke("chat:settings:save", settings),
   runHealthCheck: () => ipcRenderer.invoke("health:check"),
   exportDocumentsCsv: () => ipcRenderer.invoke("documents:export-csv"),
   onJobProgress: (handler) => {
     const wrappedHandler = (_event, payload) => handler(payload);
     ipcRenderer.on("jobs:progress", wrappedHandler);
     return () => ipcRenderer.removeListener("jobs:progress", wrappedHandler);
-  }
+  },
+  connectionGet: () => ipcRenderer.invoke("connection:get"),
+  connectionSave: (config) => ipcRenderer.invoke("connection:save", config),
+  connectionTest: (config) => ipcRenderer.invoke("connection:test", config),
+  listApiKeys: () => ipcRenderer.invoke("admin:keys:list"),
+  createApiKey: (label, isAdmin) => ipcRenderer.invoke("admin:keys:create", label, isAdmin),
+  revokeApiKey: (keyId) => ipcRenderer.invoke("admin:keys:revoke", keyId)
 });

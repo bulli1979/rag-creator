@@ -1,5 +1,6 @@
 const els = {
   apiBaseUrl: document.getElementById("apiBaseUrl"),
+  apiKey: document.getElementById("apiKey"),
   language: document.getElementById("language"),
   questionInput: document.getElementById("questionInput"),
   askBtn: document.getElementById("askBtn"),
@@ -11,14 +12,54 @@ const els = {
   sourcesList: document.getElementById("sourcesList"),
   historyCount: document.getElementById("historyCount"),
   historyList: document.getElementById("historyList"),
+  feedbackPanel: document.getElementById("feedbackPanel"),
+  feedbackUpBtn: document.getElementById("feedbackUpBtn"),
+  feedbackDownBtn: document.getElementById("feedbackDownBtn"),
+  feedbackComment: document.getElementById("feedbackComment"),
+  feedbackStatus: document.getElementById("feedbackStatus"),
 };
 
 const SESSION_KEY = "not_qa_console_history_v1";
+const API_KEY_STORAGE = "not_qa_api_key_v1";
 let sessionHistory = loadHistory();
+let currentRequestId = null;
+let feedbackSubmitted = false;
 renderHistory();
+
+const defaultApiFromConfig =
+  typeof window.__RAG_DEFAULT_API_URL__ === "string" && window.__RAG_DEFAULT_API_URL__.trim()
+    ? window.__RAG_DEFAULT_API_URL__.trim()
+    : "";
+if (defaultApiFromConfig) {
+  els.apiBaseUrl.value = defaultApiFromConfig;
+}
+
+const defaultKeyFromConfig =
+  typeof window.__RAG_DEFAULT_API_KEY__ === "string" && window.__RAG_DEFAULT_API_KEY__.trim()
+    ? window.__RAG_DEFAULT_API_KEY__.trim()
+    : "";
+const storedApiKey = localStorage.getItem(API_KEY_STORAGE) || "";
+els.apiKey.value = storedApiKey || defaultKeyFromConfig;
+els.apiKey.addEventListener("change", () => {
+  localStorage.setItem(API_KEY_STORAGE, els.apiKey.value.trim());
+});
+
+function apiHeaders(includeJson = true) {
+  const headers = {};
+  if (includeJson) {
+    headers["Content-Type"] = "application/json";
+  }
+  const key = els.apiKey.value.trim();
+  if (key) {
+    headers["X-API-Key"] = key;
+  }
+  return headers;
+}
 
 els.askBtn.addEventListener("click", onAsk);
 els.clearBtn.addEventListener("click", onClear);
+els.feedbackUpBtn.addEventListener("click", () => void submitFeedback(true));
+els.feedbackDownBtn.addEventListener("click", () => void submitFeedback(false));
 els.questionInput.addEventListener("keydown", (ev) => {
   if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") {
     onAsk();
@@ -35,15 +76,17 @@ async function onAsk() {
   const base = els.apiBaseUrl.value.trim().replace(/\/$/, "");
   setStatus("Querying local RAG API...");
   els.askBtn.disabled = true;
+  resetFeedbackState();
 
   try {
     const response = await fetch(`${base}/api/chat`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: apiHeaders(),
       body: JSON.stringify({
         message: question,
         history: [],
         language: els.language.value,
+        clientSource: "qa_site",
       }),
     });
 
@@ -67,7 +110,19 @@ function onClear() {
   sessionHistory = [];
   localStorage.removeItem(SESSION_KEY);
   renderHistory();
+  resetFeedbackState();
+  els.resultPanel.classList.add("hidden");
   setStatus("Session cleared.");
+}
+
+function resetFeedbackState() {
+  currentRequestId = null;
+  feedbackSubmitted = false;
+  els.feedbackComment.value = "";
+  els.feedbackStatus.textContent = "";
+  els.feedbackPanel.classList.add("hidden");
+  els.feedbackUpBtn.disabled = false;
+  els.feedbackDownBtn.disabled = false;
 }
 
 function renderResult(question, data) {
@@ -81,7 +136,53 @@ function renderResult(question, data) {
     els.sourcesList.innerHTML = '<div class="source-item">No source chunks returned.</div>';
   }
 
+  currentRequestId = data.requestId || data.request_id || null;
+  if (currentRequestId) {
+    els.feedbackPanel.classList.remove("hidden");
+  } else {
+    els.feedbackPanel.classList.add("hidden");
+  }
+
   setStatus(`Answered: ${truncate(question, 64)}`);
+}
+
+async function submitFeedback(helpful) {
+  if (!currentRequestId || feedbackSubmitted) {
+    return;
+  }
+
+  const base = els.apiBaseUrl.value.trim().replace(/\/$/, "");
+  const comment = els.feedbackComment.value.trim();
+  els.feedbackUpBtn.disabled = true;
+  els.feedbackDownBtn.disabled = true;
+  els.feedbackStatus.textContent = "Saving feedback...";
+
+  try {
+    const response = await fetch(
+      `${base}/api/chat/requests/${encodeURIComponent(currentRequestId)}/feedback`,
+      {
+        method: "POST",
+        headers: apiHeaders(),
+        body: JSON.stringify({
+          helpful,
+          comment: comment || undefined,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`API ${response.status}: ${details}`);
+    }
+
+    feedbackSubmitted = true;
+    els.feedbackStatus.textContent = "Thanks for your feedback.";
+    setStatus(helpful ? "Feedback saved: helpful." : "Feedback saved: not helpful.");
+  } catch (err) {
+    els.feedbackUpBtn.disabled = false;
+    els.feedbackDownBtn.disabled = false;
+    els.feedbackStatus.textContent = `Could not save feedback: ${err.message}`;
+  }
 }
 
 function renderSources(chunks) {
@@ -109,6 +210,7 @@ function pushHistory(question, data) {
     question,
     answer: data.answer || "",
     sourceCount: (data.contextChunks || data.context_chunks || []).length,
+    requestId: data.requestId || data.request_id || null,
   });
   sessionHistory = sessionHistory.slice(0, 50);
   localStorage.setItem(SESSION_KEY, JSON.stringify(sessionHistory));

@@ -1,0 +1,52 @@
+{
+  "activePostgresEnvironmentId": "docker",
+  "postgresEnvironments": [
+    {
+      "id": "docker",
+      "name": "Docker Postgres (pgvector)",
+      "vectorBackend": "postgres",
+      "dbHost": "postgres",
+      "dbPort": 5432,
+      "dbName": "rag",
+      "dbUser": "postgres",
+      "dbPassword": "postgres",
+      "dbSchema": "public",
+      "dbTableName": "rag_documents",
+      "sqliteFilePath": "",
+      "qdrantLocalPath": ""
+    },
+    {
+      "id": "docker-qdrant",
+      "name": "Docker Qdrant Server",
+      "vectorBackend": "qdrant_embedded",
+      "dbHost": "localhost",
+      "dbPort": 5432,
+      "dbName": "rag",
+      "dbUser": "postgres",
+      "dbPassword": "",
+      "dbSchema": "public",
+      "dbTableName": "rag_documents",
+      "sqliteFilePath": "",
+      "qdrantLocalPath": "http://qdrant:6333"
+    },
+    {
+      "id": "embedded-sqlite",
+      "name": "Embedded SQLite (ohne extra Container)",
+      "vectorBackend": "sqlite_embedded",
+      "dbHost": "localhost",
+      "dbPort": 5432,
+      "dbName": "rag",
+      "dbUser": "postgres",
+      "dbPassword": "",
+      "dbSchema": "public",
+      "dbTableName": "rag_documents",
+      "sqliteFilePath": "",
+      "qdrantLocalPath": ""
+    }
+  ],
+  "chunkSize": 900,
+  "chunkOverlap": 15,
+  "chunkOverlapUnit": "percent",
+  "embeddingModel": "paraphrase-multilingual-MiniLM-L12-v2",
+  "storeMarkdown": true
+}

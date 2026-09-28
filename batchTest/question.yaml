@@ -1,43 +1,7 @@
 # Fragen für den Batch-Chat (questionsFile).
+# Nur Einträge mit answerField (Soll-Antwort) — nötig für AC-Bewertung.
 # type: Subjective | Objective
-# answerField: optional, z. B. erwartete Kurzantwort oder Referenztext
 questions:
-  - id: q01
-    type: Subjective
-    question: What is the protocol in heavy rain? Should I wait down at the residencia until it might pass?
-  - id: q02
-    type: Subjective
-    question: What would you do if you start a 1.3 max seeing ob when the seeing is about 1", and then halfway through it shoots to 2" and stays there for a while?
-  - id: q03
-    type: Subjective
-    question: Does any of you know where I can find the "new liquid nitrogen filling report"?
-  - id: q04
-    type: Subjective
-    question: Does anyone know how to do polarimetric dome flats (I have to do morning flats)?
-  - id: q05
-    type: Subjective
-    question: Wind is constantly jumping above 15 m/s, so I need to observe downwind. Should I do the flats in a non-parked position, or is it better to potentially do morning flats, hoping that the weather will improve?
-  - id: q06
-    type: Subjective
-    question: I am trying to for Grism 20 into slot 3 and it simply seems that it does not fit. Does the different slots have different dimensions?
-  - id: q07
-    type: Subjective
-    question: Getting errors about no TCS data in database and TCS client waiting for Database server.
-  - id: q08
-    type: Subjective
-    question: Dome cooling does not switch off and staircase cooling does not start when opening hatches - any suggestions?
-  - id: q09
-    type: Subjective
-    question: Hi! I'm getting the warning "counterweights wrong for this instrument?", I've had this before and if remember right it was just some command that needed to be given to TCS but don't remember what. Help!
-  - id: q10
-    type: Subjective
-    question: Hi, for some reason the notcam buzzer just went off. I turned it off, is that ok? Should I do something else?
-  - id: q11
-    type: Subjective
-    question: If the visitors have issues with sofin, should they write fault reports on those, and who should be assigned?
-  - id: q12
-    type: Subjective
-    question: Have never used the vertical offset slit before. No clue what the mounting orientation would change, other than the ypos of the slit on the ccd
   - id: q13
     type: Objective
     question: What are the central wavelength and dispersion for the BLUENOT (G#18) VPHG grism?

@@ -1,0 +1,16 @@
+# Qdrant Server (optional)
+services:
+  qdrant:
+    profiles: [qdrant, datastores, full]
+    image: qdrant/qdrant:v1.13.4
+    container_name: rag-qdrant
+    restart: unless-stopped
+    networks: [rag-net]
+    ports:
+      - "${QDRANT_PORT:-6333}:6333"
+      - "${QDRANT_GRPC_PORT:-6334}:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  qdrant_data:

@@ -1,0 +1,17 @@
+# qwen2.5:32b — starke Qualitaet DE/EN, viel RAM/GPU (~20 GB)
+name: rag-ollama-qwen25-32b
+
+services:
+  ollama-qwen25-32b:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/qwen2.5-32b/Dockerfile
+    container_name: rag-ollama-qwen25-32b
+    restart: unless-stopped
+    ports:
+      - "11443:11434"
+    volumes:
+      - ollama_qwen25_32b_data:/root/.ollama
+
+volumes:
+  ollama_qwen25_32b_data:

@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from .models import AppSettings, ChatSettings, PostgresEnvironment
+from .models import AppSettings, ChatSettings, PostgresEnvironment, migrate_overlap_value_to_percent
 
 
 def _default_app_settings() -> AppSettings:
@@ -14,6 +14,8 @@ def _default_app_settings() -> AppSettings:
             PostgresEnvironment(
                 environment_id="default",
                 name="Standard",
+                family_id="default",
+                family_name="Standard",
                 vector_backend="postgres",
                 db_host="localhost",
                 db_port=5432,
@@ -24,11 +26,15 @@ def _default_app_settings() -> AppSettings:
                 db_table_name="rag_documents",
                 sqlite_file_path="",
                 qdrant_local_path="",
+                embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
+                chunk_size=900,
+                chunk_overlap=15,
+                is_matrix_variant=False,
             )
         ],
         chunk_size=900,
-        chunk_overlap=150,
-        embedding_model="all-MiniLM-L6-v2",
+        chunk_overlap=15,
+        embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
         store_markdown=True,
     )
 
@@ -95,6 +101,22 @@ _LEGACY_DB_KEYS = frozenset(
 def _migrate_settings_dict(data: dict) -> dict:
     """Alte flache DB-Felder in postgresEnvironments / activePostgresEnvironmentId ueberfuehren."""
     envs = data.get("postgresEnvironments")
+    global_emb = str(data.get("embeddingModel") or "paraphrase-multilingual-MiniLM-L12-v2")
+    try:
+        global_chunk = int(data.get("chunkSize") or 900)
+    except (TypeError, ValueError):
+        global_chunk = 900
+    try:
+        raw_global_overlap = int(data.get("chunkOverlap") if data.get("chunkOverlap") is not None else 15)
+    except (TypeError, ValueError):
+        raw_global_overlap = 15
+    already_percent = str(data.get("chunkOverlapUnit") or "").lower() == "percent"
+    global_overlap = (
+        max(0, min(90, raw_global_overlap))
+        if already_percent
+        else migrate_overlap_value_to_percent(raw_global_overlap, global_chunk)
+    )
+
     if isinstance(envs, list) and len(envs) > 0:
         merged = {**data}
         active = merged.get("activePostgresEnvironmentId")
@@ -104,6 +126,43 @@ def _migrate_settings_dict(data: dict) -> dict:
                 merged["activePostgresEnvironmentId"] = str(first["id"])
             else:
                 merged["activePostgresEnvironmentId"] = "default"
+        # Pro-Env family/embedding/chunk nachziehen
+        fixed_envs: list[dict] = []
+        for env in envs:
+            if not isinstance(env, dict):
+                continue
+            e = dict(env)
+            eid = str(e.get("id") or "default")
+            if not str(e.get("familyId") or "").strip():
+                e["familyId"] = eid
+            if not str(e.get("familyName") or "").strip():
+                e["familyName"] = str(e.get("name") or eid)
+            if not str(e.get("embeddingModel") or "").strip():
+                e["embeddingModel"] = global_emb
+            if e.get("chunkSize") is None or e.get("chunkSize") == "":
+                e["chunkSize"] = global_chunk
+            try:
+                env_chunk = int(e.get("chunkSize") or global_chunk)
+            except (TypeError, ValueError):
+                env_chunk = global_chunk
+            if e.get("chunkOverlap") is None or e.get("chunkOverlap") == "":
+                e["chunkOverlap"] = global_overlap
+            else:
+                try:
+                    raw_ov = int(e.get("chunkOverlap"))
+                except (TypeError, ValueError):
+                    raw_ov = global_overlap
+                e["chunkOverlap"] = (
+                    max(0, min(90, raw_ov))
+                    if already_percent
+                    else migrate_overlap_value_to_percent(raw_ov, env_chunk)
+                )
+            if "isMatrixVariant" not in e:
+                e["isMatrixVariant"] = False
+            fixed_envs.append(e)
+        merged["postgresEnvironments"] = fixed_envs
+        merged["chunkOverlap"] = global_overlap
+        merged["chunkOverlapUnit"] = "percent"
         return merged
 
     defaults = _DEFAULT_SETTINGS.model_dump(by_alias=True)
@@ -111,6 +170,8 @@ def _migrate_settings_dict(data: dict) -> dict:
     env = {
         "id": "default",
         "name": str(merged_flat.get("environmentDisplayName") or "Standard"),
+        "familyId": "default",
+        "familyName": str(merged_flat.get("environmentDisplayName") or "Standard"),
         "dbHost": merged_flat.get("dbHost", "localhost"),
         "dbPort": int(merged_flat.get("dbPort", 5432)),
         "dbName": merged_flat.get("dbName", "rag"),
@@ -118,6 +179,10 @@ def _migrate_settings_dict(data: dict) -> dict:
         "dbPassword": merged_flat.get("dbPassword", ""),
         "dbSchema": merged_flat.get("dbSchema", "public"),
         "dbTableName": merged_flat.get("dbTableName", "rag_documents"),
+        "embeddingModel": global_emb,
+        "chunkSize": global_chunk,
+        "chunkOverlap": global_overlap,
+        "isMatrixVariant": False,
     }
     rest = {
         k: v
@@ -126,6 +191,8 @@ def _migrate_settings_dict(data: dict) -> dict:
     }
     rest["postgresEnvironments"] = [env]
     rest["activePostgresEnvironmentId"] = "default"
+    rest["chunkOverlap"] = global_overlap
+    rest["chunkOverlapUnit"] = "percent"
     return rest
 
 
@@ -145,11 +212,14 @@ def load_settings() -> AppSettings:
 def save_settings(settings: AppSettings) -> AppSettings:
     settings_path = get_app_paths()["settings"]
     settings_path.parent.mkdir(parents=True, exist_ok=True)
+    synced = settings.sync_globals_from_active_env()
+    payload = synced.model_dump(by_alias=True)
+    payload["chunkOverlapUnit"] = "percent"
     settings_path.write_text(
-        json.dumps(settings.model_dump(by_alias=True), indent=2, ensure_ascii=False),
+        json.dumps(payload, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-    return settings
+    return synced
 
 
 def get_chat_settings_path() -> Path:

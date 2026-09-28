@@ -1,0 +1,17 @@
+# phi3:mini — sehr schnell, wenig RAM (~2.3 GB)
+name: rag-ollama-phi3
+
+services:
+  ollama-phi3:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/phi3-mini/Dockerfile
+    container_name: rag-ollama-phi3
+    restart: unless-stopped
+    ports:
+      - "11439:11434"
+    volumes:
+      - ollama_phi3_data:/root/.ollama
+
+volumes:
+  ollama_phi3_data:

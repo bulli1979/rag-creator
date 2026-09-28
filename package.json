@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
+    "adminWeb",
     "documentHandling/apps/*",
     "documentHandling/packages/*",
     "chatBot/apps/*",
@@ -21,7 +22,10 @@
     "dev:chat-renderer": "npm run dev --workspace @ragchat/renderer",
     "dev:chat-main": "wait-on tcp:5174 && npm run dev --workspace @ragchat/main",
     "build:chat": "npm run build --workspace @ragchat/renderer && npm run build --workspace @ragchat/main",
-    "start:chat": "npm run build:chat && npm run start --workspace @ragchat/main"
+    "start:chat": "npm run build:chat && npm run start --workspace @ragchat/main",
+    "dev:admin-web": "npm run dev --workspace @rag/admin-web",
+    "build:admin-web": "npm run build --workspace @rag/admin-web",
+    "preview:admin-web": "npm run preview --workspace @rag/admin-web"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

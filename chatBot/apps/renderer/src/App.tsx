@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import type { ChatMessage, ChatSettings, ContextChunk, ChatResponse } from "@ragchat/shared";
 import { useI18n } from "./i18n";
+import { useConnection } from "./ConnectionGate";
 
 interface DisplayMessage {
   role: "user" | "assistant";
   content: string;
   sources?: ContextChunk[];
   metrics?: ChatResponse["metrics"];
+  requestId?: string;
+  feedbackSubmitted?: boolean;
+  feedbackHelpful?: boolean;
 }
 
 interface ChatEnvSettings {
@@ -31,6 +35,9 @@ const DEFAULT_SETTINGS: ChatSettings = {
   temperature: 0.3,
   maxTokens: 2048,
   topK: 5,
+  rerankSimilarityWeight: 0.9,
+  rerankLexicalWeight: 0.05,
+  rerankNumericWeight: 0.05,
   systemPrompt:
     "You are a helpful assistant that answers questions based on provided documents. Always cite the source file name when possible. Be precise and thorough.",
   encryptionKey: ""
@@ -38,6 +45,7 @@ const DEFAULT_SETTINGS: ChatSettings = {
 
 export default function App() {
   const { t, locale, setLocale } = useI18n();
+  const { reopenConnectionSetup } = useConnection();
   const [messages, setMessages] = useState<DisplayMessage[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +54,8 @@ export default function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [appSettings, setAppSettings] = useState<ChatEnvSettings | null>(null);
   const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
+  const [feedbackComments, setFeedbackComments] = useState<Record<number, string>>({});
+  const [feedbackSubmittingIndex, setFeedbackSubmittingIndex] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -187,7 +197,8 @@ export default function App() {
         role: "assistant",
         content: response.answer,
         sources: response.contextChunks,
-        metrics: response.metrics
+        metrics: response.metrics,
+        requestId: response.requestId
       };
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (err) {
@@ -217,6 +228,35 @@ export default function App() {
 
   function clearChat(): void {
     setMessages([]);
+    setFeedbackComments({});
+  }
+
+  async function submitFeedback(messageIndex: number, helpful: boolean): Promise<void> {
+    const msg = messages[messageIndex];
+    if (!msg?.requestId || msg.feedbackSubmitted || feedbackSubmittingIndex !== null) {
+      return;
+    }
+
+    setFeedbackSubmittingIndex(messageIndex);
+    try {
+      const comment = feedbackComments[messageIndex]?.trim();
+      await window.chatApi.submitFeedback(msg.requestId, {
+        helpful,
+        comment: comment || undefined
+      });
+      setMessages((prev) =>
+        prev.map((entry, idx) =>
+          idx === messageIndex
+            ? { ...entry, feedbackSubmitted: true, feedbackHelpful: helpful }
+            : entry
+        )
+      );
+      showNotification("success", t("chat.feedback.thanks"));
+    } catch (err) {
+      showNotification("error", `${t("chat.feedback.error")}: ${err}`);
+    } finally {
+      setFeedbackSubmittingIndex(null);
+    }
   }
 
   function formatElapsed(ms: number | undefined): string {
@@ -358,6 +398,9 @@ export default function App() {
           <button className="btn btn-danger" onClick={clearChat}>
             {t("sidebar.clearChat")}
           </button>
+          <button className="btn btn-ghost" type="button" onClick={reopenConnectionSetup}>
+            API-Verbindung
+          </button>
         </div>
 
         <div className="status-indicator">
@@ -384,15 +427,41 @@ export default function App() {
               <div className="message-avatar">{msg.role === "user" ? t("chat.you") : t("chat.ai")}</div>
               <div className="message-content">
                 {msg.role === "assistant" && (
-                  <button
-                    type="button"
-                    className={`copy-result-btn ${copiedMessageIndex === idx ? "copied" : ""}`}
-                    onClick={() => void copyMessageContent(msg.content, idx)}
-                    title="Ergebnis kopieren"
-                    aria-label="Ergebnis kopieren"
-                  >
-                    {copiedMessageIndex === idx ? "✓" : "📋"}
-                  </button>
+                  <div className="message-actions">
+                    <button
+                      type="button"
+                      className={`copy-result-btn ${copiedMessageIndex === idx ? "copied" : ""}`}
+                      onClick={() => void copyMessageContent(msg.content, idx)}
+                      title={t("chat.copy")}
+                      aria-label={t("chat.copy")}
+                    >
+                      {copiedMessageIndex === idx ? "✓" : "📋"}
+                    </button>
+                    {msg.requestId && (
+                      <>
+                        <button
+                          type="button"
+                          className={`feedback-btn ${msg.feedbackSubmitted && msg.feedbackHelpful === true ? "active positive" : ""}`}
+                          onClick={() => void submitFeedback(idx, true)}
+                          disabled={msg.feedbackSubmitted || feedbackSubmittingIndex === idx}
+                          title={t("chat.feedback.helpful")}
+                          aria-label={t("chat.feedback.helpful")}
+                        >
+                          👍
+                        </button>
+                        <button
+                          type="button"
+                          className={`feedback-btn ${msg.feedbackSubmitted && msg.feedbackHelpful === false ? "active negative" : ""}`}
+                          onClick={() => void submitFeedback(idx, false)}
+                          disabled={msg.feedbackSubmitted || feedbackSubmittingIndex === idx}
+                          title={t("chat.feedback.notHelpful")}
+                          aria-label={t("chat.feedback.notHelpful")}
+                        >
+                          👎
+                        </button>
+                      </>
+                    )}
+                  </div>
                 )}
                 {msg.content}
                 {msg.sources && msg.sources.length > 0 && (
@@ -439,6 +508,29 @@ export default function App() {
                     {typeof msg.metrics.tokensPerSecond === "number"
                       ? msg.metrics.tokensPerSecond.toFixed(2)
                       : "0.00"}
+                  </div>
+                )}
+                {msg.role === "assistant" && msg.requestId && !msg.feedbackSubmitted && (
+                  <div className="message-feedback">
+                    <label className="feedback-label" htmlFor={`feedback-comment-${idx}`}>
+                      {t("chat.feedback.commentLabel")}
+                    </label>
+                    <textarea
+                      id={`feedback-comment-${idx}`}
+                      className="feedback-comment"
+                      rows={2}
+                      value={feedbackComments[idx] ?? ""}
+                      placeholder={t("chat.feedback.commentPlaceholder")}
+                      onChange={(e) =>
+                        setFeedbackComments((prev) => ({ ...prev, [idx]: e.target.value }))
+                      }
+                      disabled={feedbackSubmittingIndex === idx}
+                    />
+                  </div>
+                )}
+                {msg.role === "assistant" && msg.feedbackSubmitted && (
+                  <div className="message-feedback submitted">
+                    {t("chat.feedback.submitted")}
                   </div>
                 )}
               </div>

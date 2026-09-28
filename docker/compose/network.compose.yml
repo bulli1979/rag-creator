@@ -1,0 +1,10 @@
+networks:
+  rag-net:
+    name: rag-net
+    driver: bridge
+
+volumes:
+  rag_api_data:
+  postgres_data:
+  qdrant_data:
+  ollama_data:

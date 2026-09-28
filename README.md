@@ -10,9 +10,11 @@ Desktop-Stack (Electron + React + TypeScript + FastAPI) fuer lokale Dokument-Ing
   - `postgres` (pgvector)
   - `sqlite_embedded` (ohne separaten Server)
   - `qdrant_embedded` (lokaler Qdrant-Speicherordner, ohne separaten Server)
+- **Umgebungs-Familien / Matrix:** Embedding × Chunk-Size × Overlap (%) als Instanzen einer Familie; Indexierung pro Instanz oder sequentiell fuer die ganze Familie
 - Lokale Index-DB in SQLite (`index.sqlite`) fuer Dokument-/Job-Metadaten
 - Editierbarer Corpus als JSONL (optional Markdown)
-- Reindex pro Dokument, Bulk und "Alle neu indexieren"
+- Reindex pro Dokument, Bulk, "Alle neu indexieren" und **Familie indexieren**
+- **adminWeb:** Browser-Admin (Dokumente, Modelle, Settings, Bulktest) gegen die documentApi
 - Chat-UI mit Quellenlinks (extern) und Antwort-Metriken (Dauer, Tokens, Tokens/s)
 
 ## Monorepo Struktur
@@ -20,9 +22,11 @@ Desktop-Stack (Electron + React + TypeScript + FastAPI) fuer lokale Dokument-Ing
 ```text
 documentHandling/    Dokumentverwaltung + Ingestion UI (Electron)
 chatBot/             Chat UI (Electron)
+adminWeb/            Browser-Admin UI (Vite/React) fuer documentApi
 documentApi/         FastAPI Backend + Worker + Vector Stores
 scripts/             Startskripte (u. a. documentApi Runner)
 batchTest/           Batch-Chat gegen die API + Excel-Export (Python)
+docker/              Optionaler Compose-Stack
 ```
 
 ## Systemdiagramm (Ingest + Reindex)
@@ -64,85 +68,11 @@ flowchart LR
 7. **Rueckmeldung an die UI**  
    Der Main Process aktualisiert Job-/Dokumentstatus in SQLite und liefert den Fortschritt zurueck an die UI, damit Dashboard und Corpus Viewer den aktuellen Stand anzeigen.
 
-## Voraussetzungen
+## Installation & Start
 
-- Node.js 20+
-- Python 3.10+
-- Docker (optional, nur fuer Postgres/pgvector)
+Einrichtung, Entwicklungsstart, API-Keys und Production-Build: **[install.md](install.md)** (Englisch: [install.en.md](install.en.md))
 
-## 1) Postgres (pgvector) lokal starten
-
-```bash
-docker run --name rag-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=rag -p 5432:5432 -d pgvector/pgvector:pg16
-```
-
-Danach ist Postgres auf `localhost:5432` erreichbar.
-
-## 2) documentApi Python-Umgebung einrichten
-
-Im Verzeichnis `documentApi`:
-
-```bash
-python -m venv .venv
-# Windows (PowerShell):
-.venv\Scripts\Activate.ps1
-# macOS/Linux:
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-Wichtig: Alle API-Abhaengigkeiten (z. B. `qdrant-client`) in genau dieser venv installieren:
-
-```bash
-documentApi\.venv\Scripts\python.exe -m pip install -r documentApi/requirements.txt
-```
-
-## 3) Node Dependencies installieren
-
-Im Repository-Root:
-
-```bash
-npm install
-```
-
-## 4) Development starten
-
-Im Repository-Root:
-
-```bash
-npm run dev
-```
-
-Das startet:
-
-- **documentApi** (FastAPI/Uvicorn) auf `http://127.0.0.1:8000`
-- Vite Renderer auf `http://localhost:5173`
-- Electron Main Process (startet erst, wenn Renderer **und** Port 8000 bereit sind)
-
-Nur die API in einem eigenen Terminal: `npm run dev:api`
-
-Hinweis zu `qdrant_embedded`: Der API-Runner startet standardmaessig **ohne** `uvicorn --reload`, da der Qdrant-Ordner exklusiv gelockt wird.  
-Reload nur explizit aktivieren:
-
-```bash
-# PowerShell
-$env:DOCUMENT_API_RELOAD="1"
-npm run dev:api
-```
-
-## 5) Production Build
-
-```bash
-npm run build
-```
-
-## 6) Produktionsstart
-
-```bash
-npm run start
-```
-
-Das Skript baut zuerst Renderer + Main und startet danach Electron im Production-Modus.
+Docker-Stack (optional): **[docker/README.md](docker/README.md)**
 
 ## Datenablage / Offline Verhalten
 
@@ -166,8 +96,11 @@ Unterstruktur:
 - **Upload** per Picker oder Drag & Drop
 - **Corpus Viewer** (editierbar), Speichern + Reindex
 - **Settings** pro Umgebung inkl. Backend-Auswahl (`postgres`, `sqlite_embedded`, `qdrant_embedded`)
+- **Umgebungs-Matrix:** Familien mit mehreren Instanzen (Embedding/Chunk/Overlap-%); Anzeige der Instanzanzahl; speichern der Matrix legt die Instanzen an (ohne Auto-Index)
+- **Familie indexieren:** sequentiell alle Instanzen einer Familie neu chunken/embedden
 - **Connection Test** backend-spezifisch (Postgres/SQLite/Qdrant)
 - **CSV Export** der Dokumentliste
+- **adminWeb Bulktest:** Fragen-Dateien, LLM-Judge (inkl. Claim-Level), Test-Profile speichern, Familien-Sequenzlauf mit Fortschritt/`familyRunId`
 - **Chat** mit Quellenanzeige, "Website"-Button (externer Browser), Copy-Button und Antwort-Metriken
 
 ## batchTest (Batch-Chat + Excel)

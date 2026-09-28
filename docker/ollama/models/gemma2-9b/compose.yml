@@ -1,0 +1,17 @@
+# gemma2:9b — effizient, solide Fakten (~5.5 GB)
+name: rag-ollama-gemma2
+
+services:
+  ollama-gemma2:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/gemma2-9b/Dockerfile
+    container_name: rag-ollama-gemma2
+    restart: unless-stopped
+    ports:
+      - "11437:11434"
+    volumes:
+      - ollama_gemma2_data:/root/.ollama
+
+volumes:
+  ollama_gemma2_data:

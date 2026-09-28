@@ -32,8 +32,32 @@ class FileStore:
         self._files_dir = files_dir
         self._corpus_dir = corpus_dir
 
-    def get_corpus_path(self, doc_id: str) -> str:
+    def get_corpus_path(self, doc_id: str, environment_id: str | None = None) -> str:
+        if environment_id:
+            env_dir = self._corpus_dir / to_safe_file_name(environment_id)
+            env_dir.mkdir(parents=True, exist_ok=True)
+            return str(env_dir / f"{doc_id}.jsonl")
         return str(self._corpus_dir / f"{doc_id}.jsonl")
+
+    def write_corpus_jsonl(
+        self, doc_id: str, lines: list[str], *, environment_id: str | None = None, corpus_path: str | None = None
+    ) -> str:
+        path = corpus_path or self.get_corpus_path(doc_id, environment_id)
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return path
+
+    def write_corpus_markdown(
+        self, doc_id: str, markdown: str, *, environment_id: str | None = None
+    ) -> str:
+        if environment_id:
+            env_dir = self._corpus_dir / to_safe_file_name(environment_id)
+            env_dir.mkdir(parents=True, exist_ok=True)
+            md_path = str(env_dir / f"{doc_id}.md")
+        else:
+            md_path = str(self._corpus_dir / f"{doc_id}.md")
+        Path(md_path).write_text(markdown, encoding="utf-8")
+        return md_path
 
     def copy_to_managed_storage(
         self, source_path: str, file_bytes: bytes | None = None
@@ -64,20 +88,16 @@ class FileStore:
             "sizeBytes": len(content),
         }
 
-    def write_corpus_jsonl(self, doc_id: str, lines: list[str]) -> str:
-        corpus_path = self.get_corpus_path(doc_id)
-        Path(corpus_path).write_text("\n".join(lines) + "\n", encoding="utf-8")
-        return corpus_path
-
-    def write_corpus_markdown(self, doc_id: str, markdown: str) -> str:
-        md_path = str(self._corpus_dir / f"{doc_id}.md")
-        Path(md_path).write_text(markdown, encoding="utf-8")
-        return md_path
-
     def read_text_file(self, file_path: str) -> str:
         return Path(file_path).read_text(encoding="utf-8")
 
-    def delete_document_artifacts(self, doc_id: str) -> None:
+    def delete_document_artifacts(self, doc_id: str, *, environment_id: str | None = None) -> None:
+        if environment_id:
+            corpus_path = Path(self.get_corpus_path(doc_id, environment_id))
+            md_path = corpus_path.with_suffix(".md")
+            corpus_path.unlink(missing_ok=True)
+            md_path.unlink(missing_ok=True)
+            return
         file_dir = self._files_dir / doc_id
         corpus_path = self._corpus_dir / f"{doc_id}.jsonl"
         md_path = self._corpus_dir / f"{doc_id}.md"

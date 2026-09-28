@@ -488,10 +488,17 @@ def _active_env_display(settings: dict[str, Any]) -> tuple[str, str]:
     return eid, (name if name else "—")
 
 
-def print_environment_ids_for_copy(base_url: str, timeout: float) -> None:
+def _document_api_headers(api_key: str = "") -> dict[str, str]:
+    key = str(api_key or "").strip()
+    if not key:
+        return {}
+    return {"X-API-Key": key}
+
+
+def print_environment_ids_for_copy(base_url: str, timeout: float, api_key: str = "") -> None:
     """Ruft GET /api/settings ab und gibt Umgebungs-IDs übersichtlich und rein zeilenweise aus (zum Kopieren)."""
     base = str(base_url or "").rstrip("/")
-    with httpx.Client(base_url=base, timeout=timeout) as client:
+    with httpx.Client(base_url=base, timeout=timeout, headers=_document_api_headers(api_key)) as client:
         r = client.get("/api/settings")
         if r.status_code != 200:
             print(f"GET /api/settings fehlgeschlagen: {r.status_code} {r.text}", file=sys.stderr)
@@ -577,9 +584,10 @@ def main() -> None:
     cfg = load_config(config_path)
     base = str(cfg.get("apiBaseUrl") or "http://localhost:8000").rstrip("/")
     timeout = float(cfg.get("requestTimeoutSeconds") or 300)
+    api_key = str(cfg.get("apiKey") or cfg.get("api_key") or "").strip()
 
     if args.list_environments:
-        print_environment_ids_for_copy(base, timeout)
+        print_environment_ids_for_copy(base, timeout, api_key)
         raise SystemExit(0)
 
     questions: list[dict[str, Any]] = []
@@ -681,7 +689,7 @@ def main() -> None:
     run_env_id = ""
     run_env_name = "—"
 
-    with httpx.Client(base_url=base, timeout=timeout) as client:
+    with httpx.Client(base_url=base, timeout=timeout, headers=_document_api_headers(api_key)) as client:
         if apply_app_effective and app_overlay:
             ra = client.get("/api/settings")
             if ra.status_code != 200:
@@ -831,6 +839,7 @@ def main() -> None:
                     question_type=qtype,
                     max_retries=int(jc["maxRetries"]),
                     retry_sleep_sec=float(jc["retrySleepSec"]),
+                    claim_level=bool(jc.get("claimLevel", True)),
                 )
                 off = len(RESULT_HEADERS_CORE)
                 row[off] = judged["answer_relevance"] if judged["answer_relevance"] is not None else ""

@@ -1,0 +1,17 @@
+# llama3.2 — schnelles Standardmodell (~2 GB)
+name: rag-ollama-llama32
+
+services:
+  ollama-llama32:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/llama3.2/Dockerfile
+    container_name: rag-ollama-llama32
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_llama32_data:/root/.ollama
+
+volumes:
+  ollama_llama32_data:

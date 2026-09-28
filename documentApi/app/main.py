@@ -10,16 +10,19 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .chat_service import ChatService
+from .auth import api_key_auth_middleware, set_api_key_service as set_auth_api_key_service
+from .api_key_service import ApiKeyService
 from .config import ensure_directories, get_app_paths, load_settings
 from .crypto_service import CryptoService
 from .database import IndexDatabase
-from .dependencies import set_chat_service, set_ingest_service
+from .chat_service import ChatService
+from .dependencies import set_api_key_service, set_chat_service, set_index_database, set_ingest_service
 from .file_store import FileStore
 from .ingest_service import IngestService
-from .routers import chat, corpus, documents, health, jobs, llm, settings
+from .routers import admin, admin_web, auth, batch_test, chat, corpus, documents, health, jobs, llm, settings
 from .services.thread_pool import init_thread_pool, shutdown_thread_pool
 from .vector_store.factory import create_vector_store
+from .batch_test_service import BatchTestService, set_batch_test_service
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
@@ -32,6 +35,7 @@ async def lifespan(app: FastAPI):
         paths = get_app_paths()
         app_settings = load_settings()
         db = IndexDatabase(paths["database"])
+        set_index_database(db)
         fs = FileStore(paths["files"], paths["corpus"])
         vs = create_vector_store(app_settings.get_active_postgres(), paths["base"])
 
@@ -39,11 +43,17 @@ async def lifespan(app: FastAPI):
         await svc.initialize()
         set_ingest_service(svc)
 
+        api_key_svc = ApiKeyService(db)
+        api_key_svc.ensure_bootstrap_keys()
+        set_api_key_service(api_key_svc)
+        set_auth_api_key_service(api_key_svc)
+
         crypto = CryptoService()
         # Nach initialize() zeigt IngestService ggf. einen neuen Vector-Store (load_settings + _rebuild).
-        chat_svc = ChatService(svc._vs, crypto)
+        chat_svc = ChatService(svc._vs, crypto, db)
         chat_svc.update_settings(svc.get_settings())
         set_chat_service(chat_svc)
+        set_batch_test_service(BatchTestService(chat_svc, db))
 
         yield
     finally:
@@ -63,7 +73,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.middleware("http")(api_key_auth_middleware)
 
+app.include_router(auth.router)
+app.include_router(admin.router)
+app.include_router(admin_web.router)
 app.include_router(documents.router)
 app.include_router(corpus.router)
 app.include_router(settings.router)
@@ -71,6 +85,7 @@ app.include_router(health.router)
 app.include_router(jobs.router)
 app.include_router(chat.router)
 app.include_router(llm.router)
+app.include_router(batch_test.router)
 
 
 @app.get("/")

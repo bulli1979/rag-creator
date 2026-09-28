@@ -14,6 +14,17 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/llm", tags=["llm"])
 
 
+@router.get("/embedding-models")
+async def list_embedding_models_endpoint():
+    """Kuratierte Embedding-Modelle (Sentence-Transformers, 384-dim, fuer Upload/Settings)."""
+    from ..embedding_models import DEFAULT_EMBEDDING_MODEL, list_embedding_models
+
+    return {
+        "defaultModelId": DEFAULT_EMBEDDING_MODEL,
+        "models": list_embedding_models(),
+    }
+
+
 @router.get("/ollama/models")
 async def list_ollama_models(svc: ChatService = Depends(get_chat_service)):
     """

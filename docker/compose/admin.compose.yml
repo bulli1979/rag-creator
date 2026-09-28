@@ -1,0 +1,12 @@
+# Admin-Web (Document Handling UI im Browser)
+services:
+  admin-web:
+    profiles: [admin, full]
+    container_name: rag-admin-web
+    build:
+      context: ../..
+      dockerfile: docker/admin/Dockerfile
+    restart: unless-stopped
+    networks: [rag-net]
+    ports:
+      - "${ADMIN_WEB_PORT:-8081}:80"

@@ -33,12 +33,14 @@ def write_json(payload: Dict[str, Any], exit_code: int = 0) -> None:
 
 
 def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
+    """chunk_overlap: absolute Zeichen."""
     normalized = " ".join(text.replace("\r", "\n").split())
     if not normalized:
         return []
     chunks: List[str] = []
     cursor = 0
-    step_size = max(1, chunk_size - chunk_overlap)
+    overlap = max(0, min(max(0, chunk_size - 1), int(chunk_overlap)))
+    step_size = max(1, chunk_size - overlap)
     while cursor < len(normalized):
         chunk = normalized[cursor : cursor + chunk_size].strip()
         if chunk:
@@ -47,7 +49,14 @@ def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> List[str]:
     return chunks
 
 
+def overlap_chars_from_percent(chunk_size: int, overlap_percent: int) -> int:
+    size = max(1, int(chunk_size or 1))
+    pct = max(0, min(90, int(overlap_percent)))
+    return max(0, min(size - 1, int(size * pct / 100)))
+
+
 def parse_document(input_path: str, chunk_size: int, chunk_overlap: int) -> Dict[str, Any]:
+    """chunk_overlap wird als Prozent der Chunk-Größe interpretiert (0–90)."""
     if not os.path.exists(input_path):
         return {"ok": False, "error": f"Datei nicht gefunden: {input_path}"}
 
@@ -95,7 +104,7 @@ def parse_document(input_path: str, chunk_size: int, chunk_overlap: int) -> Dict
             "error": "Parsing fehlgeschlagen: PDF-Binaerdaten erkannt statt extrahiertem Text.",
         }
 
-    chunks = chunk_text(text, chunk_size, chunk_overlap)
+    chunks = chunk_text(text, chunk_size, overlap_chars_from_percent(chunk_size, chunk_overlap))
     chunk_objects: List[Dict[str, Any]] = []
     for chunk_index, chunk_text_value in enumerate(chunks):
         chunk_objects.append(
@@ -191,7 +200,7 @@ def main() -> None:
             parse_document(
                 input_path=str(payload.get("inputPath", "")),
                 chunk_size=int(payload.get("chunkSize", 900)),
-                chunk_overlap=int(payload.get("chunkOverlap", 150)),
+                chunk_overlap=int(payload.get("chunkOverlap", 15)),
             )
         )
     elif command == "embed":

@@ -7,5 +7,10 @@ contextBridge.exposeInMainWorld("chatApi", {
   healthCheck: () => ipcRenderer.invoke("chat:health"),
   getSettings: () => ipcRenderer.invoke("settings:get"),
   saveSettings: (settings) => ipcRenderer.invoke("settings:save", settings),
-  openExternal: (url) => ipcRenderer.invoke("shell:open-external", url)
+  openExternal: (url) => ipcRenderer.invoke("shell:open-external", url),
+  submitFeedback: (requestId, feedback) =>
+    ipcRenderer.invoke("chat:feedback:submit", requestId, feedback),
+  connectionGet: () => ipcRenderer.invoke("connection:get"),
+  connectionSave: (config) => ipcRenderer.invoke("connection:save", config),
+  connectionTest: (config) => ipcRenderer.invoke("connection:test", config)
 });

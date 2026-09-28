@@ -1,0 +1,13 @@
+# Build-Kontext fuer docker/backend und docker/chat (Repository-Root)
+.git
+**/node_modules
+**/.venv
+**/venv
+**/__pycache__
+**/*.sqlite
+**/dist
+documentHandling
+chatBot
+batchTest
+stitch_knowledgeai_enterprise_platform
+*.log

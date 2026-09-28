@@ -25,10 +25,15 @@ async def upload_documents(
     files: list[UploadFile] = File(...),
     tags: str = Form(""),
     source: str = Form("lokal"),
+    embeddingModel: str = Form(""),
     svc: IngestService = Depends(get_ingest_service),
 ):
     tag_list = [t.strip() for t in tags.split(",") if t.strip()] if tags else []
-    options = UploadOptions(tags=tag_list, source=source or "lokal")
+    options = UploadOptions(
+        tags=tag_list,
+        source=source or "lokal",
+        embeddingModel=(embeddingModel or "").strip() or None,
+    )
 
     file_tuples: list[tuple[str, bytes]] = []
     for f in files:
@@ -38,6 +43,8 @@ async def upload_documents(
     try:
         result = await svc.add_documents(file_tuples, options)
     except RuntimeError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:
         _logger.exception("upload_documents")
@@ -53,7 +60,11 @@ async def upload_folder_path(
     body: UploadFolderRequest,
     svc: IngestService = Depends(get_ingest_service),
 ):
-    options = UploadOptions(tags=body.tags, source=body.source or "lokal")
+    options = UploadOptions(
+        tags=body.tags,
+        source=body.source or "lokal",
+        embeddingModel=body.embedding_model,
+    )
     try:
         result, file_count, next_offset, done = await svc.add_documents_from_folder_path(
             body.folder_path,
@@ -122,6 +133,37 @@ async def reindex_documents_bulk(
     doc_ids = body.get("docIds", [])
     await svc.reindex_documents(doc_ids)
     return {"ok": True}
+
+
+@router.post("/family-reindex")
+async def start_family_reindex(
+    body: dict | None = None,
+    svc: IngestService = Depends(get_ingest_service),
+):
+    payload = body or {}
+    try:
+        return await svc.start_family_reindex(
+            family_id=(payload.get("familyId") or "").strip() or None,
+            source_environment_id=(payload.get("sourceEnvironmentId") or "").strip() or None,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.get("/family-reindex/status")
+async def family_reindex_status(svc: IngestService = Depends(get_ingest_service)):
+    status = svc.get_family_reindex_status()
+    return status or {"status": "idle"}
+
+
+@router.post("/family-reindex/cancel")
+async def cancel_family_reindex(svc: IngestService = Depends(get_ingest_service)):
+    ok = svc.cancel_family_reindex()
+    if not ok:
+        raise HTTPException(status_code=404, detail="Kein laufender Familien-Reindex.")
+    return svc.get_family_reindex_status() or {"ok": True}
 
 
 @router.get("/export/csv")

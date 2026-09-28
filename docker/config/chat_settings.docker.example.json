@@ -1,0 +1,13 @@
+{
+  "llmApiKey": "ollama",
+  "llmBaseUrl": "http://ollama:11434/v1",
+  "llmModel": "llama3.2",
+  "temperature": 0.3,
+  "maxTokens": 2048,
+  "topK": 5,
+  "rerankSimilarityWeight": 0.9,
+  "rerankLexicalWeight": 0.05,
+  "rerankNumericWeight": 0.05,
+  "systemPrompt": "You are a helpful assistant that answers questions based on provided documents. Always cite the source file name when possible. Be precise and thorough.",
+  "encryptionKey": ""
+}

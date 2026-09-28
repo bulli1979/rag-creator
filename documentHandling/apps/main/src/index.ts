@@ -3,24 +3,35 @@ import { fileURLToPath } from "node:url";
 import { app, BrowserWindow } from "electron";
 import { registerIpcHandlers } from "./ipc.js";
 import { ApiClient } from "./services/apiClient.js";
+import { loadConnectionConfig } from "./services/connectionConfigStore.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-/** DevTools triggern oft harmlose Chromium-Meldungen (z. B. Autofill.enable nicht gefunden). Mit RAG_OPEN_DEVTOOLS=0 nicht auto-öffnen. */
 const openDevToolsInDev =
   isDevelopment &&
   process.env.RAG_OPEN_DEVTOOLS !== "0" &&
   process.env.RAG_OPEN_DEVTOOLS?.toLowerCase() !== "false";
 
-const API_BASE_URL = process.env.RAG_API_URL || "http://localhost:8000";
-
 const PRELOAD_PATH = path.join(__dirname, "preload.cjs");
 let mainWindow: BrowserWindow | null = null;
+let apiClient: ApiClient;
+
+function resolveInitialConnection(): { apiBaseUrl: string; apiKey: string } {
+  return {
+    apiBaseUrl: process.env.RAG_API_URL || "http://localhost:8000",
+    apiKey: process.env.RAG_API_KEY || ""
+  };
+}
 
 async function createMainWindow(): Promise<void> {
-  const apiClient = new ApiClient(API_BASE_URL);
+  const stored = await loadConnectionConfig();
+  const envFallback = resolveInitialConnection();
+  apiClient = new ApiClient(
+    stored?.apiBaseUrl || envFallback.apiBaseUrl,
+    stored?.apiKey || envFallback.apiKey
+  );
 
   const workspaceRoot = path.resolve(__dirname, "../../..");
   const appIconPath = path.join(workspaceRoot, "assets", "rag-ingest-studio-icon.png");
@@ -38,7 +49,7 @@ async function createMainWindow(): Promise<void> {
     }
   });
 
-  registerIpcHandlers(mainWindow, apiClient);
+  registerIpcHandlers(mainWindow, () => apiClient);
 
   if (isDevelopment) {
     await mainWindow.loadURL("http://localhost:5173");

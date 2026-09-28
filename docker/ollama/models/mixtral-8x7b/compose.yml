@@ -1,0 +1,17 @@
+# mixtral:8x7b — hohe Qualitaet, braucht GPU/VRAM (~26 GB)
+name: rag-ollama-mixtral
+
+services:
+  ollama-mixtral:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/mixtral-8x7b/Dockerfile
+    container_name: rag-ollama-mixtral
+    restart: unless-stopped
+    ports:
+      - "11440:11434"
+    volumes:
+      - ollama_mixtral_data:/root/.ollama
+
+volumes:
+  ollama_mixtral_data:

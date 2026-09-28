@@ -8,6 +8,7 @@ from typing import Any
 
 import numpy as np
 
+from .models import overlap_chars_from_percent
 from .services.quiet_ml_env import apply_quiet_ml_env
 
 apply_quiet_ml_env()
@@ -109,12 +110,14 @@ def extract_header_canonical_url(raw_text: str, extension: str) -> str | None:
 
 
 def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:
+    """chunk_overlap: Zeichen (bereits aus Prozent umgerechnet) oder Rohwert < chunk_size."""
     normalized = " ".join(text.replace("\r", "\n").split())
     if not normalized:
         return []
     chunks: list[str] = []
     cursor = 0
-    step_size = max(1, chunk_size - chunk_overlap)
+    overlap = max(0, min(chunk_size - 1, int(chunk_overlap)))
+    step_size = max(1, chunk_size - overlap)
     while cursor < len(normalized):
         chunk = normalized[cursor: cursor + chunk_size].strip()
         if chunk:
@@ -124,7 +127,7 @@ def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:
 
 
 def parse_document(
-    input_path: str, chunk_size: int, chunk_overlap: int
+    input_path: str, chunk_size: int, chunk_overlap: int, *, overlap_is_percent: bool = True
 ) -> dict[str, Any]:
     if not os.path.exists(input_path):
         return {"ok": False, "error": f"Datei nicht gefunden: {input_path}"}
@@ -185,7 +188,13 @@ def parse_document(
     else:
         header_url = extract_header_canonical_url(text, extension)
 
-    chunks = chunk_text(text, chunk_size, chunk_overlap)
+    chunks = chunk_text(
+        text,
+        chunk_size,
+        overlap_chars_from_percent(chunk_size, chunk_overlap)
+        if overlap_is_percent
+        else chunk_overlap,
+    )
     chunk_prefix = f"Quelle: {header_url}\n\n" if header_url else ""
 
     chunk_objects: list[dict[str, Any]] = []

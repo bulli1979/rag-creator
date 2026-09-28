@@ -10,9 +10,11 @@ Desktop stack (Electron + React + TypeScript + FastAPI) for local document inges
   - `postgres` (pgvector)
   - `sqlite_embedded` (no separate server)
   - `qdrant_embedded` (local Qdrant storage folder, no separate server)
+- **Environment families / matrix:** Embedding × chunk size × overlap (%) as instances of one family; index per instance or sequentially for the whole family
 - Local index DB in SQLite (`index.sqlite`) for document/job metadata
 - Editable corpus as JSONL (optional Markdown)
-- Reindex per document, bulk, and “reindex all”
+- Reindex per document, bulk, “reindex all”, and **index family**
+- **adminWeb:** browser admin (documents, models, settings, bulk test) against documentApi
 - Chat UI with source links (external) and answer metrics (duration, tokens, tokens/s)
 
 ## Monorepo layout
@@ -20,9 +22,11 @@ Desktop stack (Electron + React + TypeScript + FastAPI) for local document inges
 ```text
 documentHandling/    Document management + ingestion UI (Electron)
 chatBot/             Chat UI (Electron)
+adminWeb/            Browser admin UI (Vite/React) for documentApi
 documentApi/         FastAPI backend + worker + vector stores
 scripts/             Launcher scripts (including documentApi runner)
 batchTest/           Batch chat against the API + Excel export (Python)
+docker/              Optional Compose stack
 ```
 
 ## System diagram (ingest + reindex)
@@ -64,85 +68,11 @@ flowchart LR
 7. **Feedback to the UI**  
    The main process updates job/document status in SQLite and returns progress to the UI so the dashboard and corpus viewer show current state.
 
-## Requirements
+## Installation & getting started
 
-- Node.js 20+
-- Python 3.10+
-- Docker (optional, for Postgres/pgvector only)
+Setup, development start, API keys, and production build: **[install.en.md](install.en.md)** (German: [install.md](install.md))
 
-## 1) Start Postgres (pgvector) locally
-
-```bash
-docker run --name rag-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=rag -p 5432:5432 -d pgvector/pgvector:pg16
-```
-
-Postgres is then reachable at `localhost:5432`.
-
-## 2) Set up documentApi Python environment
-
-In the `documentApi` directory:
-
-```bash
-python -m venv .venv
-# Windows (PowerShell):
-.venv\Scripts\Activate.ps1
-# macOS/Linux:
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-Install all API dependencies (e.g. `qdrant-client`) in this venv:
-
-```bash
-documentApi\.venv\Scripts\python.exe -m pip install -r documentApi/requirements.txt
-```
-
-## 3) Install Node dependencies
-
-At repository root:
-
-```bash
-npm install
-```
-
-## 4) Start development
-
-At repository root:
-
-```bash
-npm run dev
-```
-
-This starts:
-
-- **documentApi** (FastAPI/Uvicorn) at `http://127.0.0.1:8000`
-- Vite renderer at `http://localhost:5173`
-- Electron main (starts only when renderer **and** port 8000 are ready)
-
-API only in a separate terminal: `npm run dev:api`
-
-Note on `qdrant_embedded`: the API runner starts **without** `uvicorn --reload` by default because the Qdrant folder is exclusively locked.  
-Enable reload only explicitly:
-
-```bash
-# PowerShell
-$env:DOCUMENT_API_RELOAD="1"
-npm run dev:api
-```
-
-## 5) Production build
-
-```bash
-npm run build
-```
-
-## 6) Production start
-
-```bash
-npm run start
-```
-
-The script builds renderer + main first, then starts Electron in production mode.
+Docker stack (optional): **[docker/README.md](docker/README.md)**
 
 ## Data layout / offline behaviour
 
@@ -166,8 +96,11 @@ Substructure:
 - **Upload** via picker or drag & drop
 - **Corpus viewer** (editable), save + reindex
 - **Settings** per environment including backend selection (`postgres`, `sqlite_embedded`, `qdrant_embedded`)
+- **Environment matrix:** families with multiple instances (embedding/chunk/overlap %); instance count shown; creating a matrix saves instances (no auto-index)
+- **Index family:** sequentially re-chunk/embed all instances of a family
 - **Connection test** per backend (Postgres/SQLite/Qdrant)
 - **CSV export** of the document list
+- **adminWeb bulk test:** question files, LLM judge (incl. claim-level), save test profiles, sequential family runs with progress/`familyRunId`
 - **Chat** with sources, “website” button (external browser), copy button, and answer metrics
 
 ## batchTest (batch chat + Excel)

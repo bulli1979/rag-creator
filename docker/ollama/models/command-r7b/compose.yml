@@ -1,0 +1,17 @@
+# command-r7b — fuer Retrieval/RAG optimiert (~4.7 GB)
+name: rag-ollama-command-r
+
+services:
+  ollama-command-r:
+    build:
+      context: ../../../..
+      dockerfile: docker/ollama/models/command-r7b/Dockerfile
+    container_name: rag-ollama-command-r
+    restart: unless-stopped
+    ports:
+      - "11442:11434"
+    volumes:
+      - ollama_command_r_data:/root/.ollama
+
+volumes:
+  ollama_command_r_data:

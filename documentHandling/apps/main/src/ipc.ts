@@ -1,9 +1,14 @@
 import { BrowserWindow, dialog, ipcMain } from "electron";
 import type { AppSettings, UploadOptions } from "@rag/shared";
 import { ApiClient } from "./services/apiClient.js";
+import {
+  loadConnectionConfig,
+  saveConnectionConfig,
+  type ConnectionConfig
+} from "./services/connectionConfigStore.js";
 
 async function uploadFolderContents(
-  apiClient: ApiClient,
+  getApiClient: () => ApiClient,
   folderPath: string,
   options: UploadOptions
 ): Promise<{
@@ -14,7 +19,7 @@ async function uploadFolderContents(
 }> {
   console.log("[ipc] uploadFolderContents: root =", folderPath);
   try {
-    const upload = await apiClient.uploadFolderPath(folderPath, options);
+    const upload = await getApiClient().uploadFolderPath(folderPath, options);
     console.log("[ipc] uploadFolderContents: queued doc ids =", upload.queuedDocIds?.length ?? 0);
     return upload;
   } catch (err) {
@@ -23,9 +28,46 @@ async function uploadFolderContents(
   }
 }
 
-export function registerIpcHandlers(mainWindow: BrowserWindow, apiClient: ApiClient): void {
-  ipcMain.handle("documents:list", () => apiClient.listDocuments());
-  ipcMain.handle("jobs:list", () => apiClient.listJobs());
+export function registerIpcHandlers(mainWindow: BrowserWindow, getApiClient: () => ApiClient): void {
+  let stopProgress: (() => void) | null = null;
+
+  const bindProgress = () => {
+    stopProgress?.();
+    stopProgress = getApiClient().subscribeProgress((event) => {
+      if (!mainWindow.isDestroyed()) {
+        mainWindow.webContents.send("jobs:progress", event);
+      }
+    });
+  };
+
+  bindProgress();
+
+  ipcMain.handle("connection:get", async () => loadConnectionConfig());
+
+  ipcMain.handle("connection:save", async (_event, config: ConnectionConfig) => {
+    const saved = await saveConnectionConfig(config);
+    getApiClient().setCredentials(saved.apiBaseUrl, saved.apiKey);
+    bindProgress();
+    return saved;
+  });
+
+  ipcMain.handle("connection:test", async (_event, config: ConnectionConfig) => {
+    return ApiClient.testConnection(config.apiBaseUrl, config.apiKey);
+  });
+
+  ipcMain.handle("auth:me", () => getApiClient().getAuthMe());
+
+  ipcMain.handle("admin:keys:list", () => getApiClient().listApiKeys());
+  ipcMain.handle("admin:keys:create", async (_event, label: string, isAdmin = false) =>
+    getApiClient().createApiKey(label, isAdmin)
+  );
+  ipcMain.handle("admin:keys:revoke", async (_event, keyId: string) => {
+    await getApiClient().revokeApiKey(keyId);
+    return { ok: true as const };
+  });
+
+  ipcMain.handle("documents:list", () => getApiClient().listDocuments());
+  ipcMain.handle("jobs:list", () => getApiClient().listJobs());
 
   ipcMain.handle("documents:pick-and-upload", async (_event, options: UploadOptions) => {
     const result = await dialog.showOpenDialog(mainWindow, {
@@ -35,11 +77,11 @@ export function registerIpcHandlers(mainWindow: BrowserWindow, apiClient: ApiCli
     if (result.canceled || result.filePaths.length === 0) {
       return { queuedDocIds: [], skippedDocIds: [], messages: [] };
     }
-    return apiClient.uploadFiles(result.filePaths, options);
+    return getApiClient().uploadFiles(result.filePaths, options);
   });
 
   ipcMain.handle("documents:upload-files", async (_event, filePaths: string[], options: UploadOptions) => {
-    return apiClient.uploadFiles(filePaths, options);
+    return getApiClient().uploadFiles(filePaths, options);
   });
 
   ipcMain.handle("documents:pick-folder", async () => {
@@ -78,7 +120,7 @@ export function registerIpcHandlers(mainWindow: BrowserWindow, apiClient: ApiCli
           throw new Error("upload-folder-from-path: leerer folderPath");
         }
         console.log("[ipc] documents:upload-folder-from-path:", folderPath.trim());
-        return await uploadFolderContents(apiClient, folderPath.trim(), options);
+        return await uploadFolderContents(getApiClient, folderPath.trim(), options);
       } catch (err) {
         console.error("[ipc] documents:upload-folder-from-path: ERROR", err);
         throw err;
@@ -98,54 +140,50 @@ export function registerIpcHandlers(mainWindow: BrowserWindow, apiClient: ApiCli
     if (!folderPath) {
       return { queuedDocIds: [], skippedDocIds: [], messages: [], fileCount: 0 };
     }
-    return uploadFolderContents(apiClient, folderPath, options);
+    return uploadFolderContents(getApiClient, folderPath, options);
   });
 
   ipcMain.handle("documents:reindex", async (_event, docId: string) => {
-    return apiClient.reindexDocument(docId);
+    return getApiClient().reindexDocument(docId);
   });
 
   ipcMain.handle("documents:reindex-bulk", async (_event, docIds: string[]) => {
-    return apiClient.reindexDocuments(docIds);
+    return getApiClient().reindexDocuments(docIds);
   });
 
   ipcMain.handle("documents:remove", async (_event, docId: string) => {
-    return apiClient.removeDocument(docId);
+    return getApiClient().removeDocument(docId);
   });
 
   ipcMain.handle("documents:remove-bulk", async (_event, docIds: string[]) => {
-    return apiClient.removeDocuments(docIds);
+    return getApiClient().removeDocuments(docIds);
   });
   ipcMain.handle("documents:remove-not-ingested", async () => {
-    return apiClient.removeNotIngestedDocuments();
+    return getApiClient().removeNotIngestedDocuments();
   });
 
-  ipcMain.handle("corpus:get", async (_event, docId: string) => apiClient.getCorpus(docId));
+  ipcMain.handle("corpus:get", async (_event, docId: string) => getApiClient().getCorpus(docId));
   ipcMain.handle("corpus:save", async (_event, docId: string, jsonlContent: string) => {
-    return apiClient.saveCorpus(docId, jsonlContent);
+    return getApiClient().saveCorpus(docId, jsonlContent);
   });
 
-  ipcMain.handle("settings:get", () => apiClient.getSettings());
-  ipcMain.handle("settings:save", async (_event, settings: AppSettings) => apiClient.saveSettings(settings));
+  ipcMain.handle("settings:get", () => getApiClient().getSettings());
+  ipcMain.handle("settings:save", async (_event, settings: AppSettings) => getApiClient().saveSettings(settings));
   ipcMain.handle("database:test-connection", async (_event, settings?: AppSettings) => {
     try {
-      return await apiClient.testDatabaseConnection(settings);
+      return await getApiClient().testDatabaseConnection(settings);
     } catch (err: unknown) {
       const detail = err instanceof Error ? err.message : String(err);
       return {
         status: "error" as const,
-        message: `${detail} Hinweis: documentApi starten (FastAPI, z. B. Port 8000) oder RAG_API_URL setzen.`
+        message: `${detail} Hinweis: documentApi starten (FastAPI, z. B. Port 8000) oder Verbindung prüfen.`
       };
     }
   });
-  ipcMain.handle("database:connection-state", () => apiClient.getDatabaseConnectionState());
-  ipcMain.handle("llm:list-ollama-models", () => apiClient.listOllamaModels());
-  ipcMain.handle("health:check", () => apiClient.runHealthCheck());
-  ipcMain.handle("documents:export-csv", () => apiClient.exportDocumentsCsv());
-
-  apiClient.subscribeProgress((event) => {
-    if (!mainWindow.isDestroyed()) {
-      mainWindow.webContents.send("jobs:progress", event);
-    }
-  });
+  ipcMain.handle("database:connection-state", () => getApiClient().getDatabaseConnectionState());
+  ipcMain.handle("llm:list-ollama-models", () => getApiClient().listOllamaModels());
+  ipcMain.handle("chat:settings:get", () => getApiClient().getChatSettings());
+  ipcMain.handle("chat:settings:save", async (_event, settings) => getApiClient().saveChatSettings(settings));
+  ipcMain.handle("health:check", () => getApiClient().runHealthCheck());
+  ipcMain.handle("documents:export-csv", () => getApiClient().exportDocumentsCsv());
 }

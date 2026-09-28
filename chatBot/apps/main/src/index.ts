@@ -3,25 +3,37 @@ import { fileURLToPath } from "node:url";
 import { app, BrowserWindow } from "electron";
 import { registerIpcHandlers } from "./ipc.js";
 import { ChatApiClient } from "./services/chatApiClient.js";
+import { loadConnectionConfig } from "./services/connectionConfigStore.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-const API_BASE_URL = process.env.RAG_API_URL || "http://localhost:8000";
+const openDevToolsInDev =
+  isDevelopment &&
+  process.env.RAG_OPEN_DEVTOOLS !== "0" &&
+  process.env.RAG_OPEN_DEVTOOLS?.toLowerCase() !== "false";
 
 const PRELOAD_PATH = path.join(__dirname, "preload.cjs");
 let mainWindow: BrowserWindow | null = null;
+let apiClient: ChatApiClient;
 
 async function createMainWindow(): Promise<void> {
-  const apiClient = new ChatApiClient(API_BASE_URL);
-  registerIpcHandlers(apiClient);
+  const stored = await loadConnectionConfig();
+  apiClient = new ChatApiClient(
+    stored?.apiBaseUrl || process.env.RAG_API_URL || "http://localhost:8000",
+    stored?.apiKey || process.env.RAG_API_KEY || ""
+  );
+
+  const workspaceRoot = path.resolve(__dirname, "../../..");
+  const appIconPath = path.join(workspaceRoot, "assets", "rag-ingest-studio-icon.png");
 
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 700,
-    minWidth: 600,
-    minHeight: 500,
+    width: 1440,
+    height: 920,
+    minWidth: 1100,
+    minHeight: 760,
+    icon: appIconPath,
     webPreferences: {
       preload: PRELOAD_PATH,
       contextIsolation: true,
@@ -29,9 +41,13 @@ async function createMainWindow(): Promise<void> {
     }
   });
 
+  registerIpcHandlers(() => apiClient);
+
   if (isDevelopment) {
     await mainWindow.loadURL("http://localhost:5174");
-    mainWindow.webContents.openDevTools({ mode: "detach" });
+    if (openDevToolsInDev) {
+      mainWindow.webContents.openDevTools({ mode: "detach" });
+    }
   } else {
     await mainWindow.loadFile(path.resolve(__dirname, "../../../apps/renderer/dist/index.html"));
   }

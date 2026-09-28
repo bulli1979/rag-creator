@@ -20,8 +20,8 @@ export const defaultSettings: AppSettings = {
     }
   ],
   chunkSize: 900,
-  chunkOverlap: 150,
-  embeddingModel: "all-MiniLM-L6-v2",
+  chunkOverlap: 15,
+  embeddingModel: "paraphrase-multilingual-MiniLM-L12-v2",
   storeMarkdown: true
 };
 

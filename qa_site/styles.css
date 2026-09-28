@@ -314,6 +314,44 @@ textarea:focus {
   font-weight: 700;
 }
 
+.feedback-panel {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.feedback-title {
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.feedback-btn.active-positive {
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.feedback-btn.active-negative {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+.feedback-comment-field {
+  margin-top: 4px;
+}
+
+.feedback-status {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--good);
+}
+
 @keyframes rise {
   from {
     opacity: 0;
