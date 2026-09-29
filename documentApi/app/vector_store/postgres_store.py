@@ -377,7 +377,7 @@ class PostgresVectorStore:
                     f"""SELECT text_content, document_id, file_name, chunk_index, source_path, source,
                                1 - (embedding <=> %s::vector) AS similarity,
                                category, instrument, authority, document_status, section, heading_path,
-                               parent_section, previous_section, next_section, content_types
+                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version
                         FROM {qualified}
                         WHERE is_active = true
                         ORDER BY embedding <=> %s::vector
@@ -404,6 +404,9 @@ class PostgresVectorStore:
                     "previousSection": row[14],
                     "nextSection": row[15],
                     "contentTypes": row[16],
+                    "sourceId": row[17],
+                    "canonicalLocation": row[18],
+                    "corpusVersion": row[19],
                 }
                 for row in rows
             ]
@@ -428,7 +431,7 @@ class PostgresVectorStore:
                     f"""SELECT text_content, document_id, file_name, chunk_index, source_path, source,
                                1 - (embedding <=> %s::vector) AS similarity,
                                category, instrument, authority, document_status, section, heading_path,
-                               parent_section, previous_section, next_section, content_types
+                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version
                         FROM {qualified}
                         WHERE is_active = true AND lower(file_name) LIKE %s
                         ORDER BY embedding <=> %s::vector
@@ -455,6 +458,9 @@ class PostgresVectorStore:
                     "previousSection": row[14],
                     "nextSection": row[15],
                     "contentTypes": row[16],
+                    "sourceId": row[17],
+                    "canonicalLocation": row[18],
+                    "corpusVersion": row[19],
                 }
                 for row in rows
             ]

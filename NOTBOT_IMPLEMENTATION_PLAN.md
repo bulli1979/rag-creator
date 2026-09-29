@@ -198,22 +198,22 @@ Goal: return a small, diverse, authoritative evidence set and recognize insuffic
 
 | ID | Task | Status | Evidence |
 |---|---|---:|---|
-| P4.1 | Classify or extract query attributes such as instrument, procedure, troubleshooting, safety, and current/historical intent. | [ ] | |
-| P4.2 | Apply metadata filters or boosts for instrument, category, authority, validity, and status. | [ ] | |
-| P4.3 | Collapse exact and near-duplicate retrieval results. | [ ] | |
-| P4.4 | Apply a configurable per-source chunk cap, initially two chunks per source. | [ ] | |
-| P4.5 | Add authority and current-status preference without hiding explicitly requested historical material. | [ ] | |
+| P4.1 | Classify or extract query attributes such as instrument, procedure, troubleshooting, safety, and current/historical intent. | [x] | `evidence_selection.classify_query`; fixture tests |
+| P4.2 | Apply metadata filters or boosts for instrument, category, authority, validity, and status. | [~] | Instrument/category/authority/status selection implemented; separate validity field is not yet persisted |
+| P4.3 | Collapse exact and near-duplicate retrieval results. | [x] | Exact and formatting-only variants collapse; changed technical values survive; 0/116 duplicate context rows in 24-question probe |
+| P4.4 | Apply a configurable per-source chunk cap, initially two chunks per source. | [x] | `maxChunksPerSource` defaults to 2; stable source IDs in all vector backends; 0 over-cap rows in probe |
+| P4.5 | Add authority and current-status preference without hiding explicitly requested historical material. | [~] | Ranking fixtures pass; historical corpus remains outside the live searchable index |
 | P4.6 | Add controlled neighboring-section expansion after final evidence selection. | [ ] | |
-| P4.7 | Add an evidence threshold that triggers abstention or clarification. | [ ] | |
+| P4.7 | Add an evidence threshold that triggers abstention or clarification. | [x] | Configurable raw-similarity floor 0.43; two live corpus-gap questions abstained; 24 seed questions retained evidence |
 | P4.8 | Evaluate a cross-encoder reranker against the existing hybrid heuristic after the clean index is stable. | [ ] | |
 
 Acceptance gates:
 
-- [ ] Exact duplicate chunks never appear in final model context.
-- [ ] The per-source cap is enforced unless a documented query mode overrides it.
-- [ ] Instrument-specific queries do not retrieve unrelated instrument material when relevant evidence exists.
-- [ ] Current authoritative guidance outranks superseded instructions.
-- [ ] Corpus-gap questions abstain or request clarification.
+- [x] Exact duplicate chunks never appear in final model context.
+- [x] The per-source cap is enforced unless a documented query mode overrides it.
+- [x] Instrument-specific queries do not retrieve unrelated instrument material when relevant evidence exists.
+- [~] Current authoritative guidance outranks superseded instructions in fixtures; live historical material is not indexed.
+- [~] Two live corpus-gap questions abstain; broader gap/paraphrase evaluation remains.
 - [ ] The selected reranking approach improves the agreed retrieval metrics without unacceptable latency.
 
 ### Phase 5 — Ground answers and validate citations
@@ -273,10 +273,10 @@ These tests are part of the definition of done. Exact commands should be added a
 | ST-06 | Ingest two distinct sources with the same filename. | Both retain distinct source identities. | [x] | `test_same_filename_different_canonical_sources_are_distinct` |
 | ST-07 | Process contact and technical-number fixtures. | Contact data is removed; technical values remain intact. | [x] | `SafePiiTests`; runtime and producer smoke tests |
 | ST-08 | Chunk a manual containing headings, warnings, steps, tables, and code. | Structures remain coherent and heading paths are attached. | [x] | `StructuredChunkTests`; runtime parser fixture |
-| ST-09 | Retrieve from duplicate and near-duplicate sources. | Final context contains no duplicate evidence and obeys the source cap. | [ ] | |
-| ST-10 | Ask an instrument-specific question with distractor instruments present. | Relevant instrument evidence wins. | [ ] | |
-| ST-11 | Ask a current procedure question with conflicting historical evidence. | Current authoritative evidence wins and history is not presented as current. | [ ] | |
-| ST-12 | Ask a plausible question with no supporting corpus evidence. | The chatbot abstains or asks a useful clarification question. | [ ] | |
+| ST-09 | Retrieve from duplicate and near-duplicate sources. | Final context contains no duplicate evidence and obeys the source cap. | [x] | Phase 4 fixtures and 24-question retrieval probe |
+| ST-10 | Ask an instrument-specific question with distractor instruments present. | Relevant instrument evidence wins. | [x] | Fixture plus 0 unrelated-instrument rows in 24-question probe |
+| ST-11 | Ask a current procedure question with conflicting historical evidence. | Current authoritative evidence wins and history is not presented as current. | [~] | Fixture passes; live historical corpus is isolated |
+| ST-12 | Ask a plausible question with no supporting corpus evidence. | The chatbot abstains or asks a useful clarification question. | [~] | Two live gap questions abstained; expanded suite pending |
 | ST-13 | Generate answers for citation fixtures. | Every citation is supplied and supports its claim. | [ ] | |
 | ST-14 | Start with an empty PostgreSQL/pgvector environment, ingest the curated fixture, query it, update a source, and query again. | Health, ingestion, latest-only retrieval, answer, and citation flow all pass. | [ ] | |
 | ST-15 | Switch from shadow index to prior index. | Rollback succeeds without data reconstruction. | [ ] | |
@@ -292,6 +292,7 @@ Add one row for each material corpus or retrieval iteration. Never overwrite an 
 | 2026-09-29 | Working tree | `phase1-candidate-2026-09-29` | 381 active + 215 isolated historical | 2,964 projected active | 0 source-body exact duplicates | One version per active source ID | Not run; 8 coverage risks identified | Not measured | Not measured | Candidate only; domain review and rebuilt-index evaluation pending. |
 | 2026-09-29 | Working tree | `phase1-candidate-2026-09-29-structured-v1` | 371 active + 215 isolated historical; 10 damaged active conversions quarantined | 1,934 active + 9,549 historical | 9 active rows beyond first | 0 by source lifecycle | Not run; no damaged-PDF URL occurs in seed contexts | Not measured | Not measured | Deterministic structured shadow corpus; 7 context-aware contact redactions are historical-only; no pre-existing phone placeholder remained in the Phase 1 candidate. |
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` | 478 active + 216 isolated historical; 283 quarantined; 29 excluded | 4,997 live active chunks | 161 live rows beyond first | 0 | Chat smoke passed; full suite pending | Not measured | 8,375 ms smoke | Fresh crawl/index; 1,006 processed sources; 28 CID-damaged files quarantined; zero CSC documents; all live chunks versioned and classified. |
+| 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` / Phase 4 selector | 478 active | 4,997 live active chunks | 161 in index; 0 in selected seed contexts | 0 | Retrieval-only: 24/24 seed questions retain evidence; answer quality pending | Not measured | 9,786 ms one ALFOSC chat smoke | 3 to 0 exact context repeats, 14 to 0 over-cap rows, 6 to 0 instrument distractors; two live gaps abstained. |
 
 ## Test evidence log
 
@@ -317,6 +318,7 @@ Record concise, reproducible evidence. Link to durable reports when available.
 | 2026-09-29 | Working tree | Fresh crawl and curation | Empty crawl tree; crawl, convert, DB export, audit, curate | 929 resources fetched; 1,006 processed sources; 478 active; zero CSC | `reports/fresh-crawl/source-audit-2026-09-29.{json,md}` |
 | 2026-09-29 | Working tree | Fresh embedding index | Empty API/PostgreSQL volumes; ingest curated searchable corpus | 478/478 done; 4,997 active chunks; zero errors; zero CSC; no unclassified chunks | PostgreSQL + `/api/documents` smoke |
 | 2026-09-29 | Working tree | End-to-end retrieval | Ask `What is ALFOSC used for?` through `/api/chat` | Five relevant contexts; cited answer; 8,375 ms | Local smoke result |
+| 2026-09-29 | Working tree | Phase 4 evidence selection | `python3 -m unittest scripts.tests.test_retrieval_phase4 -v`; live 24-question retrieval-only comparison and three chat smoke questions | 8 fixtures passed; 0 duplicate/over-cap/distractor rows; 2/2 unsupported questions abstained | `reports/phase4/retrieval-baseline-2026-09-29.md` |
 
 ## Decision log
 

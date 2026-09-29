@@ -31,7 +31,15 @@ export interface ContextChunk {
   chunkIndex: number;
   sourcePath?: string;
   source?: string;
+  sourceId?: string;
+  canonicalLocation?: string;
+  corpusVersion?: string;
+  instrument?: string;
+  category?: string;
+  authority?: string;
+  status?: string;
   similarity: number;
+  retrievalScore?: number;
 }
 
 export interface ChatSettings {
@@ -41,6 +49,8 @@ export interface ChatSettings {
   temperature: number;
   maxTokens: number;
   topK: number;
+  maxChunksPerSource: number;
+  minEvidenceSimilarity: number;
   systemPrompt: string;
   encryptionKey: string;
 }

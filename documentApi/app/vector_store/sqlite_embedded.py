@@ -298,7 +298,7 @@ class SqliteEmbeddedVectorStore:
             conn = self._connect()
             try:
                 cur = conn.execute(
-                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types FROM "{t}" WHERE is_active = 1'
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version FROM "{t}" WHERE is_active = 1'
                 )
                 all_rows = cur.fetchall()
             finally:
@@ -334,6 +334,9 @@ class SqliteEmbeddedVectorStore:
                     "previousSection": row[13],
                     "nextSection": row[14],
                     "contentTypes": json.loads(row[15]),
+                    "sourceId": row[16],
+                    "canonicalLocation": row[17],
+                    "corpusVersion": row[18],
                     "similarity": sim,
                 }
             )
@@ -357,7 +360,7 @@ class SqliteEmbeddedVectorStore:
             conn = self._connect()
             try:
                 cur = conn.execute(
-                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types FROM "{t}"'
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version FROM "{t}"'
                     f' WHERE is_active = 1 AND lower(file_name) LIKE ?',
                     (f"%{pat}%",),
                 )
@@ -381,6 +384,19 @@ class SqliteEmbeddedVectorStore:
                 "chunkIndex": row[3],
                 "sourcePath": row[4],
                 "source": row[5],
+                "category": row[6],
+                "instrument": row[7],
+                "authority": row[8],
+                "status": row[9],
+                "section": row[10],
+                "headingPath": json.loads(row[11]),
+                "parentSection": row[12],
+                "previousSection": row[13],
+                "nextSection": row[14],
+                "contentTypes": json.loads(row[15]),
+                "sourceId": row[16],
+                "canonicalLocation": row[17],
+                "corpusVersion": row[18],
                 "similarity": sim,
             }
             for sim, row in scored[: max(1, top_k)]

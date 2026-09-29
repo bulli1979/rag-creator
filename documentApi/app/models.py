@@ -205,7 +205,7 @@ class ChatResponse(BaseModel):
     answer: str
     context_chunks: list[dict] = Field(default_factory=list, alias="contextChunks")
     encrypted_payload: str = Field("", alias="encryptedPayload")
-    metrics: dict[str, float | int] = Field(default_factory=dict)
+    metrics: dict[str, float | int | bool] = Field(default_factory=dict)
 
     model_config = {"populate_by_name": True}
 
@@ -217,6 +217,8 @@ class ChatSettings(BaseModel):
     temperature: float = 0.3
     max_tokens: int = Field(2048, alias="maxTokens")
     top_k: int = Field(5, alias="topK")
+    max_chunks_per_source: int = Field(2, ge=1, le=20, alias="maxChunksPerSource")
+    min_evidence_similarity: float = Field(0.43, ge=0.0, le=1.0, alias="minEvidenceSimilarity")
     system_prompt: str = Field(
         "You are a helpful assistant that answers questions based on provided documents. "
         "Always cite the source file name when possible. Be precise and thorough.",

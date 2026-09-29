@@ -335,6 +335,9 @@ class QdrantEmbeddedVectorStore:
                     "previousSection": p.get("previous_section", ""),
                     "nextSection": p.get("next_section", ""),
                     "contentTypes": p.get("content_types", []),
+                    "sourceId": p.get("source_id", ""),
+                    "canonicalLocation": p.get("canonical_location", ""),
+                    "corpusVersion": p.get("corpus_version", ""),
                     "similarity": float(score) if score is not None else 0.0,
                 }
             )
@@ -389,6 +392,9 @@ class QdrantEmbeddedVectorStore:
                     "previousSection": p.get("previous_section", ""),
                     "nextSection": p.get("next_section", ""),
                     "contentTypes": p.get("content_types", []),
+                    "sourceId": p.get("source_id", ""),
+                    "canonicalLocation": p.get("canonical_location", ""),
+                    "corpusVersion": p.get("corpus_version", ""),
                     "similarity": float(score) if score is not None else 0.0,
                 }
             )

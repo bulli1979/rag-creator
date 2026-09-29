@@ -95,6 +95,11 @@ class LifecycleTests(unittest.TestCase):
         self.store.replace_source_chunks("docs", "source", "v1", [[1.0, 0.0]], [item])
         result = self.store.similarity_search("docs", [1.0, 0.0])[0]
         self.assertEqual(result["instrument"], "ALFOSC")
+        self.assertEqual(result["sourceId"], "source")
+        self.assertEqual(result["canonicalLocation"], "https://example.test/source")
+        boosted = self.store.search_by_filename("docs", "same", [1.0, 0.0])[0]
+        self.assertEqual(boosted["sourceId"], "source")
+        self.assertEqual(boosted["instrument"], "ALFOSC")
         self.assertEqual(result["authority"], "tier_1_official")
         self.assertEqual(result["headingPath"], ["Manual", "Startup"])
         self.assertEqual(result["contentTypes"], ["warning", "list"])
