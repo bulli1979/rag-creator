@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "1.0.0",
-  "corpusVersion": "phase1-candidate-2026-09-29",
-  "expectedCorpusSnapshotSha256": "bb70f53a833d0f5d61d6b2bed64c06b134952c84769bb9e871a2e72b313ba208",
+  "policyVersion": "1.0.2",
+  "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+  "expectedCorpusSnapshotSha256": "3d61f7d209f8d63a025f656a34f572e14c449fb82337892a62104c91b5767d3a",
   "shortBodyReviewThreshold": 100,
   "nearDuplicateJaccardThreshold": 0.85,
   "nearDuplicateMaxSimhashDistance": 8,
@@ -22,6 +22,9 @@
   ],
   "generatedPathPrefixes": [
     "/observing/tools/aladin/aladinAG.php"
+  ],
+  "excludedPathPrefixes": [
+    "/intranot/management/csc_reports/"
   ],
   "queryPathAllowlist": [
     "/observing/cookbook/current/Cookbook.php"

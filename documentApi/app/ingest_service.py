@@ -29,7 +29,7 @@ from .models import (
     UploadOptions,
 )
 from .services.thread_pool import run_in_worker_pool
-from .source_identity import create_document_version_id, resolve_source_identity
+from .source_identity import create_document_version_id, resolve_corpus_version, resolve_source_identity
 from .services.folder_scan import iter_files_recursive
 from .vector_store.factory import create_vector_store, resolve_qdrant_path, resolve_sqlite_path
 from .vector_store.postgres_store import PostgresVectorStore
@@ -188,7 +188,7 @@ class IngestService:
             version=version,
             is_active=existing.is_active if existing is not None else False,
             canonical_location=canonical_location,
-            corpus_version=options.corpus_version,
+            corpus_version=resolve_corpus_version(content, options.corpus_version),
         )
         queued = self._enqueue_job(doc_id, JobType.reindex)
         return doc_id, queued, f"Zur Indexierung eingeplant: {file_name}"

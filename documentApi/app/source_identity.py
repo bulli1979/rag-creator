@@ -9,6 +9,9 @@ from .file_store import create_sha256
 _FRONTMATTER_URL_RE = re.compile(
     r"(?im)^\s*(?:source_url|canonical_url|canonicalUrl|url)\s*:\s*[\"']?([^\n\r\"']+)"
 )
+_FRONTMATTER_CORPUS_VERSION_RE = re.compile(
+    r"(?im)^\s*(?:corpus_version|corpusVersion)\s*:\s*[\"']?([^\n\r\"']+)"
+)
 
 
 def canonicalize_location(value: str) -> str:
@@ -33,6 +36,14 @@ def resolve_source_identity(
         namespace = canonicalize_location(source) or "local"
         canonical = f"{namespace}:{canonicalize_location(file_name)}"
     return create_sha256(f"{environment_id}\n{canonical}"), canonical
+
+
+def resolve_corpus_version(content: bytes, requested: str = "") -> str:
+    if requested.strip():
+        return requested.strip()
+    text = content[:131072].decode("utf-8", errors="ignore")
+    match = _FRONTMATTER_CORPUS_VERSION_RE.search(text)
+    return match.group(1).strip() if match else ""
 
 
 def create_document_version_id(source_id: str, content_hash: str) -> str:

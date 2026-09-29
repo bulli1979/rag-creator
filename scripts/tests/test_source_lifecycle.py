@@ -23,7 +23,7 @@ except ImportError:
 
 from app.database import IndexDatabase
 from app.models import DocumentStatus
-from app.source_identity import create_document_version_id, resolve_source_identity
+from app.source_identity import create_document_version_id, resolve_corpus_version, resolve_source_identity
 from app.vector_store.sqlite_embedded import SqliteEmbeddedVectorStore
 from scripts.source_lifecycle_admin import backup_sqlite, restore_sqlite
 
@@ -50,6 +50,11 @@ class SourceIdentityTests(unittest.TestCase):
         )
         self.assertNotEqual(a, b)
         self.assertNotEqual(create_document_version_id(a, "hash"), create_document_version_id(b, "hash"))
+
+    def test_corpus_version_comes_from_frontmatter_unless_requested(self) -> None:
+        content = b'---\ncorpus_version: "fresh-v2"\n---\ntext'
+        self.assertEqual(resolve_corpus_version(content), "fresh-v2")
+        self.assertEqual(resolve_corpus_version(content, "explicit-v3"), "explicit-v3")
 
 
 class LifecycleTests(unittest.TestCase):

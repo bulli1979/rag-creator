@@ -9,7 +9,6 @@ import hashlib
 import json
 import math
 import re
-import shutil
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -156,7 +155,9 @@ def classify(record: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
     proposed: str | None = None
     review_required = False
 
-    if any(url_path.startswith(prefix) for prefix in policy.get("generatedPathPrefixes", [])):
+    if any(url_path.startswith(prefix) for prefix in policy.get("excludedPathPrefixes", [])):
+        disposition, reasons = "excluded", ["policy_excluded_path"]
+    elif any(url_path.startswith(prefix) for prefix in policy.get("generatedPathPrefixes", [])):
         disposition, reasons = "excluded", ["generated_or_live_page"]
     else:
         for family in policy.get("queryVariantFamilies", []):
@@ -170,6 +171,7 @@ def classify(record: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
     if disposition == "active" and quality.get("quarantineEncodingDamage") and flags & {
         "replacement_character",
         "nul_character",
+        "cid_artifact",
     }:
         disposition, proposed, review_required = "quarantine", "active", True
         reasons = ["encoding_or_conversion_damage"]
@@ -367,7 +369,7 @@ def write_review_queue(path: Path, manifest: dict[str, Any]) -> None:
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for item in manifest["documents"]:
             if not item["reviewRequired"]:
@@ -455,6 +457,34 @@ def write_report(path: Path, manifest: dict[str, Any], pairs: list[dict[str, Any
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+_MANAGED_FRONTMATTER_FIELDS = {"authority", "status", "validity", "corpus_version", "source_id"}
+
+
+def render_curated_source(source_text: str, item: dict[str, Any], corpus_version: str) -> str:
+    """Inject authoritative policy metadata while preserving the source body."""
+    normalized = source_text.replace("\r\n", "\n").replace("\r", "\n")
+    lines = normalized.splitlines()
+    if not lines or lines[0].strip() != "---":
+        raise ValueError(f"Missing frontmatter in selected source: {item['sourcePath']}")
+    end = next((index for index in range(1, len(lines)) if lines[index].strip() == "---"), None)
+    if end is None:
+        raise ValueError(f"Unclosed frontmatter in selected source: {item['sourcePath']}")
+    preserved = [
+        line for line in lines[1:end]
+        if line.split(":", 1)[0].strip() not in _MANAGED_FRONTMATTER_FIELDS
+    ]
+    managed = {
+        "authority": item["authorityTier"],
+        "status": item["disposition"],
+        "validity": item["validity"],
+        "corpus_version": corpus_version,
+        "source_id": item["sourceId"],
+    }
+    metadata_lines = [f"{key}: {json.dumps(str(value), ensure_ascii=False)}" for key, value in managed.items()]
+    rendered = "\n".join(["---", *preserved, *metadata_lines, "---", *lines[end + 1:]])
+    return rendered + ("\n" if normalized.endswith("\n") else "")
+
+
 def build_shadow(source_dir: Path, target: Path, manifest: dict[str, Any]) -> None:
     if target.exists():
         raise FileExistsError(f"Shadow target already exists: {target}")
@@ -468,7 +498,11 @@ def build_shadow(source_dir: Path, target: Path, manifest: dict[str, Any]) -> No
         section = "searchable" if disposition == "active" else "historical"
         destination = target / section / item["sourcePath"]
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source_dir / item["sourcePath"], destination)
+        source_text = (source_dir / item["sourcePath"]).read_text(encoding="utf-8")
+        destination.write_text(
+            render_curated_source(source_text, item, manifest["corpusVersion"]),
+            encoding="utf-8",
+        )
         copied[disposition] += 1
     (target / "manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
@@ -519,11 +553,16 @@ def validate_shadow(
                 f"extra={sorted(actual - expected[disposition])[:5]}"
             )
         for relative in sorted(actual):
+            item = by_path[relative]
+            source_path = source_dir / relative
+            if corpus_audit.sha256_file(source_path) != item["processedSha256"]:
+                raise ValueError(f"Source changed after manifest generation: {relative}")
+            expected_rendered = render_curated_source(
+                source_path.read_text(encoding="utf-8"), item, manifest["corpusVersion"]
+            )
             copied_hash = corpus_audit.sha256_file(root / relative)
-            if copied_hash != by_path[relative]["processedSha256"]:
-                raise ValueError(f"Shadow hash mismatch: {relative}")
-            if copied_hash != corpus_audit.sha256_file(source_dir / relative):
-                raise ValueError(f"Shadow differs from source: {relative}")
+            if copied_hash != corpus_audit.sha256_bytes(expected_rendered.encode("utf-8")):
+                raise ValueError(f"Curated shadow metadata mismatch: {relative}")
             checked += 1
     return {
         "status": "ok",

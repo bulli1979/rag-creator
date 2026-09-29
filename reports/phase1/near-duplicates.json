@@ -1,62 +1,42 @@
 {
   "threshold": 0.85,
   "maxSimhashDistance": 8,
-  "pairCount": 11,
+  "pairCount": 7,
   "pairs": [
+    {
+      "left": "instruments-alfosc-polarimetry-grw-708247-html.md",
+      "right": "instruments-turpol-grw-708247-html.md",
+      "jaccard": 1.0
+    },
     {
       "left": "instruments-detectors-ccd13-fies-e2v-1064-17-04-pdf.md",
       "right": "instruments-fies-devel-fiesccde2v-pdf.md",
-      "jaccard": 0.990438
+      "jaccard": 0.990443
     },
     {
       "left": "instruments-filters-filters-php-ord-shape-sel-def.md",
       "right": "instruments-filters-filters-php.md",
-      "jaccard": 0.969171
-    },
-    {
-      "left": "instruments-filters-filters-php-ord-shape-sel-cuton.md",
-      "right": "instruments-filters-filters-php-sel-cuton.md",
-      "jaccard": 0.956364
+      "jaccard": 0.969804
     },
     {
       "left": "instruments-filters-filters-php-ord-shape-sel-def.md",
       "right": "instruments-filters-filters-php-ord-size-sel-def.md",
-      "jaccard": 0.955981
+      "jaccard": 0.956878
+    },
+    {
+      "left": "instruments-filters-filters-php-ord-shape-sel-cuton.md",
+      "right": "instruments-filters-filters-php-sel-cuton.md",
+      "jaccard": 0.955638
     },
     {
       "left": "instruments-filters-filters-php-ord-size-sel-def.md",
       "right": "instruments-filters-filters-php.md",
-      "jaccard": 0.942966
-    },
-    {
-      "left": "intranot-management-csc-reports-cscr26-cscr-02-26a-minutes-of-25b-v0-1-pdf.md",
-      "right": "intranot-management-csc-reports-cscr27-cscr-02-26a-minutes-of-25b-v1-0-pdf.md",
-      "jaccard": 0.940864
-    },
-    {
-      "left": "instruments-notcam-filters-201-html.md",
-      "right": "instruments-notcam-filters-202-html.md",
-      "jaccard": 0.923664
-    },
-    {
-      "left": "intranot-management-csc-reports-cscr26-cscr-03-26a-actions-of-25b-v0-1-pdf.md",
-      "right": "intranot-management-csc-reports-cscr27-cscr-03-26a-actions-of-25b-v1-0-pdf.md",
-      "jaccard": 0.909178
+      "jaccard": 0.944121
     },
     {
       "left": "instruments-filters-filters-php-ord-cenwave-sel-cuton.md",
       "right": "instruments-filters-filters-php-ord-name-sel-cuton.md",
-      "jaccard": 0.861592
-    },
-    {
-      "left": "instruments-fies-seq-fies-ccd3db-daemon-restart-html.md",
-      "right": "instruments-fies-seq-fies-fitswriter-daemon-restart-html.md",
-      "jaccard": 0.857143
-    },
-    {
-      "left": "instruments-notcam-filters-205-html.md",
-      "right": "instruments-notcam-filters-206-html.md",
-      "jaccard": 0.854369
+      "jaccard": 0.859402
     }
   ]
 }

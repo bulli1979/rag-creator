@@ -53,6 +53,14 @@ Back to top. Last modified yesterday. [phone removed]
                 {"dynamic_web": 2, "web_or_generated_markdown": 1},
             )
 
+    def test_source_audit_flags_pdf_cid_damage(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "damaged.md").write_text("---\ntitle: Damaged\n---\n" + "(cid:123)" * 20, encoding="utf-8")
+            result = corpus_audit.audit_sources(root)
+            self.assertEqual(result["strongEncodingDamageFlags"]["cidArtifactFileCount"], 1)
+            self.assertIn("cid_artifact", result["files"][0]["qualityFlags"])
+
     def test_sqlite_audit_reports_versions_status_and_tags(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             database = Path(directory) / "index.sqlite"

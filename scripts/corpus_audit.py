@@ -135,6 +135,7 @@ def audit_sources(source_dir: Path) -> dict[str, Any]:
     missing_frontmatter: list[str] = []
     replacement_character_files: list[str] = []
     nul_character_files: list[str] = []
+    cid_artifact_files: list[str] = []
     records: list[dict[str, Any]] = []
     total_bytes = 0
     fingerprint = hashlib.sha256()
@@ -191,6 +192,8 @@ def audit_sources(source_dir: Path) -> dict[str, Any]:
             replacement_character_files.append(relative)
         if "\x00" in text:
             nul_character_files.append(relative)
+        if body.count("(cid:") >= 20:
+            cid_artifact_files.append(relative)
 
         records.append(
             {
@@ -217,6 +220,7 @@ def audit_sources(source_dir: Path) -> dict[str, Any]:
                         ),
                         "replacement_character": "\ufffd" in text,
                         "nul_character": "\x00" in text,
+                        "cid_artifact": body.count("(cid:") >= 20,
                         "back_to_top": bool(
                             BOILERPLATE_PATTERNS["backToTop"].search(text)
                         ),
@@ -271,6 +275,8 @@ def audit_sources(source_dir: Path) -> dict[str, Any]:
             ],
             "nulCharacterFileCount": len(nul_character_files),
             "nulCharacterFileSamples": sorted(nul_character_files)[:SAMPLE_LIMIT],
+            "cidArtifactFileCount": len(cid_artifact_files),
+            "cidArtifactFileSamples": sorted(cid_artifact_files)[:SAMPLE_LIMIT],
         },
         "files": records,
     }

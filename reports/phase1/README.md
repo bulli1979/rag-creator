@@ -12,7 +12,7 @@ python3 scripts/corpus_curate.py \
   --report-out reports/phase1/dry-run.md \
   --review-queue-out reports/phase1/domain-review-queue.csv \
   --near-duplicates-out reports/phase1/near-duplicates.json \
-  --shadow-dir /home/llmrunner/NOTBot-shadow/phase1-candidate-2026-09-29
+  --shadow-dir /home/llmrunner/NOTBot-shadow/fresh-crawl-2026-09-29-curated-v2
 ```
 
 The command refuses to overwrite an existing shadow directory. Use a new versioned directory for every policy iteration.
@@ -24,7 +24,7 @@ The command refuses to overwrite an existing shadow directory. Use a new version
 - `manifest.json`: every source and its reversible policy decision.
 - `validation.json`: membership and SHA-256 verification results.
 
-No quarantine or excluded document is copied into either corpus tree.
+No quarantine or excluded document is copied into either corpus tree. Selected Markdown files are deterministically enriched with authority, status, validity, stable source ID, and corpus-version frontmatter for ingestion. Mount `searchable/`, never the uncurated `data/processed/` directory, as the API's `/documents` input.
 
 ## Domain review workflow
 

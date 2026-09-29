@@ -124,12 +124,12 @@ Every discovered source must receive exactly one disposition:
 | ID | Task | Status | Evidence |
 |---|---|---:|---|
 | P1.1 | Define a versioned corpus-policy configuration with deterministic rules and explicit allowlists. | [x] | `config/corpus_policy.v1.json`; fixture and live validation passed |
-| P1.2 | Generate a manifest containing stable source ID, canonical location, content hash, version, disposition, reason, category, instrument, authority, validity, duplicate cluster, and quality flags. | [x] | `reports/phase1/corpus-manifest.v1.json`; all 1,043 sources classified |
-| P1.3 | Implement exact duplicate detection and a reviewable near-duplicate report. | [x] | `reports/phase1/near-duplicates.json`; 11 review candidates |
+| P1.2 | Generate a manifest containing stable source ID, canonical location, content hash, version, disposition, reason, category, instrument, authority, validity, duplicate cluster, and quality flags. | [x] | `reports/phase1/corpus-manifest.v1.json`; all 1,006 fresh-crawl sources classified |
+| P1.3 | Implement exact duplicate detection and a reviewable near-duplicate report. | [x] | `reports/phase1/near-duplicates.json`; 7 review candidates |
 | P1.4 | Identify dynamic/query variants, boilerplate-only sources, empty stubs, and damaged conversions. | [x] | Policy flags and manifest reasons; fixture matrix passed |
 | P1.5 | Review borderline fault-report and internal-operations sources with a domain owner. | [~] | Review queue generation implemented; owner decisions pending |
-| P1.6 | Produce a dry-run report showing every inclusion and exclusion and the projected document/chunk reduction. | [x] | `reports/phase1/dry-run.md`; 381 active / 215 historical / 418 quarantine / 29 excluded |
-| P1.7 | Build the curated corpus in a shadow location without deleting original source material. | [x] | `/home/llmrunner/NOTBot-shadow/phase1-candidate-2026-09-29`; 596 files hash-verified |
+| P1.6 | Produce a dry-run report showing every inclusion and exclusion and the projected document/chunk reduction. | [x] | `reports/phase1/dry-run.md`; 478 active / 216 historical / 283 quarantine / 29 excluded; CSC absent |
+| P1.7 | Build the curated corpus in a shadow location without deleting original source material. | [x] | `/home/llmrunner/NOTBot-shadow/fresh-crawl-2026-09-29-curated-v2`; 694 files metadata-enriched and hash-verified |
 
 Acceptance gates:
 
@@ -180,9 +180,9 @@ Goal: retain technical meaning and document structure while removing non-content
 | P3.2 | Correct PII rules so real contact details are removed while technical values are preserved. | [x] | Runtime processor plus producer patch `docs/notbot-documents-phase3.patch`; both smoke-tested |
 | P3.3 | Remove navigation and repeated page boilerplate before Markdown conversion and chunking. | [x] | Producer pre-conversion cleanup plus runtime Markdown cleanup; zero flagged shadow chunks |
 | P3.4 | Replace whitespace-collapsing character windows with heading-aware structured chunking. | [x] | `documentApi/app/document_processing.py` integrated into `worker.py` |
-| P3.5 | Preserve numbered procedures, warnings, tables, lists, code blocks, and section heading paths. | [x] | Structure fixture passes; shadow audit records 156 code, 3,644 list, 409 table, and 402 warning chunks |
+| P3.5 | Preserve numbered procedures, warnings, tables, lists, code blocks, and section heading paths. | [x] | Structure fixture passes; fresh shadow audit records 181 code, 3,719 list, 1,208 table, and 715 warning chunks |
 | P3.6 | Add parent-section and neighboring-section metadata for controlled context expansion. | [x] | Metadata emitted by parser, stored by all vector backends, and round-trip tested in SQLite |
-| P3.7 | Rebuild and audit the shadow index with the new conversion pipeline. | [~] | Structured shadow corpus built at `/home/llmrunner/NOTBot-shadow/phase3-structured-2026-09-29`; embeddings/search evaluation pending |
+| P3.7 | Rebuild and audit the shadow index with the new conversion pipeline. | [~] | Fresh structured shadow built at `/home/llmrunner/NOTBot-shadow/fresh-crawl-2026-09-29-structured-v2`; 478-document embedding index and chat retrieval smoke passed; comparative evaluation pending |
 
 Acceptance gates:
 
@@ -291,6 +291,7 @@ Add one row for each material corpus or retrieval iteration. Never overwrite an 
 | 2026-09-29 | `0c47411` | `production-2026-09-28` / `bb70f53a` | 1,043 filenames | 44,419 | 15,205 | 1,041 filenames have multiple IDs | Correctness 0.7567 (21/24 scored) | Not measured by seed suite | Not instrumented | Approved reproducible baseline; not a production-quality approval. |
 | 2026-09-29 | Working tree | `phase1-candidate-2026-09-29` | 381 active + 215 isolated historical | 2,964 projected active | 0 source-body exact duplicates | One version per active source ID | Not run; 8 coverage risks identified | Not measured | Not measured | Candidate only; domain review and rebuilt-index evaluation pending. |
 | 2026-09-29 | Working tree | `phase1-candidate-2026-09-29-structured-v1` | 371 active + 215 isolated historical; 10 damaged active conversions quarantined | 1,934 active + 9,549 historical | 9 active rows beyond first | 0 by source lifecycle | Not run; no damaged-PDF URL occurs in seed contexts | Not measured | Not measured | Deterministic structured shadow corpus; 7 context-aware contact redactions are historical-only; no pre-existing phone placeholder remained in the Phase 1 candidate. |
+| 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` | 478 active + 216 isolated historical; 283 quarantined; 29 excluded | 4,997 live active chunks | 161 live rows beyond first | 0 | Chat smoke passed; full suite pending | Not measured | 8,375 ms smoke | Fresh crawl/index; 1,006 processed sources; 28 CID-damaged files quarantined; zero CSC documents; all live chunks versioned and classified. |
 
 ## Test evidence log
 
@@ -312,7 +313,10 @@ Record concise, reproducible evidence. Link to durable reports when available.
 | 2026-09-29 | Working tree | Phase 3 processing fixtures | `/home/llmrunner/NOTBot-documents/venv/bin/python -m unittest scripts.tests.test_document_processing -v` | 5 passed: PII safety, boilerplate, structures, metadata, runtime parser | `scripts/tests/test_document_processing.py` |
 | 2026-09-29 | Working tree | Phase 3 vector metadata | `scripts.tests.test_source_lifecycle` | 6 passed including structural metadata round trip | `scripts/tests/test_source_lifecycle.py` |
 | 2026-09-29 | Working tree | Phase 3 structured shadow | Build twice and compare tree/report SHA-256 | 586 documents; 11,483 chunks; deterministic; 0 missing metadata; 0 navigation chunks | `reports/phase3/structured-shadow-2026-09-29.{json,md}` |
-| 2026-09-29 | External workspace + portable patch | Producer PII/conversion smoke | Contact/technical fixture plus HTML navigation fixture | Passed; producer workspace is not a Git repository | `docs/notbot-documents-phase3.patch` |
+| 2026-09-29 | Local producer repository + portable patch | Producer PII/conversion smoke | Contact/technical fixture plus HTML navigation fixture | Passed; local-only repository records producer changes | `docs/notbot-documents-phase3.patch` |
+| 2026-09-29 | Working tree | Fresh crawl and curation | Empty crawl tree; crawl, convert, DB export, audit, curate | 929 resources fetched; 1,006 processed sources; 478 active; zero CSC | `reports/fresh-crawl/source-audit-2026-09-29.{json,md}` |
+| 2026-09-29 | Working tree | Fresh embedding index | Empty API/PostgreSQL volumes; ingest curated searchable corpus | 478/478 done; 4,997 active chunks; zero errors; zero CSC; no unclassified chunks | PostgreSQL + `/api/documents` smoke |
+| 2026-09-29 | Working tree | End-to-end retrieval | Ask `What is ALFOSC used for?` through `/api/chat` | Five relevant contexts; cited answer; 8,375 ms | Local smoke result |
 
 ## Decision log
 
