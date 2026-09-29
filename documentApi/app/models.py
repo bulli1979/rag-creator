@@ -44,6 +44,12 @@ class DocumentRecord(BaseModel):
     corpus_path: str = Field("", alias="corpusPath")
     last_indexed_at: int | None = Field(None, alias="lastIndexedAt")
     size_bytes: int = Field(0, alias="sizeBytes")
+    source_id: str = Field("", alias="sourceId")
+    content_hash: str = Field("", alias="contentHash")
+    version: int = 1
+    is_active: bool = Field(True, alias="isActive")
+    canonical_location: str = Field("", alias="canonicalLocation")
+    corpus_version: str = Field("", alias="corpusVersion")
 
     model_config = {"populate_by_name": True}
 
@@ -125,6 +131,9 @@ class DatabaseTestRequest(BaseModel):
 class UploadOptions(BaseModel):
     tags: list[str] = Field(default_factory=list)
     source: str = "lokal"
+    corpus_version: str = Field("", alias="corpusVersion")
+
+    model_config = {"populate_by_name": True}
 
 
 class UploadFolderRequest(BaseModel):
@@ -132,6 +141,7 @@ class UploadFolderRequest(BaseModel):
     tags: list[str] = Field(default_factory=list)
     source: str = "lokal"
     offset: int = 0
+    corpus_version: str = Field("", alias="corpusVersion")
     batch_size: int = Field(default=400, alias="batchSize")
 
     model_config = {"populate_by_name": True}

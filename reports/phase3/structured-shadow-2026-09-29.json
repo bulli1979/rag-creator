@@ -1,0 +1,4173 @@
+{
+  "activeChunksBuilt": 1934,
+  "activeDocumentsBuilt": 371,
+  "activeDocumentsQuarantinedDamaged": 10,
+  "chunkCharacters": {
+    "maximum": 2604,
+    "median": 250,
+    "minimum": 11
+  },
+  "chunksBuilt": 11483,
+  "chunksMissingRequiredMetadata": 0,
+  "chunksWithNavigationBoilerplate": 0,
+  "chunksWithPhoneRedaction": 7,
+  "contentTypeCounts": {
+    "code": 156,
+    "heading": 28,
+    "list": 3644,
+    "paragraph": 7813,
+    "table": 409,
+    "warning": 402
+  },
+  "corpusVersion": "phase1-candidate-2026-09-29-structured-v1",
+  "documentsBuilt": 586,
+  "documentsQuarantinedDamaged": 10,
+  "documentsSelected": 596,
+  "documentsWithPhoneRedaction": [
+    "faults_active_fies_2025.md",
+    "faults_active_not_identified_2026.md",
+    "faults_active_telescope_2015.md",
+    "faults_alfosc_2017.md",
+    "faults_computers_2022.md",
+    "faults_notcam_2017.md",
+    "faults_others_2018.md"
+  ],
+  "documentsWithPreexistingPhonePlaceholder": [],
+  "documentsWithoutChunks": 0,
+  "exactDuplicateChunks": {
+    "active": {
+      "groups": 8,
+      "rowsBeyondFirst": 9
+    },
+    "historical": {
+      "groups": 57,
+      "rowsBeyondFirst": 273
+    }
+  },
+  "files": [
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-adc-html.jsonl",
+      "sha256": "c470314b3e89110251f090b85cf49333a8092ade7627fb2c4faf0429331fea7b",
+      "sourcePath": "instruments-adc-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-alfosc-acknowledgement-html.jsonl",
+      "sha256": "0f2f12731d96f7ae6d90bf20020f9c64ed5900d8838c7bd34bcfb966c2c33392",
+      "sourcePath": "instruments-alfosc-alfosc-acknowledgement-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-arbang-html.jsonl",
+      "sha256": "e0876ad2e7bef1d20cc0300d0f22c1bc9228b71cf55c89a7767c0182fa19f565",
+      "sourcePath": "instruments-alfosc-arbang-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-blockers-html.jsonl",
+      "sha256": "333a04dbf8aabaea34e573921d5e1bf7148b33ac5b7841b365fd5a263f804943",
+      "sourcePath": "instruments-alfosc-blockers-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-calibration-flat-04-html.jsonl",
+      "sha256": "e6479d6df01ec4b34b35b21e762166ab7953c688c12d939b4fa39b5ea3f34a17",
+      "sourcePath": "instruments-alfosc-calibration-flat-04-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-calibration-flat-html.jsonl",
+      "sha256": "9156a6510f99921a5f3b84c227bf49bc93803f21e2e16cc909b665bbb0fe6fb3",
+      "sourcePath": "instruments-alfosc-calibration-flat-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-calibration-flat-old-html.jsonl",
+      "sha256": "7230c71cfe086946c6529fe6c66595e50fff8299259e61bcfae41fe32c1d0093",
+      "sourcePath": "instruments-alfosc-calibration-flat-old-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-ccd8xxccd7-html.jsonl",
+      "sha256": "f1bfa07ffcffb5dc4c4a75c0af2dec894a331db236bc96b89b9294c35532fd7c",
+      "sourcePath": "instruments-alfosc-ccd8xxccd7-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-diffuser-html.jsonl",
+      "sha256": "fc5124dab0be5f9e206e1ccb075ba8e80b1c247e4ad9abd5d1084de4a523f03a",
+      "sourcePath": "instruments-alfosc-diffuser-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fastphot-rtcnv-guide-html.jsonl",
+      "sha256": "d2864b8a7f91ddec43822a24335355d35178ee4d7f18c7405a1923dbf5ec6e10",
+      "sourcePath": "instruments-alfosc-fastphot-rtcnv-guide-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fastphot-rtft-guide-html.jsonl",
+      "sha256": "d65455b31887201ec28efb031cec659091709b8d09c4ca69352d8118e25a0d42",
+      "sourcePath": "instruments-alfosc-fastphot-rtft-guide-html.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fastphot-rtp-guide-html.jsonl",
+      "sha256": "40abca9839f292526f75b1c98421d541856e5d34472ba8669c15ec6939a03eeb",
+      "sourcePath": "instruments-alfosc-fastphot-rtp-guide-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fastphot-rtp-options-html.jsonl",
+      "sha256": "9808f8cbe36e2b4f6c59bb6906a959029098bfe630e7e8068b1384d6c4f8751c",
+      "sourcePath": "instruments-alfosc-fastphot-rtp-options-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fies4alfosc-html.jsonl",
+      "sha256": "03309c51f3e965b95bf83a4e23b80b55bf69ece7aff61beaae37836285fd6c5d",
+      "sourcePath": "instruments-alfosc-fies4alfosc-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fixed-setup-html.jsonl",
+      "sha256": "ec384bd3c9242d7ab93d5240505da98cd1bd09576a7c6f983d5dce84823d40ed",
+      "sourcePath": "instruments-alfosc-fixed-setup-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-fringecorrect-html.jsonl",
+      "sha256": "33dc8d897d8842f6daddf21d8b7bdfae2dd1a7de72f8a0f6fa6fac92cc0ce16a",
+      "sourcePath": "instruments-alfosc-fringecorrect-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-grisms-3-4-5-pdf.jsonl",
+      "sha256": "9685b258b592e1b4a0ea01c6228de4685a91ffbc2d716227042beaca5e0cf2bd",
+      "sourcePath": "instruments-alfosc-grisms-3-4-5-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-grisms-4-15-pdf.jsonl",
+      "sha256": "60c3dbcea97446d9a4f62c5df0f2455fcc4590dfe0fcb8b9104cff7cf7355416",
+      "sourcePath": "instruments-alfosc-grisms-4-15-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-grisms-6-14-pdf.jsonl",
+      "sha256": "3af233dba5a05fa2eb3e05dc604bc5af733d346ba5e12ce556436d02f46c4aea",
+      "sourcePath": "instruments-alfosc-grisms-6-14-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-grisms-6-7-8-pdf.jsonl",
+      "sha256": "d11c68e1028baab36cf17563e9a39691bd265c13e63ed955484798ec0093c9b6",
+      "sourcePath": "instruments-alfosc-grisms-6-7-8-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-grisms-grism18-20-html.jsonl",
+      "sha256": "9d23db7ce506423b006e71f6c5de22dd41d1f24545d824e2e8b9e0d06f504880",
+      "sourcePath": "instruments-alfosc-grisms-grism18-20-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-horivert-html.jsonl",
+      "sha256": "b4abc239620bcd9676ca78e647dc76b3dd4b1158a405cbac7336d61d880152dc",
+      "sourcePath": "instruments-alfosc-horivert-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-cs-html.jsonl",
+      "sha256": "fba7fcb1fb39f4e29d84cab50455c5087206ce86e11ea57d3bac3c3b13925a8f",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-cs-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-cu-html.jsonl",
+      "sha256": "d1a85419cbd240588b178b74eecb1f577bda0db5ded827dc2eacf9970ed00e01",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-cu-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-nb-html.jsonl",
+      "sha256": "7c6f5f25dbc08e8dfdb62d92957222307e45ef105fabf91571aefa3b76af8900",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-nb-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-ne-html.jsonl",
+      "sha256": "4a51833b6238686b8a6fa25be06f362cfc9ea3ef7ee4234c1431d0d1cb3282b7",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-ne-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-th-html.jsonl",
+      "sha256": "0c1276c8c9463e5ccfc4f91744ec5a2f3c2e496670305307875d99ce1636435c",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-th-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-lamps-ccd7-ccd8-zn-html.jsonl",
+      "sha256": "2f002fd761d0e9f0a5231a0c42924997624c84f8795940577beef9c876b6120d",
+      "sourcePath": "instruments-alfosc-lamps-ccd7-ccd8-zn-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-distortion-html.jsonl",
+      "sha256": "27f7a80c59442c8545b388d96957e2b523719576da2b2219b634f7d861fec63e",
+      "sourcePath": "instruments-alfosc-mos-mode-distortion-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-intro-html.jsonl",
+      "sha256": "6da841f7d3f36843d0649738b051947a5d9867d9ff1c82069b2f7ec52e8a2689",
+      "sourcePath": "instruments-alfosc-mos-mode-intro-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-maskalign-html.jsonl",
+      "sha256": "b99d0d7e478612e0a21ee62a87707d54ed7d4935b47869de520dbc658e884a68",
+      "sourcePath": "instruments-alfosc-mos-mode-maskalign-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mos-announce-html.jsonl",
+      "sha256": "239332a9013a9e0f5ee12ed953b1edb01590ecf56ed819439b368987bca39c8a",
+      "sourcePath": "instruments-alfosc-mos-mode-mos-announce-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mos-distortionmap-html.jsonl",
+      "sha256": "07360418c4f64f06230568a00e897236d9a29afb53310685f9d9dbb54441f6fe",
+      "sourcePath": "instruments-alfosc-mos-mode-mos-distortionmap-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mosmove-html.jsonl",
+      "sha256": "9768491a1ddc7b4ade84be64bb19c1c3d419a7f77831bb6b41ddeea6e12fcf57",
+      "sourcePath": "instruments-alfosc-mos-mode-mosmove-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mosplate-startup-html.jsonl",
+      "sha256": "7c003dc1750ef9660865919eed107c313be7a4447c30be5b89adea247a68965a",
+      "sourcePath": "instruments-alfosc-mos-mode-mosplate-startup-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mosstrong-html.jsonl",
+      "sha256": "a124ed249b53062b80fdd54d60f2aef53ee64c63133374538ae876a4a330ab69",
+      "sourcePath": "instruments-alfosc-mos-mode-mosstrong-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-mostweak-html.jsonl",
+      "sha256": "3e3c3f664fd046977f56819f45f9bf3de995fbc75aae775b4c6e876c680354fb",
+      "sourcePath": "instruments-alfosc-mos-mode-mostweak-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-olddocs-html.jsonl",
+      "sha256": "383df69cb8d107b74b2a565144594a2a459896484aa3c6d031c0daacfc686260",
+      "sourcePath": "instruments-alfosc-mos-mode-olddocs-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-tgt-aqu-html.jsonl",
+      "sha256": "903d7f1344234c284c8be348c72e89ee584e3dfc9b6f65656d2f1b042d2542b8",
+      "sourcePath": "instruments-alfosc-mos-mode-tgt-aqu-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-tgt-aqu-new-html.jsonl",
+      "sha256": "ca9c0b8e27fafc0dcce8f3fb91ee947fbad48619edaf46a33acf047cc85bb346",
+      "sourcePath": "instruments-alfosc-mos-mode-tgt-aqu-new-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-tgt-aqu-previous-html.jsonl",
+      "sha256": "18ba058d55aa78a14290de71b25ac7898e7fde5f0778e762b6f1f314a26f40ba",
+      "sourcePath": "instruments-alfosc-mos-mode-tgt-aqu-previous-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode-usermanual-html.jsonl",
+      "sha256": "966b721c31a61bf3b1d013ea008f1571bf9c32279950bb838c380a6ec2d3b9f3",
+      "sourcePath": "instruments-alfosc-mos-mode-usermanual-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-mos-mode.jsonl",
+      "sha256": "88cb4f831fd3a128551ff137905a1fbbc749c0db0018974d6dd157b4863a9150",
+      "sourcePath": "instruments-alfosc-mos-mode.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-opticalelements-html.jsonl",
+      "sha256": "f9d75e348f2d5f21f775ea7ee2ee6ef786d0a8ae4b2e9709eb2cafbacfd2c638",
+      "sourcePath": "instruments-alfosc-opticalelements-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-paralang-html.jsonl",
+      "sha256": "11e88ddaa1832fb7836dfbc09bec1fd4defcf94c38b8c5b2456c5c3c0fa8638d",
+      "sourcePath": "instruments-alfosc-paralang-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-cirpol-html.jsonl",
+      "sha256": "1256783a4e86b42a90371ecdaeb809e674f833ba43785b4dbd32d13ac5878385",
+      "sourcePath": "instruments-alfosc-polarimetry-cirpol-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-comm-rep-html.jsonl",
+      "sha256": "e9966591011579cc401b24bb79270fc249154841d2646c81f661bf7c81840bdc",
+      "sourcePath": "instruments-alfosc-polarimetry-comm-rep-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-dirty-calc-html.jsonl",
+      "sha256": "401e6fa54f8c696cc647aeeb8022f63e1b74510f2a3ccacb76eaf4d02ed439e9",
+      "sourcePath": "instruments-alfosc-polarimetry-dirty-calc-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-fapol-cpa-html.jsonl",
+      "sha256": "5452427431be5735376e4b24406823da2372497e12fac3d9b7e4c29a1b6af1d8",
+      "sourcePath": "instruments-alfosc-polarimetry-fapol-cpa-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-focusfapol-html.jsonl",
+      "sha256": "8bd3537b010f8197d7247289b2df68f4b578a81e629773d115bac8b7eb14c1fa",
+      "sourcePath": "instruments-alfosc-polarimetry-focusfapol-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-general-html.jsonl",
+      "sha256": "a6f47ea63d5bb729731bf79d9b16e110fc0e6fbd308127fd2b8b2d2561812f21",
+      "sourcePath": "instruments-alfosc-polarimetry-general-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-instrumentsetup-html.jsonl",
+      "sha256": "d1b9f9e31d93792e0f9105c9758f0eaa8d85608e310f3aac49aa29986dea3006",
+      "sourcePath": "instruments-alfosc-polarimetry-instrumentsetup-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-lincir-html.jsonl",
+      "sha256": "a37121c63e0fa5cfd700b28c08307dc901925c5e1fccea688b3e7a6689bdb647",
+      "sourcePath": "instruments-alfosc-polarimetry-lincir-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-linpol-html.jsonl",
+      "sha256": "719ac9c92c796944bcc8de31567ef2acf9b8ed62808662d630f6ffd01ef6ee31",
+      "sourcePath": "instruments-alfosc-polarimetry-linpol-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-polarimetryandfilters-html.jsonl",
+      "sha256": "19dfe4d6b0f306a016391d74d366f237bf340effa3092d72e363c518ae66f03d",
+      "sourcePath": "instruments-alfosc-polarimetry-polarimetryandfilters-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-polaroids-html.jsonl",
+      "sha256": "0da8921e17ad9a5e179f5302ceefaf40988e03d14ffec7efaf496f68009e62f4",
+      "sourcePath": "instruments-alfosc-polarimetry-polaroids-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-qicpol-html.jsonl",
+      "sha256": "8cca2c6ed9351e18102c1a02be221ee9fbe07ace2f2ebb41a785ed52d8897d91",
+      "sourcePath": "instruments-alfosc-polarimetry-qicpol-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-qilpol-html.jsonl",
+      "sha256": "3524002b48d207eb4f42b728e6da67c22b2090b0557dc38b4658c01c28255d6f",
+      "sourcePath": "instruments-alfosc-polarimetry-qilpol-html.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-setup-html.jsonl",
+      "sha256": "e7667f9b9c2669dd41fa1cf62fd19628937a992c4386323a9f4964b7362e94ab",
+      "sourcePath": "instruments-alfosc-polarimetry-setup-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-signaltonoise-html.jsonl",
+      "sha256": "87411eb008741a87e1b669a3534222cdaffcf631f58fcdac115bdafd7cd0af62",
+      "sourcePath": "instruments-alfosc-polarimetry-signaltonoise-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-test-stdaccuracy-html.jsonl",
+      "sha256": "571ac9693021064e5723371ec7acdc2897c1f732e142d4e2b61874e83345a2f9",
+      "sourcePath": "instruments-alfosc-polarimetry-test-stdaccuracy-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-wedowo-html.jsonl",
+      "sha256": "89f08cbf58fc4dd289a491ae1441c72281552915fe3ba10c406b53a695176d4d",
+      "sourcePath": "instruments-alfosc-polarimetry-wedowo-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-wedowo-wedowo-testdata-html.jsonl",
+      "sha256": "b5188b7bab9de6f7276800d986d5ab0462fa30dc69615f7db6fcf29905df6cb3",
+      "sourcePath": "instruments-alfosc-polarimetry-wedowo-wedowo-testdata-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry-wedowo-wedowo-tmp-html.jsonl",
+      "sha256": "f2c1c2143f21b50cada6384e571bac4d1e6b501201779c1a4760040ad8e96dd8",
+      "sourcePath": "instruments-alfosc-polarimetry-wedowo-wedowo-tmp-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-polarimetry.jsonl",
+      "sha256": "aaaf5f9ba8a42eb02ef407e50a99e27eb3cc30015688f94b9a1349dc1d000ab5",
+      "sourcePath": "instruments-alfosc-polarimetry.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-postproc-html.jsonl",
+      "sha256": "0a7fbacc39b2ee549677fbe33c204a450d41402ee6dc38701688d5b99f9f757a",
+      "sourcePath": "instruments-alfosc-postproc-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-readout-html.jsonl",
+      "sha256": "15c432ceb17770905c9f98e697b0ef113bd1e8641503cecee89b6c33efae3057",
+      "sourcePath": "instruments-alfosc-readout-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-readout2-html.jsonl",
+      "sha256": "ee6b0b5a782174b2fb972ad47fc7452c707e20475584fc0a5e1a29834c58acb5",
+      "sourcePath": "instruments-alfosc-readout2-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-screenshotalfoscannotated-html.jsonl",
+      "sha256": "00018fd11e3ed0665cecb7f8798b8fd10b735851e79782828e0a7acc37c211e5",
+      "sourcePath": "instruments-alfosc-screenshotalfoscannotated-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-ccd3-problems-html.jsonl",
+      "sha256": "6a2cbd3119197a7f68ebc26252970b2ff410ef8c11892df17adf7a7a0a6792d0",
+      "sourcePath": "instruments-alfosc-seq-alfosc-ccd3-problems-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-ccd3db-daemon-restart-html.jsonl",
+      "sha256": "89efd40791f707c760b6aec2838073bbe0bfb71b07eeafb407054171b8f41e96",
+      "sourcePath": "instruments-alfosc-seq-alfosc-ccd3db-daemon-restart-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-fitswriter-daemon-restart-html.jsonl",
+      "sha256": "b86bb2e29cb9f75ca8b979154aeca5c3290dc5b18fd0b27dac6a9c249bf0c398",
+      "sourcePath": "instruments-alfosc-seq-alfosc-fitswriter-daemon-restart-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-seq-daemon-restart-html.jsonl",
+      "sha256": "f9d426eaaf59b0672bd9955b58b0347b922369fdbd02eaac37547949f6130dae",
+      "sourcePath": "instruments-alfosc-seq-alfosc-seq-daemon-restart-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-seq-html.jsonl",
+      "sha256": "c1378822045f5389bca06de36de92c695918617ea59345f22b4a435d64c786f6",
+      "sourcePath": "instruments-alfosc-seq-alfosc-seq-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-seq-alfosc-seq-start-html.jsonl",
+      "sha256": "77b5e6424179bc77ff6cec7692988d9032efb26c373ec711894d8935b7a6502e",
+      "sourcePath": "instruments-alfosc-seq-alfosc-seq-start-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-shutter-shutter-html.jsonl",
+      "sha256": "e7dcab2de04e2278f3367b8dc598a86b58e6ce5085f0cf0a17272398625c629e",
+      "sourcePath": "instruments-alfosc-shutter-shutter-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-slitpos-html.jsonl",
+      "sha256": "6c30852ff5b1935c7504ac126fbf5b14284b6462ec51d23d1b56d5b0b9416e00",
+      "sourcePath": "instruments-alfosc-slitpos-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-speccounts-html.jsonl",
+      "sha256": "d3ff69d32cee6b970ced33b89e4f5556e8490ec13f789d575ad9dfbab48c1ffd",
+      "sourcePath": "instruments-alfosc-speccounts-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-stdfilt-stdfilt-html.jsonl",
+      "sha256": "2cfba7ec57706fac75bc67e0ce79e7d06ff2f617d3ee86d27504453414bb82f6",
+      "sourcePath": "instruments-alfosc-stdfilt-stdfilt-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc-timing-analysis-html.jsonl",
+      "sha256": "b57c195e2b27d37ad177a629c5c7e6f833fd0853ee1587c726ded3edec0363b5",
+      "sourcePath": "instruments-alfosc-timing-analysis-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-alfosc.jsonl",
+      "sha256": "75d1feceb22b151bf31684d039eaf1538f76b12bfb79d2b7a74b0c5c2a39aa0c",
+      "sourcePath": "instruments-alfosc.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd1-qe-html.jsonl",
+      "sha256": "84ac3bf3a0ab052b656e0b9d21012254541cc4cbd0bad46da1382328dbe16f1f",
+      "sourcePath": "instruments-detectors-ccd1-qe-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd1.jsonl",
+      "sha256": "b449b45d96eba736803ccb293b157a80dc5f76d683be6c4715f73cdde339d619",
+      "sourcePath": "instruments-detectors-ccd1.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd14-linearityccd14-html.jsonl",
+      "sha256": "e580e5a405f0c487a028d510c1ac435260473922af3b4457920252765591c4c4",
+      "sourcePath": "instruments-detectors-ccd14-linearityccd14-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd14-readoutccd14-html.jsonl",
+      "sha256": "b42dd9a63dc727ca614142b4a2224d949d391fe684554b5b0617a201a6f36663",
+      "sourcePath": "instruments-detectors-ccd14-readoutccd14-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd4-failedsoak-html.jsonl",
+      "sha256": "dbb03cb3f4bf94a326ca5333b9c78f27bf05d222d07a0ac499656e599837022c",
+      "sourcePath": "instruments-detectors-ccd4-failedsoak-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd4-ijafreport.jsonl",
+      "sha256": "ee18b5440c4e73bddbfc9439fe22b261fe0674386b6610adb3767ece91bf4bf7",
+      "sourcePath": "instruments-detectors-ccd4-ijafreport.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd4-preparation-html.jsonl",
+      "sha256": "268a7667b1dbf37f51fa9b08de04a08a6f0d3d09fa9251a1a08625102eb415cb",
+      "sourcePath": "instruments-detectors-ccd4-preparation-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd4.jsonl",
+      "sha256": "3ecd6001ef9f5bf75352e942df8559f9aeaa6d1580181524470619e8f0e8261b",
+      "sourcePath": "instruments-detectors-ccd4.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd6.jsonl",
+      "sha256": "6b2836aff99cfce762a88fd7d93d49b2c5019abac7182078e37b5816440b1850",
+      "sourcePath": "instruments-detectors-ccd6.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd7-dark-html.jsonl",
+      "sha256": "8c1326954ac1ffa97159f993e3a839370ba3b83227c70eba8e9ac0d24256a7c7",
+      "sourcePath": "instruments-detectors-ccd7-dark-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd7-precommissioningreport.jsonl",
+      "sha256": "e9f14afa0e77090c3eae48f62d8c694a38303fbd7ed77e12cefa1b2a45bc4932",
+      "sourcePath": "instruments-detectors-ccd7-precommissioningreport.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd7.jsonl",
+      "sha256": "752b9daf3238bdd747ca5105e82f12e1e394d1a1bccddb28d39ac96356fcbcd2",
+      "sourcePath": "instruments-detectors-ccd7.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd8-biasccd8-html.jsonl",
+      "sha256": "a0387d88adc42375eb6ffd6116c78fe68a595c17fbe0b11352a388a129c5e6f4",
+      "sourcePath": "instruments-detectors-ccd8-biasccd8-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd8-features-html.jsonl",
+      "sha256": "715faf94ebc2f19af4a659ec7cd3f5c606f18741a1629c581e28620802a6258b",
+      "sourcePath": "instruments-detectors-ccd8-features-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd8-linearity-html.jsonl",
+      "sha256": "85c6e5d1c14483a77a8b9d90b9007c2b474fb13160631df7be21d8a1a8c224cd",
+      "sourcePath": "instruments-detectors-ccd8-linearity-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-ccd8.jsonl",
+      "sha256": "2361b41a68bf7c93031a6c35bf5065de7841de5cb634c81a8f88cd3f8692122e",
+      "sourcePath": "instruments-detectors-ccd8.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-gen3-ccdgen3-html.jsonl",
+      "sha256": "410fa08af5fa92bca8486c50cb54ee505095aa609f260487377ce9cc2d28d136",
+      "sourcePath": "instruments-detectors-gen3-ccdgen3-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-gen3-features-html.jsonl",
+      "sha256": "d9708d812d113c5b1fa55b3bc844de7ad3681a8d33399fca99ea8a74638b5f25",
+      "sourcePath": "instruments-detectors-gen3-features-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-gen3-nbi-tempctrlquickref-pdf.jsonl",
+      "sha256": "9ee20eb03bb45f1bb995fa2cfdfce5aecb5886669a7ff487634d06896049d093",
+      "sourcePath": "instruments-detectors-gen3-nbi-tempctrlquickref-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-history.jsonl",
+      "sha256": "a7163c6c9577510620d8892238d3d7bf9cc1c51684777720bc05e7c280667920",
+      "sourcePath": "instruments-detectors-history.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-mosca-ccd9101112.jsonl",
+      "sha256": "bf96313e74cd31c14519755a49196d30970a65ba75e81a748166b5d6d3a3a478",
+      "sourcePath": "instruments-detectors-mosca-ccd9101112.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-mosca-index-html.jsonl",
+      "sha256": "8d8c0dd86464b3bf2eb6e6af39b6cc32a1ae70d5799686a3e774b802356b6892",
+      "sourcePath": "instruments-detectors-mosca-index-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-oldnew.jsonl",
+      "sha256": "decb7b2da0abfe24b040e7d74bc50e943aa9402cce276955917e67617e04c54a",
+      "sourcePath": "instruments-detectors-oldnew.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-swir1.jsonl",
+      "sha256": "7b15a4cd5c95b77ecaf9ce3a23d0d385a21ad613a5ddaf0a0eee38eeee9ba375",
+      "sourcePath": "instruments-detectors-swir1.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-swir2.jsonl",
+      "sha256": "cd2b6914a385a0ce021ac5d17768c8c9455e7c8889d0236434e4ed8666b5b9cd",
+      "sourcePath": "instruments-detectors-swir2.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors-swir3.jsonl",
+      "sha256": "a0adf5d7b4cbde6b628b7856b0f706e61f486a4a7257c8b8690139e77f5578ca",
+      "sourcePath": "instruments-detectors-swir3.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-detectors.jsonl",
+      "sha256": "ab0f6f33b7f7c86a4de20f3322062e68f0226b9ef0d0f6b657aadfbefa072672",
+      "sourcePath": "instruments-detectors.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-another-guide-camera-pdf.jsonl",
+      "sha256": "d5e52485e546f96c44f7fa1ca85478630a84108b04bbbedcaddbd5b74ac53b37",
+      "sourcePath": "instruments-development-another-guide-camera-pdf.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-ccd3-direct-ctrl-commands-pdf.jsonl",
+      "sha256": "bd6dd64a26c71c515ba25b8265030867e52ab0801f3a1114a9ab373809512d3b",
+      "sourcePath": "instruments-development-ccd-controller-ccd3-direct-ctrl-commands-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-current-ccd-commands-pdf.jsonl",
+      "sha256": "e1e5ba3a9d4ee994e1baf83aff1be0ebddf208b6de503b55357651a18de66862",
+      "sourcePath": "instruments-development-ccd-controller-current-ccd-commands-pdf.md"
+    },
+    {
+      "chunks": 14,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-fitsheader-commented-pdf.jsonl",
+      "sha256": "c123456d597930b739c849befd4ac75ef35eeb7e0abbcc9f500814d6b720c5ef",
+      "sourcePath": "instruments-development-ccd-controller-fitsheader-commented-pdf.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-01-test-file-format-pdf.jsonl",
+      "sha256": "088a7fbfd74c9d8993e316684b63cc7278c8fe5edb4e01aab27627be2b39e691",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-01-test-file-format-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-02-test-fits-hdr-int-pdf.jsonl",
+      "sha256": "0bebf4f3abd54fced28f8647e147b0a79ba964ab10a33c56f20d2205039afd37",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-02-test-fits-hdr-int-pdf.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-03-test-fits-hdr-ext-pdf.jsonl",
+      "sha256": "97df3168677c7b00e83582bdfaceabcc239386d036309bd6ba540f20aaefbdc7",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-03-test-fits-hdr-ext-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-04-test-fits-hdr-wcs-pdf.jsonl",
+      "sha256": "da53fbae349c4e43948e2b96a7babc2795e60cea2b1cd1f31065236a20edb4f1",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-04-test-fits-hdr-wcs-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-06-test-cmd-if-pdf.jsonl",
+      "sha256": "b5f1c4daf39bad82de4928b2145513eea76c808b38797d3969ce42721b13a855",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-06-test-cmd-if-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-07-test-event-if-pdf.jsonl",
+      "sha256": "ce4269f07369c2c949af881b13df46633b48b55b9e3454bbb50254c9d3a89b05",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-07-test-event-if-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-08-test-status-trans-pdf.jsonl",
+      "sha256": "f389a77708b1ccba05bb4c9f46f9f615081886b50f930821765c6f14e189c40c",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-08-test-status-trans-pdf.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-09-test-timing-pdf.jsonl",
+      "sha256": "b7c1591b4b4f5284ae9853f1d5f4f1506e0e2a5fabecb24cb651a65a58192add",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-09-test-timing-pdf.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-11-test-status-display-pdf.jsonl",
+      "sha256": "d8a202030d29fd7fe7226bb4a800b245577cc9e82715f563a86449ebed184340",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-11-test-status-display-pdf.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-12-test-image-display-pdf.jsonl",
+      "sha256": "2b0fb8bb151433c71421792670aaac6d89e3ce5db8694557d7c5fb197f984c04",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-12-test-image-display-pdf.md"
+    },
+    {
+      "chunks": 12,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-test-doc-das-testing-overview-pdf.jsonl",
+      "sha256": "3533bea501d909723a6446ba2dcb512aef1f9c7624a891b0ddddb6a5af915865",
+      "sourcePath": "instruments-development-ccd-controller-test-doc-das-testing-overview-pdf.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller-wcs-specification-pdf.jsonl",
+      "sha256": "73c1bab2a7b92dc06f85fa9778cda603e3c1af490d0e96ae567ad9244470e86a",
+      "sourcePath": "instruments-development-ccd-controller-wcs-specification-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ccd-controller.jsonl",
+      "sha256": "70c834022fa52c3c9a98cc1dd67c20d2ee2ba4b0b410127e6dcd527c5debc943",
+      "sourcePath": "instruments-development-ccd-controller.md"
+    },
+    {
+      "chunks": 99,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-ir-user-requirements-pdf.jsonl",
+      "sha256": "34f145793d217afec287b990cab1aef7d2609ec8afe8dcdd48e0e808d2f9c818",
+      "sourcePath": "instruments-development-ir-user-requirements-pdf.md"
+    },
+    {
+      "chunks": 28,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-notcam-readout-modes-pdf.jsonl",
+      "sha256": "70779ab371461ba3c60fc9cb23149f5560af811c0446aec7d7e1844c8320617a",
+      "sourcePath": "instruments-development-notcam-readout-modes-pdf.md"
+    },
+    {
+      "chunks": 46,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-scs-pdf.jsonl",
+      "sha256": "db9b0445d8241343f8d5bb2f812e2726b63f74309480853aeb613ccf512aa792",
+      "sourcePath": "instruments-development-scs-pdf.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development-userreq-pdf.jsonl",
+      "sha256": "1168a24c58de48a90433e9701dedd41967e136b2092fe3bd8ccd46c37de97730",
+      "sourcePath": "instruments-development-userreq-pdf.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-development.jsonl",
+      "sha256": "748597a32d8e38e13940b889f7e91ade9f1476c0da10fd47a1f62113089a2864",
+      "sourcePath": "instruments-development.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-dipol-uf-dipol-uf-description-html.jsonl",
+      "sha256": "400f1a84534e5e2b2250c9bfc3dd98a8afcbd78117e2bbf56c65e18ccda8cb34",
+      "sourcePath": "instruments-dipol-uf-dipol-uf-description-html.md"
+    },
+    {
+      "chunks": 27,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-dipol-uf-dipol-uf-manual-pdf.jsonl",
+      "sha256": "4bc398b2eb13127d043c99f7985975918db0df4bdd8b361e81351007fec7ec01",
+      "sourcePath": "instruments-dipol-uf-dipol-uf-manual-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-dipol-uf-observing-instructions-html.jsonl",
+      "sha256": "0475ec8b819284f7a74b1307aaf3a833d76ed816e13b1d93f808b2778f0f1e2a",
+      "sourcePath": "instruments-dipol-uf-observing-instructions-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-dipol-uf-troubleshooting-pdf.jsonl",
+      "sha256": "e8c393ad2ada85a94228a9ec68a9c616d02e155ad7eb2d6f7d35b1364e6f777d",
+      "sourcePath": "instruments-dipol-uf-troubleshooting-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-dipol-uf.jsonl",
+      "sha256": "ce0920bf034d0688c04881fdb1237b40a054a0daf16ea220c5b43417f63e8019",
+      "sourcePath": "instruments-dipol-uf.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.jsonl",
+      "sha256": "7a7c59a79129b6bb2390558bf8b249bd44a0d053ae0ee2197270ef5c2deb8bb3",
+      "sourcePath": "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.jsonl",
+      "sha256": "1987951a8899eb03d7422c37a70fec483dca11eb36bf72cddcd1ea837e4d0b86",
+      "sourcePath": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-bundled-bundled-optical-design-09112017-page7-pdf.jsonl",
+      "sha256": "f75008211baf3f94df1812a6bbca629915fbecebde299e5b3d515caeb91c3ac7",
+      "sourcePath": "instruments-fies-bundled-bundled-optical-design-09112017-page7-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-bundled-bundled-optical-design-09112017-page8-pdf.jsonl",
+      "sha256": "1699f7ace539e42c2eed917f0a6aec42b8c63d379200b44e6d27b29c4c304e57",
+      "sourcePath": "instruments-fies-bundled-bundled-optical-design-09112017-page8-pdf.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-skew-readout-arto-skewpaper-050412-pdf.jsonl",
+      "sha256": "51bd516431e001a0a7f9fd35e6e8bc79f560ac7db597445c5d39761fea0e1997",
+      "sourcePath": "instruments-fies-devel-skew-readout-arto-skewpaper-050412-pdf.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-skew-readout-skew-observing-html.jsonl",
+      "sha256": "26a178d92d759971d3128a25ea23f426f2652cdd86cc22a29e35c1186cf80b73",
+      "sourcePath": "instruments-fies-devel-skew-readout-skew-observing-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-skew-readout-skew-tech-manual-html.jsonl",
+      "sha256": "ba0ff50384e557db6610f020d9c5c103592634032e93694010f26c3a99080358",
+      "sourcePath": "instruments-fies-devel-skew-readout-skew-tech-manual-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-skew-readout.jsonl",
+      "sha256": "9ee27efaa1c879b1fac829b99a2df87f57a47cbc622884128448362ecf1ced3a",
+      "sourcePath": "instruments-fies-devel-skew-readout.md"
+    },
+    {
+      "chunks": 23,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-telting2014fies-pdf.jsonl",
+      "sha256": "f83f15527bb59a0d7679c1889c67ff347b63d13da593e20b80c666a62d41229f",
+      "sourcePath": "instruments-fies-devel-telting2014fies-pdf.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel-userreqs-pdf.jsonl",
+      "sha256": "1d5c9bf0d037b4a56c63893af2cb809b0ffb6b33c5017171560a4bdfa44b3345",
+      "sourcePath": "instruments-fies-devel-userreqs-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-devel.jsonl",
+      "sha256": "20f851f11d8893054d5fc4baea31d9366a22d5c075b5d65ab431a597bd997d24",
+      "sourcePath": "instruments-fies-devel.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-fibguider-html.jsonl",
+      "sha256": "72dbb6b1e900e787584baa2788278ba81c1dfd4030142e70308a276c9a162e1a",
+      "sourcePath": "instruments-fies-fibguider-html.md"
+    },
+    {
+      "chunks": 32,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-fies-comm-html.jsonl",
+      "sha256": "cd2bb224c4ca7b50424528bfe5b4ba567e3b6de78d1afb68ea7695b2a53d2366",
+      "sourcePath": "instruments-fies-fies-comm-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-fiestool-masterframes-html.jsonl",
+      "sha256": "6ed761524592baf84adaee1e235c864c8eadde350d31d4832d03259979c7c503",
+      "sourcePath": "instruments-fies-fiestool-masterframes-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-fiestool.jsonl",
+      "sha256": "fb1b0528142bd2593ba7bbf3df0e72d5baf970a679229ddfb000405dd1e400a3",
+      "sourcePath": "instruments-fies-fiestool.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-quickrefguide-new-html.jsonl",
+      "sha256": "3b7720061319390329fb08cce1f38efa3d338ce9cd04093bfcfcd8367e2d28f5",
+      "sourcePath": "instruments-fies-quickrefguide-new-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-screenshotfies-html.jsonl",
+      "sha256": "30b52f945f1ed2038ca009fa16c3d670d6c75c6698f3ab6e20b54123dbc532b4",
+      "sourcePath": "instruments-fies-screenshotfies-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-seq-fies-ccd3-problems-html.jsonl",
+      "sha256": "d3b7bb8228b89aa701d60852fa081434d0a2adfd3b60f6246e3f52c28bc370c7",
+      "sourcePath": "instruments-fies-seq-fies-ccd3-problems-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-seq-fies-ccd3db-daemon-restart-html.jsonl",
+      "sha256": "65b14ae48a5650cc157b5497dd08731db1beaa089e6b419f34694c7ba93977bf",
+      "sourcePath": "instruments-fies-seq-fies-ccd3db-daemon-restart-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-seq-fies-fitswriter-daemon-restart-html.jsonl",
+      "sha256": "9bda51f512c995b8406397bdff5669a932411ffbeb1a497ff8e02aa92b96c4bd",
+      "sourcePath": "instruments-fies-seq-fies-fitswriter-daemon-restart-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies-throughput-html.jsonl",
+      "sha256": "5d3d6c62b1acc7b74492f0e63d0b02f3e3a60b948497a2578dc0bff9d4d143a6",
+      "sourcePath": "instruments-fies-throughput-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fies.jsonl",
+      "sha256": "516efb17afa22be47ce55487fc52178e157d39887853aaca6adc6faced853301",
+      "sourcePath": "instruments-fies.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-filters-cleanthem-html.jsonl",
+      "sha256": "c79c387a181b8e9600344097f38af2f052cdf49dbc0af5e4c1492fc806fa06bc",
+      "sourcePath": "instruments-filters-cleanthem-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-filters-filtinst-html.jsonl",
+      "sha256": "48115abca50ede880f2bf76d06b5f7a695d0db7dcb39620a56ff48db1cac10b1",
+      "sourcePath": "instruments-filters-filtinst-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-filters-focusoffset-html.jsonl",
+      "sha256": "6a9718e55164cb51eef9d35d7f8df684d5759f0148233f6c1d89b0c8bc88b4a7",
+      "sourcePath": "instruments-filters-focusoffset-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-filters.jsonl",
+      "sha256": "3d457198216c12576ab648e01d327240fa7facd431276c021867416701f0f51b",
+      "sourcePath": "instruments-filters.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-comment-html.jsonl",
+      "sha256": "2e1a06ab7112e5e055b4cfabfbcbfc457c4731ac90f73012e630352df9dc7f31",
+      "sourcePath": "instruments-fits-header-comment-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-date-html.jsonl",
+      "sha256": "4dc918beeb56bef7d89a4ac6827fbba616a3d0d2810cc2331fe4966265448619",
+      "sourcePath": "instruments-fits-header-date-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-date-obs-html.jsonl",
+      "sha256": "cd4bbff3c59fd3baca0c008a57eb88fe3c5300e644fc060aca0e94dbe77a24c6",
+      "sourcePath": "instruments-fits-header-date-obs-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-detname-html.jsonl",
+      "sha256": "53c38871ee555d6c64219e2b7530027ec4b4b125a104e9923aa29282fa227d00",
+      "sourcePath": "instruments-fits-header-detname-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-equinox-html.jsonl",
+      "sha256": "d0c6e1cfff6d5cb04d1263ba03e37cfd5b7ff78ea2ba398d2d9bba182d37ec05",
+      "sourcePath": "instruments-fits-header-equinox-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-fits-changes-html.jsonl",
+      "sha256": "b6166ef8d2403a27428b7c87ca5c084ad397d75198040217a9fcff6b713a7840",
+      "sourcePath": "instruments-fits-header-fits-changes-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-float-html.jsonl",
+      "sha256": "d54362d7132c25c62ec481e46922e2d332c637db19fe50fdf49e0bdfdab9af9b",
+      "sourcePath": "instruments-fits-header-float-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-imtyp-html.jsonl",
+      "sha256": "6b631784ab54b9790228e0cfa65e541436150aaad0d6777c2678f2ea8c8afefa",
+      "sourcePath": "instruments-fits-header-imtyp-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-inst-html.jsonl",
+      "sha256": "88dc953a5ba94878b8444ee78c7f228231d0ecc41c419ac2459bd7b369e0dca6",
+      "sourcePath": "instruments-fits-header-inst-html.md"
+    },
+    {
+      "chunks": 9,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-mef-mef-examples-html.jsonl",
+      "sha256": "afef354bea5af1bcef4a19549133c3274df638eb30926eff9ba2ec4ad7c36abb",
+      "sourcePath": "instruments-fits-header-mef-mef-examples-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-mef-not2mef-html.jsonl",
+      "sha256": "3c006073a9220d617b0a7354355a8ca6ff7fdec515e77610d890429f7ad697ed",
+      "sourcePath": "instruments-fits-header-mef-not2mef-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-object-html.jsonl",
+      "sha256": "f6b56e8a725d8ec2f9a8e2be93e680a093786c19cbdb87ade2527708a569b493",
+      "sourcePath": "instruments-fits-header-object-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-obs-html.jsonl",
+      "sha256": "e0aa284279188f4e4e07f467f0db4447d98b4173a83de08ed21f517e493e084d",
+      "sourcePath": "instruments-fits-header-obs-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-overscan-html.jsonl",
+      "sha256": "a16d1fe924ca18841293ac47c356cd5a0dcfc59f9a8a91100805b71d0668c834",
+      "sourcePath": "instruments-fits-header-overscan-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-fits-header-press-html.jsonl",
+      "sha256": "4b3de66fc77a7b8272c2deb336c38031a4ff841dd1b3843aaeba3e85c7c3de80",
+      "sourcePath": "instruments-fits-header-press-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-dumbbell-html.jsonl",
+      "sha256": "1ce87f0b10b8986127f344937370c89ff477b918ef67f4008bd1e7d36b9b2107",
+      "sourcePath": "instruments-mosaic-dumbbell-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-fies4mosca-html.jsonl",
+      "sha256": "45a15d5cd878437a70e75234e504d3f59015cef4d1e53a4dffd763766a9d58b6",
+      "sourcePath": "instruments-mosaic-fies4mosca-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-datared-html.jsonl",
+      "sha256": "888a8694a662356a96d7997fbfb76d239ffe3c99114b9bf2b3deb946a3d5f49e",
+      "sourcePath": "instruments-mosaic-mosca-datared-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-filtersetup-html.jsonl",
+      "sha256": "7be032bad089b332749b0d0982df024ca49c8b0794f10a2a4b37a4c7f475f6e6",
+      "sourcePath": "instruments-mosaic-mosca-filtersetup-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-fixed-setup-html.jsonl",
+      "sha256": "9757a421ec9c5bc0c90db6028c132b7680c63d08d0b498862042c51d6ae84ca9",
+      "sourcePath": "instruments-mosaic-mosca-fixed-setup-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-foc-off-content-html.jsonl",
+      "sha256": "d903db1a2cda0d565ef5860197eac7205162f9ea2650de4a7029ac1c59de36d9",
+      "sourcePath": "instruments-mosaic-mosca-foc-off-content-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-foc-seq-html.jsonl",
+      "sha256": "bc2d387c243bba4d974f0291ba1378a04658601bbd2ab915a42f3e54686ca354",
+      "sourcePath": "instruments-mosaic-mosca-foc-seq-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-mount-html.jsonl",
+      "sha256": "f794376e1b1e16818cc2df7ac20866bb2afdb457953b70baf2a36edecf296d01",
+      "sourcePath": "instruments-mosaic-mosca-mount-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-observe-html.jsonl",
+      "sha256": "2ecbee86ab02777008161fd1121bfad550de6a79defcb519adf4c8b28e133e5d",
+      "sourcePath": "instruments-mosaic-mosca-observe-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-readout-html.jsonl",
+      "sha256": "e5bc0187bd05e3c00d013d4cb87b7958c8d7781407f547bfe2f08f29e1a40411",
+      "sourcePath": "instruments-mosaic-mosca-readout-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-start-seq-html.jsonl",
+      "sha256": "37af38db19ede57b2cc031e28dceaecfe61c166822e0e5ce1eb9c147cd67e36f",
+      "sourcePath": "instruments-mosaic-mosca-start-seq-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-mosca-trouble-html.jsonl",
+      "sha256": "aec29cb41ab0bc5f49a68ab964c20a6d7009790fbb1525e5616b8fd43bcd17da",
+      "sourcePath": "instruments-mosaic-mosca-trouble-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-reductions-redulinks-html.jsonl",
+      "sha256": "f6a0973ce29c9178468358428e2a07546eb6e6792fcd41b91e5c2c7db2ebce89",
+      "sourcePath": "instruments-mosaic-reductions-redulinks-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic-rotcent-html.jsonl",
+      "sha256": "45ab4eca12224b7df54eeae87f0cb2e238f32e922e7b12f418bcd05e65f123d0",
+      "sourcePath": "instruments-mosaic-rotcent-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-mosaic.jsonl",
+      "sha256": "2b04ef5775a50ef4c0e360b21e7496e985d245e250a138dad50128825a81fa55",
+      "sourcePath": "instruments-mosaic.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-arrival-html.jsonl",
+      "sha256": "574edc04f220e42aa87ebc04cd8491bab5c9a6e00bbbb6614e50f55852a016c6",
+      "sourcePath": "instruments-notcam-arrival-html.md"
+    },
+    {
+      "chunks": 18,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-calibration-html.jsonl",
+      "sha256": "39975bd5ea446b79fa5218b9832cbeca9151b33b633d5e118f75c8a2cd4a798e",
+      "sourcePath": "instruments-notcam-calibration-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-comm-sci-arr-html.jsonl",
+      "sha256": "4e7e9fc117813e594eb84beb4ce1e4f3c77b0af00a2d08f16fef395c5ff39673",
+      "sourcePath": "instruments-notcam-comm-sci-arr-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-comm-sci-arr2-html.jsonl",
+      "sha256": "4e63aa1ba7c58630d3d5645768bf9c80930586d0ca59c87981b3f048c63ecf4a",
+      "sourcePath": "instruments-notcam-comm-sci-arr2-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-faces.jsonl",
+      "sha256": "f70a45d6e28d452c90a6ada693d51a5475a3ae62cf0b6e2d29367964898e45bf",
+      "sourcePath": "instruments-notcam-faces.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-201-html.jsonl",
+      "sha256": "e6720bc843adb0b4d9baf496c904f5559b2f134db1cc5fe9021a2af20a08aa3a",
+      "sourcePath": "instruments-notcam-filters-201-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-202-html.jsonl",
+      "sha256": "fc3896ca49a5e6ebf35924f996bf77a4ed5519cfc8c5a9ff9943205edc600f64",
+      "sourcePath": "instruments-notcam-filters-202-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-203-html.jsonl",
+      "sha256": "e61acd39951e9acdb51c786b9b5bfe1fe2f66d658ce942b38a7773c23a110c44",
+      "sourcePath": "instruments-notcam-filters-203-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-204-html.jsonl",
+      "sha256": "8434ad90de001d7347b5f4e63af35bd37e856248919f1c2ff33ebea4e7e5dd9c",
+      "sourcePath": "instruments-notcam-filters-204-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-205-html.jsonl",
+      "sha256": "15984a4e40791aa22676e889e437c0596f4a81f5cba66df7e3c18d110ce65727",
+      "sourcePath": "instruments-notcam-filters-205-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-206-html.jsonl",
+      "sha256": "e0f05d21c1864812f1690088e7dabeedf2c53d88a3d74178ce8183510f8a8d2e",
+      "sourcePath": "instruments-notcam-filters-206-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-207-html.jsonl",
+      "sha256": "d84fedb0cf3092f4b8d29a1704792b86c0fce4d4d22a4d5697a8a7bd3551a150",
+      "sourcePath": "instruments-notcam-filters-207-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-208-html.jsonl",
+      "sha256": "e915de8b264beafc4aaabf09ea1e86b993ea9e03c358487d513d7d5f44b4704e",
+      "sourcePath": "instruments-notcam-filters-208-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-222-html.jsonl",
+      "sha256": "7bd83d0e1e313dfc5848f9b4539d8c556cd4590123482e1d52686fa7128f069b",
+      "sourcePath": "instruments-notcam-filters-222-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-236-html.jsonl",
+      "sha256": "e7055c981cb52f263f40b587298187edaee235504bfaac709630e1b0ddf1d714",
+      "sourcePath": "instruments-notcam-filters-236-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-237-html.jsonl",
+      "sha256": "7fae0fb4ec4cf309d4c499f63cac3ac1950a41b3ab799d343fc58b7d095ee2fd",
+      "sourcePath": "instruments-notcam-filters-237-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-238-html.jsonl",
+      "sha256": "24d22fe7c99aa04206e633a3b1e56ff55229443bc44ece9e5e32cd922f71424f",
+      "sourcePath": "instruments-notcam-filters-238-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-239-html.jsonl",
+      "sha256": "e47241f0f6befc5687503caa50f4cbfe699bdcfc4aaa6c0f0cc2da2c7cfb9574",
+      "sourcePath": "instruments-notcam-filters-239-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters-consortium-html.jsonl",
+      "sha256": "8a5101644116e5ead6020f0ee0ad1c3132c7526c90a15021dbe6551569e538f4",
+      "sourcePath": "instruments-notcam-filters-consortium-html.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-filters.jsonl",
+      "sha256": "51367fba740b15ec08b743fa43996199cc44aa0cfd051cea4629893482f2f4e0",
+      "sourcePath": "instruments-notcam-filters.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-first-firstlight-html.jsonl",
+      "sha256": "eef8fdcd0d0fd980041664a689c2452c8e40468639f2466543551ca1bcfd4acf",
+      "sourcePath": "instruments-notcam-first-firstlight-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-first-flatfield-html.jsonl",
+      "sha256": "4c5fa38bc905c31851abec2d809d9883ec9140d93c4896ea309caa4d31adaaad",
+      "sourcePath": "instruments-notcam-first-flatfield-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-comment-html.jsonl",
+      "sha256": "009462cafdefdab62db1c238d51d8c5a00a32492c67579bd051331397c68ef85",
+      "sourcePath": "instruments-notcam-guide-comment-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-date-html.jsonl",
+      "sha256": "713f2cb5b146427d83c1699bd10f798c6b947a5cb87278f61e0b88b59638dd0f",
+      "sourcePath": "instruments-notcam-guide-date-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-date-obs-html.jsonl",
+      "sha256": "e15056d29e92a39d374b6172d1463643c820a95319d3db67d2c2dab1df7f5d57",
+      "sourcePath": "instruments-notcam-guide-date-obs-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-expmode-html.jsonl",
+      "sha256": "9c0849fa4312e600deb2f758d808a578818c4d09e9825025eeb4afd7aeb804ae",
+      "sourcePath": "instruments-notcam-guide-expmode-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-exptime-html.jsonl",
+      "sha256": "422810aca160e0bd93d0a238c432fc59e882b7b5d7ca7acc8f3f4bfe5f79cc37",
+      "sourcePath": "instruments-notcam-guide-exptime-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-st-html.jsonl",
+      "sha256": "ba0c2a23ac5336ae200a7a903744ebf31f7995f520e1f89d1fb0ff0b9cafca7e",
+      "sourcePath": "instruments-notcam-guide-st-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-stancamnotcam-html.jsonl",
+      "sha256": "166217e70d0f5b2b5cc03d699c2fe49239a8320778d488a66d43124aa64e526a",
+      "sourcePath": "instruments-notcam-guide-stancamnotcam-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-tm-end-html.jsonl",
+      "sha256": "8b8eaf9a42b6b2bd451fcb97c1bdf148cde49346b61d45f22930fdb6f627b4be",
+      "sourcePath": "instruments-notcam-guide-tm-end-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-tm-start-html.jsonl",
+      "sha256": "752c9381abf3d7990414b1bfa54d1f0fe820bc64fbd7e987b47a8be47fc4a9a0",
+      "sourcePath": "instruments-notcam-guide-tm-start-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-guide-ut-html.jsonl",
+      "sha256": "6bdcfe6f7b72943d4590140f2d6bea4ad9b6b568a02c8c2ceabb7d10e1876805",
+      "sourcePath": "instruments-notcam-guide-ut-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-imagelist-html.jsonl",
+      "sha256": "3f942cf157dd53eae04cc038af2b60cc6c7a68a83469b66baf24b0b02396d0c9",
+      "sourcePath": "instruments-notcam-imagelist-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-mechcryo-html.jsonl",
+      "sha256": "99d87311fb948f2c5a506216d1a419b7cd20dcb54e0a80ea3d8b79489c6316b6",
+      "sourcePath": "instruments-notcam-mechcryo-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-mounting.jsonl",
+      "sha256": "516c530331b1189f7a9286414aa89d3e6accbbe8cf8fbbf51d2ad30db9dfa88b",
+      "sourcePath": "instruments-notcam-mounting.md"
+    },
+    {
+      "chunks": 9,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-new-sci-arr-html.jsonl",
+      "sha256": "401a0083c4bec797520719648667d9d23ea4f21a8221f2d5763c268868932ef1",
+      "sourcePath": "instruments-notcam-new-sci-arr-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-nirlinks-html.jsonl",
+      "sha256": "702ff1c73679f08bd90e67613cab566e659f1a02e6fd80dc9b37d387c3ceedfd",
+      "sourcePath": "instruments-notcam-nirlinks-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node1-html.jsonl",
+      "sha256": "9fb074399ef6e01ec24cd6bf1f1f9c880487d34d33e35f40ffc1adde561ef43c",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node1-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node10-html.jsonl",
+      "sha256": "d989618f974aedc0623cc50f4edabae46c2e0d4b76883a4ab0c0b1fe88bc88b7",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node10-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node11-html.jsonl",
+      "sha256": "80fc5e3913e31106ab0f4804cbfb075a66569cced9ba9270b2a566f4a94ea5e6",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node11-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node12-html.jsonl",
+      "sha256": "5713f06dd5790544d9060e2d77795c737e069fe85e3e31760faddc9caa7b5aea",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node12-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node13-html.jsonl",
+      "sha256": "aa7c83ba1776a88e02a8b425ff0d8100f925a6019d1dd99737401cde467ce1fc",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node13-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node14-html.jsonl",
+      "sha256": "255cc224c40081da1cdf589ae3c884a6d2f3936cb7aa35110898052ca30d6eb3",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node14-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node15-html.jsonl",
+      "sha256": "c10138cc1409ca20d8a14ebe3811c63e8a3b5dea6fcd297028c77e6aca83de8b",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node15-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node16-html.jsonl",
+      "sha256": "36a14e44f3bab0addbd8ed293c0e2f50021f1e0c1ba2515eee73c477b8e32efb",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node16-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node17-html.jsonl",
+      "sha256": "c73ce5cb1ff7300b6cee6c31f3a267939aec602c2d7e84186f11d1f0b6baca21",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node17-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node18-html.jsonl",
+      "sha256": "c9cdb023d268f57b89420a72742f9872d14764b05e3589d930a1ca9a9e63df3f",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node18-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node2-html.jsonl",
+      "sha256": "cc8063a30012e749d253d8b012a33f7e06d970cd36499b282dc6f170761a0797",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node2-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node3-html.jsonl",
+      "sha256": "607404f037ad7aef5011b15424062e8c53edad75c88c69d4bcbd170923327078",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node3-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node4-html.jsonl",
+      "sha256": "570d81dd751cc823c070dbe3db1759c710a301f3b8e75f04b0f60bae33344588",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node4-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node5-html.jsonl",
+      "sha256": "3a0cbf6cc43be06cf46c3ac2d672308f0065d5c3cf92fb4dee0d2d4980360f24",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node5-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node6-html.jsonl",
+      "sha256": "b6459b4da0deb8b844878d805aa803aacdad9bb68837636557adb7e8c60e811a",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node6-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node7-html.jsonl",
+      "sha256": "7ed65aeed0fb3628150e280135e9c5cd5f6d67d45203e8992dd17bc954d5ebca",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node7-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node8-html.jsonl",
+      "sha256": "61983ad35258de9b8c47b31300bc83f8acf39ac168880675685b9ee028396c22",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node8-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-node9-html.jsonl",
+      "sha256": "4aa4e470a91b49446cb92c8954aa85288238b552fa6a24b8b5b6f139bfec838d",
+      "sourcePath": "instruments-notcam-notcam-cryovac-node9-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcam-cryovac-notcam-cryovac-html.jsonl",
+      "sha256": "88edbe4329782339825328a1b7cddd4f8da974fbe1f633ec063bb19a161003b1",
+      "sourcePath": "instruments-notcam-notcam-cryovac-notcam-cryovac-html.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-notcambias-html.jsonl",
+      "sha256": "8a0eab44cb626c52f32352f3f90bb0a26bb471422e35a9b1b8e8d25ed3f179c1",
+      "sourcePath": "instruments-notcam-notcambias-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-oldreports-html.jsonl",
+      "sha256": "6d12f58023314281fb26c246c16da54471d6b12de031a8b406d986b29dd9dd7b",
+      "sourcePath": "instruments-notcam-oldreports-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-overview-html.jsonl",
+      "sha256": "52034ce37a2ce2dbe6445941d37001e95ccfb19300648f0199281420bea1feac",
+      "sourcePath": "instruments-notcam-overview-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-photos-index-html.jsonl",
+      "sha256": "8f2ae2fb2aaa6bcccd337518e5b17fc31e6da9193fb6284579fd3aa6a8c6aca2",
+      "sourcePath": "instruments-notcam-photos-index-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-pupilmasks-html.jsonl",
+      "sha256": "f540df16e4c437258792cbd88da756eeeaf5e81ba5e00dedf583194928148d40",
+      "sourcePath": "instruments-notcam-pupilmasks-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-balmer-html.jsonl",
+      "sha256": "eef44f32c8cf88b59cab3f47718b862364cfd023be7822ec54ac3c83033952ff",
+      "sourcePath": "instruments-notcam-referenceinfo-balmer-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-brackett-html.jsonl",
+      "sha256": "03edf9d3dff4a7821d270ef6909e5d1986adcb8db35aea7dad7c72e910269222",
+      "sourcePath": "instruments-notcam-referenceinfo-brackett-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-co-html.jsonl",
+      "sha256": "7ac7c89dff089bc3d9643befdc419a0750d035781d6840fab5306dbb8a830500",
+      "sourcePath": "instruments-notcam-referenceinfo-co-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-conver-html.jsonl",
+      "sha256": "6116721c9fbc2feddc7348e9c89255f78d85dcb51e48c395b64e4d06197d6a2b",
+      "sourcePath": "instruments-notcam-referenceinfo-conver-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-dwarf-html.jsonl",
+      "sha256": "6db08ae7ecf16560daf390d96a6937f877a2b5e4770a7141f2eff7396a3dbb5e",
+      "sourcePath": "instruments-notcam-referenceinfo-dwarf-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-f-dwarf-html.jsonl",
+      "sha256": "9cc5d33718c39fa010d745927b9e2050d1f83341494b4b43b593f862bea4ede7",
+      "sourcePath": "instruments-notcam-referenceinfo-f-dwarf-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-h2-lines-html.jsonl",
+      "sha256": "1af2620f319e998191915ae358d0fc88c839a745f4a9d05ab219ae571ead16d1",
+      "sourcePath": "instruments-notcam-referenceinfo-h2-lines-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-higher-html.jsonl",
+      "sha256": "ac298049cb92c4806247f7f3b8dae737d58b97d132d79a78e20df697e5167e4b",
+      "sourcePath": "instruments-notcam-referenceinfo-higher-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-humphries1-html.jsonl",
+      "sha256": "ecd5afe632f2bb92c3ea49be29980a41fad03beb26ffedf0aae55b03c05be6bc",
+      "sourcePath": "instruments-notcam-referenceinfo-humphries1-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-oh-html.jsonl",
+      "sha256": "d1ba1a88697cd835ec66751f1bd3397982db0778ccd7bf397f347f56170d8b49",
+      "sourcePath": "instruments-notcam-referenceinfo-oh-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-paschen-html.jsonl",
+      "sha256": "0ed9ce52b7bccceecd5ed89d270f9ea6c77d08047a972fd4c41147508842f2f0",
+      "sourcePath": "instruments-notcam-referenceinfo-paschen-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-pfund-html.jsonl",
+      "sha256": "e1a63313b5ad996303641868bfe08ec171883ffe8dfb0c1e3ea8ef20921b3ea6",
+      "sourcePath": "instruments-notcam-referenceinfo-pfund-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-recomb-menu-html.jsonl",
+      "sha256": "6105239d09860107f82d137f1407214c2809b3760941bcfb02305a7d7cce13ff",
+      "sourcePath": "instruments-notcam-referenceinfo-recomb-menu-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-temp-html.jsonl",
+      "sha256": "865f5f2f5f6448e0fb3c4cd35613c59fe8f1c97d76c5519307bf32a6585c2af3",
+      "sourcePath": "instruments-notcam-referenceinfo-temp-html.md"
+    },
+    {
+      "chunks": 9,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo-ukirt-stds-html.jsonl",
+      "sha256": "f348c578f76c9323494d9e4dc62c4d54afaa015040b64c50a9f18e929bb3c64a",
+      "sourcePath": "instruments-notcam-referenceinfo-ukirt-stds-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-referenceinfo.jsonl",
+      "sha256": "07f98c314df2ce7071be4f1ea886cefa3ebe4c009feffddbad2a4f69e1e600fc",
+      "sourcePath": "instruments-notcam-referenceinfo.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-96-10-html.jsonl",
+      "sha256": "709ad1dc7a1e4d6ea49b786d2f3c858b57012741a7a5174f78c2927e434af770",
+      "sourcePath": "instruments-notcam-reports-status-96-10-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-96-12-html.jsonl",
+      "sha256": "fa72e5b103e4a53bb199c3d71a3e5393019e396c0b4843f8cebc3f234b31918a",
+      "sourcePath": "instruments-notcam-reports-status-96-12-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-97-02-html.jsonl",
+      "sha256": "1763a98065a19111e160a5ebad9d4baab93e1fa9278f81745c0436e07cea42ea",
+      "sourcePath": "instruments-notcam-reports-status-97-02-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-97-04-html.jsonl",
+      "sha256": "1fdb5509e39524a91a437e820cace6abaa53706ba264094ee083ac97ca4450f2",
+      "sourcePath": "instruments-notcam-reports-status-97-04-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-97-05-html.jsonl",
+      "sha256": "66aac7deafb8a3ddf14581176c04e087fd1f849aeeed1a4954de04a37c2da218",
+      "sourcePath": "instruments-notcam-reports-status-97-05-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-97-08-html.jsonl",
+      "sha256": "b36831c91481ed30882fef5dc101115486a54b22ed16c569f131c8a0275ed152",
+      "sourcePath": "instruments-notcam-reports-status-97-08-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-98-02-html.jsonl",
+      "sha256": "f876255ee6d07b89fbec0b8c5e579ef9a419d676b9916d876887d0627f2360ac",
+      "sourcePath": "instruments-notcam-reports-status-98-02-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-98-05-html.jsonl",
+      "sha256": "ae724106c6a059de5d871cec630d2af6a99782c63864cd781a69aa67643a7dcd",
+      "sourcePath": "instruments-notcam-reports-status-98-05-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-98-10-html.jsonl",
+      "sha256": "5427da8c432c865335972ca1538729e8c6702b8a631df1ae31dbe39950e8ee54",
+      "sourcePath": "instruments-notcam-reports-status-98-10-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-98-12-html.jsonl",
+      "sha256": "461f72c57a6f9d6506003ddcd70a5f4f1f4121b2588d8dbe5952d471a21a847f",
+      "sourcePath": "instruments-notcam-reports-status-98-12-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-99-02-05-html.jsonl",
+      "sha256": "da78f1c72330313a53f1a96456e808a858fb0dac3431ba43c4e23be88dc7baa2",
+      "sourcePath": "instruments-notcam-reports-status-99-02-05-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-reports-status-99-08-27-html.jsonl",
+      "sha256": "13e7dc298eed1c4893e57dc9668175ab97cc27e5630ccc6989636e0a3e858e9c",
+      "sourcePath": "instruments-notcam-reports-status-99-08-27-html.md"
+    },
+    {
+      "chunks": 11,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-sci-grade-arr-html.jsonl",
+      "sha256": "94656f15fdaf33a6afc6a17fd3fd5eba6d895e96a7305852165b5af1ac187c04",
+      "sourcePath": "instruments-notcam-sci-grade-arr-html.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-sensitivity-html.jsonl",
+      "sha256": "c106dd5c7191e3872fbd08c288f5a7f09c58feade766ccd9cfe31dcece5c81ce",
+      "sourcePath": "instruments-notcam-sensitivity-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-slits-masks-html.jsonl",
+      "sha256": "03b1e742bab1384ac0cc5f091115c7f4a265bd026c543825ba735316428fb934",
+      "sourcePath": "instruments-notcam-slits-masks-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-arcmaps.jsonl",
+      "sha256": "350c6117babbae329fa0a0b049548b679a1f03b0a9f617995b748479c195f9b5",
+      "sourcePath": "instruments-notcam-spectroscopy-arcmaps.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-calibunit-html.jsonl",
+      "sha256": "18675903ab15c2a71fe15a7d0661983d0b3d2294e5d161ea983ae5145775fb52",
+      "sourcePath": "instruments-notcam-spectroscopy-calibunit-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-firstlight-html.jsonl",
+      "sha256": "a40f0ecf446290ef6d59ab5f7b201f8823846ad1e7b5dc08ebc76477f72d7e74",
+      "sourcePath": "instruments-notcam-spectroscopy-firstlight-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-firstlighthrc-html.jsonl",
+      "sha256": "a6d2ada4a9d90037456871da20be85d7d6cf0c8c705dc7eb2c5b4e1ff2fa07c3",
+      "sourcePath": "instruments-notcam-spectroscopy-firstlighthrc-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-fluxcal-html.jsonl",
+      "sha256": "4ed8cd1728986db682440586e40f09e8ce4408076cc55720ed2dfbf1e0f6f179",
+      "sourcePath": "instruments-notcam-spectroscopy-fluxcal-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-pictures-html.jsonl",
+      "sha256": "ba4d969df8a83e7dd094bcd0ac26accdd4e7cba903e314f7d87b3c74305a1398",
+      "sourcePath": "instruments-notcam-spectroscopy-pictures-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-slitalign-html.jsonl",
+      "sha256": "1e9f52bd2e8e708fb9a8521706f1b2263d06dc2cf74de7684aaaff372e46f031",
+      "sourcePath": "instruments-notcam-spectroscopy-slitalign-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-slitshape-html.jsonl",
+      "sha256": "bb5aff55b9247c1b9c8c6c81bc4c27650352822fd87f3111078fbdaff73980d9",
+      "sourcePath": "instruments-notcam-spectroscopy-slitshape-html.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-speccomm-html.jsonl",
+      "sha256": "74032f049eee8f5e9b2d82a6bc7992345d340c6c7eb0da97d2e8caa6dc303a2d",
+      "sourcePath": "instruments-notcam-spectroscopy-speccomm-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy-zband-html.jsonl",
+      "sha256": "11aabf7e4cca388f90b0c138fc1c7c52553bb99d48f775337570f85f8455548a",
+      "sourcePath": "instruments-notcam-spectroscopy-zband-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam-spectroscopy.jsonl",
+      "sha256": "b19e22d0edd0744c4697631a3054bdd2456e9748d9fcb06f804d8d8abcb80132",
+      "sourcePath": "instruments-notcam-spectroscopy.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-notcam.jsonl",
+      "sha256": "4cec7e5b4576e9ab51b3b55f1ec724436010c20cccc9bcadd397197b35ecd706",
+      "sourcePath": "instruments-notcam.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-polcor-polcor-2-pdf.jsonl",
+      "sha256": "3e560f529558893665b37281e17ae9cb7decfd85753d308ff4cd542439c10342",
+      "sourcePath": "instruments-polcor-polcor-2-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-polcor.jsonl",
+      "sha256": "1b1b687ea1ce803bdc18899082c55d278de0cec080755da8d7eeb07f44c404d6",
+      "sourcePath": "instruments-polcor.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sirca-sirca-filter-html.jsonl",
+      "sha256": "81b6e5a75bde468c88663d88284557c38ae35d4ae7a16e597c8d290a36833d36",
+      "sourcePath": "instruments-sirca-sirca-filter-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sirca-sirca-overview-html.jsonl",
+      "sha256": "3405ec489b52946798ab75c495991881bc5d031a1648132ddca2d2927682d917",
+      "sourcePath": "instruments-sirca-sirca-overview-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sirca.jsonl",
+      "sha256": "a81168528569865f0b3a9e83914d7bb8a6c20e68109c136f7fd8b5053626781e",
+      "sourcePath": "instruments-sirca.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sofin-eev7-html.jsonl",
+      "sha256": "66ec84849882f6cc49f8959ab72643a41b222f8879aa4a96cbe2baaf8f8fa6bc",
+      "sourcePath": "instruments-sofin-eev7-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sofin-filling-sofin-html.jsonl",
+      "sha256": "24d9ea8a6b1bbb77a8a7437c7a9fe3f2cc299fc0ffef6d59c5a2afc94ebe586a",
+      "sourcePath": "instruments-sofin-filling-sofin-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-sofin-loral-html.jsonl",
+      "sha256": "67bf3045f3defe7fe86ca7b626a96d5aab9bb6fa69d1d88fa3269bf549a3b42f",
+      "sourcePath": "instruments-sofin-loral-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-software-edit-setup-files-html.jsonl",
+      "sha256": "0225858e0efd283c7dd5991063383306ff7868df893f91e9ec17bb3af5586d17",
+      "sourcePath": "instruments-software-edit-setup-files-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-software-fits-html.jsonl",
+      "sha256": "038a98478125f384c063ded12f252758d27ff6b599256ab607edd5af9d598809",
+      "sourcePath": "instruments-software-fits-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-software.jsonl",
+      "sha256": "a8a24b7f30da4a546a9b6e2b7ef92e6ddf2c41bb34ac495fa4c2709301165ab5",
+      "sourcePath": "instruments-software.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-colourterm.jsonl",
+      "sha256": "7b0751ebb87786ea29cda5a5e8e4921d71305d401e391da17f26b690c0a18ed3",
+      "sourcePath": "instruments-stancam-colourterm.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-coolst-html.jsonl",
+      "sha256": "2d19be7ff4ddba6858a2054a844552b45d77b9a679720f1d4f0b8c007a4198be",
+      "sourcePath": "instruments-stancam-coolst-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-dewar.jsonl",
+      "sha256": "49a63119a7775cc1437127c2f289bbd193a4728912541c87d8069e338c7ea68c",
+      "sourcePath": "instruments-stancam-dewar.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-drawings.jsonl",
+      "sha256": "db3d625a6edcb0b8a4a38af148eb445edef210953fddc43b9e1e2a151850705e",
+      "sourcePath": "instruments-stancam-drawings.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-pumping-pumpingstancam-html.jsonl",
+      "sha256": "68dff0a22f92abbde083462cb94f6c5c6a0efc47efd62f556b30cbbc49c9dab5",
+      "sourcePath": "instruments-stancam-pumping-pumpingstancam-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-seq-stancam-seq-examples-html.jsonl",
+      "sha256": "51adbf520f87c7e0f73bcf1c6c1f312d57514361b28bd42b75912d56510c7e7f",
+      "sourcePath": "instruments-stancam-seq-stancam-seq-examples-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-seq-stancam-seq-html.jsonl",
+      "sha256": "de4c4940b36aa77ef3698399431e4add5659486d32ba30c3ebeb10899968459f",
+      "sourcePath": "instruments-stancam-seq-stancam-seq-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-seq-stancam-seq-start-html.jsonl",
+      "sha256": "0f1f15f4ec798c20498fa6dd7bcca4e22479c08555e6c9d747c9745b4a01c4c3",
+      "sourcePath": "instruments-stancam-seq-stancam-seq-start-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-seq-stancam-seq-technical-html.jsonl",
+      "sha256": "ef2c3d647e83cafcf67f7aa6d0a22058386f4f908e4eb547cf97d4140cff7c00",
+      "sourcePath": "instruments-stancam-seq-stancam-seq-technical-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-st-obs-qhelp-html.jsonl",
+      "sha256": "6621b7ba13d9e1bf97d5a07521b4ce43729d29bf32c16fbd5c555c81e88cc9f4",
+      "sourcePath": "instruments-stancam-st-obs-qhelp-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-stancam-bias-html.jsonl",
+      "sha256": "d1d11fd63322e316cb9963f8278f339c6754e3912849d5680be22d020bff255f",
+      "sourcePath": "instruments-stancam-stancam-bias-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-stancam-flat-html.jsonl",
+      "sha256": "bba14b7519ce4f0e87b1ad4914ecea82cf07c40ecfa1b5b583995bd6f18f4984",
+      "sourcePath": "instruments-stancam-stancam-flat-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-stancam-seq-html.jsonl",
+      "sha256": "70004eac1c491ac702fc007e2c749caa6d95371082c8539b7551c72a25eb4ca7",
+      "sourcePath": "instruments-stancam-stancam-seq-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-stancam-setup-php.jsonl",
+      "sha256": "f55cd02fb8bb40139ac95c728103b32a22c75a6851641c9aedbe165896114996",
+      "sourcePath": "instruments-stancam-stancam-setup-php.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-streadout-html.jsonl",
+      "sha256": "ddd7d8caf12557a10de303f1dcfafbefdd9194700222825fbc33f168847627ec",
+      "sourcePath": "instruments-stancam-streadout-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam-troubleshooting-html.jsonl",
+      "sha256": "85e25c1e3d48cd8330b199ccefce36b38a8dd7c8835c0a26932a4857704bc62d",
+      "sourcePath": "instruments-stancam-troubleshooting-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments-stancam.jsonl",
+      "sha256": "01c48cee8157ad89063d2eb39eadc18605d643b7a9e30a7e4fc52a540e150794",
+      "sourcePath": "instruments-stancam.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/instruments.jsonl",
+      "sha256": "6c340564b729afbcaba836455cf7869f377f914ae3364217bf9c10572b050e87",
+      "sourcePath": "instruments.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-cookbook.jsonl",
+      "sha256": "c5c23c3552ee3f6450ca54ae7f3113bcaf746710033787239e7b31eba578d2e1",
+      "sourcePath": "observing-cookbook.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-guide-canarias.jsonl",
+      "sha256": "ecad1811051ef108ddc1371d4b478982c5d56d7b1aed50807bfa8807ec233d54",
+      "sourcePath": "observing-guide-canarias.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/observing-guide-desplazamientotransnacional-pdf.jsonl",
+      "sha256": "365b9e44bd92c4aa28e421dff2543d1607a3e900a798e35507c4b0b4f9c1be24",
+      "sourcePath": "observing-guide-desplazamientotransnacional-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/observing-guide-health-safety-html.jsonl",
+      "sha256": "f5a37e86e1497bd71b9e7f7f9cfef1d5156166cf43432171ee3b8d80a25af16b",
+      "sourcePath": "observing-guide-health-safety-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/observing-largeproposals-largeproposalsrules-pdf.jsonl",
+      "sha256": "a6dbc1b0b4da955db82786f21d31f6132b8a57e1826a73558cfca14a2c375734",
+      "sourcePath": "observing-largeproposals-largeproposalsrules-pdf.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/observing-proposals-obsmodes-html.jsonl",
+      "sha256": "8164cb69d24d98e4b7ac1b8dcab9c5d5d3b22622181a18c5e0446f6fc23a5e0d",
+      "sourcePath": "observing-proposals-obsmodes-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/observing-proposals-obsmodesitp-html.jsonl",
+      "sha256": "3ddd3bc82c9b09eabf47a19798243e974a09509f9f777bbf7d1ea7824ab9891b",
+      "sourcePath": "observing-proposals-obsmodesitp-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/observing-proposals.jsonl",
+      "sha256": "36ec8f46a23e809fe160a15f7eec91c4a84bbca86e1683d9a36b891f3bad5790",
+      "sourcePath": "observing-proposals.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/observing-rules-allocationpolicies-pdf.jsonl",
+      "sha256": "6ced76dfd92b323dea5f3ed7fe347d862f86043cc8652a2c483c0c09e66c5ce3",
+      "sourcePath": "observing-rules-allocationpolicies-pdf.md"
+    },
+    {
+      "chunks": 28,
+      "disposition": "active",
+      "outputPath": "searchable/observing-rules-observingtimeandcontributions-pdf.jsonl",
+      "sha256": "5767f646e5402f10944108edcff739c4e3a0da5f9558289c093216f48c59d24d",
+      "sourcePath": "observing-rules-observingtimeandcontributions-pdf.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-rules.jsonl",
+      "sha256": "a91fcc095a4772d89d57b5f172ab3c3b7475db62d3d6dbffb979104d0ca62734",
+      "sourcePath": "observing-rules.md"
+    },
+    {
+      "chunks": 11,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-fies-seq-commands-html.jsonl",
+      "sha256": "d91804b24add37ed83fb053005bd4badf165948174c18d8f50919e30e2cea781",
+      "sourcePath": "observing-seq-fies-seq-commands-html.md"
+    },
+    {
+      "chunks": 28,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-fies-seq-scripts-html.jsonl",
+      "sha256": "9327f25f19fd23031befd31bd69017653063d0487521f6d265bee4d845d951fc",
+      "sourcePath": "observing-seq-fies-seq-scripts-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-gen-seq-commands-html.jsonl",
+      "sha256": "b72d0dec37b52949a3f591b39f1de7ed8480a30da8bd62da2b79050c076b51e4",
+      "sourcePath": "observing-seq-gen-seq-commands-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-mosca-seq-commands-html.jsonl",
+      "sha256": "2f863d4b7b260d86d28ff1f085e8df57ea9a889c964f304866058fe34d84262d",
+      "sourcePath": "observing-seq-mosca-seq-commands-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-mosca-seq-scripts-html.jsonl",
+      "sha256": "10c47f565c35b526390a1890a23b100a1eb61fe524f2e427e37fe414b249b679",
+      "sourcePath": "observing-seq-mosca-seq-scripts-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-notcam-seq-commands-html.jsonl",
+      "sha256": "4d0f54e126d25ffec511718e5e0cd106b3d0d97b096bcad8a505532324e798bc",
+      "sourcePath": "observing-seq-notcam-seq-commands-html.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-seq-examples-html.jsonl",
+      "sha256": "67f9cf720646fa5a5e4bb3cec9bca97da491ab8db9e4b237c4c0620e9d8d201d",
+      "sourcePath": "observing-seq-seq-examples-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-stancam-seq-commands-html.jsonl",
+      "sha256": "4647ef76b0dcccdca3fdc4d476cfa316898a4e25c0edb21b5324808ec48e218d",
+      "sourcePath": "observing-seq-stancam-seq-commands-html.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-tcs-seq-commands-html.jsonl",
+      "sha256": "a243e0c64e9885760807fc5eef0e18ff9b9f326c463dc0fed4bc3f458a365d31",
+      "sourcePath": "observing-seq-tcs-seq-commands-html.md"
+    },
+    {
+      "chunks": 11,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq-tcs-seq-scripts-html.jsonl",
+      "sha256": "5ec1b9a3109809440c61566c0a4520cf7a2ef730fcca38949f3b8e9b0da93d38",
+      "sourcePath": "observing-seq-tcs-seq-scripts-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-seq.jsonl",
+      "sha256": "01bffd20574f23f0c15073e96d438ebb9a3178fac773e2ec1485568a7f894743",
+      "sourcePath": "observing-seq.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "active",
+      "outputPath": "searchable/observing-service.jsonl",
+      "sha256": "a701cb7a9e8ea36e5fa571b3e625663583b883d58c52e863d5637a6d48a23f39",
+      "sourcePath": "observing-service.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/observing-too-index-html.jsonl",
+      "sha256": "c15461d268afea2cc04d602405558d7a54a7a6eab0080c0150fe7084422ecd33",
+      "sourcePath": "observing-too-index-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/observing-too.jsonl",
+      "sha256": "ba13ebf88d07fa1d9030e68780e4eb61cd17f80f3ccddf86dd57efc689c0c017",
+      "sourcePath": "observing-too.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-blanks-html.jsonl",
+      "sha256": "196aeaf3964cdd59156ebea33b88720cc5080fe56b271d1c425fabdce3cb9b52",
+      "sourcePath": "observing-tools-blanks-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-datadownload-html.jsonl",
+      "sha256": "4634644a3348921c4cff857cb47334eac0ef9fb18acdef2fcb447d4ea56fda98",
+      "sourcePath": "observing-tools-datadownload-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-datatransfer-html.jsonl",
+      "sha256": "feacfdc69303bc9e680eaf7d623f2b72e1ee8bcad3fca9c41126f5fa1b0bbaf0",
+      "sourcePath": "observing-tools-datatransfer-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-focus-html.jsonl",
+      "sha256": "9bcb8e9733d7d559929addf2fc221a89fe6b6076702b4206b10c50685d54734c",
+      "sourcePath": "observing-tools-focus-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-guidestars-webguidestars-php.jsonl",
+      "sha256": "5225317b57c7966208a00f4bd65ab5bc87cc5a57186c12c777592aa983b5074f",
+      "sourcePath": "observing-tools-guidestars-webguidestars-php.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-notbot.jsonl",
+      "sha256": "84d6c089fba55ff957572da5ba56800e3c8b68da4c231629e74bbac23473582e",
+      "sourcePath": "observing-tools-notbot.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-overheads-html.jsonl",
+      "sha256": "8596db750d60da990ba6259c19bca1c48108df820056d77a8097539467a35dea",
+      "sourcePath": "observing-tools-overheads-html.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-php.jsonl",
+      "sha256": "526bd61032b85fcc458a3585c74b5f0b43dbe14853203d58d46807eeeecc4a7c",
+      "sourcePath": "observing-tools-php.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-remote-download-html.jsonl",
+      "sha256": "5a3dc2ad0ef4acd8199600bff310d66560a7d3511a6bd8bc40a9d82abe6b1717",
+      "sourcePath": "observing-tools-remote-download-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/observing-tools-standardcatalogs-html.jsonl",
+      "sha256": "c7ae5903256eae5e9b7f69acab01d97a9c63b279b34b503526db2a7f922bb71e",
+      "sourcePath": "observing-tools-standardcatalogs-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/observing.jsonl",
+      "sha256": "e352b59ac01346e67c5388d334adc9b303e121a843dca914985d7e3109353093",
+      "sourcePath": "observing.md"
+    },
+    {
+      "chunks": 341,
+      "disposition": "active",
+      "outputPath": "searchable/optic_elements.jsonl",
+      "sha256": "b241c3fcbf589dbe32e37171454bbf6506360d6bc011e9d851c64ab54f3bc251",
+      "sourcePath": "optic_elements.md"
+    },
+    {
+      "chunks": 147,
+      "disposition": "active",
+      "outputPath": "searchable/sequencer_reference.jsonl",
+      "sha256": "968c7d060492c1d6c7df0e91abbde19144be666cbb64a4ae9da083a1af3f32cf",
+      "sourcePath": "sequencer_reference.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-refl-not-alum-report-20230609-pdf.jsonl",
+      "sha256": "127dd361f56f5aafd24a90ef9296bacd4dcc448cea33be7d3179933e02338750",
+      "sourcePath": "telescope-refl-not-alum-report-20230609-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-refl.jsonl",
+      "sha256": "c7ba74ba510c60d92181f56786f832465dae9f2731be94d84958f8b03426420f",
+      "sourcePath": "telescope-refl.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-sideports-sideport-op-html.jsonl",
+      "sha256": "e5d5d7c1427ec88a6b6763a9bf88668a0822a28ae8cb60fb3cb6a3dbe8103f8a",
+      "sourcePath": "telescope-sideports-sideport-op-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-tcs-tcs-new-lookatlog-html.jsonl",
+      "sha256": "ec05e7f3f14f6d51d686e0367f165314f28a5e5fef02aca07cdb3cd53b3f93e9",
+      "sourcePath": "telescope-tcs-tcs-new-lookatlog-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-technical-details-html.jsonl",
+      "sha256": "fa7f4676137afc93589e1a833c671101432411cf8d89b13a6143a17e4c2c8a97",
+      "sourcePath": "telescope-technical-details-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-tti-blindtr-html.jsonl",
+      "sha256": "90eb1e178f6f8938d3ecd754f62b2bf283a17eb12be658e655e27bfab7a52a2e",
+      "sourcePath": "telescope-tti-blindtr-html.md"
+    },
+    {
+      "chunks": 56,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-tti-not-alignment-report-2023-v1-pdf.jsonl",
+      "sha256": "df3f1c81afb18807449a263cd1a4a8e3a468b2da854a50511bebf63226a9c3f0",
+      "sourcePath": "telescope-tti-not-alignment-report-2023-v1-pdf.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-tti.jsonl",
+      "sha256": "82555da85a72bc669bcb7b2347855aabe8ed064e93bbb041d18ad8745d40a1cd",
+      "sourcePath": "telescope-tti.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "active",
+      "outputPath": "searchable/telescope-wfs-wfs-html.jsonl",
+      "sha256": "bced4e0ec0c8eeaafecd8e0b67fcf6bcf769cf7976a99aee8b9ffd2f6d53479c",
+      "sourcePath": "telescope-wfs-wfs-html.md"
+    },
+    {
+      "chunks": 141,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2015.jsonl",
+      "sha256": "3e605e7f994f0f8aed7c539c94c9abf76892fa69740ace619a688f94f6f23272",
+      "sourcePath": "faults_active_alfosc_2015.md"
+    },
+    {
+      "chunks": 161,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2016.jsonl",
+      "sha256": "b8571c71d563b1c7e46782c13cbe9c2b273083ad734e177dbb0b17fb16848b57",
+      "sourcePath": "faults_active_alfosc_2016.md"
+    },
+    {
+      "chunks": 206,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2017.jsonl",
+      "sha256": "9c95ec848591546d117c7209bedcc1e944465dce3312132e2441ba8275341f87",
+      "sourcePath": "faults_active_alfosc_2017.md"
+    },
+    {
+      "chunks": 136,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2018.jsonl",
+      "sha256": "33be1bf035ddff3ca807af14968f1cf65d6b9be619069f0d03a3678b3fd68af3",
+      "sourcePath": "faults_active_alfosc_2018.md"
+    },
+    {
+      "chunks": 102,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2019.jsonl",
+      "sha256": "995ec7651665fc7684bc121096f9e0c5910aa7850432e4a5cb8f454b3cd65045",
+      "sourcePath": "faults_active_alfosc_2019.md"
+    },
+    {
+      "chunks": 76,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2020.jsonl",
+      "sha256": "b047ca4a7e1e01c07ef5478efb28912adda0a80d47d05421b70c0bda75e86bab",
+      "sourcePath": "faults_active_alfosc_2020.md"
+    },
+    {
+      "chunks": 66,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2021.jsonl",
+      "sha256": "fec535ce99a4d76305a415e6c790c98e4fe7474245990f41d2c9ecd96739e304",
+      "sourcePath": "faults_active_alfosc_2021.md"
+    },
+    {
+      "chunks": 65,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2022.jsonl",
+      "sha256": "2e4e848690debe25eb85d55541b110f4d18f15d559f27fb025cdd0708f8139fd",
+      "sourcePath": "faults_active_alfosc_2022.md"
+    },
+    {
+      "chunks": 191,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2023.jsonl",
+      "sha256": "a0d41a0c2ba25a8a8bbfd2dd9d1f5a3b83e992f51c963f2ecba0cb7db47f40f1",
+      "sourcePath": "faults_active_alfosc_2023.md"
+    },
+    {
+      "chunks": 223,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2024.jsonl",
+      "sha256": "d92eca5910fe8326530a7877a163f39a8083572699538d391fd54d7db8d9f791",
+      "sourcePath": "faults_active_alfosc_2024.md"
+    },
+    {
+      "chunks": 170,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2025.jsonl",
+      "sha256": "2a6d982f6db461a9624bac0999971447f334326ed5ada19c68a8043b4fa1ca25",
+      "sourcePath": "faults_active_alfosc_2025.md"
+    },
+    {
+      "chunks": 148,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_alfosc_2026.jsonl",
+      "sha256": "fc774f1b7ca929fe531cb0d91b1668fe83cca4e7d242881d34c7c3c08160d121",
+      "sourcePath": "faults_active_alfosc_2026.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2015.jsonl",
+      "sha256": "8e4496170bbba562c162a2f2ebffc2aa403458cef33e88ba98620376753d5faa",
+      "sourcePath": "faults_active_building_2015.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2016.jsonl",
+      "sha256": "3d4725f140788bdbb861b6dd21ff3acb9ec9d88a00ee0de129f42fb2c0f6b94e",
+      "sourcePath": "faults_active_building_2016.md"
+    },
+    {
+      "chunks": 31,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2017.jsonl",
+      "sha256": "25cb1c886ab90c8b438e3d3aaa6b87d747b439332cf3cf879e4753a2124e795d",
+      "sourcePath": "faults_active_building_2017.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2018.jsonl",
+      "sha256": "82b882331afcebb1aab2f73f69d7a1d9018df98f47f1a362a2832e584ea4d3ac",
+      "sourcePath": "faults_active_building_2018.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2019.jsonl",
+      "sha256": "4fbdb8e76dccbf15126c75fe6bb7c76ff826cfde2c5efee99f2d8a33773345f3",
+      "sourcePath": "faults_active_building_2019.md"
+    },
+    {
+      "chunks": 17,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2020.jsonl",
+      "sha256": "a63b67c154be4f3f9cec013896a78b250e39d22eb6c0196293006ed7650f29c8",
+      "sourcePath": "faults_active_building_2020.md"
+    },
+    {
+      "chunks": 20,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2021.jsonl",
+      "sha256": "d28517b6970102b9b371c7b9a047612bcfc92553719889e18150f32d57313464",
+      "sourcePath": "faults_active_building_2021.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2022.jsonl",
+      "sha256": "b62f89de5a06ccd1b66a4f5ae9ac6eadf956507785eb2cc83823f8a75be60145",
+      "sourcePath": "faults_active_building_2022.md"
+    },
+    {
+      "chunks": 26,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2023.jsonl",
+      "sha256": "3b178b775dd697bfa57bb4d5789f13a05c4867caa5a53e9a11dcdf2326434511",
+      "sourcePath": "faults_active_building_2023.md"
+    },
+    {
+      "chunks": 44,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2024.jsonl",
+      "sha256": "c5a3b11c8f029b8b2e46efae144d70a51b2322a97d728b2a820f053a4f44a01c",
+      "sourcePath": "faults_active_building_2024.md"
+    },
+    {
+      "chunks": 18,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2025.jsonl",
+      "sha256": "e623407a3cc53d6f9c8277c95634207a89c8fa3dbb621ed0d22acb24314acfaa",
+      "sourcePath": "faults_active_building_2025.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_building_2026.jsonl",
+      "sha256": "aba3c42a01787fc638f21e04dcab36e24a021ec10e656c6bc24457464ee254f1",
+      "sourcePath": "faults_active_building_2026.md"
+    },
+    {
+      "chunks": 55,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2015.jsonl",
+      "sha256": "69186a9aa6cf6d8c6a07c6c95522d78990f7a7dd4ce760c25b4980ebc8a12642",
+      "sourcePath": "faults_active_computers_2015.md"
+    },
+    {
+      "chunks": 67,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2016.jsonl",
+      "sha256": "1772faf900a8a537c00818f1e6b3b19c17c03658e76890f57ec5d2b92a606d0f",
+      "sourcePath": "faults_active_computers_2016.md"
+    },
+    {
+      "chunks": 39,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2017.jsonl",
+      "sha256": "facacdaa92fce6c1c12efc8ec53ed18fe340ec4edebfd04143b70775081eb392",
+      "sourcePath": "faults_active_computers_2017.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2018.jsonl",
+      "sha256": "2669a80c997fc6fb54a8010a6c06b92a748b2f248b294aeb4fcff719ac0576e1",
+      "sourcePath": "faults_active_computers_2018.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2019.jsonl",
+      "sha256": "7a757d803206e7c6d97b5d8dc7e8fa54fd43aab2f1dd07c779304c5afc2d55a2",
+      "sourcePath": "faults_active_computers_2019.md"
+    },
+    {
+      "chunks": 56,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2020.jsonl",
+      "sha256": "10d91098088530a548c82c547d9445d413c06be2e1868e24f79a1dc437bd1f9b",
+      "sourcePath": "faults_active_computers_2020.md"
+    },
+    {
+      "chunks": 16,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2021.jsonl",
+      "sha256": "9093b1e1d5051d29cbea17543d4abcf588a9ad21910ec24739501a746bb69cfa",
+      "sourcePath": "faults_active_computers_2021.md"
+    },
+    {
+      "chunks": 42,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2022.jsonl",
+      "sha256": "f8a58debeb98adcd2fd9f4fe50fe4521eacd0509f2fce8d98ba68cf8c6fdd87c",
+      "sourcePath": "faults_active_computers_2022.md"
+    },
+    {
+      "chunks": 34,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2023.jsonl",
+      "sha256": "a17af5ff8f2b1a81871b31e547948656fa14de197a0c3e69113c814043926f64",
+      "sourcePath": "faults_active_computers_2023.md"
+    },
+    {
+      "chunks": 48,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2024.jsonl",
+      "sha256": "3154480f0804468a9e9129575ace402a26c37e8dd642a47b152872432fba68e5",
+      "sourcePath": "faults_active_computers_2024.md"
+    },
+    {
+      "chunks": 44,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2025.jsonl",
+      "sha256": "bac8717c0706b20f02378ac92586b412a9b6ab2c335088f3c62fd62adbea2758",
+      "sourcePath": "faults_active_computers_2025.md"
+    },
+    {
+      "chunks": 40,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_computers_2026.jsonl",
+      "sha256": "2dc71c0a5e7526e4b19ab6e5d44353678258b3eaf201057666b46169c97e5fa7",
+      "sourcePath": "faults_active_computers_2026.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2015.jsonl",
+      "sha256": "a3a31eeac71060c6184a00065c184cfa51e70ffbb528f90edb5c8260ff0cd192",
+      "sourcePath": "faults_active_fies_2015.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2016.jsonl",
+      "sha256": "5187e04b9d8b9f9a74160a7fb707ea1973cc5b4c17656d81c9eb91236f791ea2",
+      "sourcePath": "faults_active_fies_2016.md"
+    },
+    {
+      "chunks": 85,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2017.jsonl",
+      "sha256": "41cef5c9d6eee1d85ce5f0262a698f88b5e7df24da57665dff756e0dcb62f3c7",
+      "sourcePath": "faults_active_fies_2017.md"
+    },
+    {
+      "chunks": 39,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2018.jsonl",
+      "sha256": "943f5a51189900cb72d72999a8fa50e9e9f7c61594dcc53279365a66dab1bd94",
+      "sourcePath": "faults_active_fies_2018.md"
+    },
+    {
+      "chunks": 73,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2019.jsonl",
+      "sha256": "43bef23922f2646e3e18ac2a07109002cf457271d2870eb45bca5d2f181459ea",
+      "sourcePath": "faults_active_fies_2019.md"
+    },
+    {
+      "chunks": 186,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2020.jsonl",
+      "sha256": "b37ed3498ef113cb5894d70fd7c4252c0cb03f057bfb5e4031b47345f0589746",
+      "sourcePath": "faults_active_fies_2020.md"
+    },
+    {
+      "chunks": 132,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2021.jsonl",
+      "sha256": "a23939ece6556b5985fdac5d2cf92c1f728a5461cb90b7f0d3fe56ab281906ff",
+      "sourcePath": "faults_active_fies_2021.md"
+    },
+    {
+      "chunks": 73,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2022.jsonl",
+      "sha256": "0ae3a7d8ad14ece7ecf4a002ef4d7cf65478c7190e499c37b5983d2f7fab74e8",
+      "sourcePath": "faults_active_fies_2022.md"
+    },
+    {
+      "chunks": 119,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2023.jsonl",
+      "sha256": "91ed25052b84707049a3889b71dc314d3cdfb2beaabacb9fd2783c73d91880c2",
+      "sourcePath": "faults_active_fies_2023.md"
+    },
+    {
+      "chunks": 120,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2024.jsonl",
+      "sha256": "06f99adb4d832e46ad1040d2cb77f45e542b4f80028e8b43049df70260de0569",
+      "sourcePath": "faults_active_fies_2024.md"
+    },
+    {
+      "chunks": 57,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2025.jsonl",
+      "sha256": "59ce044f19f046d36b6ebf42ffb5a3bce6057e51fd29132fc6bdec3106bbd642",
+      "sourcePath": "faults_active_fies_2025.md"
+    },
+    {
+      "chunks": 113,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_fies_2026.jsonl",
+      "sha256": "a33e3f4f8d984c442695445798a99405dd682a50556d939cb0fdc347e17c1529",
+      "sourcePath": "faults_active_fies_2026.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_mosca_2017.jsonl",
+      "sha256": "3badbad852bbaf13edefb7d41e8628c52ed0340ddd1f6249606efd38053a2500",
+      "sourcePath": "faults_active_mosca_2017.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2019.jsonl",
+      "sha256": "7ed44debd055946bd3a66faf185f764fb60b2af9ecc14890d283b670f0c5378d",
+      "sourcePath": "faults_active_not_identified_2019.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2020.jsonl",
+      "sha256": "53e0eecb4d49785d7fb33afc6e61a272ac5db32d7448b0f3972184794d873401",
+      "sourcePath": "faults_active_not_identified_2020.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2023.jsonl",
+      "sha256": "75b741a91d3e2fa5667890d96b178aded998d8a5cdda2a93cea1ccafc782fd46",
+      "sourcePath": "faults_active_not_identified_2023.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2024.jsonl",
+      "sha256": "7b4985d5a94370a61ed3e7d770ab7f7379372e0e76cc28190d23149416dc701d",
+      "sourcePath": "faults_active_not_identified_2024.md"
+    },
+    {
+      "chunks": 16,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2025.jsonl",
+      "sha256": "8a265c4c1e9e9578faadf02d48b34397782e1c860e24295532ef8d9fd193152c",
+      "sourcePath": "faults_active_not_identified_2025.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_not_identified_2026.jsonl",
+      "sha256": "65dbc733a609b2bc0797caa171a49711260048a8440fa46c00edab75a29edeac",
+      "sourcePath": "faults_active_not_identified_2026.md"
+    },
+    {
+      "chunks": 36,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2015.jsonl",
+      "sha256": "009dc2b913bd773170d8abe063cf87b860ebdf50fe6c63f3995930256938409e",
+      "sourcePath": "faults_active_notcam_2015.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2016.jsonl",
+      "sha256": "3588ce670872eb70b75bf94416a6974576700991ef1833a911fa7768cc276f4d",
+      "sourcePath": "faults_active_notcam_2016.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2017.jsonl",
+      "sha256": "9c3d64201dfbebc822b70322206ddb6e7fe5671c69abf2108a8ead08a1bb9739",
+      "sourcePath": "faults_active_notcam_2017.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2018.jsonl",
+      "sha256": "c770410b975b59c0a0580a4f6087176220fd4a91d0bba8debd8af42e4b10e048",
+      "sourcePath": "faults_active_notcam_2018.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2019.jsonl",
+      "sha256": "12045f6b434a199e3c7368a0d6ace9964eb099136d0979efb1d293ac3ef116dd",
+      "sourcePath": "faults_active_notcam_2019.md"
+    },
+    {
+      "chunks": 26,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2020.jsonl",
+      "sha256": "0e6c32c1c0f069db90117bdd3be5e2f4bc57c9c4956633095f30be078bcc63fe",
+      "sourcePath": "faults_active_notcam_2020.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2021.jsonl",
+      "sha256": "f047747932e72bd519928eb56e315846d43e20411a6f7abf8bad279b8bc9f280",
+      "sourcePath": "faults_active_notcam_2021.md"
+    },
+    {
+      "chunks": 35,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2022.jsonl",
+      "sha256": "f465c2bbf7c353f4d22e417e09ce713d65f25f9c0b3c428da3f008f0a28bcda2",
+      "sourcePath": "faults_active_notcam_2022.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2023.jsonl",
+      "sha256": "b22c93ae942f5c0ccbb94f22643ea199cee6e52f3f7ed252f5b059d90d268f3e",
+      "sourcePath": "faults_active_notcam_2023.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2024.jsonl",
+      "sha256": "b9efee39ddcfe0a097a1c106fdc5efb8904f5ee7ff27150bb67bce8414cb04ff",
+      "sourcePath": "faults_active_notcam_2024.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2025.jsonl",
+      "sha256": "a22b9f9a080a5301911fdc420556b8a5632afa4bf8e3df147a0cab94e973607a",
+      "sourcePath": "faults_active_notcam_2025.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_notcam_2026.jsonl",
+      "sha256": "0a16cd7cab306ad605cada5d4178a3a98a0b894986deeb53daf5b52b6f091eb6",
+      "sourcePath": "faults_active_notcam_2026.md"
+    },
+    {
+      "chunks": 6,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2015.jsonl",
+      "sha256": "6fee9945ca473240a85f4492ccff796db53eb1fa102683edc341ca1650305e23",
+      "sourcePath": "faults_active_others_2015.md"
+    },
+    {
+      "chunks": 9,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2016.jsonl",
+      "sha256": "c0113a564eec481404de37cda8ed589dbc55c260674db55b2b56418f67a70f81",
+      "sourcePath": "faults_active_others_2016.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2017.jsonl",
+      "sha256": "c0912f0feeac4241d41c8c9efebebff66862876d4bfdbf164bac44c0f586cca6",
+      "sourcePath": "faults_active_others_2017.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2018.jsonl",
+      "sha256": "352efc81f601c7808dfd18590cea3e40dd4b03e90109ba9c2c278b92c2769896",
+      "sourcePath": "faults_active_others_2018.md"
+    },
+    {
+      "chunks": 12,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2019.jsonl",
+      "sha256": "c5c75d89eb5c77bff2f3552b8e0863b4bc5158c4c2ad30a30a39f6e4e23e252d",
+      "sourcePath": "faults_active_others_2019.md"
+    },
+    {
+      "chunks": 12,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2020.jsonl",
+      "sha256": "7f4b43b493040ad6954634f122d66fa3f1dcbc6afe09b34177239b6fe72b21f9",
+      "sourcePath": "faults_active_others_2020.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2021.jsonl",
+      "sha256": "6e5e88b37fa641510311526d33654bc39ac73af5e994cde2fe004eacab01e4c3",
+      "sourcePath": "faults_active_others_2021.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2022.jsonl",
+      "sha256": "8f7029691e2207fb7807bb49b3ae39a096a9b18ca23e2df70ad9340a298061d6",
+      "sourcePath": "faults_active_others_2022.md"
+    },
+    {
+      "chunks": 20,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2023.jsonl",
+      "sha256": "98487909a0682c720b872adbb392c19c5f1b4fb148b282e363a1d5c628075b85",
+      "sourcePath": "faults_active_others_2023.md"
+    },
+    {
+      "chunks": 28,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2024.jsonl",
+      "sha256": "d99834164d818cdf06eeffb5f6e5d205c81260a92f2b41790c8e9ee3bf9d1cf6",
+      "sourcePath": "faults_active_others_2024.md"
+    },
+    {
+      "chunks": 11,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2025.jsonl",
+      "sha256": "5583df9127ad92d8efcf47ddd16ad84d5d92f353cd747f66d63d52cd3ef0110a",
+      "sourcePath": "faults_active_others_2025.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_others_2026.jsonl",
+      "sha256": "ada08bb0cc2f788e4e4f88e06a49cd3530c2ec1f9ef480cc941deba73d1a03d4",
+      "sourcePath": "faults_active_others_2026.md"
+    },
+    {
+      "chunks": 21,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2015.jsonl",
+      "sha256": "a8638c1ad425030e986703dcce824ba70adddc7beb0b5ec0a811985828908231",
+      "sourcePath": "faults_active_stancam_2015.md"
+    },
+    {
+      "chunks": 20,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2016.jsonl",
+      "sha256": "8032b16e4d515b8e522c879ea34fc7fb4a6628d0990b9f3dc414519b97b677b6",
+      "sourcePath": "faults_active_stancam_2016.md"
+    },
+    {
+      "chunks": 18,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2017.jsonl",
+      "sha256": "9cb7b560c78edeefc468586f07a0edc9c36ea808745c1fa513ad7c37579661c4",
+      "sourcePath": "faults_active_stancam_2017.md"
+    },
+    {
+      "chunks": 45,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2018.jsonl",
+      "sha256": "95193d5ea847e7efb6134ddb38a8870eb664563dbbf82abf900d692885f0c0f4",
+      "sourcePath": "faults_active_stancam_2018.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2019.jsonl",
+      "sha256": "58ce13ad19b9b9afaa3b5d06bcb6c1daa61e43f34c1b9d476b356d94f1cf51a0",
+      "sourcePath": "faults_active_stancam_2019.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2020.jsonl",
+      "sha256": "908a762d4d955621a6dee8601635fe99b9d8ab6e382c30a083a851b40afd008c",
+      "sourcePath": "faults_active_stancam_2020.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2021.jsonl",
+      "sha256": "396e1324ddb13d6d99a5b72eb7aa726a6626958ceeaecfacc317974e0d02985c",
+      "sourcePath": "faults_active_stancam_2021.md"
+    },
+    {
+      "chunks": 46,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2022.jsonl",
+      "sha256": "79bc5429544cb2f54ba461a7a7d505582d1d8649c532ab7fbeaac79e9f38f8f8",
+      "sourcePath": "faults_active_stancam_2022.md"
+    },
+    {
+      "chunks": 16,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2023.jsonl",
+      "sha256": "860bac1a2f16c27d2e376954903f0bfeeb8602d1790300aad63cabafb4e5c1ca",
+      "sourcePath": "faults_active_stancam_2023.md"
+    },
+    {
+      "chunks": 14,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2024.jsonl",
+      "sha256": "78b822b1af578de6f4a70aec8b5f699d3ecf86a2b29c8919e6d05bebb9f06f75",
+      "sourcePath": "faults_active_stancam_2024.md"
+    },
+    {
+      "chunks": 9,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_stancam_2025.jsonl",
+      "sha256": "9aed55a33e2ed84063be8e1d229370d08c50c581fa68715b401893582ef75710",
+      "sourcePath": "faults_active_stancam_2025.md"
+    },
+    {
+      "chunks": 58,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2015.jsonl",
+      "sha256": "fd24101a632be6af1fc58d6cfce329bf5a423b352dcfc9ba39e9bccb00d4b497",
+      "sourcePath": "faults_active_telescope_2015.md"
+    },
+    {
+      "chunks": 90,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2016.jsonl",
+      "sha256": "c8304e8606852609d24224165c5415bdf4af799aa603ab3f4b856c2faaebb465",
+      "sourcePath": "faults_active_telescope_2016.md"
+    },
+    {
+      "chunks": 72,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2017.jsonl",
+      "sha256": "08ff9a30d14d964676f9d7796d2507fa1743b8a709154193e9ad436c3aa0b9b5",
+      "sourcePath": "faults_active_telescope_2017.md"
+    },
+    {
+      "chunks": 35,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2018.jsonl",
+      "sha256": "d7879b381ebb1d27268de75d09bc95bd215a65a5c0167cb4f31ebd337c13b340",
+      "sourcePath": "faults_active_telescope_2018.md"
+    },
+    {
+      "chunks": 55,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2019.jsonl",
+      "sha256": "8ed261e6aeb8fd1c71d631775ec198faece159f43496b813f0ddfe62a9955ebf",
+      "sourcePath": "faults_active_telescope_2019.md"
+    },
+    {
+      "chunks": 105,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2020.jsonl",
+      "sha256": "7f9fe636e52a0b1a19f7abb37570ab4965bd7f51e4ef91ba47f026ad9f6d5a6e",
+      "sourcePath": "faults_active_telescope_2020.md"
+    },
+    {
+      "chunks": 36,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2021.jsonl",
+      "sha256": "a41a0df9f69795272774729c4ad989eb61ca90e4c80453a00788229a6f6ac326",
+      "sourcePath": "faults_active_telescope_2021.md"
+    },
+    {
+      "chunks": 36,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2022.jsonl",
+      "sha256": "0a4e7ffd415e23bc69b1d5e8280690e3a27cc402b499621628068e4e415c0967",
+      "sourcePath": "faults_active_telescope_2022.md"
+    },
+    {
+      "chunks": 92,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2023.jsonl",
+      "sha256": "73d7158d64c1f4f5a12ec5e1a9245f9992c57547b4896b14e4ee3a247ce6e752",
+      "sourcePath": "faults_active_telescope_2023.md"
+    },
+    {
+      "chunks": 60,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2024.jsonl",
+      "sha256": "dc96f983ee708b1ee5e2716173e27f42c217ce5925a07e970797ea1f13d1aa53",
+      "sourcePath": "faults_active_telescope_2024.md"
+    },
+    {
+      "chunks": 54,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2025.jsonl",
+      "sha256": "edf0bfe8f9e98ca220f83c2f936ea5376482de7e169d100c63fa7601477b6181",
+      "sourcePath": "faults_active_telescope_2025.md"
+    },
+    {
+      "chunks": 20,
+      "disposition": "historical",
+      "outputPath": "historical/faults_active_telescope_2026.jsonl",
+      "sha256": "d5e745c77c88922bf3aae6d0e34b48565063db9a67daf8ece9da2a5110fff4f8",
+      "sourcePath": "faults_active_telescope_2026.md"
+    },
+    {
+      "chunks": 78,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2015.jsonl",
+      "sha256": "1ab6f7ca8336baf522263047d9276e5e9108ac597dc6dfe3deb122c38b47251c",
+      "sourcePath": "faults_alfosc_2015.md"
+    },
+    {
+      "chunks": 157,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2016.jsonl",
+      "sha256": "2648532c3a183a5fc9b1b92cff95228ab47e835264934ef8c3fb5112b9f1c5f1",
+      "sourcePath": "faults_alfosc_2016.md"
+    },
+    {
+      "chunks": 109,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2017.jsonl",
+      "sha256": "d4a93ec7d03f7c6956a3f61b71237d34fee557dc229a4065cc6b0e9c8aef4815",
+      "sourcePath": "faults_alfosc_2017.md"
+    },
+    {
+      "chunks": 107,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2018.jsonl",
+      "sha256": "198b5251ef0ae82609542149307bc55b66ca8cdff2bc8b4803b7c7c276c81d3e",
+      "sourcePath": "faults_alfosc_2018.md"
+    },
+    {
+      "chunks": 60,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2019.jsonl",
+      "sha256": "655eedbf190adf996fcd1250979e1684362e2b0e69b3f1cedb2e5ec317f8d555",
+      "sourcePath": "faults_alfosc_2019.md"
+    },
+    {
+      "chunks": 40,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2020.jsonl",
+      "sha256": "eb8013399fcee71fa86e8a232b50795c78d7da089b21d89fc19c6e7fe2878c02",
+      "sourcePath": "faults_alfosc_2020.md"
+    },
+    {
+      "chunks": 92,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2021.jsonl",
+      "sha256": "f80b853f8f3d3b6be8cbb9bf22fe44fc31bc175173e115e9b6d205cb89a7d5ef",
+      "sourcePath": "faults_alfosc_2021.md"
+    },
+    {
+      "chunks": 38,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2022.jsonl",
+      "sha256": "f68333d7b81a5a04968abc3252da6e6c76a15881173d62661caad92518915a12",
+      "sourcePath": "faults_alfosc_2022.md"
+    },
+    {
+      "chunks": 81,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2023.jsonl",
+      "sha256": "2a5538dbe39ba1cddf874f8c2df5cee746bd93f93d92887e3745ccc3c4a5f5f6",
+      "sourcePath": "faults_alfosc_2023.md"
+    },
+    {
+      "chunks": 148,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2024.jsonl",
+      "sha256": "4c584745471bf8cfed9e7e4090aea13b6eafbba9257acde7deb8109407c34c58",
+      "sourcePath": "faults_alfosc_2024.md"
+    },
+    {
+      "chunks": 43,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2025.jsonl",
+      "sha256": "d5c5de8367c2c2cb4ba7318f0820174a5a5b5c5a13db893d31e9165fd86d6721",
+      "sourcePath": "faults_alfosc_2025.md"
+    },
+    {
+      "chunks": 96,
+      "disposition": "historical",
+      "outputPath": "historical/faults_alfosc_2026.jsonl",
+      "sha256": "8255c4c7c7078732dc406de87c3eba53ef881b3dc08cb50fd05b5aa535004bad",
+      "sourcePath": "faults_alfosc_2026.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2015.jsonl",
+      "sha256": "faef7218669fc9d292b423acf43277b8a73e30a693cd3f05f048c64cc662e625",
+      "sourcePath": "faults_building_2015.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2016.jsonl",
+      "sha256": "442b9ccb89c69b70cb9fe78e46e8806732c1aab18b57cbd055effddcf86430fb",
+      "sourcePath": "faults_building_2016.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2017.jsonl",
+      "sha256": "cb9f64567c55aff8b771c87478ab23ae72e668b7846f83a4ae42b06e5a14da19",
+      "sourcePath": "faults_building_2017.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2018.jsonl",
+      "sha256": "96c6bc751415c4093d41f6fcca510b0458ffa6cbce71ca7089a6faa468855089",
+      "sourcePath": "faults_building_2018.md"
+    },
+    {
+      "chunks": 16,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2019.jsonl",
+      "sha256": "7223dc5a06435bbb4d9eebe3f9154a9467b1d7a883101a81f74cef996ee73722",
+      "sourcePath": "faults_building_2019.md"
+    },
+    {
+      "chunks": 26,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2020.jsonl",
+      "sha256": "f1f3991f99e68a7239fdd00412cec5e45971b44711dbf03641b22ef3b49c88d4",
+      "sourcePath": "faults_building_2020.md"
+    },
+    {
+      "chunks": 17,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2021.jsonl",
+      "sha256": "b69de232d8ca72767a0eb6ef42a3263f4c77509ab6c8d303d2ed4916e8324947",
+      "sourcePath": "faults_building_2021.md"
+    },
+    {
+      "chunks": 47,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2022.jsonl",
+      "sha256": "b023d2a75cfbfe1708f65ae57482d975d015c9a8df0c9c001c87e4c84b9dfd6e",
+      "sourcePath": "faults_building_2022.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2023.jsonl",
+      "sha256": "7e1e1bd07602416966240df461b3cacbfdb9690ff7e2e9885e9187391680b798",
+      "sourcePath": "faults_building_2023.md"
+    },
+    {
+      "chunks": 46,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2024.jsonl",
+      "sha256": "f2e2f4258974f3798b78cc722c9b7a4e60a56e24417661ccc44bb8280c97d823",
+      "sourcePath": "faults_building_2024.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2025.jsonl",
+      "sha256": "fd1cf465a750bc1650a5083f9f5b0708f4c80a76d626c7e30df4026fbd701dc0",
+      "sourcePath": "faults_building_2025.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_building_2026.jsonl",
+      "sha256": "aefb3ef209ad76b1d67be67bda7e8ce8857812cd84f45c29f293e7ea26fa8667",
+      "sourcePath": "faults_building_2026.md"
+    },
+    {
+      "chunks": 78,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2015.jsonl",
+      "sha256": "981221d1c19254008c872b874e85d5212e45dc6a89d0f285cb73ea6697336c74",
+      "sourcePath": "faults_computers_2015.md"
+    },
+    {
+      "chunks": 51,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2016.jsonl",
+      "sha256": "2aaea53b1880da23b1db6a2873db8eb80fefc72a504a7523efd3f96c41119df5",
+      "sourcePath": "faults_computers_2016.md"
+    },
+    {
+      "chunks": 70,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2017.jsonl",
+      "sha256": "eeb831d29a93327083a7fed2d638f39ccfe3a60acad27fdb274c04c57073a0fc",
+      "sourcePath": "faults_computers_2017.md"
+    },
+    {
+      "chunks": 26,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2018.jsonl",
+      "sha256": "352b9cf293c0e09610cf08815c8a907d7333cb6cb67eac28862afc103b98a04c",
+      "sourcePath": "faults_computers_2018.md"
+    },
+    {
+      "chunks": 48,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2019.jsonl",
+      "sha256": "7afca130ae6efaf99ad2df8ed1f7f296f644bbd2df6dad023c254b6c2b495206",
+      "sourcePath": "faults_computers_2019.md"
+    },
+    {
+      "chunks": 62,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2020.jsonl",
+      "sha256": "ece6286913271f8b109709467078e220004c773c177c275ca55a3b883b231cc6",
+      "sourcePath": "faults_computers_2020.md"
+    },
+    {
+      "chunks": 119,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2021.jsonl",
+      "sha256": "05edf3b511ac59cb4ed998cd2b60dca09e9c0924c3a2f1c2ded09a204de6dada",
+      "sourcePath": "faults_computers_2021.md"
+    },
+    {
+      "chunks": 80,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2022.jsonl",
+      "sha256": "d5c9ec1b29cfbb6238fe4675ca7464f4a7f290b93e18e1f6b026d2ad8ae7c935",
+      "sourcePath": "faults_computers_2022.md"
+    },
+    {
+      "chunks": 84,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2023.jsonl",
+      "sha256": "6231f67f56eb17e29829ea4692fe16dffb4d16f720fa51919c977b9da98e2de0",
+      "sourcePath": "faults_computers_2023.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2024.jsonl",
+      "sha256": "25073f9497ed1f57e1bc258318a832206dfbe8b24fc00d07977b5eadc74b7b51",
+      "sourcePath": "faults_computers_2024.md"
+    },
+    {
+      "chunks": 21,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2025.jsonl",
+      "sha256": "f0140ea4881a219a0deecfa04f72f9cfffa3ad920645a9c068ac17192434f9ef",
+      "sourcePath": "faults_computers_2025.md"
+    },
+    {
+      "chunks": 27,
+      "disposition": "historical",
+      "outputPath": "historical/faults_computers_2026.jsonl",
+      "sha256": "5e264e549566650fca4478876c8de5053e5cc0040ff1abc2468fa20470a226eb",
+      "sourcePath": "faults_computers_2026.md"
+    },
+    {
+      "chunks": 61,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2015.jsonl",
+      "sha256": "16c491bab707abb1dc3996460b5c9cfcf18d05e5e4a04ed0a0fc3ef75f68d595",
+      "sourcePath": "faults_fies_2015.md"
+    },
+    {
+      "chunks": 52,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2016.jsonl",
+      "sha256": "dee66c47f368ed786f4ac48dbaa108ef2a0165b0986234c0a846a8fe791129a6",
+      "sourcePath": "faults_fies_2016.md"
+    },
+    {
+      "chunks": 106,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2017.jsonl",
+      "sha256": "e07dad55373e9bc0ffedfe7952b0f1c8b188ee005c384f0b68b20c97788cbf0e",
+      "sourcePath": "faults_fies_2017.md"
+    },
+    {
+      "chunks": 132,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2018.jsonl",
+      "sha256": "c725c646e71843d5c1e35cd50a54f39e949ca318fa312c54e6b4bdaa87c3d9af",
+      "sourcePath": "faults_fies_2018.md"
+    },
+    {
+      "chunks": 73,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2019.jsonl",
+      "sha256": "09504ad0caca8e4f1d8a7b9724c52cec8e3cb1a5b4974a48fdddc8670cd5a659",
+      "sourcePath": "faults_fies_2019.md"
+    },
+    {
+      "chunks": 31,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2020.jsonl",
+      "sha256": "d17d1a04d15d89a653c5110efde15948dce83a766e12319f86fdd777c9cc9999",
+      "sourcePath": "faults_fies_2020.md"
+    },
+    {
+      "chunks": 36,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2021.jsonl",
+      "sha256": "3858bc6da0eca80010053f0ccffbbe75ef3569ec64d7036e63636b26825d399f",
+      "sourcePath": "faults_fies_2021.md"
+    },
+    {
+      "chunks": 78,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2022.jsonl",
+      "sha256": "90b8fb2458f0b81c9feeb81e1aa66b9993e8158aa05ece0748fd9bacf1905d17",
+      "sourcePath": "faults_fies_2022.md"
+    },
+    {
+      "chunks": 70,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2023.jsonl",
+      "sha256": "6a03540034bd60ef31a68768bccfa32be11f5ee11f5b45b76c568202e9acf7ef",
+      "sourcePath": "faults_fies_2023.md"
+    },
+    {
+      "chunks": 159,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2024.jsonl",
+      "sha256": "02a5cd181925f4750ea43b8feec0cd66a318b04e707ed7a5baee7d2085d29bbb",
+      "sourcePath": "faults_fies_2024.md"
+    },
+    {
+      "chunks": 66,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2025.jsonl",
+      "sha256": "aecb66d6e45981e1a9b15315e34147be58feea58af73b8978599f56a85ba5d50",
+      "sourcePath": "faults_fies_2025.md"
+    },
+    {
+      "chunks": 42,
+      "disposition": "historical",
+      "outputPath": "historical/faults_fies_2026.jsonl",
+      "sha256": "a0e7017bf767c2570b4d3b339d0c7f6e69697578b45d25c5f71a93c5093abddf",
+      "sourcePath": "faults_fies_2026.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/faults_mosca_2015.jsonl",
+      "sha256": "a4a731325ded1c1e244d03da62e9481dd0c6659e2e5c804c36b4e797f7b25a93",
+      "sourcePath": "faults_mosca_2015.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_mosca_2018.jsonl",
+      "sha256": "ae26bec3beb110d17db0d11c778bb50f9d32ed2d801397f3d5347817cf12fced",
+      "sourcePath": "faults_mosca_2018.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/faults_mosca_2022.jsonl",
+      "sha256": "bd19f94db6d886883883197f0806fe9de5b2d14aac5dd71eafdac2776dfbc944",
+      "sourcePath": "faults_mosca_2022.md"
+    },
+    {
+      "chunks": 31,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2015.jsonl",
+      "sha256": "7981ba1cf23386f2a647400d7521ccb56c06584018c3533e26b84848888f5841",
+      "sourcePath": "faults_notcam_2015.md"
+    },
+    {
+      "chunks": 15,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2016.jsonl",
+      "sha256": "b4c3a6bb2cffe4fb46dec44fa65859ecf56bf32ac6bcae57769bf02354cd5563",
+      "sourcePath": "faults_notcam_2016.md"
+    },
+    {
+      "chunks": 40,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2017.jsonl",
+      "sha256": "52a26a79eebd6927d7e82b52cac95d55d9153ea99879b008d386441e56e8bd54",
+      "sourcePath": "faults_notcam_2017.md"
+    },
+    {
+      "chunks": 42,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2018.jsonl",
+      "sha256": "a80475227f28537bd9c076adaca2747a76e67b718717789ebc31628c4c0478a3",
+      "sourcePath": "faults_notcam_2018.md"
+    },
+    {
+      "chunks": 30,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2019.jsonl",
+      "sha256": "5e65f43e55af2ef773ae4c27c7cf844e854eb709ae804bd8f04378ce025b7df8",
+      "sourcePath": "faults_notcam_2019.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2020.jsonl",
+      "sha256": "3fe7ac5c4bf3c739c66bd7f5fc247f325fda836b3db7e3c3b071f27a5d89c6e0",
+      "sourcePath": "faults_notcam_2020.md"
+    },
+    {
+      "chunks": 23,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2021.jsonl",
+      "sha256": "da0b0e988e7078c360b0f337a6b938896e73d9387b752ef61caf7f6538f33e68",
+      "sourcePath": "faults_notcam_2021.md"
+    },
+    {
+      "chunks": 17,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2022.jsonl",
+      "sha256": "0cc4325bd6f956bcffee42d8572eaf00775ba732520dcfe3e732465f529edb06",
+      "sourcePath": "faults_notcam_2022.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2023.jsonl",
+      "sha256": "d3d6944e3d84cc037368636dfb1ba334a456cdf74a95fb1cf696e461b0a6e1a0",
+      "sourcePath": "faults_notcam_2023.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2024.jsonl",
+      "sha256": "7371bfcda4e782509dcf2b28fcb8e54100664315dbc1b8a1af4258a4f366e8bd",
+      "sourcePath": "faults_notcam_2024.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2025.jsonl",
+      "sha256": "061120e1518645d048db530133cd69b7d79bfd75e8edc7ea1d7d1ade3758469e",
+      "sourcePath": "faults_notcam_2025.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/faults_notcam_2026.jsonl",
+      "sha256": "6d02e3202c05afb5c5c1d7099a7912d080d449dffe627b875b6d0fcc44e9a2d4",
+      "sourcePath": "faults_notcam_2026.md"
+    },
+    {
+      "chunks": 34,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2015.jsonl",
+      "sha256": "d007297f01862f732413ba9b89ce50f74d9048d51203b324e083ff6a6e7ad589",
+      "sourcePath": "faults_others_2015.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2016.jsonl",
+      "sha256": "234110db5447fa94c37ccd99ef9fd8e14b98c5cb8ebb3d6b93537af148b4fc21",
+      "sourcePath": "faults_others_2016.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2017.jsonl",
+      "sha256": "1fac297b2f74a393706b80ce4fe188304b2146d1d3762936df6b830998a037b2",
+      "sourcePath": "faults_others_2017.md"
+    },
+    {
+      "chunks": 16,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2018.jsonl",
+      "sha256": "78d72e42dd0feef3152f78f05dda14c5eb70407dbac9a2d7122593e55a322f50",
+      "sourcePath": "faults_others_2018.md"
+    },
+    {
+      "chunks": 14,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2019.jsonl",
+      "sha256": "6558767734a94a01877486d73c10125ebc1824412a827114d3b1f8f56f2c323c",
+      "sourcePath": "faults_others_2019.md"
+    },
+    {
+      "chunks": 48,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2020.jsonl",
+      "sha256": "35ef8c30a53e31d79cfd1333657170f15545c1d774c8845c028c4e1ad9591c38",
+      "sourcePath": "faults_others_2020.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2021.jsonl",
+      "sha256": "1e2be8a3b230354be2ca0c00da77d27a2091556294a8d6706e0c41c4928a5176",
+      "sourcePath": "faults_others_2021.md"
+    },
+    {
+      "chunks": 28,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2022.jsonl",
+      "sha256": "8c8a045d7288b9caedf09f546aeed0d7935fc9a39aaf95a34d11c5fc996a757d",
+      "sourcePath": "faults_others_2022.md"
+    },
+    {
+      "chunks": 22,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2023.jsonl",
+      "sha256": "7123c1a2474b3b73739da5f5d573b9dcc6a873b132b4cf14b7295d6add4d7c99",
+      "sourcePath": "faults_others_2023.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2024.jsonl",
+      "sha256": "93c8670ad3f857d33b865e0aae1872f7e2b6e7837017877dd41415395671fdea",
+      "sourcePath": "faults_others_2024.md"
+    },
+    {
+      "chunks": 24,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2025.jsonl",
+      "sha256": "ef6d0a6b4aeb76d4767c241e986d8269f7ead536595bee1a7b16119b00c60941",
+      "sourcePath": "faults_others_2025.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "historical",
+      "outputPath": "historical/faults_others_2026.jsonl",
+      "sha256": "ba33b4b7a515ded2f780e562a3f84932c91d3c32f3236f63d753b471ed345e1f",
+      "sourcePath": "faults_others_2026.md"
+    },
+    {
+      "chunks": 39,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2015.jsonl",
+      "sha256": "a435e03947fb6d3c509e96bd01c9977aea780f2f3e9ef7ac7e7f000e07de6875",
+      "sourcePath": "faults_stancam_2015.md"
+    },
+    {
+      "chunks": 29,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2016.jsonl",
+      "sha256": "6b58e0bc0ad666a8fa7ec7721859eba257fb3474594359ad73e69fbde382ff25",
+      "sourcePath": "faults_stancam_2016.md"
+    },
+    {
+      "chunks": 24,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2017.jsonl",
+      "sha256": "cc0c8c4a9ea6e9f4e4a2a23af77366f5bdf659b447f9722d37d27ac6dd42f7d9",
+      "sourcePath": "faults_stancam_2017.md"
+    },
+    {
+      "chunks": 12,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2018.jsonl",
+      "sha256": "93ad8157cbfe65de94b3347672a16c69fa1c354c2d63c77e1c8ff4b162748370",
+      "sourcePath": "faults_stancam_2018.md"
+    },
+    {
+      "chunks": 10,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2019.jsonl",
+      "sha256": "31fd379564435680bfaf6ceb023a27e0e3f302fc31cbad64069d9fb544cbcd19",
+      "sourcePath": "faults_stancam_2019.md"
+    },
+    {
+      "chunks": 14,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2020.jsonl",
+      "sha256": "c04872777e6e7958e0d67d6fddd06e930f23f6cc10237617c6cb9642552faa79",
+      "sourcePath": "faults_stancam_2020.md"
+    },
+    {
+      "chunks": 37,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2021.jsonl",
+      "sha256": "7b163420defa0437d2ae5ffc939e8fa0fd18f46b53060743d83b226859a7dfe2",
+      "sourcePath": "faults_stancam_2021.md"
+    },
+    {
+      "chunks": 46,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2022.jsonl",
+      "sha256": "7108659d2c4d44431638081c5f6897e3c2e0377617d43567a0880c35fbc07ce2",
+      "sourcePath": "faults_stancam_2022.md"
+    },
+    {
+      "chunks": 13,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2023.jsonl",
+      "sha256": "60dbc0b22e5cec66c10bea0ea310d1f3358808bd95c7612b708fec6b7b6ba899",
+      "sourcePath": "faults_stancam_2023.md"
+    },
+    {
+      "chunks": 19,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2024.jsonl",
+      "sha256": "6fac92a181d6a729bf628ba6529e437c219f10536ae174838cb31de87fd5d2ac",
+      "sourcePath": "faults_stancam_2024.md"
+    },
+    {
+      "chunks": 11,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2025.jsonl",
+      "sha256": "9d81901b7716e517bbe6ad757524345897d8e2163b9a4831a039271d9583a930",
+      "sourcePath": "faults_stancam_2025.md"
+    },
+    {
+      "chunks": 8,
+      "disposition": "historical",
+      "outputPath": "historical/faults_stancam_2026.jsonl",
+      "sha256": "68a085548d62c2c75ead724d9a293ba90ae8f471938c9f598cd0c1db6d32cda6",
+      "sourcePath": "faults_stancam_2026.md"
+    },
+    {
+      "chunks": 47,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2015.jsonl",
+      "sha256": "9a4d93b2145c04600e95eceb1540a1476a5dca523add63e0e3bdb21d2f458de4",
+      "sourcePath": "faults_telescope_2015.md"
+    },
+    {
+      "chunks": 23,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2016.jsonl",
+      "sha256": "68250ac4f3ea929923c55696ae6f754dda20a850104eef074eebb0bad8b708db",
+      "sourcePath": "faults_telescope_2016.md"
+    },
+    {
+      "chunks": 56,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2017.jsonl",
+      "sha256": "b4e76fdb14ab6ffcaebffd5893323826f0a44affebeae47da23af9a692c5e5b5",
+      "sourcePath": "faults_telescope_2017.md"
+    },
+    {
+      "chunks": 82,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2018.jsonl",
+      "sha256": "e083ea951a16df549cb2d0c37220a5ed24262576586d9ffd3f5056ae4bdf79ab",
+      "sourcePath": "faults_telescope_2018.md"
+    },
+    {
+      "chunks": 85,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2019.jsonl",
+      "sha256": "1b030a97644e824d802988b36c6c2e0a8a5c70c80f76be9a3dc6ab2eef5f2898",
+      "sourcePath": "faults_telescope_2019.md"
+    },
+    {
+      "chunks": 94,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2020.jsonl",
+      "sha256": "9ed9c7837af34daeb7dd05f1260105ce9f101be1a6dee555e72996ecb7f1fc47",
+      "sourcePath": "faults_telescope_2020.md"
+    },
+    {
+      "chunks": 92,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2021.jsonl",
+      "sha256": "95b4748b0811ea84b49b274495f2b04e10baab8cef963c44ee7136c580c2e747",
+      "sourcePath": "faults_telescope_2021.md"
+    },
+    {
+      "chunks": 46,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2022.jsonl",
+      "sha256": "22a7d4f7eb3d5568a9d119c68fb5d62e468dbae75d7ec8d1d1d9135769492adc",
+      "sourcePath": "faults_telescope_2022.md"
+    },
+    {
+      "chunks": 31,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2023.jsonl",
+      "sha256": "35ca7a2a34d5fdce3981fd42ea85dff0d3cc9d26eaddbea680832724dd32524b",
+      "sourcePath": "faults_telescope_2023.md"
+    },
+    {
+      "chunks": 58,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2024.jsonl",
+      "sha256": "86ffb2de68923f86bbbd2cf96fb19fb67b3c9e1db1f47fd1a6c0383c63cb9575",
+      "sourcePath": "faults_telescope_2024.md"
+    },
+    {
+      "chunks": 114,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2025.jsonl",
+      "sha256": "ca0281ad93bf882026f0a2feba76d575d3dca31836b47e82dac9adaee502730d",
+      "sourcePath": "faults_telescope_2025.md"
+    },
+    {
+      "chunks": 25,
+      "disposition": "historical",
+      "outputPath": "historical/faults_telescope_2026.jsonl",
+      "sha256": "f1a938c825670f82578b879cd5dbac2ba7992327fdc5eeb7c3564ede18977522",
+      "sourcePath": "faults_telescope_2026.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-boot-naomi-html.jsonl",
+      "sha256": "db643f2836b4c4a32ca127958c86d34579fd5938503615fb6ebc852b06123552",
+      "sourcePath": "instruments-turpol-boot-naomi-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-cirpol-html.jsonl",
+      "sha256": "03c54632ad57744fc54531a8ac7ef9cc9d25d0ba89503c000f1c67772ffd85fa",
+      "sourcePath": "instruments-turpol-cirpol-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-close-down-html.jsonl",
+      "sha256": "b36e06514a106a8b98c7ebec868519fd67f011a93b933572c85a844d62b957e2",
+      "sourcePath": "instruments-turpol-close-down-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-diaphragms-html.jsonl",
+      "sha256": "3f5a65617aa074952304342fe4ec7ef1c14add2c7dcb338836db297584145046",
+      "sourcePath": "instruments-turpol-diaphragms-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-filters-html.jsonl",
+      "sha256": "c7a720529d8644b0d2f34e9bbabf26e48712607811839300de99b41103465c41",
+      "sourcePath": "instruments-turpol-filters-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-grw-708247-html.jsonl",
+      "sha256": "dd110adac0d7091711b78103d1b40df6886d76bac0567c7d9c2295513eaeaf51",
+      "sourcePath": "instruments-turpol-grw-708247-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-linpol-html.jsonl",
+      "sha256": "69fe793ff0207c46eeaa404a9d209fe695340339081b93551c130b9b75838596",
+      "sourcePath": "instruments-turpol-linpol-html.md"
+    },
+    {
+      "chunks": 5,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-observ-html.jsonl",
+      "sha256": "ab20361a23e1da548e249036008b08aa3aaed40f41f25eafaf2e34f3b74b763a",
+      "sourcePath": "instruments-turpol-observ-html.md"
+    },
+    {
+      "chunks": 2,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-phot-html.jsonl",
+      "sha256": "abdfd061d365f83ea186b8f785431588c0f8b5dc7a1bcf69c1fe06bce3c38fc2",
+      "sourcePath": "instruments-turpol-phot-html.md"
+    },
+    {
+      "chunks": 1,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-photos-html.jsonl",
+      "sha256": "f17d065825e7754f4f1217dbc96a1e02ab6171da71c4885a25585892a698d0af",
+      "sourcePath": "instruments-turpol-photos-html.md"
+    },
+    {
+      "chunks": 7,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-ref-html.jsonl",
+      "sha256": "20413548ef1987887e07d6ca64e6c24d5849405aac262cfa2b91428c55fa2229",
+      "sourcePath": "instruments-turpol-ref-html.md"
+    },
+    {
+      "chunks": 4,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-st-4-html.jsonl",
+      "sha256": "38efd45d9093f008c3f98e97b9320b1d5ec5f623efc784165ba2823e9c7d6d07",
+      "sourcePath": "instruments-turpol-st-4-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-start-up-html.jsonl",
+      "sha256": "bf325469c21ab50309dae8ccc8c6c4c2812f3a9286dc2c1bbec2e54403e928e4",
+      "sourcePath": "instruments-turpol-start-up-html.md"
+    },
+    {
+      "chunks": 3,
+      "disposition": "historical",
+      "outputPath": "historical/instruments-turpol-trouble-html.jsonl",
+      "sha256": "e49f37189dba4d2a9159e0830cff116241e0e2a888a22e6b19bd6e4bec54eaff",
+      "sourcePath": "instruments-turpol-trouble-html.md"
+    }
+  ],
+  "historicalChunksBuilt": 9549,
+  "historicalDocumentsBuilt": 215,
+  "historicalDocumentsQuarantinedDamaged": 0,
+  "inputRoot": "/home/llmrunner/NOTBot-shadow/phase1-candidate-2026-09-29",
+  "missingFiles": [],
+  "outputRoot": "/home/llmrunner/NOTBot-shadow/phase3-structured-2026-09-29",
+  "quarantinedDamagedDocuments": [
+    "instruments-detectors-ccd6-ccd6-pdf.md",
+    "instruments-detectors-ccd8-alfosc-e2v-pdf.md",
+    "instruments-detectors-mosca-test-report-mosca2-pdf.md",
+    "instruments-development-calib-plan-pdf.md",
+    "instruments-development-not-adapter-may04-pdf.md",
+    "instruments-development-service-pdf.md",
+    "instruments-development-weather-station-pdf.md",
+    "instruments-fies-devel-fies-turku98-pdf.md",
+    "instruments-sofin-florence-sofin-pdf.md",
+    "telescope-tti-mclean-pdf.md"
+  ],
+  "schemaVersion": 1,
+  "sourceManifest": "reports/phase1/corpus-manifest.v1.json",
+  "sourceManifestSha256": "c84b7649b1a3afcd0a0be51f99906eae50124bb1208192e78feb1c1dc783ac3c",
+  "targetChars": 1200
+}

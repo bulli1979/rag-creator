@@ -57,7 +57,7 @@ def find_column(columns: list[str], aliases: list[str]) -> str | None:
 def read_table(path: Path) -> pd.DataFrame:
     suffix = path.suffix.lower()
     if suffix == ".csv":
-        return pd.read_csv(path)
+        return pd.read_csv(path, skipinitialspace=True)
     if suffix == ".jsonl":
         return pd.read_json(path, lines=True)
     if suffix in {".xlsx", ".xls"}:

@@ -29,6 +29,7 @@ from .models import (
     UploadOptions,
 )
 from .services.thread_pool import run_in_worker_pool
+from .source_identity import create_document_version_id, resolve_source_identity
 from .services.folder_scan import iter_files_recursive
 from .vector_store.factory import create_vector_store, resolve_qdrant_path, resolve_sqlite_path
 from .vector_store.postgres_store import PostgresVectorStore
@@ -136,6 +137,62 @@ class IngestService:
     def list_jobs(self) -> list[JobRecord]:
         return self._db.list_jobs(self._active_environment_id())
 
+    def _register_upload(
+        self, file_name: str, content: bytes, options: UploadOptions
+    ) -> tuple[str, bool, str]:
+        env_id = self._active_environment_id()
+        content_hash = create_sha256(content)
+        source_id, canonical_location = resolve_source_identity(
+            environment_id=env_id,
+            file_name=file_name,
+            content=content,
+            source=options.source,
+        )
+        doc_id = create_document_version_id(source_id, content_hash)
+        existing = self._db.get_document(doc_id, env_id)
+        active = self._db.get_active_document_by_source(source_id, env_id)
+        if (
+            active is not None
+            and active.content_hash == content_hash
+            and active.status == DocumentStatus.done
+            and active.chunk_count > 0
+        ):
+            return doc_id, False, f"Unveraendert (Source und Hash gleich), uebersprungen: {file_name}"
+        if existing is not None and existing.status in (
+            DocumentStatus.queued, DocumentStatus.processing
+        ):
+            queued = self._enqueue_job(doc_id, JobType.reindex)
+            message = (
+                f"Verarbeitung erneut angestossen: {file_name}"
+                if queued
+                else f"Bereits in der aktuellen Verarbeitungsqueue: {file_name}"
+            )
+            return doc_id, queued, message
+
+        version = existing.version if existing is not None else self._db.next_source_version(source_id, env_id)
+        stored = self._fs.copy_to_managed_storage(file_name, file_bytes=content, doc_id=doc_id)
+        self._db.upsert_document(
+            environment_id=env_id,
+            doc_id=doc_id,
+            file_name=stored["fileName"],
+            file_path=stored["destinationPath"],
+            file_hash=stored["fileHash"],
+            file_type=stored["extension"] or "unknown",
+            status=DocumentStatus.queued,
+            tags=options.tags,
+            source=options.source,
+            corpus_path=self._fs.get_corpus_path(doc_id),
+            size_bytes=stored["sizeBytes"],
+            source_id=source_id,
+            content_hash=content_hash,
+            version=version,
+            is_active=existing.is_active if existing is not None else False,
+            canonical_location=canonical_location,
+            corpus_version=options.corpus_version,
+        )
+        queued = self._enqueue_job(doc_id, JobType.reindex)
+        return doc_id, queued, f"Zur Indexierung eingeplant: {file_name}"
+
     async def add_documents(
         self,
         files: list[tuple[str, bytes]],
@@ -145,66 +202,25 @@ class IngestService:
         queued_ids: list[str] = []
         skipped_ids: list[str] = []
         messages: list[str] = []
-        seen_hashes: set[str] = set()
+        seen_doc_ids: set[str] = set()
 
         for file_name, content in files:
             try:
-                doc_id = create_sha256(content)
-                if doc_id in seen_hashes:
-                    messages.append(
-                        f"Duplikat im selben Upload uebersprungen: {file_name}"
-                    )
-                    skipped_ids.append(doc_id)
-                    continue
-                seen_hashes.add(doc_id)
-
-                existing = self._db.get_document(doc_id, self._active_environment_id())
-                if existing is not None:
-                    if (
-                        existing.status == DocumentStatus.done
-                        and existing.chunk_count > 0
-                    ):
-                        messages.append(
-                            f"Bereits indexiert, uebersprungen: {file_name}"
-                        )
-                        skipped_ids.append(doc_id)
-                        continue
-                    if existing.status in (
-                        DocumentStatus.queued,
-                        DocumentStatus.processing,
-                    ):
-                        # Kein erneutes Kopieren: Job erneut anstossen (Queue war evtl. nach Neustart leer).
-                        if self._enqueue_job(doc_id, JobType.reindex):
-                            messages.append(
-                                f"Verarbeitung erneut angestossen: {file_name}"
-                            )
-                            queued_ids.append(doc_id)
-                        else:
-                            messages.append(
-                                f"Bereits in der aktuellen Verarbeitungsqueue: {file_name}"
-                            )
-                            skipped_ids.append(doc_id)
-                        continue
-
-                stored = self._fs.copy_to_managed_storage(
-                    file_name, file_bytes=content
-                )
-                doc_id = stored["docId"]
-                self._db.upsert_document(
+                source_id, _ = resolve_source_identity(
                     environment_id=self._active_environment_id(),
-                    doc_id=doc_id,
-                    file_name=stored["fileName"],
-                    file_path=stored["destinationPath"],
-                    file_hash=stored["fileHash"],
-                    file_type=stored["extension"] or "unknown",
-                    status=DocumentStatus.queued,
-                    tags=options.tags,
+                    file_name=file_name,
+                    content=content,
                     source=options.source,
-                    corpus_path=self._fs.get_corpus_path(doc_id),
-                    size_bytes=stored["sizeBytes"],
                 )
-                self._enqueue_job(doc_id, JobType.reindex)
-                queued_ids.append(doc_id)
+                candidate_id = create_document_version_id(source_id, create_sha256(content))
+                if candidate_id in seen_doc_ids:
+                    messages.append(f"Duplikat im selben Upload uebersprungen: {file_name}")
+                    skipped_ids.append(candidate_id)
+                    continue
+                seen_doc_ids.add(candidate_id)
+                doc_id, queued, message = self._register_upload(file_name, content, options)
+                messages.append(message)
+                (queued_ids if queued else skipped_ids).append(doc_id)
             except Exception as exc:
                 _logger.exception("add_documents file=%s", file_name)
                 messages.append(f"Fehler bei {file_name}: {exc}")
@@ -255,60 +271,26 @@ class IngestService:
         queued_ids: list[str] = []
         skipped_ids: list[str] = []
         messages: list[str] = []
-        seen_hashes: set[str] = set()
+        seen_doc_ids: set[str] = set()
 
         for absolute_path, relative_name in subset:
             try:
                 content = Path(absolute_path).read_bytes()
-                doc_id = create_sha256(content)
-                if doc_id in seen_hashes:
-                    skipped_ids.append(doc_id)
-                    messages.append(
-                        f"Duplikat im Ordner uebersprungen: {relative_name}"
-                    )
-                    continue
-                seen_hashes.add(doc_id)
-
-                existing = self._db.get_document(doc_id, self._active_environment_id())
-                if existing is not None:
-                    if existing.status == DocumentStatus.done and existing.chunk_count > 0:
-                        skipped_ids.append(doc_id)
-                        messages.append(
-                            f"Unveraendert (Hash gleich), uebersprungen: {relative_name}"
-                        )
-                        continue
-                    if existing.status in (DocumentStatus.queued, DocumentStatus.processing):
-                        if self._enqueue_job(doc_id, JobType.reindex):
-                            queued_ids.append(doc_id)
-                            messages.append(
-                                f"Verarbeitung erneut angestossen: {relative_name}"
-                            )
-                        else:
-                            skipped_ids.append(doc_id)
-                            messages.append(
-                                f"Bereits in der aktuellen Verarbeitungsqueue: {relative_name}"
-                            )
-                        continue
-
-                stored = self._fs.copy_to_managed_storage(
-                    relative_name, file_bytes=content
-                )
-                doc_id = stored["docId"]
-                self._db.upsert_document(
+                source_id, _ = resolve_source_identity(
                     environment_id=self._active_environment_id(),
-                    doc_id=doc_id,
-                    file_name=stored["fileName"],
-                    file_path=stored["destinationPath"],
-                    file_hash=stored["fileHash"],
-                    file_type=stored["extension"] or "unknown",
-                    status=DocumentStatus.queued,
-                    tags=options.tags,
+                    file_name=relative_name,
+                    content=content,
                     source=options.source,
-                    corpus_path=self._fs.get_corpus_path(doc_id),
-                    size_bytes=stored["sizeBytes"],
                 )
-                self._enqueue_job(doc_id, JobType.reindex)
-                queued_ids.append(doc_id)
+                candidate_id = create_document_version_id(source_id, create_sha256(content))
+                if candidate_id in seen_doc_ids:
+                    skipped_ids.append(candidate_id)
+                    messages.append(f"Duplikat im Ordner uebersprungen: {relative_name}")
+                    continue
+                seen_doc_ids.add(candidate_id)
+                doc_id, queued, message = self._register_upload(relative_name, content, options)
+                messages.append(message)
+                (queued_ids if queued else skipped_ids).append(doc_id)
             except Exception as exc:
                 _logger.exception("add_documents_from_folder_path file=%s", absolute_path)
                 messages.append(f"Fehler bei {relative_name}: {exc}")
@@ -620,13 +602,9 @@ class IngestService:
             progress=0.05, message="Verarbeitung gestartet.", status=JobStatus.running,
         ))
 
+        previous_active = self._db.get_active_document_by_source(doc.source_id, env_id)
+        vectors_replaced = False
         try:
-            self._vs.remove_document(self._active_pg().db_table_name, doc_id)
-            self._emit_progress(ProgressEventPayload(
-                docId=doc_id, jobId=job_id, type=job_type,
-                progress=0.12, message="Bestehende Vektoren bereinigt.", status=JobStatus.running,
-            ))
-
             corpus_lines = self._try_load_corpus(doc.corpus_path, doc_id)
             if self._contains_binary_pdf(corpus_lines):
                 corpus_lines = []
@@ -718,12 +696,28 @@ class IngestService:
                         or _normalize_source_url(doc.source)
                     ),
                     "fileName": doc.file_name,
+                    "sourceId": doc.source_id,
+                    "contentHash": doc.content_hash,
+                    "version": doc.version,
+                    "canonicalLocation": doc.canonical_location,
+                    "corpusVersion": doc.corpus_version or (line.get("metadata") or {}).get("corpusVersion", ""),
+                    "category": (line.get("metadata") or {}).get("category", ""),
+                    "instrument": (line.get("metadata") or {}).get("instrument", ""),
+                    "authority": (line.get("metadata") or {}).get("authority", "unclassified"),
+                    "documentStatus": (line.get("metadata") or {}).get("status", "active"),
+                    "section": (line.get("metadata") or {}).get("section", ""),
+                    "headingPath": (line.get("metadata") or {}).get("headingPath", []),
+                    "parentSection": (line.get("metadata") or {}).get("parentSection", ""),
+                    "previousSection": (line.get("metadata") or {}).get("previousSection", ""),
+                    "nextSection": (line.get("metadata") or {}).get("nextSection", ""),
+                    "contentTypes": (line.get("metadata") or {}).get("contentTypes", []),
                 }
                 for line, _ in embedding_inputs
             ]
-            self._vs.upsert_document_chunks(
-                self._active_pg().db_table_name, doc_id, vectors, payloads,
+            self._vs.replace_source_chunks(
+                self._active_pg().db_table_name, doc.source_id, doc_id, vectors, payloads,
             )
+            vectors_replaced = True
 
             self._db.set_document_index_result(doc_id, len(vectors))
             self._db.upsert_job(
@@ -738,6 +732,16 @@ class IngestService:
 
         except Exception as exc:
             msg = str(exc)
+            if vectors_replaced:
+                try:
+                    if previous_active is not None and previous_active.doc_id != doc_id:
+                        self._vs.activate_source_version(
+                            self._active_pg().db_table_name, doc.source_id, previous_active.doc_id
+                        )
+                    elif previous_active is None:
+                        self._vs.remove_document(self._active_pg().db_table_name, doc_id)
+                except Exception:
+                    _logger.exception("vector rollback fehlgeschlagen source_id=%s", doc.source_id)
             self._db.set_document_status(doc_id, DocumentStatus.error, msg)
             self._db.upsert_job(
                 environment_id=env_id,

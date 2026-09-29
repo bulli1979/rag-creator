@@ -31,6 +31,8 @@ settings.json
 chat_settings.json
 data/
 outputs/
+# Raw evaluation Q/A includes retrieved corpus excerpts and stays local.
+reports/phase0/evaluation-*/questions_qa.csv
 batchTest/answerFolder/
 batchTest/batch_config.json
 batchTest/batch_results.xlsx

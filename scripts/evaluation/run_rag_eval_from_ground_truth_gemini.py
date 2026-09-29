@@ -104,7 +104,7 @@ def load_ground_truth_pairs(path: Path) -> list[tuple[str, str]]:
         return pairs
 
     if suffix == ".csv":
-        df = pd.read_csv(path)
+        df = pd.read_csv(path, skipinitialspace=True)
     elif suffix == ".jsonl":
         df = pd.read_json(path, lines=True)
     elif suffix in {".xlsx", ".xls"}:

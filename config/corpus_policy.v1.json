@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "corpusVersion": "phase1-candidate-2026-09-29",
+  "expectedCorpusSnapshotSha256": "bb70f53a833d0f5d61d6b2bed64c06b134952c84769bb9e871a2e72b313ba208",
+  "shortBodyReviewThreshold": 100,
+  "nearDuplicateJaccardThreshold": 0.85,
+  "nearDuplicateMaxSimhashDistance": 8,
+  "lowValueCategories": [
+    "education",
+    "general_info",
+    "news"
+  ],
+  "historicalCategories": [
+    "fault_report"
+  ],
+  "quarantineCategories": [
+    "internal_operations"
+  ],
+  "historicalInstruments": [
+    "TURPOL"
+  ],
+  "generatedPathPrefixes": [
+    "/observing/tools/aladin/aladinAG.php"
+  ],
+  "queryPathAllowlist": [
+    "/observing/cookbook/current/Cookbook.php"
+  ],
+  "queryVariantFamilies": [
+    {
+      "path": "/instruments/filters/filters.php",
+      "canonicalUrl": "https://www.not.iac.es/instruments/filters/filters.php?ord=name&sel=def"
+    }
+  ],
+  "internalActiveReviewPrefixes": [
+    "/intranot/engineer/procedures/",
+    "/intranot/engineer/troubleshooting/",
+    "/intranot/safety/"
+  ],
+  "authorityByCategory": {
+    "instrument_configuration": "tier_1_authoritative",
+    "observing_guide": "tier_1_authoritative",
+    "sequencer_reference": "tier_1_authoritative",
+    "telescope_info": "tier_1_authoritative",
+    "instrument_documentation": "tier_2_reference",
+    "internal_operations": "tier_2_internal_unreviewed",
+    "fault_report": "tier_3_historical_record",
+    "education": "tier_4_non_operational",
+    "general_info": "tier_4_non_operational",
+    "news": "tier_4_non_operational",
+    "[missing]": "tier_4_unknown"
+  },
+  "qualityPolicy": {
+    "quarantinePhoneRemoved": true,
+    "quarantineEncodingDamage": true,
+    "quarantineMissingFrontmatter": true
+  }
+}

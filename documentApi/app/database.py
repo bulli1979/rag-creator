@@ -35,6 +35,12 @@ def _row_to_document(row: sqlite3.Row) -> DocumentRecord:
         corpusPath=row["corpusPath"],
         lastIndexedAt=row["lastIndexedAt"],
         sizeBytes=row["sizeBytes"] or 0,
+        sourceId=row["sourceId"] or "",
+        contentHash=row["contentHash"] or row["fileHash"],
+        version=row["version"] or 1,
+        isActive=bool(row["isActive"]),
+        canonicalLocation=row["canonicalLocation"] or "",
+        corpusVersion=row["corpusVersion"] or "",
     )
 
 
@@ -95,12 +101,27 @@ class IndexDatabase:
             """
         )
         self._ensure_column("documents", "environmentId", "TEXT NOT NULL DEFAULT 'default'")
+        self._ensure_column("documents", "sourceId", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("documents", "contentHash", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("documents", "version", "INTEGER NOT NULL DEFAULT 1")
+        self._ensure_column("documents", "isActive", "INTEGER NOT NULL DEFAULT 1")
+        self._ensure_column("documents", "canonicalLocation", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("documents", "corpusVersion", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("jobs", "environmentId", "TEXT NOT NULL DEFAULT 'default'")
         self._conn.execute(
             "CREATE INDEX IF NOT EXISTS idx_documents_env_updated ON documents(environmentId, updatedAt DESC)"
         )
         self._conn.execute(
             "CREATE INDEX IF NOT EXISTS idx_jobs_env_updated ON jobs(environmentId, updatedAt DESC)"
+        )
+        self._conn.execute("UPDATE documents SET sourceId = 'legacy:' || docId WHERE sourceId = ''")
+        self._conn.execute("UPDATE documents SET contentHash = fileHash WHERE contentHash = ''")
+        self._conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_documents_env_source ON documents(environmentId, sourceId, version DESC)"
+        )
+        self._conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_documents_one_active_source "
+            "ON documents(environmentId, sourceId) WHERE isActive = 1"
         )
         self._conn.commit()
 
@@ -124,15 +145,22 @@ class IndexDatabase:
         source: str,
         corpus_path: str,
         size_bytes: int,
+        source_id: str,
+        content_hash: str,
+        version: int,
+        is_active: bool,
+        canonical_location: str,
+        corpus_version: str,
     ) -> None:
         now = int(time.time() * 1000)
         self._conn.execute(
             """
             INSERT INTO documents (
                 docId, environmentId, fileName, filePath, fileHash, fileType, createdAt, updatedAt,
-                status, tags, source, corpusPath, sizeBytes
+                status, tags, source, corpusPath, sizeBytes, sourceId, contentHash,
+                version, isActive, canonicalLocation, corpusVersion
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(docId) DO UPDATE SET
                 environmentId=excluded.environmentId,
                 fileName=excluded.fileName,
@@ -144,12 +172,19 @@ class IndexDatabase:
                 tags=excluded.tags,
                 source=excluded.source,
                 corpusPath=excluded.corpusPath,
-                sizeBytes=excluded.sizeBytes
+                sizeBytes=excluded.sizeBytes,
+                sourceId=excluded.sourceId,
+                contentHash=excluded.contentHash,
+                version=excluded.version,
+                isActive=excluded.isActive,
+                canonicalLocation=excluded.canonicalLocation,
+                corpusVersion=excluded.corpusVersion
             """,
             (
                 doc_id, environment_id, file_name, file_path, file_hash, file_type,
                 now, now, status.value, json.dumps(tags), source,
-                corpus_path, size_bytes,
+                corpus_path, size_bytes, source_id, content_hash, version,
+                int(is_active), canonical_location, corpus_version,
             ),
         )
         self._conn.commit()
@@ -166,15 +201,40 @@ class IndexDatabase:
 
     def set_document_index_result(self, doc_id: str, chunk_count: int) -> None:
         now = int(time.time() * 1000)
-        self._conn.execute(
-            """
-            UPDATE documents
-            SET chunkCount = ?, status = 'done', errorMessage = NULL, lastIndexedAt = ?, updatedAt = ?
-            WHERE docId = ?
-            """,
-            (chunk_count, now, now, doc_id),
-        )
-        self._conn.commit()
+        try:
+            self._conn.execute("BEGIN IMMEDIATE")
+            row = self._conn.execute(
+                "SELECT environmentId, sourceId FROM documents WHERE docId = ?", (doc_id,)
+            ).fetchone()
+            if row is None:
+                raise ValueError(f"Dokument nicht gefunden: {doc_id}")
+            self._conn.execute(
+                "UPDATE documents SET isActive = 0 WHERE environmentId = ? AND sourceId = ? AND docId <> ?",
+                (row["environmentId"], row["sourceId"], doc_id),
+            )
+            self._conn.execute(
+                """UPDATE documents SET chunkCount = ?, status = 'done', errorMessage = NULL,
+                   isActive = 1, lastIndexedAt = ?, updatedAt = ? WHERE docId = ?""",
+                (chunk_count, now, now, doc_id),
+            )
+            self._conn.commit()
+        except Exception:
+            self._conn.rollback()
+            raise
+
+    def get_active_document_by_source(self, source_id: str, environment_id: str) -> DocumentRecord | None:
+        row = self._conn.execute(
+            "SELECT * FROM documents WHERE environmentId = ? AND sourceId = ? AND isActive = 1",
+            (environment_id, source_id),
+        ).fetchone()
+        return _row_to_document(row) if row else None
+
+    def next_source_version(self, source_id: str, environment_id: str) -> int:
+        row = self._conn.execute(
+            "SELECT COALESCE(MAX(version), 0) + 1 AS nextVersion FROM documents WHERE environmentId = ? AND sourceId = ?",
+            (environment_id, source_id),
+        ).fetchone()
+        return int(row["nextVersion"])
 
     def list_documents(self, environment_id: str) -> list[DocumentRecord]:
         rows = self._conn.execute(

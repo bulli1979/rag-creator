@@ -8,6 +8,7 @@ from typing import Any
 
 import numpy as np
 
+from .document_processing import structured_chunks
 from .services.quiet_ml_env import apply_quiet_ml_env
 
 apply_quiet_ml_env()
@@ -22,11 +23,14 @@ try:
 except Exception:
     PdfReader = None
 
-from sentence_transformers import SentenceTransformer
+try:
+    from sentence_transformers import SentenceTransformer
+except Exception:
+    SentenceTransformer = None  # type: ignore[assignment]
 
 _logger = logging.getLogger(__name__)
 
-_MODEL_CACHE: dict[str, SentenceTransformer] = {}
+_MODEL_CACHE: dict[str, Any] = {}
 _BINARY_OFFICE_EXTENSIONS = {".pdf", ".docx", ".pptx"}
 
 # Erste Zeilen / Kopfbereich: URL aus HTML, YAML, Markdown oder Klartext
@@ -109,18 +113,9 @@ def extract_header_canonical_url(raw_text: str, extension: str) -> str | None:
 
 
 def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:
-    normalized = " ".join(text.replace("\r", "\n").split())
-    if not normalized:
-        return []
-    chunks: list[str] = []
-    cursor = 0
-    step_size = max(1, chunk_size - chunk_overlap)
-    while cursor < len(normalized):
-        chunk = normalized[cursor: cursor + chunk_size].strip()
-        if chunk:
-            chunks.append(chunk)
-        cursor += step_size
-    return chunks
+    """Compatibility wrapper for callers that only need chunk text."""
+    del chunk_overlap
+    return [chunk.text for chunk in structured_chunks(text, target_chars=chunk_size)]
 
 
 def parse_document(
@@ -132,10 +127,16 @@ def parse_document(
     text = ""
     extension = os.path.splitext(input_path)[1].lower()
 
-    if partition is not None and extension in {".pdf", ".docx", ".pptx", ".html", ".md", ".txt"}:
+    if extension in {".md", ".txt"}:
+        try:
+            with open(input_path, "r", encoding="utf-8", errors="ignore") as fh:
+                text = fh.read()
+        except OSError:
+            text = ""
+    elif partition is not None and extension in {".pdf", ".docx", ".pptx", ".html"}:
         try:
             elements = partition(filename=input_path)
-            text = "\n".join(str(el) for el in elements if str(el).strip())
+            text = "\n\n".join(str(el) for el in elements if str(el).strip())
         except Exception:
             text = ""
 
@@ -185,30 +186,37 @@ def parse_document(
     else:
         header_url = extract_header_canonical_url(text, extension)
 
-    chunks = chunk_text(text, chunk_size, chunk_overlap)
-    chunk_prefix = f"Quelle: {header_url}\n\n" if header_url else ""
-
-    chunk_objects: list[dict[str, Any]] = []
-    for idx, chunk_value in enumerate(chunks):
-        body = f"{chunk_prefix}{chunk_value}" if chunk_prefix else chunk_value
-        meta: dict[str, Any] = {
+    del chunk_overlap
+    processed = structured_chunks(
+        text,
+        target_chars=chunk_size,
+        base_metadata={
             "sourcePath": input_path,
             "extension": extension,
-            "sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+            "canonicalUrl": header_url or "",
+        },
+    )
+
+    chunk_objects: list[dict[str, Any]] = []
+    for idx, chunk in enumerate(processed):
+        meta = {
+            **chunk.metadata,
+            "sourcePath": input_path,
+            "extension": extension,
+            "sha256": hashlib.sha256(chunk.text.encode("utf-8")).hexdigest(),
         }
-        if header_url:
-            meta["canonicalUrl"] = header_url
+        canonical = meta.get("canonicalSource") or header_url
+        if canonical:
+            meta["canonicalUrl"] = canonical
         chunk_objects.append(
-            {
-                "chunkIndex": idx,
-                "text": body,
-                "metadata": meta,
-            }
+            {"chunkIndex": idx, "text": chunk.text, "metadata": meta}
         )
     return {"ok": True, "chunks": chunk_objects}
 
 
-def _get_model(model_name: str) -> SentenceTransformer:
+def _get_model(model_name: str) -> Any:
+    if SentenceTransformer is None:
+        raise RuntimeError("sentence-transformers ist nicht installiert.")
     if model_name not in _MODEL_CACHE:
         import torch
         device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -229,7 +237,7 @@ _EMBED_SUBBATCH = 128
 
 
 def _encode_one_batch(
-    model: SentenceTransformer, batch: list[str], internal_batch_size: int
+    model: Any, batch: list[str], internal_batch_size: int
 ) -> list[list[float]]:
     encoded = model.encode(
         batch,

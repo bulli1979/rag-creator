@@ -13,6 +13,25 @@ class VectorStore(Protocol):
 
     def remove_document(self, table_name: str, doc_id: str) -> None: ...
 
+    def remove_source(self, table_name: str, source_id: str) -> None: ...
+
+    def replace_source_chunks(
+        self,
+        table_name: str,
+        source_id: str,
+        doc_id: str,
+        vectors: list[list[float]],
+        payloads: list[dict],
+    ) -> None: ...
+
+    def activate_source_version(
+        self, table_name: str, source_id: str, doc_id: str
+    ) -> None: ...
+
+    def cleanup_inactive_versions(
+        self, table_name: str, source_id: str | None = None
+    ) -> int: ...
+
     def upsert_document_chunks(
         self,
         table_name: str,
