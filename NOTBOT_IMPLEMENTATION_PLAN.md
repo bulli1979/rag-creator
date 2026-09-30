@@ -222,19 +222,20 @@ Goal: make evidence boundaries, authority, and citations explicit to the answeri
 
 | ID | Task | Status | Evidence |
 |---|---|---:|---|
-| P5.1 | Define a structured context format containing document ID, title, instrument, authority, status, section, source, and content. | [ ] | |
-| P5.2 | Update the prompt to use the structured evidence format and prohibit unsupported claims. | [ ] | |
-| P5.3 | Require citations to stable supplied document IDs. | [ ] | |
-| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [ ] | |
-| P5.5 | Clearly label historical and lower-authority evidence in generated answers. | [ ] | |
-| P5.6 | Log prompt, model, corpus, index, retrieval scores, abstention state, latency, and token counts. | [ ] | |
+| P5.1 | Define a structured context format containing document ID, title, instrument, authority, status, section, source, and content. | [x] | `app.grounding.prepare_evidence`; title falls back to a humanized filename |
+| P5.2 | Update the prompt to use the structured evidence format and prohibit unsupported claims. | [x] | `build_system_prompt`; JSON claim-and-excerpt contract and untrusted-evidence boundary |
+| P5.3 | Require citations to stable supplied document IDs. | [x] | Stable alias from versioned document ID plus chunk index; server renders supplied citations |
+| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [x] | Supplied-ID/exact-quote checks plus number, unit, polarity, obligation, and content-overlap guards pass fixtures; broader semantic scoring remains Phase 6 |
+| P5.5 | Clearly label historical and lower-authority evidence in generated answers. | [x] | Historical/reference/unreviewed labels; historical-only claims are rejected when current evidence is supplied unless the query explicitly requests history |
+| P5.6 | Log prompt, model, corpus, index, retrieval scores, abstention state, latency, and token counts. | [x] | Structured trace plus encrypted append-only audit in the persistent API data volume; private permissions and key persistence verified across restart |
+| P5.7 | Preserve instrument context for follow-up retrieval and allow checked wavelength comparisons from supplied ranges. | [x] | User-turn subject resolution before embedding/reranking; explicit topic switches override history; ambiguity clarifies. Direct range answers and Decimal interval comparisons cite current reviewed evidence and retain the derivation in encrypted audit. 46 fixtures and 8/8 live multi-turn checks pass. |
 
 Acceptance gates:
 
-- [ ] Every evaluated factual claim has supporting supplied evidence or the answer abstains.
+- [~] Mechanical support checks reject unsupported or malformed claims; semantic claim support awaits the expanded evaluation.
 - [ ] Citation precision is at least 95% on the expanded evaluation suite.
-- [ ] Invalid or fabricated citation identifiers are rejected or removed.
-- [ ] Historical evidence cannot silently override current authoritative instructions.
+- [x] Invalid or fabricated citation identifiers are rejected or removed.
+- [x] Historical-only claims are labeled and cannot override supplied current evidence unless historical intent is explicit.
 
 ### Phase 6 — Expand evaluation and roll out safely
 
@@ -242,8 +243,8 @@ Goal: validate the complete pipeline against representative questions and deploy
 
 | ID | Task | Status | Evidence |
 |---|---|---:|---|
-| P6.1 | Add rated production failures and corrected expected behavior to the evaluation set. | [ ] | |
-| P6.2 | Add safety, procedures, current-versus-historical, ambiguous-instrument, numeric/unit, citation, multi-turn, and corpus-gap cases. | [ ] | |
+| P6.1 | Add rated production failures and corrected expected behavior to the evaluation set. | [~] | NOTCAM definition and lost-context wavelength failures now have reproducible core-instrument and multi-turn smoke checks; broader rated set pending |
+| P6.2 | Add safety, procedures, current-versus-historical, ambiguous-instrument, numeric/unit, citation, multi-turn, and corpus-gap cases. | [~] | Focused multi-turn, topic-switch, ambiguity, unit/range, and corpus-gap fixtures added; representative safety/procedure coverage still pending |
 | P6.3 | Define automated correctness, groundedness, citation, abstention, retrieval, and latency metrics. | [ ] | |
 | P6.4 | Run baseline-versus-shadow comparative evaluation and review every regression. | [ ] | |
 | P6.5 | Test an end-to-end empty-database ingestion and question-answer flow. | [ ] | |
@@ -277,7 +278,7 @@ These tests are part of the definition of done. Exact commands should be added a
 | ST-10 | Ask an instrument-specific question with distractor instruments present. | Relevant instrument evidence wins. | [x] | Fixture plus 0 unrelated-instrument rows in 24-question probe |
 | ST-11 | Ask a current procedure question with conflicting historical evidence. | Current authoritative evidence wins and history is not presented as current. | [~] | Fixture passes; live historical corpus is isolated |
 | ST-12 | Ask a plausible question with no supporting corpus evidence. | The chatbot abstains or asks a useful clarification question. | [~] | Two live gap questions abstained; expanded suite pending |
-| ST-13 | Generate answers for citation fixtures. | Every citation is supplied and supports its claim. | [ ] | |
+| ST-13 | Generate answers for citation fixtures. | Every citation is supplied and supports its claim. | [~] | 9 grounding fixtures, 3 audit fixtures, and 3 live Command R cited claims; expanded semantic citation precision remains Phase 6 |
 | ST-14 | Start with an empty PostgreSQL/pgvector environment, ingest the curated fixture, query it, update a source, and query again. | Health, ingestion, latest-only retrieval, answer, and citation flow all pass. | [ ] | |
 | ST-15 | Switch from shadow index to prior index. | Rollback succeeds without data reconstruction. | [ ] | |
 
@@ -293,6 +294,7 @@ Add one row for each material corpus or retrieval iteration. Never overwrite an 
 | 2026-09-29 | Working tree | `phase1-candidate-2026-09-29-structured-v1` | 371 active + 215 isolated historical; 10 damaged active conversions quarantined | 1,934 active + 9,549 historical | 9 active rows beyond first | 0 by source lifecycle | Not run; no damaged-PDF URL occurs in seed contexts | Not measured | Not measured | Deterministic structured shadow corpus; 7 context-aware contact redactions are historical-only; no pre-existing phone placeholder remained in the Phase 1 candidate. |
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` | 478 active + 216 isolated historical; 283 quarantined; 29 excluded | 4,997 live active chunks | 161 live rows beyond first | 0 | Chat smoke passed; full suite pending | Not measured | 8,375 ms smoke | Fresh crawl/index; 1,006 processed sources; 28 CID-damaged files quarantined; zero CSC documents; all live chunks versioned and classified. |
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` / Phase 4 selector | 478 active | 4,997 live active chunks | 161 in index; 0 in selected seed contexts | 0 | Retrieval-only: 24/24 seed questions retain evidence; answer quality pending | Not measured | 9,786 ms one ALFOSC chat smoke | 3 to 0 exact context repeats, 14 to 0 over-cap rows, 6 to 0 instrument distractors; two live gaps abstained. |
+| 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` / Phase 5 grounding | 478 active | 4,997 live active chunks | 161 in index | 0 | 2 supported Command R smoke answers validated; 2 abstentions | Semantic precision pending; 0 invalid IDs in live smoke | 18,129 ms first model load; 9,825 ms warm smoke | JSON claim/excerpt contract, server-rendered stable citations, structured trace. |
 
 ## Test evidence log
 
@@ -319,6 +321,9 @@ Record concise, reproducible evidence. Link to durable reports when available.
 | 2026-09-29 | Working tree | Fresh embedding index | Empty API/PostgreSQL volumes; ingest curated searchable corpus | 478/478 done; 4,997 active chunks; zero errors; zero CSC; no unclassified chunks | PostgreSQL + `/api/documents` smoke |
 | 2026-09-29 | Working tree | End-to-end retrieval | Ask `What is ALFOSC used for?` through `/api/chat` | Five relevant contexts; cited answer; 8,375 ms | Local smoke result |
 | 2026-09-29 | Working tree | Phase 4 evidence selection | `python3 -m unittest scripts.tests.test_retrieval_phase4 -v`; live 24-question retrieval-only comparison and three chat smoke questions | 8 fixtures passed; 0 duplicate/over-cap/distractor rows; 2/2 unsupported questions abstained | `reports/phase4/retrieval-baseline-2026-09-29.md` |
+| 2026-09-30 | Working tree | Phase 5 grounding and PHP frontend | `python3 -m unittest scripts.tests.test_chat_audit_phase5 scripts.tests.test_grounding_phase5 scripts.tests.test_retrieval_phase4 -v`; PHP/Node syntax checks; live Command R smoke; API restart | 20 fixtures passed; cited answer validated; zero invalid IDs; encrypted audit/key survived restart; frontend filters to cited sources | `reports/phase5/grounding-2026-09-29.md` |
+| 2026-09-30 | Working tree | NOTCAM false-abstention correction | 24 grounding/audit/retrieval fixtures; 3 mocked service tests in API container; `scripts/evaluation/smoke_core_instruments.py` | 27 fixtures passed; 7/7 live checks passed: definitions, capabilities, wavelength range, ALFOSC, FIES, and corpus-gap abstention; correction is bounded to one retry | `reports/phase5/core-instrument-smoke-2026-09-30-validated.json` |
+| 2026-09-30 | Working tree | NOTCAM follow-up context and grounded inference | 39 pure fixtures; 7 mocked service tests; `scripts/evaluation/smoke_followup_context.py` | 46 fixtures passed; 8/8 live checks passed. Exact user follow-up cites NOTCAM overview and rejects 500nm as below range without model generation. Direct range queries also use checked extraction; the intermediate model-wording regression is preserved. | `reports/phase5/followup-context-2026-09-30.json` |
 
 ## Decision log
 
@@ -359,3 +364,6 @@ Add new work here with a proposed phase and priority before incorporating it int
 | B-002 | 2026-09-29 | Evaluation CSV readers failed on whitespace before a quoted field. | Phase 0 | Complete | Readers now use `skipinitialspace=True`; regression test added. |
 | B-003 | 2026-09-29 | The `NOTBot-documents` producer workspace has no Git metadata, so its Phase 3 fixes cannot travel with the NOTBot branch directly. | Phase 3 | High | Portable patch saved at `docs/notbot-documents-phase3.patch`; apply it in the producer source repository. |
 | B-004 | 2026-09-29 | The Phase 3 structured corpus is built, but a real embedding-backed shadow index and comparative evaluation are still required. | Phase 3/6 | High | P3.7 remains in progress; do not promote this corpus yet. |
+| B-005 | 2026-09-30 | `what is NOTCAM?` falsely abstained despite retrieving the overview: equivalent micro glyphs and repaired list layout failed exact quote comparison; broader probes missed overview evidence or produced invalid claims. | Phase 5 | Fixed | Canonicalize equivalent notation; preserve value/unit checks; retrieve and prefer current reference overviews for broad instrument questions; permit one validated correction attempt; 27 fixtures and 7/7 live checks pass. |
+| B-007 | 2026-09-30 | Follow-up `can the instrument be used to observer at 500nm?` retrieved LuckyCam/FIES instead of NOTCAM despite receiving the correct conversation history. Strict quote-only numeric checks also prohibited derived unit conversion and negative range conclusions. | Phase 5 / Phase 6 | Fixed, broader evaluation pending | Resolve user-turn instrument references before embedding and reranking; keep chat history separate from evidence. Checked wavelength inference uses only an unambiguous current reviewed source interval, cites that interval, and records arithmetic privately. 46 fixtures and 8/8 multi-turn smoke checks pass. |
+| B-006 | 2026-09-30 | NOTCAM retrieval includes 2001/2002 commissioning report link pages, a mounting photo gallery, and a 2013 milestones entry labeled active reference. | Phase 1/6 | High | Revisit corpus classification and regenerate the reviewed manifest/index; add current-versus-historical and overview-noise evaluation cases. |

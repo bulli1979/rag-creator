@@ -206,6 +206,7 @@ class ChatResponse(BaseModel):
     context_chunks: list[dict] = Field(default_factory=list, alias="contextChunks")
     encrypted_payload: str = Field("", alias="encryptedPayload")
     metrics: dict[str, float | int | bool] = Field(default_factory=dict)
+    trace: dict[str, Any] = Field(default_factory=dict)
 
     model_config = {"populate_by_name": True}
 

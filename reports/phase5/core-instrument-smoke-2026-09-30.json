@@ -1,0 +1,97 @@
+[
+  {
+    "question": "what is NOTCAM?",
+    "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5μm). [D-299957ac5a5e3c2c-C0] (reference)",
+    "passed": true,
+    "errors": [],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 18199,
+    "acceptedClaims": 1,
+    "rejectedClaims": 0
+  },
+  {
+    "question": "What is NOTCAM?",
+    "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5μm). [D-299957ac5a5e3c2c-C0] (reference)",
+    "passed": true,
+    "errors": [],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 10216,
+    "acceptedClaims": 1,
+    "rejectedClaims": 0
+  },
+  {
+    "question": "What is NOTCAM used for?",
+    "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+    "passed": false,
+    "errors": [
+      "supported question abstained",
+      "missing or unsupplied citation",
+      "missing expected content: notcam",
+      "missing expected content: imaging",
+      "missing expected content: spectro"
+    ],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 30604,
+    "acceptedClaims": 0,
+    "rejectedClaims": 1
+  },
+  {
+    "question": "Which wavelength range does NOTCAM cover?",
+    "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+    "passed": false,
+    "errors": [
+      "supported question abstained",
+      "missing or unsupplied citation",
+      "missing expected content: 0\\.8",
+      "missing expected content: 2\\.5"
+    ],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 41852,
+    "acceptedClaims": 0,
+    "rejectedClaims": 7
+  },
+  {
+    "question": "What is ALFOSC used for?",
+    "answer": "ALFOSC is used for imaging, low/medium resolution spectroscopy, and polarimetry. [D-ce20edd645d15d54-C1] (reference)",
+    "passed": true,
+    "errors": [],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 9869,
+    "acceptedClaims": 1,
+    "rejectedClaims": 0
+  },
+  {
+    "question": "What is FIES?",
+    "answer": "FIES is a cross-dispersed, high-resolution echelle spectrograph at the 2.56m Nordic Optical Telescope. [D-277add1da61f1e2c-C5] (reference)",
+    "passed": true,
+    "errors": [],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+    "elapsedMs": 9758,
+    "acceptedClaims": 1,
+    "rejectedClaims": 0
+  },
+  {
+    "question": "NOT quantum teleporter recalibration",
+    "answer": "I could not find sufficiently reliable evidence in the current documents. Could you clarify the instrument or procedure?",
+    "passed": true,
+    "errors": [],
+    "promptVersion": "phase5-structured-v2",
+    "model": "command-r:35b",
+    "corpusVersion": "unknown",
+    "elapsedMs": 16,
+    "acceptedClaims": 0,
+    "rejectedClaims": 0
+  }
+]

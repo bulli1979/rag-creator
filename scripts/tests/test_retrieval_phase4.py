@@ -46,6 +46,18 @@ class RetrievalBaselineTests(unittest.TestCase):
 
 
 class EvidenceSelectionTests(unittest.TestCase):
+    def test_instrument_overview_wins_for_general_question(self) -> None:
+        overview = {
+            **chunk("notcam-overview", "NOTCam is a short-wave infrared instrument.", 0.61, instrument="NOTCAM"),
+            "fileName": "instruments-notcam-overview-html.md",
+        }
+        design = chunk("design", "NOTCam wavelength range design report", 0.82, instrument="NOTCAM")
+        for query in ("what is NOTCAM?", "What is NOTCAM used for?", "Which wavelength range does NOTCAM cover?"):
+            with self.subTest(query=query):
+                self.assertIn("overview", classify_query(query).categories)
+                self.assertEqual(select_evidence(query, [design, overview], 2)[0]["documentId"], "notcam-overview")
+        self.assertNotIn("overview", classify_query("What is the NOTCAM detector cooling procedure?").categories)
+
     def test_exact_and_near_duplicates_are_removed_and_source_cap_applies(self) -> None:
         long_text = " ".join(f"step{i}" for i in range(25))
         candidates = [

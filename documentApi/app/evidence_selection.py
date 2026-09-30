@@ -48,6 +48,18 @@ def classify_query(query: str) -> QueryIntent:
         categories.add("troubleshooting")
     if _SAFETY_RE.search(query):
         categories.add("safety")
+    if (instruments and re.search(r"\b(?:can|could|kann|könnte)\b", query, re.I)
+            and re.search(r"\b(?:observ\w*|detect\w*|used|wavelength\w*|wellenlänge\w*)\b", query, re.I)
+            and re.search(r"\d\s*(?:nm|[µμu]m|(?:nano|micro)met(?:er|re)s?)\b", query, re.I)):
+        categories.add("overview")
+    for instrument in instruments:
+        name = re.escape(instrument)
+        if any(re.fullmatch(pattern, query.strip(), re.I) for pattern in (
+            rf"(?:what is|what's|describe|tell me about) (?:the )?{name}[?.!]*",
+            rf"what is (?:the )?{name} used for[?.!]*",
+            rf"(?:what|which) wavelengths?(?: range)? does {name} (?:cover|observe|detect)[?.!]*",
+        )):
+            categories.add("overview")
     return QueryIntent(instruments, bool(_HISTORICAL_RE.search(query)), frozenset(categories))
 
 
@@ -142,6 +154,10 @@ def select_evidence(
         authority = str(chunk.get("authority", "")).lower()
         if intent.instruments and instrument in intent.instruments:
             score += 0.10
+        if ("overview" in intent.categories and instrument in intent.instruments
+                and status in ("active", "current") and authority.startswith(("tier_1", "tier_2"))
+                and re.search(r"(?:^|[-_/])overview(?:[-_.]|$)", str(chunk.get("fileName", "")), re.I)):
+            score += 0.25
         if status in ("active", "current"):
             score += 0.04 if not intent.historical else 0.0
         elif status in ("historical", "superseded"):

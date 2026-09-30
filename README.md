@@ -84,6 +84,18 @@ Services danach:
 - Postgres/pgvector: `localhost:5432`
 - Ollama: `http://localhost:11434`
 
+Verschlüsselte Chat-Auditdaten liegen im persistenten API-Volume unter `/data/chat_audit`.
+Ohne Konfiguration erzeugt die API dort einen privaten Schlüssel. Für einen verwalteten
+Produktionsschlüssel kann `NOTBOT_AUDIT_KEY` gesetzt werden. Schlüssel und Audit-Volume
+müssen gemeinsam gesichert werden; der Schlüssel darf nicht ins Repository.
+
+Instrumentbezogene Folgefragen verwenden den letzten eindeutigen Instrumentnamen
+aus Nutzerfragen für die Suche; bei Mehrdeutigkeit fragt die API nach. Chatverlauf
+ersetzt keine Dokumentbelege. Einfache Wellenlängenvergleiche können ohne Modellaufruf
+durch geprüfte Einheitenumrechnung und Bereichsvergleich beantwortet werden; der
+zitierte Bereich muss aus aktuellen geprüften Quellen stammen. Filter-/Modusfragen
+und allgemeinere Schlussfolgerungen bleiben im normalen validierten Modellpfad.
+
 Stoppen:
 
 ```bash

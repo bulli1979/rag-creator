@@ -1,0 +1,233 @@
+[
+  {
+    "question": "what is NOTCAM?",
+    "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5μm). It is capable of wide field imaging, high resolution imaging, and low-resolution and medium-resolution spectroscopy. [D-299957ac5a5e3c2c-C0] (reference)",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-council-rep-2002-04-12-html.md",
+      "instruments-notcam-stcreport-2001-09-28-html.md",
+      "instruments-notcam-mounting.md",
+      "instruments-notcam-milestones-html.md"
+    ],
+    "trace": {
+      "contextResolution": "explicit",
+      "answerMethod": "validated-model-claims",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "73c127feb788d7c59cf8d53144cff6018d61f781eb94c7229e62ee206d5633ac",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 35212,
+      "generationAttempts": 1,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "can the instrument be used to observer at 500nm?",
+    "answer": "No. 500nm (= 0.5 µm) is below NOTCAM's documented wavelength range (0.8–2.5 µm). [D-299957ac5a5e3c2c-C0]",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "what is NOTCAM?"
+    ],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-milestones-html.md",
+      "instruments-notcam-calib-plan-v2-0-pdf.md",
+      "instruments-notcam-milestones-html.md",
+      "instruments-notcam-reports-status-97-04-html.md"
+    ],
+    "trace": {
+      "contextResolution": "inherited",
+      "answerMethod": "wavelength-range-v1",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "b054207f81fb2402f27d45a2ef882c1f2e86b0b58f210a0711eff2e63162bff3",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 37,
+      "generationAttempts": 0,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "Can it observe at 1000nm?",
+    "answer": "1000nm (= 1 µm) is within NOTCAM's documented wavelength range (0.8–2.5 µm). This alone does not confirm availability of a particular filter or mode. [D-299957ac5a5e3c2c-C0]",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "what is NOTCAM?",
+      "can the instrument be used to observer at 500nm?"
+    ],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-reports-status-97-04-html.md",
+      "instruments-notcam-milestones-html.md",
+      "instruments-notcam-arrival-html.md",
+      "instruments-notcam-spectroscopy-zband-html.md"
+    ],
+    "trace": {
+      "contextResolution": "inherited",
+      "answerMethod": "wavelength-range-v1",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "7f1ec23663a7f60825deac6401fc0e42d5bb54cf78da439cc4fcfb71d56106e6",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 39,
+      "generationAttempts": 0,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "Can it observe at 3000nm?",
+    "answer": "No. 3000nm (= 3 µm) is above NOTCAM's documented wavelength range (0.8–2.5 µm). [D-299957ac5a5e3c2c-C0]",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "what is NOTCAM?"
+    ],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-milestones-html.md",
+      "instruments-notcam-reports-status-97-04-html.md",
+      "instruments-notcam-arrival-html.md",
+      "instruments-notcam-spectroscopy-zband-html.md"
+    ],
+    "trace": {
+      "contextResolution": "inherited",
+      "answerMethod": "wavelength-range-v1",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "2ce1f2f7adfd6445658973a26695cc8669edc291da7fc958ea3a2ceaac16285e",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 36,
+      "generationAttempts": 0,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "Can NOTCAM observe at 500nm?",
+    "answer": "No. 500nm (= 0.5 µm) is below NOTCAM's documented wavelength range (0.8–2.5 µm). [D-299957ac5a5e3c2c-C0]",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-reports-status-97-04-html.md",
+      "instruments-notcam-milestones-html.md",
+      "instruments-notcam-arrival-html.md",
+      "instruments-notcam-sci-grade-arr-html.md"
+    ],
+    "trace": {
+      "contextResolution": "explicit",
+      "answerMethod": "wavelength-range-v1",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "be156c161c9c2d052f74173567b873751807d051235b7289bfb79393153b6072",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 36,
+      "generationAttempts": 0,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "Which wavelength range does it cover?",
+    "answer": "NOTCAM's documented wavelength range is 0.8–2.5 µm. [D-299957ac5a5e3c2c-C0]",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "what is NOTCAM?"
+    ],
+    "sources": [
+      "instruments-notcam-overview-html.md",
+      "instruments-notcam-opticaldesign-pdf.md",
+      "instruments-notcam-filters.md",
+      "instruments-notcam-spectroscopy.md",
+      "instruments-notcam-filters.md"
+    ],
+    "trace": {
+      "contextResolution": "inherited",
+      "answerMethod": "wavelength-range-v1",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "f21a7432ec8d258fbd986fbc700e185c4254e9e48cd00035b0f4c3e5239266f6",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 36,
+      "generationAttempts": 0,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "What is FIES?",
+    "answer": "FIES is a cross-dispersed, high-resolution echelle spectrograph at the 2.56m Nordic Optical Telescope. [D-277add1da61f1e2c-C5] (reference)",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "what is NOTCAM?"
+    ],
+    "sources": [
+      "instruments-fies-fies-comm-html.md",
+      "instruments-fies-screenshotfies-html.md",
+      "instruments-fies-fies-commd-html.md",
+      "instruments-fies.md",
+      "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md"
+    ],
+    "trace": {
+      "contextResolution": "explicit",
+      "answerMethod": "validated-model-claims",
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "4f8b25f8c8ff87a8d9d8fb68b73b6957491210b8940800eb6e42e6b9af8b4d1f",
+      "model": "command-r:35b",
+      "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+      "elapsedMs": 8248,
+      "generationAttempts": 1,
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "invalidCitations": 0,
+      "auditStored": true
+    }
+  },
+  {
+    "question": "Can the instrument observe at 500nm?",
+    "answer": "Which instrument do you mean? Please name it explicitly.",
+    "passed": true,
+    "errors": [],
+    "historyUserTurns": [
+      "Compare NOTCAM and ALFOSC."
+    ],
+    "sources": [],
+    "trace": {
+      "contextResolution": "ambiguous",
+      "answerMethod": null,
+      "promptVersion": "phase5-structured-v3",
+      "promptSha256": "",
+      "model": "command-r:35b",
+      "corpusVersion": "unknown",
+      "elapsedMs": 1,
+      "generationAttempts": 0,
+      "acceptedClaims": null,
+      "rejectedClaims": null,
+      "invalidCitations": null,
+      "auditStored": true
+    }
+  }
+]

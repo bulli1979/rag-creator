@@ -24,6 +24,7 @@ services:
     environment:
       LLM_BASE_URL: http://ollama:11434/v1
       RAG_DATA_ROOT: /data
+      NOTBOT_AUDIT_KEY: ${NOTBOT_AUDIT_KEY:-}
     volumes:
       - rag_api_data:/data
     restart: unless-stopped

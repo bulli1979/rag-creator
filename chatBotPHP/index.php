@@ -40,11 +40,11 @@ if (!$isAllowedHost) {
   <link rel="alternate stylesheet" type="text/css" media="screen" title="smallfont" href="/include/styleFontSmall.css">
   <link rel="alternate stylesheet" type="text/css" media="screen" title="bigfont"   href="/include/styleFontBig.css">
   <script type="text/javascript" src="/include/coolmenu.js"></script>
-  <? if ($isAllowedHost): ?>
+  <?php if ($isAllowedHost): ?>
     <script type="text/javascript" src="/include/menuitems.js"></script>
-  <? else: ?>
+  <?php else: ?>
     <script type="text/javascript" src="/include/menuitems_pub.js"></script>
-  <? endif; ?>
+  <?php endif; ?>
   <!-- NOTBot chat UI fonts and styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

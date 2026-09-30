@@ -15,6 +15,7 @@ export interface ChatResponse {
   answer: string;
   contextChunks: ContextChunk[];
   encryptedPayload: string;
+  trace?: Record<string, unknown>;
   metrics?: {
     elapsedMs?: number;
     promptTokens?: number;
@@ -27,6 +28,8 @@ export interface ChatResponse {
 export interface ContextChunk {
   text: string;
   documentId: string;
+  citationId?: string;
+  title?: string;
   fileName: string;
   chunkIndex: number;
   sourcePath?: string;

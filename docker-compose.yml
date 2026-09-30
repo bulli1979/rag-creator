@@ -28,6 +28,7 @@ services:
     environment:
       RAG_DATA_ROOT: /data
       LLM_BASE_URL: http://host.docker.internal:11434/v1
+      NOTBOT_AUDIT_KEY: ${NOTBOT_AUDIT_KEY:-}
       VECTOR_BACKEND: postgres
       POSTGRES_HOST: postgres
       POSTGRES_PORT: ${POSTGRES_PORT:-5432}

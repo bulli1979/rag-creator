@@ -134,10 +134,12 @@ async function onAsk() {
     }
     const answer = data.answer || 'No answer returned.';
     const chunks = data.contextChunks || data.context_chunks || [];
+    const citedIds = new Set([...answer.matchAll(/\[(D-[a-f0-9]+-C\d+)\]/gi)].map(match => match[1]));
+    const citedChunks = chunks.filter(chunk => citedIds.has(chunk.citationId));
 
     // Create log entry before rendering the bubble so logId is available for thumb buttons.
     const logId = generateLogId();
-    const sources = chunks.map(({ text, ...meta }) => {
+    const sources = citedChunks.map(({ text, ...meta }) => {
       const urlMatch = (text || '').match(/https?:\/\/\S+/);
       return { ...meta, url: urlMatch ? urlMatch[0] : (meta.fileName || meta.file_name || '') };
     });
@@ -150,8 +152,8 @@ async function onAsk() {
     });
     flushLogs();
 
-    appendAssistantBubble(answer, chunks, logId, question, sources);
-    pushHistory(question, data);
+    appendAssistantBubble(answer, citedChunks, logId, question, sources);
+    pushHistory(question, data, citedChunks.length);
     chatHistory = boundedHistory([
       ...chatHistory,
       { role: 'user', content: question },
@@ -237,14 +239,16 @@ function appendAssistantBubble(answer, chunks, logId, question, sources) {
     const details = document.createElement('details');
     details.className = 'sources-details';
     const summary = document.createElement('summary');
-    summary.textContent = `${chunks.length} source${chunks.length === 1 ? '' : 's'}`;
+    summary.textContent = `${chunks.length} cited source${chunks.length === 1 ? '' : 's'}`;
     details.appendChild(summary);
     chunks.forEach(chunk => {
       const item = document.createElement('div');
       item.className = 'source-item';
-      const fileName = chunk.fileName || chunk.file_name || 'unknown';
-      const score = chunk.score ?? 'n/a';
-      item.innerHTML = `<div class="source-meta">${escapeHtml(fileName)} | score ${escapeHtml(String(score))}</div><p class="source-text">${escapeHtml(chunk.text || '')}</p>`;
+      const title = chunk.title || chunk.fileName || chunk.file_name || 'Unknown document';
+      const citationId = chunk.citationId || '';
+      const status = chunk.status && chunk.status !== 'active' ? ` | ${chunk.status}` : '';
+      const authority = chunk.authority && !String(chunk.authority).startsWith('tier_1') ? ` | ${chunk.authority}` : '';
+      item.innerHTML = `<div class="source-meta">${escapeHtml(citationId)} | ${escapeHtml(title)}${escapeHtml(status)}${escapeHtml(authority)}</div><p class="source-text">${escapeHtml(chunk.text || '')}</p>`;
       details.appendChild(item);
     });
     wrap.appendChild(details);
@@ -305,12 +309,12 @@ function appendErrorBubble(msg) {
   div.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function pushHistory(question, data) {
+function pushHistory(question, data, sourceCount) {
   sessionHistory.unshift({
     at: new Date().toISOString(),
     question,
     answer: data.answer || "",
-    sourceCount: (data.contextChunks || data.context_chunks || []).length,
+    sourceCount,
   });
   sessionHistory = sessionHistory.slice(0, 50);
   localStorage.setItem(SESSION_KEY, JSON.stringify(sessionHistory));
