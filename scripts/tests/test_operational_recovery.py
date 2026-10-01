@@ -20,6 +20,17 @@ from app.reference_focus import focused_sources, property_match
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_scoped_overview_link_and_mosaic_alias_do_not_cross_instruments(self):
+        chunk={'canonicalLocation':'https://www.not.iac.es/instruments/mosaic/',
+               'text':'[Instrument Overview](moscaover.html)','instrument':'[missing]'}
+        self.assertEqual(annotate_source(chunk)['instrument'],'MOSCA')
+        overview=annotate_source({**chunk,'canonicalLocation':'https://www.not.iac.es/instruments/mosaic/moscaover.html'})
+        self.assertEqual(overview['sourceRole'],'current_reference')
+        self.assertEqual(len(matching_reference_links('What is MOSCA?',[chunk])),1)
+        self.assertEqual(matching_reference_links('What is FIES?',[chunk]),[])
+        self.assertEqual(matching_reference_links('How do I operate MOSCA?',[chunk]),[])
+        self.assertEqual(matching_reference_links('What is MOSCA?',[{**chunk,'text':'[Instrument Overview](/instruments/fies/overview.html)'}]),[])
+        self.assertEqual(annotate_source({**chunk,'canonicalLocation':'https://www.not.iac.es/instruments/mosaic/devel/moscaover.html'})['sourceRole'],'design_reference')
     def test_road_advisory_preserves_current_condition_check_and_reads_times(self):
         query='During winter, what hours should visitors avoid using the mountain road?'
         item={'citationId':'D-aaaaaaaaaaaaaaaa-C1','sourceRole':'operator_guide','status':'active',
@@ -277,6 +288,39 @@ class RecoveryTests(unittest.TestCase):
         chunks[0]['text']='4. To abort a NOTCam script, type Ctrl-C and wait'
         evidence,_=prepare_evidence(chunks)
         self.assertIsNone(answer_procedure('How should I interrupt a NOTCam exposure or script?',evidence))
+
+    def test_bulleted_control_reference_preserves_exposure_completion(self):
+        chunk={'documentId':'d'*64,'chunkIndex':1,'section':'Commands','headingPath':['Commands'],
+               'previousSection':'Commands','nextSection':'Commands','status':'active',
+               'instrument':'NOTCAM','sourceRole':'command_reference','authority':'tier_1_authoritative',
+               'text':'* **abort [-d]**\n\nThe command has been discarded because the detector controller\n'
+                      'cannot abort an exposure properly. The user should use "Control-C"\n'
+                      'to abort any script and then wait for the ongoing exposure\n'
+                      'to complete.'}
+        evidence,_=prepare_evidence([chunk])
+        result=answer_procedure('How should I interrupt a NOTCAM exposure or script?',evidence)
+        self.assertIn('wait for the ongoing exposure',result.validation.answer)
+        self.assertIn('to complete.',result.validation.answer)
+        self.assertIn('discarded',result.validation.answer)
+        self.assertNotIn('**abort',result.validation.answer)
+        self.assertIsNone(answer_procedure('How should I interrupt a FIES exposure or script?',evidence))
+        for changes in ({'status':'historical'},{'text':chunk['text'].rsplit('to complete.',1)[0]},
+                        {'sourceRole':'design_reference'}):
+            evidence,_=prepare_evidence([{**chunk,**changes}])
+            self.assertIsNone(answer_procedure('How should I interrupt a NOTCAM exposure or script?',evidence))
+
+    def test_model_shortcut_cannot_omit_a_sourced_completion_constraint(self):
+        evidence,_=prepare_evidence([{'documentId':'d'*64,'chunkIndex':0,'instrument':'NOTCAM',
+            'sourceRole':'command_reference','status':'active',
+            'text':'Type Ctrl-C to stop the script and then wait for the exposure to finish.'}])
+        def raw(statement):
+            return json.dumps({'claims':[{'text':statement,'evidence':[{'citationId':'S1','quote':evidence[0]['content']}]}]})
+        query='How should I interrupt a NOTCAM exposure or script?'
+        result=validate_and_render(raw('Type Ctrl-C to stop the script.'),evidence,question=query,semantic_check=lambda *a:True)
+        self.assertTrue(result.abstained)
+        self.assertIn('missing_control_completion_constraint',result.rejection_reasons)
+        result=validate_and_render(raw(evidence[0]['content']),evidence,question=query,semantic_check=lambda *a:True)
+        self.assertFalse(result.abstained)
 
     def test_a_named_command_is_not_an_answer_to_missing_internal_sequence(self):
         chunks=[{'documentId':'e'*64,'chunkIndex':0,'section':'Teloffset','headingPath':['Teloffset'],

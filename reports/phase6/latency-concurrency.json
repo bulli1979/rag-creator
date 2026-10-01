@@ -1,0 +1,3192 @@
+{
+  "verifiedAt": "2026-10-01T11:19:58.960786+00:00",
+  "implementationSha256": "78253c20415146eff6ed4f7bc447e9394a291ee4afbacaf69d6cbebf30f67c0a",
+  "casesSha256": "0c347b7aae94b4ee362561223f9cd3f70200292114af4c5344371c423e634000",
+  "scope": "Bounded local testing; not domain approval, approved budgets or sustained production telemetry",
+  "broadCasesSha256": "a6b02f823153bf2357b18d4ed70d2888dca3fc924b3480bff8b87ae038613399",
+  "benchmarkCaseIds": {
+    "facts": [
+      "fies_count",
+      "fies_aperture_reported",
+      "fies_calibration",
+      "notcam_intro",
+      "notcam_wide_pixels",
+      "notcam_hr_pixels",
+      "alfosc_uses",
+      "safety_humidity",
+      "notcam_abort",
+      "notcam_dark_calibration",
+      "alfosc_slitrot_procedure",
+      "data_download",
+      "data_sharing",
+      "humidity_reopen",
+      "alfosc_interactive_target"
+    ],
+    "generationCandidates": [
+      "corpus_gap",
+      "unsupported_spec",
+      "cassegrain_current_limit_gap",
+      "stancam_identity",
+      "polcor_identity",
+      "luckycam_identity"
+    ]
+  },
+  "benchmarks": [
+    {
+      "workers": 1,
+      "repeats": 4,
+      "complete": true,
+      "expectedResponses": 60,
+      "passed": 60,
+      "elapsedSeconds": 6.84,
+      "requestsPerSecond": 8.772,
+      "latency": {
+        "n": 60,
+        "medianMs": 117.0,
+        "p95Ms": 141,
+        "maxMs": 186
+      },
+      "sourceDerived": {
+        "n": 60,
+        "medianMs": 117.0,
+        "p95Ms": 141,
+        "maxMs": 186
+      },
+      "generated": {
+        "n": 0
+      },
+      "results": [
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 186,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 116,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 132,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 24,
+            "retrievalMs": 98,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 140,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 95,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 125,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 11,
+            "retrievalMs": 93,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 125,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 76,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 118,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 81,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 133,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 87,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 90,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 65,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 126,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 80,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 103,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 78,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 141,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 97,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 93,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 69,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 119,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 27,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 94,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 133,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 86,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 120,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 92,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 130,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 87,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 97,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 118,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 23,
+            "retrievalMs": 76,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 88,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 15,
+            "retrievalMs": 63,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 100,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 65,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 92,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 86,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 52,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 92,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 70,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 99,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 64,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 117,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 85,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 108,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 72,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 117,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 103,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 27,
+            "retrievalMs": 66,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 126,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 17,
+            "retrievalMs": 90,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 151,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 104,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 142,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 108,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 137,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 92,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 132,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 10,
+            "retrievalMs": 102,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 124,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 78,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 126,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 15,
+            "retrievalMs": 90,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 138,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 93,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 92,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 15,
+            "retrievalMs": 67,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 128,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 83,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 98,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 132,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 89,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 83,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 59,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 104,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 69,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 76,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 53,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 104,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 69,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 102,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 79,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 133,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 91,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 98,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 75,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 122,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 24,
+            "retrievalMs": 80,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 86,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 62,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 102,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 67,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 96,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 72,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 85,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 53,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 138,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 103,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 117,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 79,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 140,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 106,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 116,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 72,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 92,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 88,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 54,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 100,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 17,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        }
+      ]
+    },
+    {
+      "workers": 4,
+      "repeats": 4,
+      "complete": true,
+      "expectedResponses": 60,
+      "passed": 60,
+      "elapsedSeconds": 6.564,
+      "requestsPerSecond": 9.141,
+      "latency": {
+        "n": 60,
+        "medianMs": 424.0,
+        "p95Ms": 617,
+        "maxMs": 764
+      },
+      "sourceDerived": {
+        "n": 60,
+        "medianMs": 424.0,
+        "p95Ms": 617,
+        "maxMs": 764
+      },
+      "generated": {
+        "n": 0
+      },
+      "results": [
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 366,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 274,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 186,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 68,
+            "retrievalMs": 98,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 453,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 359,
+            "retrievalMs": 79,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 276,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 181,
+            "retrievalMs": 82,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 434,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 73,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 421,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 161,
+            "retrievalMs": 69,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 413,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 241,
+            "retrievalMs": 73,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 385,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 318,
+            "retrievalMs": 54,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 380,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 64,
+            "retrievalMs": 80,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 377,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 154,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 388,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 234,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 395,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 319,
+            "retrievalMs": 60,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 450,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 138,
+            "retrievalMs": 70,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 298,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 61,
+            "retrievalMs": 61,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 366,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 211,
+            "retrievalMs": 75,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 387,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 294,
+            "retrievalMs": 80,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 420,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 59,
+            "retrievalMs": 96,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 424,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 166,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 428,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 251,
+            "retrievalMs": 80,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 406,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 336,
+            "retrievalMs": 60,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 379,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 62,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 502,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 230,
+            "retrievalMs": 98,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 297,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 144,
+            "retrievalMs": 77,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 444,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 343,
+            "retrievalMs": 86,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 764,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 371,
+            "retrievalMs": 83,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 410,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 63,
+            "retrievalMs": 113,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 469,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 284,
+            "retrievalMs": 77,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 287,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 191,
+            "retrievalMs": 83,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 437,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 70,
+            "retrievalMs": 79,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 447,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 167,
+            "retrievalMs": 92,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 467,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 267,
+            "retrievalMs": 98,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 505,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 371,
+            "retrievalMs": 111,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 511,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 62,
+            "retrievalMs": 102,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 528,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 171,
+            "retrievalMs": 99,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 603,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 379,
+            "retrievalMs": 77,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 384,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 287,
+            "retrievalMs": 85,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 485,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 69,
+            "retrievalMs": 98,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 444,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 182,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 534,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 348,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 351,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 259,
+            "retrievalMs": 81,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 459,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 70,
+            "retrievalMs": 110,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 621,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 365,
+            "retrievalMs": 63,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 462,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 272,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 276,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 192,
+            "retrievalMs": 68,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 496,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 175,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_count",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 592,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-inventory-count-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 335,
+            "retrievalMs": 82,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_aperture_reported",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 246,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 57,
+            "retrievalMs": 101,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "fies_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 341,
+          "generationAttempts": 0,
+          "answerMethod": "complete-table-reference-rows-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 254,
+            "retrievalMs": 76,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_intro",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 617,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 244,
+            "retrievalMs": 100,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_wide_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 333,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 67,
+            "retrievalMs": 70,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_hr_pixels",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 549,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 362,
+            "retrievalMs": 87,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_uses",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 245,
+          "generationAttempts": 0,
+          "answerMethod": "current-reference-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 152,
+            "retrievalMs": 77,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "safety_humidity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 462,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 70,
+            "retrievalMs": 74,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_abort",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 665,
+          "generationAttempts": 0,
+          "answerMethod": "complete-control-instruction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 357,
+            "retrievalMs": 83,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "notcam_dark_calibration",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 343,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 161,
+            "retrievalMs": 76,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_slitrot_procedure",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 360,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 244,
+            "retrievalMs": 104,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_download",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 458,
+          "generationAttempts": 0,
+          "answerMethod": "complete-procedure-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 67,
+            "retrievalMs": 84,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "data_sharing",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 523,
+          "generationAttempts": 0,
+          "answerMethod": "data-access-policy-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 230,
+            "retrievalMs": 77,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "humidity_reopen",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 324,
+          "generationAttempts": 0,
+          "answerMethod": "operator-rule-extract-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 168,
+            "retrievalMs": 56,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        },
+        {
+          "id": "alfosc_interactive_target",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 424,
+          "generationAttempts": 0,
+          "answerMethod": "complete-keyboard-interaction-v1",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 315,
+            "retrievalMs": 97,
+            "generationMs": 0,
+            "validationMs": 1
+          },
+          "tokens": {
+            "promptTokens": 0,
+            "completionTokens": 0,
+            "totalTokens": 0
+          },
+          "abstained": false
+        }
+      ]
+    },
+    {
+      "workers": 1,
+      "repeats": 1,
+      "complete": true,
+      "expectedResponses": 6,
+      "passed": 6,
+      "elapsedSeconds": 108.514,
+      "requestsPerSecond": 0.055,
+      "latency": {
+        "n": 6,
+        "medianMs": 17206.0,
+        "p95Ms": 37236,
+        "maxMs": 37236
+      },
+      "sourceDerived": {
+        "n": 0
+      },
+      "generated": {
+        "n": 6,
+        "medianMs": 17206.0,
+        "p95Ms": 37236,
+        "maxMs": 37236
+      },
+      "results": [
+        {
+          "id": "corpus_gap",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 16294,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 79,
+            "generationMs": 15056,
+            "validationMs": 1123
+          },
+          "tokens": {
+            "promptTokens": 10787,
+            "completionTokens": 168,
+            "totalTokens": 10955
+          },
+          "abstained": true
+        },
+        {
+          "id": "unsupported_spec",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 19670,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 25,
+            "retrievalMs": 70,
+            "generationMs": 19553,
+            "validationMs": 2
+          },
+          "tokens": {
+            "promptTokens": 10422,
+            "completionTokens": 221,
+            "totalTokens": 10643
+          },
+          "abstained": true
+        },
+        {
+          "id": "cassegrain_current_limit_gap",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 18118,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 15,
+            "retrievalMs": 44,
+            "generationMs": 17492,
+            "validationMs": 555
+          },
+          "tokens": {
+            "promptTokens": 11998,
+            "completionTokens": 196,
+            "totalTokens": 12194
+          },
+          "abstained": true
+        },
+        {
+          "id": "stancam_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 5757,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 24,
+            "retrievalMs": 65,
+            "generationMs": 4964,
+            "validationMs": 685
+          },
+          "tokens": {
+            "promptTokens": 4678,
+            "completionTokens": 55,
+            "totalTokens": 4733
+          },
+          "abstained": false
+        },
+        {
+          "id": "polcor_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 37236,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 14,
+            "retrievalMs": 92,
+            "generationMs": 36315,
+            "validationMs": 794
+          },
+          "tokens": {
+            "promptTokens": 3804,
+            "completionTokens": 424,
+            "totalTokens": 4228
+          },
+          "abstained": false
+        },
+        {
+          "id": "luckycam_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 11438,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 11,
+            "retrievalMs": 78,
+            "generationMs": 10741,
+            "validationMs": 588
+          },
+          "tokens": {
+            "promptTokens": 4335,
+            "completionTokens": 124,
+            "totalTokens": 4459
+          },
+          "abstained": false
+        }
+      ]
+    },
+    {
+      "workers": 2,
+      "repeats": 1,
+      "complete": true,
+      "expectedResponses": 6,
+      "passed": 6,
+      "elapsedSeconds": 141.516,
+      "requestsPerSecond": 0.042,
+      "latency": {
+        "n": 6,
+        "medianMs": 39194.5,
+        "p95Ms": 76836,
+        "maxMs": 76836
+      },
+      "sourceDerived": {
+        "n": 0
+      },
+      "generated": {
+        "n": 6,
+        "medianMs": 39194.5,
+        "p95Ms": 76836,
+        "maxMs": 76836
+      },
+      "results": [
+        {
+          "id": "corpus_gap",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 44693,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 112,
+            "retrievalMs": 54,
+            "generationMs": 43901,
+            "validationMs": 605
+          },
+          "tokens": {
+            "promptTokens": 10743,
+            "completionTokens": 195,
+            "totalTokens": 10938
+          },
+          "abstained": true
+        },
+        {
+          "id": "unsupported_spec",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 30983,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 24,
+            "retrievalMs": 73,
+            "generationMs": 30863,
+            "validationMs": 2
+          },
+          "tokens": {
+            "promptTokens": 10460,
+            "completionTokens": 300,
+            "totalTokens": 10760
+          },
+          "abstained": true
+        },
+        {
+          "id": "cassegrain_current_limit_gap",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 33696,
+          "generationAttempts": 2,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 26,
+            "retrievalMs": 65,
+            "generationMs": 33114,
+            "validationMs": 470
+          },
+          "tokens": {
+            "promptTokens": 11978,
+            "completionTokens": 172,
+            "totalTokens": 12150
+          },
+          "abstained": true
+        },
+        {
+          "id": "stancam_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 12891,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 30,
+            "retrievalMs": 188,
+            "generationMs": 11911,
+            "validationMs": 739
+          },
+          "tokens": {
+            "promptTokens": 4678,
+            "completionTokens": 55,
+            "totalTokens": 4733
+          },
+          "abstained": false
+        },
+        {
+          "id": "polcor_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 61896,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 38,
+            "retrievalMs": 200,
+            "generationMs": 60425,
+            "validationMs": 1210
+          },
+          "tokens": {
+            "promptTokens": 3804,
+            "completionTokens": 626,
+            "totalTokens": 4430
+          },
+          "abstained": false
+        },
+        {
+          "id": "luckycam_identity",
+          "passed": true,
+          "errors": [],
+          "elapsedMs": 76836,
+          "generationAttempts": 1,
+          "answerMethod": "validated-model-claims",
+          "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+          "corpusVersion": "phase6-2026-10-01-v10",
+          "model": "command-r-rag:35b",
+          "stageTimings": {
+            "embeddingMs": 12,
+            "retrievalMs": 102,
+            "generationMs": 76037,
+            "validationMs": 677
+          },
+          "tokens": {
+            "promptTokens": 4335,
+            "completionTokens": 262,
+            "totalTokens": 4597
+          },
+          "abstained": false
+        }
+      ]
+    }
+  ],
+  "proposedBudgetObservations": {
+    "approved": false,
+    "sourceDerivedWarmP95LimitMs": 2000,
+    "generatedWarmP95LimitMs": 45000,
+    "anyRequestLimitMs": 90000,
+    "violations": [],
+    "p95Violations": [
+      {
+        "batch": 4,
+        "method": "generated",
+        "p95Ms": 76836,
+        "limitMs": 45000
+      }
+    ],
+    "coldStartMeasured": false
+  }
+}

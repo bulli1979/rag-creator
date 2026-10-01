@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-01T11:12:50.304671+00:00",
+  "configuration": {
+    "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+    "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+    "llmModel": "command-r-rag:35b",
+    "temperature": 0.3,
+    "maxTokens": 2048,
+    "topK": 8,
+    "maxChunksPerSource": 2,
+    "minEvidenceSimilarity": 0.3,
+    "systemPromptSha256": "16a8773d7fd90c9fcb4a8607358fdbf6d7e0411a13c6eca0403fa50fa8797f01",
+    "semanticVerifier": {
+      "model": "cross-encoder/nli-deberta-v3-base",
+      "revision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+      "device": "cpu",
+      "localOnly": true
+    },
+    "embeddingRevision": "b33106f585b9ce46904ad7443a3b52b7a63e231c",
+    "ollamaProfile": {
+      "digest": "529eae81d571715fd08bcd654c3a3db008fb93ab15a7369a24be7856d7f48477",
+      "weightsSha256": "8e0609b8f0fe36530ac9966544e6cf780cfcda006fbe739eeab278aef89b3df7",
+      "numCtx": 32768,
+      "details": {
+        "parent_model": "command-r:35b",
+        "format": "gguf",
+        "family": "command-r",
+        "families": [
+          "command-r"
+        ],
+        "parameter_size": "32.3B",
+        "quantization_level": "Q4_0",
+        "context_length": 131072,
+        "embedding_length": 8192
+      }
+    }
+  },
+  "publicConfigurationSha256": "24d3d5620fb9e0d55ae7680ce0346ac9e6c2604941c8fe6b97acea03909b03d4",
+  "scope": "Whitelisted operational configuration only; keys, endpoint credentials, prompt bodies and audits excluded"
+}

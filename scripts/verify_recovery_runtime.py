@@ -22,6 +22,9 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--image-id', required=True)
     parser.add_argument('--expected-app-sha256', required=True)
+    parser.add_argument('--expected-corpus-version',default='recovery-2026-09-30-v9')
+    parser.add_argument('--expected-active-documents',type=int)
+    parser.add_argument('--expected-active-chunks',type=int)
     args = parser.parse_args()
     def call(path, payload=None):
         request = Request('http://localhost:8000'+path, data=json.dumps(payload).encode() if payload else None,
@@ -61,7 +64,9 @@ def main():
     args.output.write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps(receipt))
     if (digest.hexdigest()!=args.expected_app_sha256 or receipt['minVectorDimensions']!=1024
-            or receipt['maxVectorDimensions']!=1024 or receipt['activeCorpusVersions']!=['recovery-2026-09-30-v9']
+            or receipt['maxVectorDimensions']!=1024 or receipt['activeCorpusVersions']!=[args.expected_corpus_version]
+            or args.expected_active_documents is not None and receipt['activeDocuments']!=args.expected_active_documents
+            or args.expected_active_chunks is not None and receipt['activeChunks']!=args.expected_active_chunks
             or receipt['sourcesWithMultipleActiveVersions'] or receipt['activeCSCChunks']
             or receipt['unresolvedCIDChunks'] or response.get('metrics',{}).get('abstained')):
         raise RuntimeError('Runtime consistency checks failed')

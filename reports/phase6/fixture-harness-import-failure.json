@@ -1,0 +1,11 @@
+{
+  "verifiedAt": "2026-10-01T10:39:39.283545+00:00",
+  "imageId": "sha256:78c23caaa12364eac60f17296d1aa0cfdbee86c2f9ec6bc5fe79cbf0150f0695",
+  "testsRun": 111,
+  "passed": false,
+  "failures": [],
+  "errors": [
+    "unittest.loader._FailedTest.test_source_lifecycle"
+  ],
+  "skipped": []
+}

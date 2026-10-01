@@ -19,6 +19,9 @@ def _terms(text):
 
 
 def matching_reference_links(query,chunks,max_documents=3):
+    from .evidence_selection import classify_query
+    from .source_policy import annotate_source
+    intent=classify_query(query)
     terms=_terms(query)
     matches={}
     for chunk in chunks[:80]:
@@ -31,6 +34,16 @@ def matching_reference_links(query,chunks,max_documents=3):
             if key is None or not urlsplit(target).path.lower().endswith(('.pdf','.html','.htm','.php','/')):
                 continue
             score=len(terms & _terms(label))
+            scoped=annotate_source(chunk)
+            # An overview link need not repeat its landing page's instrument
+            # name in its label. Follow it only within that official instrument
+            # directory, and only for an explicitly named overview question.
+            if ('overview' in intent.categories and len(intent.instruments)==1
+                    and scoped.get('instrument') in intent.instruments
+                    and scoped.get('sourceRole')=='instrument_landing'
+                    and re.fullmatch(r'(?:instrument )?overview',label.strip(),re.I)
+                    and urlsplit(target).path.rsplit('/',1)[0]==urlsplit(base).path.rstrip('/')):
+                score=max(score,2)
             if score<2:
                 continue
             parsed=urlsplit(target)

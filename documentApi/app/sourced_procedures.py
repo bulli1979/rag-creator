@@ -58,9 +58,23 @@ def answer_procedure(query: str,evidence:list[dict],language:str='en') -> Litera
         wanted=_terms(query)
         options=[]
         for item in evidence:
-            if (item.get('sourceRole')!='operator_guide' or item.get('status') not in ('active','current')
+            if (item.get('sourceRole') not in ('operator_guide','command_reference') or item.get('status') not in ('active','current')
                     or item.get('contentTruncated')):
                 continue
+            # Command-reference instructions are often bullet entries rather
+            # than numbered recipes. Copy the complete prose, including the
+            # deferred-exposure completion constraint, not just the shortcut.
+            # A final entry in a split section must end in a complete sentence.
+            for match in re.finditer(r'(?ms)^\*\s+\*\*[^\n]+\*\*\s*\n(?P<body>.*?)(?=^\*\s+|^#{1,6}\s|\Z)',item['content']):
+                excerpt=match['body'].strip()
+                terms=_terms(excerpt+' '+item.get('instrument',''))
+                if (not 60<=len(excerpt)<=1600 or not re.search(r'[.!?]$',excerpt)
+                        or not re.search(r'\b(?:Ctrl|Control)[ -]?C\b',excerpt,re.I)
+                        or not re.search(r'\bwait\b.*\b(?:finish|complete)',excerpt,re.I|re.S)
+                        or 'interrupt' not in terms
+                        or len(wanted & terms)<max(2,.8*len(wanted))):
+                    continue
+                options.append((len(wanted & terms)+1,item,excerpt))
             for match in re.finditer(r'(?ms)^\d+[.)]\s+.*?(?=^\d+[.)]\s+|^#{1,6}\s|\Z)',item['content']):
                 excerpt=match[0].strip()
                 # An item cut at a chunk boundary is not a complete instruction.

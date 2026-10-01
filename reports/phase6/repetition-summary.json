@@ -1,0 +1,82 @@
+{
+  "verifiedAt": "2026-10-01T11:27:22.592310+00:00",
+  "implementationSha256": "78253c20415146eff6ed4f7bc447e9394a291ee4afbacaf69d6cbebf30f67c0a",
+  "casesSha256": "0c347b7aae94b4ee362561223f9cd3f70200292114af4c5344371c423e634000",
+  "scope": "Bounded local testing; not domain approval, approved budgets or sustained production telemetry",
+  "repetitions": {
+    "complete": true,
+    "repetitions": 3,
+    "responses": 171,
+    "passed": 168,
+    "failures": [
+      {
+        "run": 1,
+        "id": "operational_sequence",
+        "errors": [
+          "wrong abstention status",
+          "missing required facet: guideprobe|guide probe",
+          "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+          "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+        ]
+      },
+      {
+        "run": 2,
+        "id": "operational_sequence",
+        "errors": [
+          "wrong abstention status",
+          "missing required facet: guideprobe|guide probe",
+          "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+          "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+        ]
+      },
+      {
+        "run": 3,
+        "id": "operational_sequence",
+        "errors": [
+          "wrong abstention status",
+          "missing required facet: guideprobe|guide probe",
+          "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+          "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+        ]
+      }
+    ],
+    "allAcceptanceCasesPassed": false,
+    "sourceDerived": {
+      "n": 156,
+      "medianMs": 129.5,
+      "p95Ms": 164,
+      "maxMs": 209
+    },
+    "generated": {
+      "n": 15,
+      "medianMs": 25465,
+      "p95Ms": 96430,
+      "maxMs": 96430
+    },
+    "allLatency": {
+      "n": 171,
+      "medianMs": 132,
+      "p95Ms": 18272,
+      "maxMs": 96430
+    },
+    "implementationSha256": "78253c20415146eff6ed4f7bc447e9394a291ee4afbacaf69d6cbebf30f67c0a",
+    "casesSha256": "0c347b7aae94b4ee362561223f9cd3f70200292114af4c5344371c423e634000",
+    "runtimeIdentity": {
+      "corpusVersion": [
+        "phase6-2026-10-01-v10"
+      ],
+      "indexId": [
+        "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930"
+      ],
+      "embeddingModel": [
+        "mixedbread-ai/mxbai-embed-large-v1"
+      ],
+      "model": [
+        "command-r-rag:35b"
+      ],
+      "promptVersion": [
+        "operational-recovery-v2"
+      ]
+    }
+  }
+}

@@ -436,6 +436,20 @@ def validate_and_render(raw: str, evidence: list[dict], language: str = "en", *,
         rejected+=len(rendered)
         rendered=[]
         reasons.append('requested_value_not_answered')
+    # Claim entailment is not procedural completeness: a supported shortcut
+    # alone can omit a critical continuation supplied elsewhere in the same
+    # instrument's current control documentation.
+    if rendered and re.search(r'\b(?:interrupt|abort|cancel|stop)\b',question,re.I) and re.search(r'\b(?:exposure|script)\b',question,re.I):
+        requires_completion=any(
+            item.get('instrument') and re.search(r'\b'+re.escape(item['instrument'])+r'\b',question,re.I)
+            and item.get('status') in ('active','current')
+            and item.get('sourceRole') in ('operator_guide','command_reference')
+            and re.search(r'\b(?:Ctrl|Control)[ -]?C\b',item['content'],re.I)
+            and re.search(r'\bwait\b.*?\b(?:finish|complete)',item['content'],re.I|re.S)
+            for item in evidence)
+        if requires_completion and not re.search(r'\b(?:wait|finish\w*|complet\w*)\b',' '.join(rendered),re.I):
+            rejected+=len(rendered); rendered=[]
+            reasons.append('missing_control_completion_constraint')
     # A requested program's internal sequence cannot be answered by unrelated
     # GUI controls plus a definition of that program. Require source evidence
     # connecting the named program to the requested operating condition.

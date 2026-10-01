@@ -1,0 +1,997 @@
+{
+  "applicationCommit": "314c41e63027dbb6074c53375b9b13465d0b9484",
+  "casesSha256": "a6b02f823153bf2357b18d4ed70d2888dca3fc924b3480bff8b87ae038613399",
+  "legacyCasesSha256": null,
+  "implementationSha256": "ebb71566d3f5eeea9135b01f7877c75d7b77fbeed26aa21d9129d96f134649a7",
+  "expectedCoreTotal": 9,
+  "expectedLegacyTotal": 0,
+  "complete": true,
+  "selectedCaseIds": null,
+  "corePassed": 8,
+  "coreTotal": 9,
+  "results": [
+    {
+      "id": "mosca_identity",
+      "question": "What is MOSCA?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: MOSCA",
+        "missing required facet: camera|imaging"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 41341,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-f8f8abd15c032b7d-C0",
+          "file": "instruments-mosaic.md",
+          "url": "https://www.not.iac.es/instruments/mosaic/",
+          "section": "MOSCA",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-f8f8abd15c032b7d-C2",
+          "file": "instruments-mosaic.md",
+          "url": "https://www.not.iac.es/instruments/mosaic/",
+          "section": "MOSaic CAmera",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-16267ff99e0aa8a3-C7",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA CCDs",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-16267ff99e0aa8a3-C8",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA read out time",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b8ab66ab32b36799-C0",
+          "file": "observing-seq-mosca-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/mosca-seq-scripts.html",
+          "section": "MOSCA SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-7f0fb923f2dd63b1-C0",
+          "file": "observing-seq-mosca-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/mosca-seq-commands.html",
+          "section": "MOSCA SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-7f0fb923f2dd63b1-C1",
+          "file": "observing-seq-mosca-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/mosca-seq-commands.html",
+          "section": "MOSCA SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b8ab66ab32b36799-C4",
+          "file": "observing-seq-mosca-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/mosca-seq-scripts.html",
+          "section": "MOSCA SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b8ab66ab32b36799-C1",
+          "file": "observing-seq-mosca-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/mosca-seq-scripts.html",
+          "section": "MOSCA SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "792db215f6839571ef602ffe50bfaa9afd4903c3e54d40ff57c5d3a3c48a33d6",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "quote_not_in_source"
+        ],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "stancam_identity",
+      "question": "What is StanCam?",
+      "answer": "StanCam is a stand-by CCD camera. [D-07d675ae7287cb08-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 29467,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-07d675ae7287cb08-C1",
+          "file": "instruments-stancam.md",
+          "url": "https://www.not.iac.es/instruments/stancam/",
+          "section": "stand-by CCD camera",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9d37551db7c44181-C0",
+          "file": "observing-cookbook-current-cookbook-php-instrument-stancam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=StanCam",
+          "section": "StanCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9d37551db7c44181-C7",
+          "file": "observing-cookbook-current-cookbook-php-instrument-stancam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=StanCam",
+          "section": "StanCam filters",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99c8f23391323cb5-C4",
+          "file": "observing-seq-stancam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/stancam-seq-commands.html",
+          "section": "STANCAM SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99c8f23391323cb5-C0",
+          "file": "observing-seq-stancam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/stancam-seq-commands.html",
+          "section": "STANCAM SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-07d675ae7287cb08-C0",
+          "file": "instruments-stancam.md",
+          "url": "https://www.not.iac.es/instruments/stancam/",
+          "section": "stand-by CCD camera",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-279fba7520118e38-C0",
+          "file": "instruments-stancam-seq-stancam-seq-html.md",
+          "url": "https://www.not.iac.es/instruments/stancam/SEQ/stancam-seq.html",
+          "section": "Guide to Using STANCAM in Sequencer mode",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-994086f3ef31702c-C0",
+          "file": "instruments-stancam-stancam-flat-html.md",
+          "url": "https://www.not.iac.es/instruments/stancam/stancam-flat.html",
+          "section": "About StanCam flat field",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-99c8f23391323cb5-C5",
+          "file": "observing-seq-stancam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/stancam-seq-commands.html",
+          "section": "STANCAM SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99c8f23391323cb5-C3",
+          "file": "observing-seq-stancam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/stancam-seq-commands.html",
+          "section": "STANCAM SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "eb54a02fbce70927247e23821f1db1fce44a1c25272b2b41d780ea8d3a3f7c3c",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "dipol_identity",
+      "question": "What is DIPol-UF?",
+      "answer": "DiPol-UF is a high-precision three-bands polarimeter produced in collaboration between Tuorla Observatory (University of Turku, Finland) and Kiepenheuer Institute for Solar Physics (Germany). [D-82df5b3ca7d6bddf-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 224,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-4386f9d1c13bb967-C2",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C0",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C13",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4386f9d1c13bb967-C0",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99e2a48523fca21f-C7",
+          "file": "instruments-dipol-uf-observing-instructions-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/observing-instructions.html",
+          "section": "Short about Dipol-UF",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-da1b8dd1c67dd5f8-C0",
+          "file": "instruments-dipol-uf-dipol-uf-description-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/DIPol-UF_description.html",
+          "section": "DIPol-UF_description.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-da1b8dd1c67dd5f8-C3",
+          "file": "instruments-dipol-uf-dipol-uf-description-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/DIPol-UF_description.html",
+          "section": "DIPol-UF_description.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-1301d8d25f7da146-C2",
+          "file": "instruments-dipol-uf-troubleshooting-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Troubleshooting.pdf",
+          "section": "Troubleshooting",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-4386f9d1c13bb967-C1",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-1301d8d25f7da146-C1",
+          "file": "instruments-dipol-uf-troubleshooting-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Troubleshooting.pdf",
+          "section": "Troubleshooting",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "d7eb67b3642d457b8a328f989fe6aa31676a6daf10a792e8cbf050b478ddfb50",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "current-reference-extract-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "dipol_passbands",
+      "question": "Which passbands can it measure simultaneously?",
+      "answer": "DiPol-UF can simultaneously measure three passbands: B, V, and R. [D-4386f9d1c13bb967-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 18332,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C34",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4386f9d1c13bb967-C1",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4386f9d1c13bb967-C2",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C20",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-da1b8dd1c67dd5f8-C0",
+          "file": "instruments-dipol-uf-dipol-uf-description-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/DIPol-UF_description.html",
+          "section": "DIPol-UF_description.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-99e2a48523fca21f-C7",
+          "file": "instruments-dipol-uf-observing-instructions-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/observing-instructions.html",
+          "section": "Short about Dipol-UF",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-da1b8dd1c67dd5f8-C3",
+          "file": "instruments-dipol-uf-dipol-uf-description-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/DIPol-UF_description.html",
+          "section": "DIPol-UF_description.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-20853355653f354e-C2",
+          "file": "instruments-instruments-html.md",
+          "url": "https://www.not.iac.es/instruments/instruments.html",
+          "section": "Instrumentation with limited access",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C35",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C33",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "653007d8b4d4ac8360b416ec85d06fd259e6059725e5bb9173c9850f560995af",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "dipol_availability",
+      "question": "Is DIPol-UF a common-user instrument available for anyone at any time?",
+      "answer": "DIPol-UF is not a common-user instrument, but is only supported during specific periods. [D-4386f9d1c13bb967-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 27329,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-4386f9d1c13bb967-C1",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4386f9d1c13bb967-C2",
+          "file": "instruments-dipol-uf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/",
+          "section": "DIPol-UF: Three-band high-speed polarimeter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C20",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C0",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99e2a48523fca21f-C7",
+          "file": "instruments-dipol-uf-observing-instructions-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/observing-instructions.html",
+          "section": "Short about Dipol-UF",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-15fd9bcdc690de3c-C1",
+          "file": "observing-tools-datatransfer-html.md",
+          "url": "https://www.not.iac.es/observing/tools/datatransfer.html",
+          "section": "IMPORTANT - Read this carefully before going on",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-599ab3becaa3ed21-C3",
+          "file": "observing-tools-datadownload-html.md",
+          "url": "https://www.not.iac.es/observing/tools/datadownload.html",
+          "section": "How to get my data?",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-da1b8dd1c67dd5f8-C3",
+          "file": "instruments-dipol-uf-dipol-uf-description-html.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/DIPol-UF_description.html",
+          "section": "DIPol-UF_description.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C21",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82df5b3ca7d6bddf-C19",
+          "file": "instruments-dipol-uf-dipol-uf-manual-pdf.md",
+          "url": "https://www.not.iac.es/instruments/dipol-uf/Dipol-UF_manual.pdf",
+          "section": "Dipol Uf Manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "0a6ac5ac29b11ae52688e5d6f5493d0ba9ccb27a6b0b0fca2053280b917b5142",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "polcor_identity",
+      "question": "What is PolCor used for?",
+      "answer": "PolCor is a combined \"Lucky\" imager, polarimeter, and coronagraph. It is used for high-resolution imaging, polarimetry, and coronagraphic observations. Its advantages include sharper images, higher time resolution, better PSF, better coronagraphic performance, less interference fringes, more accurate sky subtraction, and more accurate colour index measurements. [D-1c9df9305504bbed-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 37890,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-1c9df9305504bbed-C0",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-1c9df9305504bbed-C5",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9c2d7ea26cea2492-C2",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-8b9d3132220854dc-C314",
+          "file": "optic_elements.md",
+          "url": "urn:notbot:path:optic_elements.md",
+          "section": "#508: Pol_1.0\"",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8b9d3132220854dc-C315",
+          "file": "optic_elements.md",
+          "url": "urn:notbot:path:optic_elements.md",
+          "section": "#509: Pol_1.4\"",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-f07df2a1455efd40-C10",
+          "file": "instruments-fits-header-fitsheaders-html.md",
+          "url": "https://www.not.iac.es/instruments/FITS-header/fitsheaders.html",
+          "section": "ALFOSC/FAPOL specific FITS headers",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-420ec778fa15947b-C0",
+          "file": "instruments-detectors-ccd4-failedsoak-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD4/FailedSoak.html",
+          "section": "A Failed O2 soak in CCD#4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-97da458bf520d1f4-C0",
+          "file": "instruments-detectors-ccd4.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD4/",
+          "section": "NOT CCD4 (HiRAC), details:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-1c9df9305504bbed-C1",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "8d09192ba6ae44a5cd6d603e3dcd9281b8050d9dbfaccf8041576d25daa29ed3",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "luckycam_identity",
+      "question": "What is LuckyCam?",
+      "answer": "LuckyCam is a camera system that utilizes electron multiplying (photon counting) CCDs to operate as a normal direct imaging system. [D-94190d1a94f6c58c-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 31247,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-94190d1a94f6c58c-C9",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "Examples of what potentially can be obtained from LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-94190d1a94f6c58c-C1",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8b9d3132220854dc-C261",
+          "file": "optic_elements.md",
+          "url": "urn:notbot:path:optic_elements.md",
+          "section": "#652: HR Camera",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-87d492f9f4815373-C2",
+          "file": "instruments-adapter.md",
+          "url": "https://www.not.iac.es/instruments/adapter/",
+          "section": "With all probes parked",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f07df2a1455efd40-C11",
+          "file": "instruments-fits-header-fitsheaders-html.md",
+          "url": "https://www.not.iac.es/instruments/FITS-header/fitsheaders.html",
+          "section": "Stancam specific FITS headers",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c1077a39f37fba6-C0",
+          "file": "instruments-fits-header-detname-html.md",
+          "url": "https://www.not.iac.es/instruments/FITS-header/DETNAME.html",
+          "section": "DETNAME.html",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f07df2a1455efd40-C12",
+          "file": "instruments-fits-header-fitsheaders-html.md",
+          "url": "https://www.not.iac.es/instruments/FITS-header/fitsheaders.html",
+          "section": "NOTCAM specific FITS headers",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-af55533a87129274-C1",
+          "file": "instruments-detectors-oldnew.md",
+          "url": "https://www.not.iac.es/instruments/detectors/oldnew/",
+          "section": "Old and new names for NOT cameras",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-94190d1a94f6c58c-C10",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "Examples of what potentially can be obtained from LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "a7582ed5e91dc0c9e04dd5c014c1735114bbae2fd02837590a46f52c4591773e",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "notcam_control_repeat",
+      "question": "How should I interrupt a NOTCAM exposure or script?",
+      "answer": "The command has been discarded because the detector controller\n  cannot abort an exposure properly. The user should use \"Ctrl-C\"\n  to abort any script and then wait for the on-going (multi)exposure\n  to finish. [D-27218d7c9e35e598-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 258,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-9e122ed87d2b89a6-C178",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Commonly Used Instrument Commands",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C168",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Troubleshooting - NOTCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C1",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C4",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9bed977b788ddc1b-C160",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`reset-log`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ef45f224b294f782-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ef45f224b294f782-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5e9c0d09e3a3442c-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C179",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Commonly Used Instrument Commands",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C0",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "c5764040cc54b262d265bd4dd337c58eded6b311b07295498eb645da130bbe4b",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "complete-control-instruction-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "notcam_control_paraphrase",
+      "question": "How do I abort a NOTCAM script?",
+      "answer": "The command has been discarded because the detector controller\n  cannot abort an exposure properly. The user should use \"Ctrl-C\"\n  to abort any script and then wait for the on-going (multi)exposure\n  to finish. [D-27218d7c9e35e598-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 225,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-9e122ed87d2b89a6-C178",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Commonly Used Instrument Commands",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C168",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Troubleshooting - NOTCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C1",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C5",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9bed977b788ddc1b-C160",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`reset-log`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ef45f224b294f782-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0f9dab7bb2f2014c-C8",
+          "file": "observing-seq-gen-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/gen-seq-commands.html",
+          "section": "General SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ef45f224b294f782-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C179",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Commonly Used Instrument Commands",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-27218d7c9e35e598-C0",
+          "file": "observing-seq-notcam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/notcam-seq-commands.html",
+          "section": "NOTcam SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "aa50637f391d01ce67302069360098d22844a702bd84c260f350bdebe6913097",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "complete-control-instruction-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    }
+  ]
+}

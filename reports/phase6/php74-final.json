@@ -1,0 +1,134 @@
+{
+  "verifiedAt": "2026-10-01T11:10:44.391609+00:00",
+  "complete": true,
+  "checks": [
+    {
+      "id": "non_POST",
+      "passed": true,
+      "status": 405,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "non_JSON_content_type",
+      "passed": true,
+      "status": 400,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "malformed_JSON",
+      "passed": true,
+      "status": 400,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "body_limit",
+      "passed": true,
+      "status": 413,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "API_validation_error",
+      "passed": true,
+      "status": 422,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "PHP74_health_proxy",
+      "passed": true,
+      "status": 200,
+      "phpHeader": "PHP/7.4.33"
+    },
+    {
+      "id": "fies_intro",
+      "passed": true,
+      "status": 200,
+      "answer": "FIES is a cross-dispersed high-resolution echelle spectrograph with a maximum spectral resolution of R = 67000. [D-35f4ebc9bb8fdee9-C0]",
+      "citationIds": [
+        "D-35f4ebc9bb8fdee9-C0"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "explicit"
+      }
+    },
+    {
+      "id": "fies_typo",
+      "passed": true,
+      "status": 200,
+      "answer": "FIES has 4 science fibers and 1 calibration fiber. [D-9a88cddfe736deac-C20]",
+      "citationIds": [
+        "D-9a88cddfe736deac-C20"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "inherited"
+      }
+    },
+    {
+      "id": "fies_aperture",
+      "passed": true,
+      "status": 200,
+      "answer": "Documented observing configuration for FIES:\n\n- fiber 4 \u2014 high-res \u2014 R=65000 \u2014 1.3 arcsec [D-9a88cddfe736deac-C20]",
+      "citationIds": [
+        "D-9a88cddfe736deac-C20"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "inherited"
+      }
+    },
+    {
+      "id": "notcam_intro",
+      "passed": true,
+      "status": 200,
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5\u00b5m). [D-d9ea8dce6ab5dee8-C0]",
+      "citationIds": [
+        "D-d9ea8dce6ab5dee8-C0"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "explicit"
+      }
+    },
+    {
+      "id": "notcam_followup",
+      "passed": true,
+      "status": 200,
+      "answer": "No. 500nm (= 0.5 \u00b5m) is below NOTCAM's documented wavelength range (0.8\u20132.5 \u00b5m). [D-d9ea8dce6ab5dee8-C0]",
+      "citationIds": [
+        "D-d9ea8dce6ab5dee8-C0"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "inherited"
+      }
+    },
+    {
+      "id": "topic_switch",
+      "passed": true,
+      "status": 200,
+      "answer": "FIES is a cross-dispersed high-resolution echelle spectrograph with a maximum spectral resolution of R = 67000. [D-35f4ebc9bb8fdee9-C0]",
+      "citationIds": [
+        "D-35f4ebc9bb8fdee9-C0"
+      ],
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "contextResolution": "explicit"
+      }
+    },
+    {
+      "id": "isolated_public_log_and_feedback",
+      "passed": true,
+      "status": 200
+    }
+  ],
+  "passed": 13,
+  "total": 13,
+  "scope": "Separate PHP7.4 CLI fixture/proxy; not the actual target server, not a browser or visual-history check"
+}

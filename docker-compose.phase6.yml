@@ -1,0 +1,5 @@
+# Local testing canary only. Never treat the layered image as a clean-build pass.
+# Use together with docker-compose.yml and verify final-runtime.json after start.
+services:
+  document-api:
+    image: observatory-document-api:phase6-final-20261001

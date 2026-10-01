@@ -1,0 +1,14 @@
+{
+  "corpusVersion": "phase6-2026-10-01-v10",
+  "retainedDocuments": 482,
+  "documentsBuilt": 483,
+  "reviewedAdditions": [
+    {
+      "file": "instruments-mosaic-moscaover-html.md",
+      "url": "https://www.not.iac.es/instruments/mosaic/moscaover.html",
+      "sourceHash": "5b4722cc3749dae29f9391a470afea85143a9411dcd27680a420af31db0a8dd7",
+      "scope": "reviewed intact definition paragraph only; damaged specifications remain excluded"
+    }
+  ],
+  "scope": "No recrawl or deleted originals; one intact public paragraph, not the damaged specification table"
+}

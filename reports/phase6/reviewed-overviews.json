@@ -1,0 +1,8 @@
+[
+  {"file":"instruments-mosaic-moscaover-html.md", "rawPath":"raw_html/instruments/mosaic/moscaover.html",
+   "url":"https://www.not.iac.es/instruments/mosaic/moscaover.html",
+   "sourceHash":"5b4722cc3749dae29f9391a470afea85143a9411dcd27680a420af31db0a8dd7",
+   "title":"MOSCA general characteristics", "instrument":"MOSCA",
+   "paragraphPrefix":"MOSCA is a direct CCD camera",
+   "review":"Definition paragraph matches the current official public overview; replacement glyph occurs in an unrelated filter-table name. Restore intact prose only, not damaged specifications."}
+]

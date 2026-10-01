@@ -38,6 +38,10 @@ def source_role(chunk: dict) -> str:
         return "historical_section"
     if path=='/telescope/technical-details.html':
         return 'current_reference'
+    # Some instrument overview pages use '<instrument>over.html', not
+    # 'overview.html'. Still exclude development/design paths above.
+    if re.fullmatch(r'/instruments/[a-z0-9_-]+/[a-z0-9_-]+over\.html?',path):
+        return 'current_reference'
     if re.search(r"/(?:overview|fies-commd|fixed_setup|grisms|slits|spectroscopy)(?:[./]|$)", path):
         return "current_reference"
     if re.search(r"(?:^|[-_/])overview(?:[-_.]|$)", str(chunk.get("fileName", "")), re.I):
@@ -55,6 +59,8 @@ def annotate_source(chunk: dict) -> dict:
         named = next(iter(query.get("instrument", [])), "").upper()
         if named in INSTRUMENTS:
             result["instrument"] = named
+        elif parsed.path.lower().startswith('/instruments/mosaic/'):
+            result['instrument']='MOSCA'
         else:
             names = [name for name in INSTRUMENTS if re.search(r"/"+re.escape(name.lower())+r"(?:/|$|-seq-)",parsed.path.lower())]
             if len(names) == 1:

@@ -2,8 +2,10 @@
 
 Started: 2026-09-30. Baseline: `7891d6a`. No production/main merge or push is authorized by this work.
 
-Updated: 2026-10-01. Recovery is running as a local testing canary on corpus
-`recovery-2026-09-30-v9` / environment `recovery-mxbai`. See
+Updated: 2026-10-01. Phase6 advances the local testing canary to corpus
+`phase6-2026-10-01-v10` / environment `recovery-mxbai`. See
+[Phase6 execution](NOTBOT_PHASE6_RUN.md) for current identity, new fixes and gates.
+The historical v9 recovery receipts remain unchanged. See
 [recovery report](reports/recovery/RECOVERY_REPORT.md) for causes, limitations,
 test receipts and rollback. This does not certify a remote frontend deployment
 or close all production release gates.
@@ -52,6 +54,10 @@ Persist public test questions, outcomes, timing and source identity only; do not
   hardware remedy for an unspecified error.
 - Finish domain-owner corpus review, representative human citation/safety review,
   sustained canary telemetry and an agreed latency budget.
-- Verify a fresh dependency-resolving build and a full backup restore on an
-  isolated database. Tested index-pointer rollback is not that restore test.
+- Close the fresh dependency build's ARM NVIDIA wheel platform-tag failure.
+  Phase6 full isolated PostgreSQL/catalogue/settings/file restore checks now pass
+  for original and final-v10 snapshots; the historical dated document-file bundle
+  is unavailable, so the original drill uses retained files (all references resolve).
+- Verify the actual PHP7.4 target/browser deployment; final local proxy fixtures
+  pass but do not establish remote-server behavior.
 - Keep model replacement deferred until these quality gates are understood.

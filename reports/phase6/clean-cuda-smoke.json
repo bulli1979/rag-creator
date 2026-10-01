@@ -1,0 +1,7 @@
+{
+  "imageId": "sha256:e12b11d560f34b89883de1170ae1ccf847e6edfdea72c6321673648a7da54ff5",
+  "torch": "2.14.1+cu130",
+  "cudaAvailable": true,
+  "smallGpuMatrixMultiplyPassed": true,
+  "scope": "Basic CUDA execution only, not comprehensive GPU operator compatibility"
+}

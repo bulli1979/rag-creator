@@ -1,0 +1,82 @@
+{
+  "mode": "current",
+  "imageId": "sha256:999eefe41c1c724b2e56c8671a6edb6dd63882f1fe1cba9aaa339d262ffe3787",
+  "health": {
+    "postgres": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "vectorDatabase": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "pythonWorker": {
+      "status": "ok",
+      "message": "Python Worker ist bereit."
+    },
+    "claimVerifier": {
+      "status": "ok",
+      "model": "cross-encoder/nli-deberta-v3-base",
+      "revision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+      "localOnly": true
+    }
+  },
+  "appPythonSha256": "24223a4f6bec3af34efb13c27cce79dc6f325365fec127c13189602f647a769b",
+  "totalChunks": 39536,
+  "totalDocuments": 3373,
+  "minDimensions": 1024,
+  "maxDimensions": 1024,
+  "activeVersions": [
+    [
+      "phase6-2026-10-01-v10",
+      5479
+    ]
+  ],
+  "activeChunks": 5479,
+  "activeSources": 483,
+  "activeDocuments": 483,
+  "multipleActiveVersions": 0,
+  "catalogueDocuments": 3373,
+  "cataloguePending": 0,
+  "smokes": [
+    {
+      "question": "What is NOTCAM?",
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5\u00b5m). [D-d9ea8dce6ab5dee8-C0]",
+      "abstained": false,
+      "elapsedMs": 2061,
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "model": "command-r-rag:35b",
+        "answerMethod": "current-reference-extract-v1"
+      }
+    },
+    {
+      "question": "What is FIES?",
+      "answer": "FIES is a cross-dispersed high-resolution echelle spectrograph with a maximum spectral resolution of R = 67000. [D-35f4ebc9bb8fdee9-C0]",
+      "abstained": false,
+      "elapsedMs": 175,
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "model": "command-r-rag:35b",
+        "answerMethod": "current-reference-extract-v1"
+      }
+    },
+    {
+      "question": "What is the on-sky aperture of FIES fiber #4?",
+      "answer": "Documented observing configuration for FIES:\n\n- fiber 4 \u2014 high-res \u2014 R=65000 \u2014 1.3 arcsec [D-9a88cddfe736deac-C20]",
+      "abstained": false,
+      "elapsedMs": 214,
+      "trace": {
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "phase6-2026-10-01-v10",
+        "model": "command-r-rag:35b",
+        "answerMethod": "complete-table-reference-rows-v1"
+      }
+    }
+  ]
+}

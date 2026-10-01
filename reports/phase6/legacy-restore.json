@@ -1,0 +1,73 @@
+{
+  "mode": "legacy",
+  "imageId": "observatory-document-api:before-recovery-2026-09-30",
+  "health": {
+    "postgres": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "vectorDatabase": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "pythonWorker": {
+      "status": "ok",
+      "message": "Python Worker ist bereit."
+    }
+  },
+  "appPythonSha256": "a36584489d16adaaa72d3d01f19adf445bb86d4bf85d46a01d5acaa7e12c8733",
+  "totalChunks": 4997,
+  "totalDocuments": 478,
+  "minDimensions": 384,
+  "maxDimensions": 384,
+  "activeVersions": [
+    [
+      "fresh-crawl-2026-09-29-curated-v2",
+      4997
+    ]
+  ],
+  "multipleActiveVersions": 0,
+  "catalogueDocuments": 478,
+  "cataloguePending": 0,
+  "smokes": [
+    {
+      "question": "What is NOTCAM?",
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared region of the electromagnetic spectrum (0.8 - 2.5\u03bcm). [D-299957ac5a5e3c2c-C0] (reference)",
+      "abstained": false,
+      "elapsedMs": 27989,
+      "trace": {
+        "indexId": "default:postgres:public.rag_documents",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "model": "command-r:35b",
+        "answerMethod": "validated-model-claims"
+      }
+    },
+    {
+      "question": "What is FIES?",
+      "answer": "FIES is a cross-dispersed, high-resolution echelle spectrograph at the 2.56m Nordic Optical Telescope. [D-277add1da61f1e2c-C5] (reference)",
+      "abstained": false,
+      "elapsedMs": 9989,
+      "trace": {
+        "indexId": "default:postgres:public.rag_documents",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "model": "command-r:35b",
+        "answerMethod": "validated-model-claims"
+      }
+    },
+    {
+      "question": "What is the on-sky aperture of FIES fiber #4?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "abstained": true,
+      "elapsedMs": 16903,
+      "trace": {
+        "indexId": "default:postgres:public.rag_documents",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "model": "command-r:35b",
+        "answerMethod": "validated-model-claims"
+      }
+    }
+  ]
+}

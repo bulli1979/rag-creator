@@ -1,0 +1,11 @@
+[
+  {"id":"mosca_identity","question":"What is MOSCA?","expect":["MOSCA","camera|imaging"]},
+  {"id":"stancam_identity","question":"What is StanCam?","expect":["camera","stand.by|CCD"]},
+  {"id":"dipol_identity","question":"What is DIPol-UF?","expect":["polarimeter|polarimetry"]},
+  {"id":"dipol_passbands","after":"dipol_identity","question":"Which passbands can it measure simultaneously?","expect":["B","V","R"]},
+  {"id":"dipol_availability","question":"Is DIPol-UF a common-user instrument available for anyone at any time?","expect":["not.*common.user|specific periods|contact"],"forbid":["available.*any time|anyone can use"]},
+  {"id":"polcor_identity","question":"What is PolCor used for?","expect":["polar|coron"]},
+  {"id":"luckycam_identity","question":"What is LuckyCam?","expect":["camera|imaging"]},
+  {"id":"notcam_control_repeat","question":"How should I interrupt a NOTCAM exposure or script?","expect":["Ctrl.?C|Control.?C","wait","finish|complete"],"forbid":["use the abort command|type abort"]},
+  {"id":"notcam_control_paraphrase","question":"How do I abort a NOTCAM script?","expect":["Ctrl.?C|Control.?C","wait","finish|complete"],"forbid":["use the abort command|type abort"]}
+]

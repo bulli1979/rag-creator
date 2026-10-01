@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "scope": "Initial final-v10 restore harness only, not application acceptance",
+  "error": "Used DATA_DIR instead of RAG_DATA_ROOT; verifier rejected localhost/rag as not an isolated target before any SQL or chat checks",
+  "action": "Stopped and retained attempt container; restarted with verified RAG_DATA_ROOT and separate current_v10 database",
+  "liveDatabaseTouched": false
+}
