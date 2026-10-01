@@ -94,7 +94,7 @@ if (!$isAllowedHost) {
     <p class="kicker">NOT AI Assistant</p>
     <div class="health-bar"><span class="health-dot" id="healthDot"></span><span class="health-text" id="healthText"></span></div>
     <div class="hero-image-wrap">
-      <img class="hero-image" src="./assets/not-observatory_banner.jpg" alt="Nordic Optical Telescope above clouds">
+      <img class="hero-image" src="./assets/not-observatory.jpg" alt="Nordic Optical Telescope above clouds">
       <!-- <img class="brand-logo overlay-top-left" src="./assets/notbot.png" alt="NOT logo"> -->
       <img class="notbot-logo overlay-top-left" src="./assets/notbot.png" alt="NOTBot logo">
     </div>
@@ -124,7 +124,7 @@ if (!$isAllowedHost) {
   </section>
 </main>
 
-<script src="./app.js" defer></script>
+<script src="./app.js?v=<?php echo filemtime(__DIR__ . '/app.js'); ?>" defer></script>
 
 <!-- GDPR notice -->
 <p style="font-size:12px;color:#666;margin:0 0 8px;max-width:1080px;margin-left:auto;margin-right:auto;text-align:center;line-height:1.4;">

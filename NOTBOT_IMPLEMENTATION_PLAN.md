@@ -6,14 +6,18 @@ This document is the implementation source of truth for improving NOTBot. Update
 
 | Field | Value |
 |---|---|
-| Overall status | Phase 3 processing implemented; structured shadow corpus built and audited; vector rebuild/evaluation and Phase 1 domain review remain pending |
+| Overall status | Operational recovery running in the local testing canary; expanded evaluation and rollback implemented; domain-owner/source-gap and production release gates remain open |
 | Plan owner | NOTBot maintainers |
 | Created | 2026-09-28 |
-| Last updated | 2026-09-29 |
+| Last updated | 2026-10-01 |
 | Working branch | `review/production-improvements-clean` |
 | Code baseline | `0c47411` (`Integrate mainline evaluation improvements`) |
 | Review input | Local `NOTBOT_QUALITY_REVIEW.md`, dated 2026-08-26 |
-| Production rollout | Not started |
+| Production rollout | Local testing canary only; no main merge or push; remote PHP deployment not verified |
+
+Recovery details: [NOTBOT_RECOVERY_PLAN.md](NOTBOT_RECOVERY_PLAN.md) and
+[measured recovery report](reports/recovery/RECOVERY_REPORT.md). Earlier evidence
+rows remain as history, not claims that their runtime/corpus is still active.
 
 ## How to maintain this plan
 
@@ -201,10 +205,10 @@ Goal: return a small, diverse, authoritative evidence set and recognize insuffic
 | P4.1 | Classify or extract query attributes such as instrument, procedure, troubleshooting, safety, and current/historical intent. | [x] | `evidence_selection.classify_query`; fixture tests |
 | P4.2 | Apply metadata filters or boosts for instrument, category, authority, validity, and status. | [~] | Instrument/category/authority/status selection implemented; separate validity field is not yet persisted |
 | P4.3 | Collapse exact and near-duplicate retrieval results. | [x] | Exact and formatting-only variants collapse; changed technical values survive; 0/116 duplicate context rows in 24-question probe |
-| P4.4 | Apply a configurable per-source chunk cap, initially two chunks per source. | [x] | `maxChunksPerSource` defaults to 2; stable source IDs in all vector backends; 0 over-cap rows in probe |
-| P4.5 | Add authority and current-status preference without hiding explicitly requested historical material. | [~] | Ranking fixtures pass; historical corpus remains outside the live searchable index |
-| P4.6 | Add controlled neighboring-section expansion after final evidence selection. | [ ] | |
-| P4.7 | Add an evidence threshold that triggers abstention or clarification. | [x] | Configurable raw-similarity floor 0.43; two live corpus-gap questions abstained; 24 seed questions retained evidence |
+| P4.4 | Apply a configurable per-source chunk cap, initially two chunks per source. | [x] | Primary selection cap2; documented recovery override allows at most two additional same-source/version structural neighbors globally, so a source may contribute up to four chunks to complete a procedure/table |
+| P4.5 | Add authority and current-status preference without hiding explicitly requested historical material. | [x] | Landing/operator/command/design/historical roles; current FIES inventory beats obsolete design; explicitly scoped historical CCD8/report questions answer with labels; owner review remains P1.5 |
+| P4.6 | Add controlled neighboring-section expansion after final evidence selection. | [x] | Same document/version, adjacent index, matched heading/child table, no heading-only rows; globally bounded to two additions with exact/formatting-only deduplication |
+| P4.7 | Add an evidence threshold that triggers abstention or clarification. | [x] | Recovery mxbai floor0.30; only server-identified exact references/inventories bypass it; expanded gap/unknown-component/ambiguity cases; not claimed to be an optimal universal threshold |
 | P4.8 | Evaluate a cross-encoder reranker against the existing hybrid heuristic after the clean index is stable. | [ ] | |
 
 Acceptance gates:
@@ -212,8 +216,8 @@ Acceptance gates:
 - [x] Exact duplicate chunks never appear in final model context.
 - [x] The per-source cap is enforced unless a documented query mode overrides it.
 - [x] Instrument-specific queries do not retrieve unrelated instrument material when relevant evidence exists.
-- [~] Current authoritative guidance outranks superseded instructions in fixtures; live historical material is not indexed.
-- [~] Two live corpus-gap questions abstain; broader gap/paraphrase evaluation remains.
+- [x] Current authoritative guidance outranks obsolete designs in evaluated live queries; explicit historical/reference questions retain access to their evidence.
+- [x] Expanded live gap/unknown-component/ambiguous-subject cases abstain or clarify appropriately; broader domain coverage remains a release gate.
 - [ ] The selected reranking approach improves the agreed retrieval metrics without unacceptable latency.
 
 ### Phase 5 — Ground answers and validate citations
@@ -225,40 +229,58 @@ Goal: make evidence boundaries, authority, and citations explicit to the answeri
 | P5.1 | Define a structured context format containing document ID, title, instrument, authority, status, section, source, and content. | [x] | `app.grounding.prepare_evidence`; title falls back to a humanized filename |
 | P5.2 | Update the prompt to use the structured evidence format and prohibit unsupported claims. | [x] | `build_system_prompt`; JSON claim-and-excerpt contract and untrusted-evidence boundary |
 | P5.3 | Require citations to stable supplied document IDs. | [x] | Stable alias from versioned document ID plus chunk index; server renders supplied citations |
-| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [x] | Supplied-ID/exact-quote checks plus number, unit, polarity, obligation, and content-overlap guards pass fixtures; broader semantic scoring remains Phase 6 |
+| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [~] | Mechanical guards plus pinned local English NLI and independent subject/value/identifier/source-policy checks implemented; evaluated reported failures repaired. Earlier complete status was too broad: 95% human semantic citation precision is not established |
 | P5.5 | Clearly label historical and lower-authority evidence in generated answers. | [x] | Historical/reference/unreviewed labels; historical-only claims are rejected when current evidence is supplied unless the query explicitly requests history |
 | P5.6 | Log prompt, model, corpus, index, retrieval scores, abstention state, latency, and token counts. | [x] | Structured trace plus encrypted append-only audit in the persistent API data volume; private permissions and key persistence verified across restart |
 | P5.7 | Preserve instrument context for follow-up retrieval and allow checked wavelength comparisons from supplied ranges. | [x] | User-turn subject resolution before embedding/reranking; explicit topic switches override history; ambiguity clarifies. Direct range answers and Decimal interval comparisons cite current reviewed evidence and retain the derivation in encrypted audit. 46 fixtures and 8/8 live multi-turn checks pass. |
 
 Acceptance gates:
 
-- [~] Mechanical support checks reject unsupported or malformed claims; semantic claim support awaits the expanded evaluation.
+- [~] Mechanical and local English entailment checks reject unsupported claims in expanded fixtures; verifier is fallible and broader human semantic support assessment remains open.
 - [ ] Citation precision is at least 95% on the expanded evaluation suite.
 - [x] Invalid or fabricated citation identifiers are rejected or removed.
 - [x] Historical-only claims are labeled and cannot override supplied current evidence unless historical intent is explicit.
 
-### Phase 6 — Expand evaluation and roll out safely
+### Phase 6 — Operational acceptance, stability and safe rollout
 
-Goal: validate the complete pipeline against representative questions and deploy it with a fast rollback path.
+Goal: demonstrate useful, correct, repeatable answers for observers/staff on the
+actual PHP frontend, close essential documentation gaps, and validate a reversible
+deployment. This phase is not an opportunity to defer basic instrument questions
+or add features before the repaired pipeline is accepted. A local canary is not
+production acceptance.
 
 | ID | Task | Status | Evidence |
 |---|---|---:|---|
-| P6.1 | Add rated production failures and corrected expected behavior to the evaluation set. | [~] | NOTCAM definition and lost-context wavelength failures now have reproducible core-instrument and multi-turn smoke checks; broader rated set pending |
-| P6.2 | Add safety, procedures, current-versus-historical, ambiguous-instrument, numeric/unit, citation, multi-turn, and corpus-gap cases. | [~] | Focused multi-turn, topic-switch, ambiguity, unit/range, and corpus-gap fixtures added; representative safety/procedure coverage still pending |
-| P6.3 | Define automated correctness, groundedness, citation, abstention, retrieval, and latency metrics. | [ ] | |
-| P6.4 | Run baseline-versus-shadow comparative evaluation and review every regression. | [ ] | |
-| P6.5 | Test an end-to-end empty-database ingestion and question-answer flow. | [ ] | |
-| P6.6 | Perform a canary rollout using an explicit index/configuration pointer. | [ ] | |
-| P6.7 | Verify rollback to the prior index and document the operator procedure. | [ ] | |
-| P6.8 | Consider a smaller production model only after corpus and retrieval gates pass. | [ ] | |
+| P6.1 | Add rated production failures and corrected expected behavior to the evaluation set. | [x] | 57 acceptance cases, including exact ALFOSC false-refusal wording, natural paraphrase, detector-size parentheses, winter-road advisory and conditional-error safety; original 24 technical questions retained as unscored diagnostics |
+| P6.2 | Add safety, procedures, current-versus-historical, ambiguous-instrument, numeric/unit, citation, multi-turn, and corpus-gap cases. | [x] | All categories represented, including complete recipes, unsafe bypass, requested-value/subject mismatch and unsupported program sequence; unknown sequence remains a visible failure |
+| P6.3 | Define automated correctness, groundedness, citation, abstention, retrieval, and latency metrics. | [~] | Deterministic facets/forbidden content/abstention/supplied-ID checks, source recall/MRR, duplicates and latency; manual review supplements them. General semantic precision and a latency budget remain open |
+| P6.4 | Run baseline-versus-shadow comparative evaluation and review every regression. | [x] | Complete final-image run: 56/57 core; frozen common 12/31 → 30/31, zero regressions; all 24 diagnostics reviewed (20 supported, 2 clarifications, 2 gaps). Only teloffset fails; broader release acceptance stays open. Hashes/counts verified in reports/recovery/final-comparison.json |
+| P6.5 | Test an end-to-end empty-database ingestion and question-answer flow. | [x] | New empty PostgreSQL environment/table built for mxbai, versioned ingestion through v9, 482/482 done; live queries/health/latest-only checks. This is an empty index in an existing database, not full backup restore |
+| P6.6 | Perform a canary rollout using an explicit index/configuration pointer. | [~] | Local testing pointer recovery-mxbai/v9, persistence and local PHP browser checked; sustained telemetry/remote frontend cutover not verified |
+| P6.7 | Verify rollback to the prior index and document the operator procedure. | [x] | Retained default/MiniLM/v3 pointer rollback and exact settings restoration passed; both FIES#4 smokes; instructions in recovery report. Full original database/image restore remains untested |
+| P6.8 | Consider a smaller production model only after corpus and retrieval gates pass. | [ ] | Deferred; same Command R35B weights/profile retained; current recovery changes evidence, not chat model size |
+| P6.9 | Repeat supported core facts, natural paraphrases and conversation chains on the same build. | [~] | Nine regression questions × three repetitions pass without generation (frequency assumptions, named-detector dimensions, road-advisory conditions, FIES coverage qualifications, error clarification). Extend repetition to the complete critical instrument/procedure subset; zero supported-question false refusals or context loss |
+| P6.10 | Close essential operational source gaps and resolve conflicting current specifications. | [ ] | Obtain owner-reviewed autoguided teloffset sequence and current Cassegrain load limit; reconcile FIES resolving powers and review conditional UIF troubleshooting. The guide has an exact-error recipe, but an unspecified error must not trigger it. Keep teloffset visibly failing until sourced; do not replace its expected answer with an abstention to make the suite green |
+| P6.11 | Conduct independent domain-owner answer, citation and procedural-completeness review. | [ ] | Cover every currently supported operational instrument, observing/calibration workflows, data access and site/weather guidance, not only FIES/NOTCAM. At least 95% semantic citation precision on a representative stratified sample; publish denominators. All safety/procedure cases require supported complete steps/prerequisites, correct instrument/version, and no unsafe invented action. Legacy diagnostic flags are not scores |
+| P6.12 | Establish response-time budgets and sustained local-canary monitoring before cutover. | [ ] | Measure source-derived and generated answers separately, cold/warm and concurrency. Agree budgets before release; proposed warm p95: ≤2s core fact/reference, ≤45s generated answers, ≤90s any request. No unexplained errors/refusals; trace timings without plaintext prompts. These are proposed targets, not achieved gates |
+| P6.13 | Reproduce a clean dependency build and full isolated backup restore. | [ ] | Fast layered-image verification and pointer rollback already tested; independently build from declared dependencies, restore the private PostgreSQL dump/catalogue/settings and compatible image/model caches in isolation, then verify counts, version pointers and instrument answers. Never overwrite the live database for this test |
+| P6.14 | Verify actual PHP7.4 deployment and record exact release identity. | [~] | PHP7.4 CLI lint and local PHP preview tested; verify target server/proxy, sources, follow-ups, errors and browser-history handling on PHP7.4. Release receipt binds image, app/case hashes, corpus/index/model/config and a COMPLETE evaluation; interrupted or filtered runs cannot be final reports |
+
+Suggested order: close source gaps/conflicts (P6.10), repeat critical conversations
+and obtain independent domain review (P6.9/P6.11), establish measured latency and
+canary budgets (P6.12), verify clean build/restore and the actual PHP target
+(P6.13/P6.14), then complete sustained canary/cutover (P6.6). Keep the smaller-model
+experiment (P6.8) separate and deferred; compare it on the same reviewed evidence
+and acceptance cases rather than changing corpus/retrieval/model simultaneously.
 
 Acceptance gates:
 
-- [ ] Existing technical evaluation performance is maintained or improved.
+- [ ] No frozen-baseline regressions; all essential supported facts/procedures pass, including repeated paraphrases and multi-turn chains. Resolve remaining teloffset failure rather than hiding it.
 - [ ] No safety-critical case regresses.
 - [ ] All corpus, retrieval, citation, and abstention release gates pass.
-- [ ] Canary telemetry shows no unexplained error, latency, or abstention regression.
-- [ ] Rollback is exercised successfully before full cutover.
+- [ ] Agreed latency budgets and sustained canary telemetry pass, including model-generation tails and cold starts.
+- [ ] Clean build, full isolated backup restore, actual PHP7.4 target verification and tested rollback pass before full cutover.
+- [ ] Domain owners approve corpus coverage and current-specification conflicts; 95% citation precision and 100% safety/procedure review gates pass.
 
 ## Required smoke tests
 
@@ -276,11 +298,11 @@ These tests are part of the definition of done. Exact commands should be added a
 | ST-08 | Chunk a manual containing headings, warnings, steps, tables, and code. | Structures remain coherent and heading paths are attached. | [x] | `StructuredChunkTests`; runtime parser fixture |
 | ST-09 | Retrieve from duplicate and near-duplicate sources. | Final context contains no duplicate evidence and obeys the source cap. | [x] | Phase 4 fixtures and 24-question retrieval probe |
 | ST-10 | Ask an instrument-specific question with distractor instruments present. | Relevant instrument evidence wins. | [x] | Fixture plus 0 unrelated-instrument rows in 24-question probe |
-| ST-11 | Ask a current procedure question with conflicting historical evidence. | Current authoritative evidence wins and history is not presented as current. | [~] | Fixture passes; live historical corpus is isolated |
-| ST-12 | Ask a plausible question with no supporting corpus evidence. | The chatbot abstains or asks a useful clarification question. | [~] | Two live gap questions abstained; expanded suite pending |
+| ST-11 | Ask a current procedure question with conflicting historical evidence. | Current authoritative evidence wins and history is not presented as current. | [x] | FIES operational configuration beats old design; historical CCD8/report values explicitly scoped; FIES current/current resolution conflict is shown, not silently resolved |
+| ST-12 | Ask a plausible question with no supporting corpus evidence. | The chatbot abstains or asks a useful clarification question. | [x] | Teleporter, unknown fiber, unsupported precision/load limit abstain; ambiguous/unnamed instruments clarify; missing real teloffset procedure remains an unmet useful-answer case |
 | ST-13 | Generate answers for citation fixtures. | Every citation is supplied and supports its claim. | [~] | 9 grounding fixtures, 3 audit fixtures, and 3 live Command R cited claims; expanded semantic citation precision remains Phase 6 |
-| ST-14 | Start with an empty PostgreSQL/pgvector environment, ingest the curated fixture, query it, update a source, and query again. | Health, ingestion, latest-only retrieval, answer, and citation flow all pass. | [ ] | |
-| ST-15 | Switch from shadow index to prior index. | Rollback succeeds without data reconstruction. | [ ] | |
+| ST-14 | Start with an empty PostgreSQL/pgvector environment, ingest the curated fixture, query it, update a source, and query again. | Health, ingestion, latest-only retrieval, answer, and citation flow all pass. | [x] | New isolated mxbai index ingested and updated through v9; 482 active sources, no multiple active versions; live cited instrument answers and health pass |
+| ST-15 | Switch from shadow index to prior index. | Rollback succeeds without data reconstruction. | [x] | `reports/recovery/rollback-verification.json`; default/MiniLM/v3 and restored recovery/v9 connections and FIES#4 answers pass; exact settings restored |
 
 ## Metrics history
 
@@ -295,6 +317,7 @@ Add one row for each material corpus or retrieval iteration. Never overwrite an 
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` | 478 active + 216 isolated historical; 283 quarantined; 29 excluded | 4,997 live active chunks | 161 live rows beyond first | 0 | Chat smoke passed; full suite pending | Not measured | 8,375 ms smoke | Fresh crawl/index; 1,006 processed sources; 28 CID-damaged files quarantined; zero CSC documents; all live chunks versioned and classified. |
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` / Phase 4 selector | 478 active | 4,997 live active chunks | 161 in index; 0 in selected seed contexts | 0 | Retrieval-only: 24/24 seed questions retain evidence; answer quality pending | Not measured | 9,786 ms one ALFOSC chat smoke | 3 to 0 exact context repeats, 14 to 0 over-cap rows, 6 to 0 instrument distractors; two live gaps abstained. |
 | 2026-09-29 | Working tree | `fresh-crawl-2026-09-29-curated-v2` / Phase 5 grounding | 478 active | 4,997 live active chunks | 161 in index | 0 | 2 supported Command R smoke answers validated; 2 abstentions | Semantic precision pending; 0 invalid IDs in live smoke | 18,129 ms first model load; 9,825 ms warm smoke | JSON claim/excerpt contract, server-rendered stable citations, structured trace. |
+| 2026-10-01 | `7891d6a` + app hash `0811e1499069` | `recovery-2026-09-30-v9` / `recovery-mxbai` | 482 | 5,478 | 379 in index; 0 selected contexts | 0 | Core56/57; unchanged common12/31 →30/31; original24 individually reviewed | General semantic precision/owner sign-off pending | Core125ms median /23,070ms p95 | 51 core source-derived answers median106ms; model tails remain (legacy max93,712ms). Only core failure: missing teloffset sequence. |
 
 ## Test evidence log
 
@@ -324,6 +347,10 @@ Record concise, reproducible evidence. Link to durable reports when available.
 | 2026-09-30 | Working tree | Phase 5 grounding and PHP frontend | `python3 -m unittest scripts.tests.test_chat_audit_phase5 scripts.tests.test_grounding_phase5 scripts.tests.test_retrieval_phase4 -v`; PHP/Node syntax checks; live Command R smoke; API restart | 20 fixtures passed; cited answer validated; zero invalid IDs; encrypted audit/key survived restart; frontend filters to cited sources | `reports/phase5/grounding-2026-09-29.md` |
 | 2026-09-30 | Working tree | NOTCAM false-abstention correction | 24 grounding/audit/retrieval fixtures; 3 mocked service tests in API container; `scripts/evaluation/smoke_core_instruments.py` | 27 fixtures passed; 7/7 live checks passed: definitions, capabilities, wavelength range, ALFOSC, FIES, and corpus-gap abstention; correction is bounded to one retry | `reports/phase5/core-instrument-smoke-2026-09-30-validated.json` |
 | 2026-09-30 | Working tree | NOTCAM follow-up context and grounded inference | 39 pure fixtures; 7 mocked service tests; `scripts/evaluation/smoke_followup_context.py` | 46 fixtures passed; 8/8 live checks passed. Exact user follow-up cites NOTCAM overview and rejects 500nm as below range without model generation. Direct range queries also use checked extraction; the intermediate model-wording regression is preserved. | `reports/phase5/followup-context-2026-09-30.json` |
+| 2026-10-01 | App hash `0811e1499069` | Final-image recovery evaluation/review | `scripts/evaluation/evaluate_operational.py --legacy`; `summarize_recovery.py` | COMPLETE57+24 run; core56/57, frozen common30/31 with no regressions; all24 diagnostics reviewed. Teloffset remains failing. | `reports/recovery/after-final-2026-10-01.json`, `final-comparison.json`, `RECOVERY_REPORT.md` |
+| 2026-10-01 | Same final image | Repeated false-refusal/condition tests | Nine cases × three API runs | 27/27 pass, generationAttempts0; preserves frequency assumptions, detector identity/units, road conditions, complete/extended FIES coverage and exact-error clarification | `reports/recovery/targeted-final-repeat-{1,2,3}.json` |
+| 2026-10-01 | Same final image | Fixtures, frontend syntax and persistence | Full container unittest discovery; producer tests; Node check; PHP7.4 CLI lint; read-only runtime verifier | 113 API +5 producer pass; PHP7.4/Node pass; image/code hash, health and persisted v9/1024-dimension index verified. Fresh browser check blocked by URL policy, not bypassed. | `reports/recovery/final-build-verification.json`, `runtime-consistency-final.json` |
+| 2026-10-01 | Same final image | Index-pointer rollback and restoration | `scripts/verify_recovery_rollback.py`; repeat runtime verifier after restoration | Prior default/MiniLM/v3 and restored recovery/mxbai/v9 connections +FIES#4 smokes pass; exact settings restored, private0600 backup retained. Not a full dump restore. | `reports/recovery/rollback-verification.json`, `runtime-consistency-final.json` |
 
 ## Decision log
 
@@ -341,6 +368,7 @@ Record concise, reproducible evidence. Link to durable reports when available.
 | D-010 | 2026-09-29 | Retain superseded vectors as inactive until an explicit backup-first cleanup. | Latest-only retrieval and rollback safety should not depend on immediate destructive deletion. | Storage retention limits are approved. |
 | D-011 | 2026-09-29 | Redact numeric phone candidates only with an explicit contact label or international phone formatting. | Digit count alone destroyed legitimate wavelengths, dates, coordinates, identifiers, and table values. | A tested higher-recall PII detector is available. |
 | D-012 | 2026-09-29 | Quarantine ten `(cid:...)`-damaged PDF conversions and keep contact-redacted fault records historical-only. | Inventing missing technical values is unsafe; none of the damaged PDF URLs appear in seed evaluation contexts. | Clean source PDFs are reconverted and reviewed. |
+| D-013 | 2026-10-01 | Reframe Phase6 as operational acceptance/stability; preserve visible source-gap failures and repeat natural phrasings. | Repeated verification found additional false refusals and a dropped troubleshooting prerequisite despite earlier passing runs. One happy-path run and citation-ID validity are insufficient. | Domain-owner review, repeated critical conversations, latency, clean-build/restore and actual PHP target gates pass. |
 
 ## Risks and controls
 

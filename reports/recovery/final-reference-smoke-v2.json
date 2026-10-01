@@ -1,0 +1,602 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "4c4adc5aa302e89c9d49e6cad87a1abee920d931be16ba38eae455a5e139e366",
+  "implementationSha256": "31761f8a7f86ed5597f9cecf050d63688fca1fb35292ef16ff4927ea14a8dad4",
+  "corePassed": 5,
+  "coreTotal": 6,
+  "results": [
+    {
+      "id": "cassegrain_current_limit_gap",
+      "question": "What is the current safe maximum instrument weight at the Cassegrain focus?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 21874,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-9e122ed87d2b89a6-C93",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-82c7c245da54f104-C2",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Telescope:",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-99c8f23391323cb5-C5",
+          "file": "observing-seq-stancam-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/stancam-seq-commands.html",
+          "section": "STANCAM SEQUENCER Command Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-26ac6da7a3ec97f1-C11",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "WFC + 128-micron slit (no grism)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f647cc6dd060963f-C40",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "ADC transmission as observed by ALFOSC and NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C125",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Note on focus",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C85",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4d2607b74e59538d-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C94",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C92",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "aff9b86f070ce9728b3be39f19e819a45a32b0c047a6a2eaf28f4cefbdb2853e",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "wrong_measurement_subject"
+        ],
+        "initialRejectionReasons": [
+          "wrong_measurement_subject"
+        ],
+        "semanticChecker": "local-nli-6c749ce3425cd33b46d187e45b92bbf96ee12ec7"
+      }
+    },
+    {
+      "id": "alfosc_report_plate_scale",
+      "question": "What is the plate scale for ALFOSC mentioned in the 2nd-order contamination report?",
+      "answer": "In the cited report (not a current detector specification): 1 pixel = 0.19 arcsec. [D-b5326f8cf042ba6d-C21]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 181,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-b5326f8cf042ba6d-C21",
+          "file": "instruments-alfosc-an-2007-328-9-948-pdf.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/AN.2007.328.9.948.pdf",
+          "section": "An.2007.328.9.948",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-802998b9670b265e-C0",
+          "file": "instruments-alfosc-blockers-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/blockers.html",
+          "section": "ALFOSC 2nd-order blocking filters",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C130",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C5",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-77403252e23521fa-C0",
+          "file": "instruments-alfosc-ccd8xxccd7-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/ccd8xxccd7.html",
+          "section": "New ALFOSC CCD #8",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C100",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Imaging polarimetry with FAPOL",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c81fd86b8e6228b5-C2",
+          "file": "instruments-alfosc-polarimetry-signaltonoise-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/polarimetry/signaltonoise.html",
+          "section": "How to estimate S/N for ALFOSC polarimetry",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b5326f8cf042ba6d-C5",
+          "file": "instruments-alfosc-an-2007-328-9-948-pdf.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/AN.2007.328.9.948.pdf",
+          "section": "An.2007.328.9.948",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C129",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C4",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "7d230d799d897ba6732b6be5653671cc48c4002192881bec54396067539bbbcc",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-report-dimensional-identity-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "alfosc_report_readout_speeds",
+      "question": "What are the four readout speeds provided by the ALFOSC detector controller (CCD3) introduced in 2011?",
+      "answer": "Historical/technical report (not current operating guidance): Regular tests have been taking sets of 5 bias images using the 4 different readout speeds and the two amplifiers. These data were taken using a script. Due to a still not understood problem, changing the readout speed to 800 kpix/sec affects the data produced by the controller which affect all the data taken with this speed using amplifier A. [D-8bbaf408407c876c-C11]",
+      "passed": false,
+      "errors": [
+        "missing required facet: 113",
+        "missing required facet: 200",
+        "missing required facet: 400"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 197,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-8bbaf408407c876c-C11",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-8bbaf408407c876c-C2",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C149",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "The ALFOSC CCD and its controller",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C9",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C2",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C90",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Imaging manually",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-e5c280d996fd1eeb-C2",
+          "file": "instruments-development.md",
+          "url": "https://www.not.iac.es/instruments/development/",
+          "section": "Development studies",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-4d0daec7e54f72d7-C0",
+          "file": "instruments-detectors-ccd8-linearity-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/linearity.html",
+          "section": "ALFOSC CCD8 linearity with ccd3-controller",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C8",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C10",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "7ff794f54ccdb1d0f7a73063657e1abe1e7d680fd53846f2bb8425afeb27041e",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "large_proposal_initial_duration",
+      "question": "What is the initial maximum duration allowed for a \"Large Observing Proposal\" at the NOT?",
+      "answer": "Cited reference (not a statement of current operating policy): The proposals can initially only apply for a maximum of 3 years, but they might be extended [D-817534752c8f2d5a-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 148,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-817534752c8f2d5a-C1",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C67",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C17",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Overheads",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C0",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-94190d1a94f6c58c-C5",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0962b40719236cec-C1",
+          "file": "observing-largeproposals.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/",
+          "section": "**Large Observing Proposals**",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C16",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C12",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C2",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C66",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "3310d55d651ae36fe8a71177235fae595a0d93630e0c9b07503e426983f5f817",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "unnamed_controller",
+      "question": "Can you list the 4 readout speeds for the new detector controller?",
+      "answer": "Which instrument do you mean? Please name it explicitly.",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 6,
+      "exactDuplicateContextRows": 0,
+      "sources": [],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "unknown",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "unresolved",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": null,
+        "acceptedClaims": null,
+        "rejectionReasons": null,
+        "initialRejectionReasons": null,
+        "semanticChecker": null
+      }
+    },
+    {
+      "id": "polcor_pixel_scale",
+      "question": "What is the pixel scale of PolCor?",
+      "answer": "POLCOR — The relay optics has a 1:1 imaging which results in a pixel scale of 0.12 arcsec/pixel. [D-1c9df9305504bbed-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 119,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-1c9df9305504bbed-C0",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-1c9df9305504bbed-C5",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-97da458bf520d1f4-C2",
+          "file": "instruments-detectors-ccd4.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD4/",
+          "section": "Summary of properties:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f760324d7b84d386-C38",
+          "file": "instruments-detectors-ccd13-fies-e2v-1064-17-04-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD13/fies_e2v_1064-17-04.pdf",
+          "section": "Fies E2V 1064 17 04",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-20853355653f354e-C8",
+          "file": "instruments-instruments-html.md",
+          "url": "https://www.not.iac.es/instruments/instruments.html",
+          "section": "Instrument capabilities",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-20853355653f354e-C5",
+          "file": "instruments-instruments-html.md",
+          "url": "https://www.not.iac.es/instruments/instruments.html",
+          "section": "Instrument capabilities",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9c2d7ea26cea2492-C2",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-54806cbf7bcc0960-C26",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-1c9df9305504bbed-C1",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "polcor",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-f760324d7b84d386-C37",
+          "file": "instruments-detectors-ccd13-fies-e2v-1064-17-04-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD13/fies_e2v_1064-17-04.pdf",
+          "section": "Fies E2V 1064 17 04",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "4bab394d34199bffffeaa41481fdacc44faf155e93543c7af1c96087c0668bac",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "current-reference-extract-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    }
+  ]
+}

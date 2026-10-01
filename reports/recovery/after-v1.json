@@ -1,0 +1,234 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "44d1124249f11d390a6673c4d4a84d8656ad322f9b3413f9f83feba834efb68f",
+  "corePassed": 1,
+  "coreTotal": 2,
+  "results": [
+    {
+      "id": "fies_intro",
+      "question": "what is FIES",
+      "answer": "FIES is a high-resolution spectrograph that offers radial-velocity determinations and variable object observation without blocking the telescope for other programs. [D-cd31d2bd8e82a6f7-C2]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 24565,
+      "sources": [
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C2",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C3",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-e261470aca596f7d-C6",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "FIES detector",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e7817a63a28bc135-C0",
+          "file": "instruments-fies-devel-skew-readout-skew-tech-manual-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/skew-readout/skew-tech-manual.html",
+          "section": "FIES Skew readout mode technical manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-e261470aca596f7d-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-da999bc5bf53d4bd-C54",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-2681752401d21f3b-C51",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Select your instrument",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C1",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "3d36f4e83d6da0443265421bc851a00d8e14e55ae48dfb82b82ece79b132caa3",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2,recovery-2026-09-30-v1",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "fies_typo_followup",
+      "question": "how many fivers are available?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4",
+        "missing required facet: calibration|science|on.sky"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 45995,
+      "sources": [
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-e261470aca596f7d-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e261470aca596f7d-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-da999bc5bf53d4bd-C19",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Choose the science fiber(s)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-da999bc5bf53d4bd-C50",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "On-fiber guiding",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C19",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-12a1265463c01142-C4",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "e67b3de7d44788e8e537638045899c27cebef7fcd3d2e75f4720b321e93c0dce",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2,recovery-2026-09-30-v1",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "quote_not_in_source"
+        ],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    }
+  ]
+}

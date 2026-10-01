@@ -510,7 +510,11 @@ class IngestService:
     async def run_health_check(self) -> dict:
         vc = self._vs.health_check()
         pw = {"status": "ok", "message": "Python Worker ist bereit."}
-        return {"postgres": vc, "vectorDatabase": vc, "pythonWorker": pw}
+        from .semantic_support import available, MODEL, REVISION
+        verified = await run_in_worker_pool(available)
+        checker = {"status":"ok" if verified else "degraded", "model":MODEL,
+                   "revision":REVISION,"localOnly":True}
+        return {"postgres": vc, "vectorDatabase": vc, "pythonWorker": pw,"claimVerifier":checker}
 
     def export_documents_as_csv(self) -> str:
         docs = self._db.list_documents(self._active_environment_id())
@@ -711,6 +715,7 @@ class IngestService:
                     "previousSection": (line.get("metadata") or {}).get("previousSection", ""),
                     "nextSection": (line.get("metadata") or {}).get("nextSection", ""),
                     "contentTypes": (line.get("metadata") or {}).get("contentTypes", []),
+                    "completeTables": (line.get("metadata") or {}).get("completeTables", []),
                 }
                 for line, _ in embedding_inputs
             ]

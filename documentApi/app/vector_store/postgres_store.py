@@ -148,6 +148,7 @@ class PostgresVectorStore:
                     ("previous_section", "text NOT NULL DEFAULT ''"),
                     ("next_section", "text NOT NULL DEFAULT ''"),
                     ("content_types", "jsonb NOT NULL DEFAULT '[]'::jsonb"),
+                    ("complete_tables", "jsonb NOT NULL DEFAULT '[]'::jsonb"),
                 ):
                     cur.execute(f"ALTER TABLE {qualified} ADD COLUMN IF NOT EXISTS {column} {ddl}")
                 cur.execute(f"UPDATE {qualified} SET source_id = document_id WHERE source_id = ''")
@@ -215,11 +216,11 @@ class PostgresVectorStore:
             text_content, tags, source, file_name, source_id, content_hash,
             version, is_active, canonical_location, corpus_version,
             category, instrument, authority, document_status, section, heading_path,
-            parent_section, previous_section, next_section, content_types
+            parent_section, previous_section, next_section, content_types, complete_tables
         ) VALUES (
             %s, %s, %s, %s::vector, %s, %s, %s, %s::jsonb, %s, %s,
             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb,
-            %s, %s, %s, %s::jsonb
+            %s, %s, %s, %s::jsonb, %s::jsonb
         )
         ON CONFLICT (point_id) DO UPDATE SET
             document_id = EXCLUDED.document_id,
@@ -246,7 +247,8 @@ class PostgresVectorStore:
             parent_section = EXCLUDED.parent_section,
             previous_section = EXCLUDED.previous_section,
             next_section = EXCLUDED.next_section,
-            content_types = EXCLUDED.content_types"""
+            content_types = EXCLUDED.content_types,
+            complete_tables = EXCLUDED.complete_tables"""
 
         rows: list[tuple] = []
         for vector, payload in zip(vectors, payloads):
@@ -281,6 +283,7 @@ class PostgresVectorStore:
                     payload.get("previousSection", ""),
                     payload.get("nextSection", ""),
                     json.dumps(payload.get("contentTypes", [])),
+                    json.dumps(payload.get("completeTables", [])),
                 )
             )
 
@@ -377,7 +380,7 @@ class PostgresVectorStore:
                     f"""SELECT text_content, document_id, file_name, chunk_index, source_path, source,
                                1 - (embedding <=> %s::vector) AS similarity,
                                category, instrument, authority, document_status, section, heading_path,
-                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version
+                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables
                         FROM {qualified}
                         WHERE is_active = true
                         ORDER BY embedding <=> %s::vector
@@ -407,6 +410,7 @@ class PostgresVectorStore:
                     "sourceId": row[17],
                     "canonicalLocation": row[18],
                     "corpusVersion": row[19],
+                    "completeTables": row[20],
                 }
                 for row in rows
             ]
@@ -431,7 +435,7 @@ class PostgresVectorStore:
                     f"""SELECT text_content, document_id, file_name, chunk_index, source_path, source,
                                1 - (embedding <=> %s::vector) AS similarity,
                                category, instrument, authority, document_status, section, heading_path,
-                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version
+                               parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables
                         FROM {qualified}
                         WHERE is_active = true AND lower(file_name) LIKE %s
                         ORDER BY embedding <=> %s::vector
@@ -461,6 +465,7 @@ class PostgresVectorStore:
                     "sourceId": row[17],
                     "canonicalLocation": row[18],
                     "corpusVersion": row[19],
+                    "completeTables": row[20],
                 }
                 for row in rows
             ]

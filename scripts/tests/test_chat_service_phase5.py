@@ -16,7 +16,7 @@ from app.models import ChatRequest, ChatSettings
 
 
 class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
-    async def run_chat(self, outputs: list[str], message="what is NOTCAM?", history=None):
+    async def run_chat(self, outputs: list[str], message="Describe NOTCAM's spectral region.", history=None):
         source = "NOTCam is a short-wave infrared instrument covering 0.8 to 2.5µm."
         vs = MagicMock()
         vs.similarity_search.return_value = [{
@@ -30,11 +30,18 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
             choices=[SimpleNamespace(message=SimpleNamespace(content=raw))],
             usage=SimpleNamespace(prompt_tokens=10, completion_tokens=20, total_tokens=30),
         ) for raw in outputs]
-        worker = AsyncMock(side_effect=[{"ok": True, "vectors": [[0.1, 0.2]]}, *completions])
+        results = iter([{"ok": True, "vectors": [[0.1, 0.2]]}, *completions])
+        async def run(function, *args, **kwargs):
+            if getattr(function, "__name__", None) == "validate_and_render":
+                return function(*args, **kwargs)
+            return next(results)
+        worker = AsyncMock(side_effect=run)
         crypto = CryptoService()
         with patch("app.chat_service.load_chat_settings", return_value=ChatSettings()), \
                 patch("app.chat_service.load_source_boosts", return_value={}), \
                 patch("app.chat_service.OpenAI"), \
+                patch("app.chat_service.entails", return_value=None), \
+                patch("app.chat_service.semantic_available", return_value=False), \
                 patch("app.chat_service.run_in_worker_pool", worker):
             service = ChatService(vs, crypto)
             response = await service.chat(ChatRequest(message=message, language="en", history=history or []))
@@ -56,7 +63,7 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response.trace["initialRejectedClaims"], 1)
         self.assertEqual(response.trace["acceptedClaims"], 1)
         self.assertEqual(response.metrics["totalTokens"], 60)
-        self.assertEqual(worker.await_count, 3)
+        self.assertEqual(worker.await_count, 5)
         self.assertEqual(crypto.decrypt_json(response.encrypted_payload)["modelOutputs"], outputs)
 
     async def test_followup_embeds_resolved_subject_and_checks_range(self) -> None:
@@ -94,7 +101,7 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
             [self.output("µm")], "Tell me about its wavelength range.",
             [{"role": "user", "content": "What is NOTCAM?"}])
         self.assertFalse(response.metrics["abstained"])
-        self.assertEqual(worker.await_count, 2)
+        self.assertEqual(worker.await_count, 3)
         messages = crypto.decrypt_json(response.encrypted_payload)["messages"]
         self.assertIn("resolves to NOTCAM", messages[0]["content"])
         self.assertIn("its wavelength range", messages[-1]["content"])
@@ -103,14 +110,14 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
         response, worker, _ = await self.run_chat(['{"claims":[]}'])
         self.assertTrue(response.metrics["abstained"])
         self.assertEqual(response.trace["generationAttempts"], 1)
-        self.assertEqual(worker.await_count, 2)
+        self.assertEqual(worker.await_count, 3)
 
     async def test_failed_correction_still_abstains_and_stops(self) -> None:
         response, worker, _ = await self.run_chat([self.output("mm"), self.output("mm")])
         self.assertTrue(response.metrics["abstained"])
         self.assertEqual(response.trace["generationAttempts"], 2)
         self.assertEqual(response.trace["acceptedClaims"], 0)
-        self.assertEqual(worker.await_count, 3)
+        self.assertEqual(worker.await_count, 5)
 
 
 if __name__ == "__main__":

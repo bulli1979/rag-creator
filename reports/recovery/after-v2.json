@@ -1,0 +1,2374 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "44d1124249f11d390a6673c4d4a84d8656ad322f9b3413f9f83feba834efb68f",
+  "corePassed": 9,
+  "coreTotal": 21,
+  "results": [
+    {
+      "id": "fies_intro",
+      "question": "what is FIES",
+      "answer": "FIES is a cross-dispersed high-resolution echelle spectrograph with a maximum spectral resolution of R = 67000. The entire spectral range 370-830 nm is covered without gaps in a single, fixed setting. [D-aced8760fcd637e9-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 30631,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C2",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C6",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "FIES detector",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-909f7464fb160469-C0",
+          "file": "instruments-fies-devel-skew-readout-skew-tech-manual-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/skew-readout/skew-tech-manual.html",
+          "section": "FIES Skew readout mode technical manual",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C54",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Focusing the Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C51",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Select your instrument",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C1",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "96e501fe667ff04476d976d944e0752e5c5443304bc0dee69e8f4d93ec47a3f1",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "fies_typo_followup",
+      "question": "how many fivers are available?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4",
+        "missing required facet: calibration|science|on.sky"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 98665,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C19",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Choose the science fiber(s)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C50",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "On-fiber guiding",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C19",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C4",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "6da611bf3e081334f7f606259125781cdedbe50c67056d5c9a52ba676f1431e8",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "unsupported_value_or_unit"
+        ],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "fies_count",
+      "question": "How many science fibres does FIES currently have?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 26496,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C19",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Choose the science fiber(s)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C72",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Calibrating the science fibers",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C2",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C5",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C4",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C6",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "538234878fcd6828ecad2011b867a4465a7b1aaccf9ef9f08595f8cf6bb8c730",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "unsupported_value_or_unit"
+        ],
+        "initialRejectionReasons": [
+          "unsupported_value_or_unit"
+        ]
+      }
+    },
+    {
+      "id": "fies_clarified",
+      "question": "i mean fibers on FIES",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4",
+        "missing required facet: calibration|science|on.sky"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 12942,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C19",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Choose the science fiber(s)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C72",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Calibrating the science fibers",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C19",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C18",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C20",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "854e82018ca0a04906f54bed196daf255afd08f140c6aa724a8d45fef9a31297",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "unsupported_value_or_unit"
+        ],
+        "initialRejectionReasons": [
+          "unsupported_value_or_unit"
+        ]
+      }
+    },
+    {
+      "id": "fies_resolution_followup",
+      "question": "what resolution does the different fibers offer?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 25[ ,]?000",
+        "missing required facet: 45[ ,]?000|46[ ,]?000",
+        "missing required facet: 65[ ,]?000|67[ ,]?000"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 57078,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C0",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C50",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "On-fiber guiding",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C2",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C20",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Fiber-bundle D correspondence table",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C5",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C4",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C6",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "cc38de1651898d8d38a71c474efb2cb3db43639547d79a028d2fe022f3a4fe31",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "quote_not_in_source"
+        ],
+        "initialRejectionReasons": [
+          "quote_not_in_source",
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "fies_aperture_reported",
+      "question": "what is the size in arcsec on sky for the high res FIES fiber (#4)?",
+      "answer": "The high-resolution FIES fibre #4 has a size of 1.3 arcsec on the sky. [D-aced8760fcd637e9-C1] [D-ae2b2b8ad259b70a-C20]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 36949,
+      "sources": [
+        {
+          "citationId": "D-9dddcb544217efbe-C15",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "New bundle: bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C20",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Fiber-bundle D correspondence table",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C26",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Fibre bundle D (default)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C81",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Using the exposure meter",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-177115004116b9d2-C2",
+          "file": "instruments-fies-ccd15-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/ccd15-comm.html",
+          "section": "CCD15:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C2",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C27",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Fibre bundle D (default)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "da8cc84cfd1671221a03f936f2c06a2a76bdfce1289db9f0add16db1950a2f14",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "fies_aperture_paraphrase",
+      "question": "And the diameter on the sky of fibre number 4?",
+      "answer": "The diameter on the sky of fibre number 4 is 1.3 arcsec. [D-ae2b2b8ad259b70a-C20] [D-9dddcb544217efbe-C15] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 15822,
+      "sources": [
+        {
+          "citationId": "D-9dddcb544217efbe-C15",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "New bundle: bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C20",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Fiber-bundle D correspondence table",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C67",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Acquisition hints",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C19",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C2",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C20",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "f2123574c63fa11f8041274981a9845bc20da44444e071daa9838f024deb3544",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "fies_low_aperture",
+      "question": "What is the on-sky aperture of FIES fibre #1?",
+      "answer": "The on-sky aperture of FIES fibre #1 is 2.5 arcsec. [D-ae2b2b8ad259b70a-C20] [D-9dddcb544217efbe-C15] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 19592,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C61",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Target acquisition",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C15",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "New bundle: bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C20",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Fiber-bundle D correspondence table",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C5",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C6",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "574afa4ce24b83e25812a27fdb9a782325f3d934620b466afd3e5eb8a22dfa5d",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "fies_med_resolution",
+      "question": "What resolving power does FIES science fibre #3 offer?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 45[ ,]?000|46[ ,]?000"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 24734,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C15",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "New bundle: bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C26",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Fibre bundle D (default)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C20",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Fiber-bundle D correspondence table",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C13",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C110",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Commonly Used Instrument Commands",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c06d827b12b3fb01-C5",
+          "file": "instruments-fies-throughput-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/throughput.html",
+          "section": "with CCD15 and current bundle D",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C27",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Fibre bundle D (default)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "fb2b70cf950d66c81fc5e5d7dfbbd2c232636be04c00820e509968f24c1f1008",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "insufficient_semantic_anchors"
+        ],
+        "initialRejectionReasons": [
+          "unsupported_value_or_unit"
+        ]
+      }
+    },
+    {
+      "id": "fies_calibration",
+      "question": "What is FIES fibre #5 used for?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: calibration|ThAr|thorium"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 40148,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C50",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "On-fiber guiding",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C19",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C78",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Simultaneous-sky mode",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C18",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "1ea553f604dfcf5d4a916b56b5673b0401d6f4b213aaecdee4843c80f44bdd0d",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 2,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "quote_not_in_source",
+          "quote_not_in_source"
+        ],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "fies_unknown_fibre",
+      "question": "What on-sky aperture does FIES fibre #99 have?",
+      "answer": "The currently installed octagonal-fiber bundle D contains a high-res 1.3 arcsec fibre offering a spectral resolution of R=67000. [D-aced8760fcd637e9-C1]\n\nThis bundle also provides two 1.3 arcsec fibres giving R=46000 (med-res), and a fibre with a larger entrance aperture of 2.5 arcsec but a lower spectral resolution (R=25000, low-res). [D-aced8760fcd637e9-C1]",
+      "passed": false,
+      "errors": [
+        "wrong abstention status"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 40204,
+      "sources": [
+        {
+          "citationId": "D-aced8760fcd637e9-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "The high-resolution FIbre-fed Echelle Spectrograph (FIES)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C4",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Technical papers describing FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9dddcb544217efbe-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Commissioning of FIES",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C50",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "On-fiber guiding",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C61",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Target acquisition",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C2",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C3",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-aced8760fcd637e9-C5",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Data reduction",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5cdb29fbd245a818-C1",
+          "file": "observing-seq-fies-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/fies-seq-scripts.html",
+          "section": "FIES and STANCAM SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "e84645f943cfe58c682e8dafcd74184d7f9184e23f58300e0c8dbbd9fdf246d1",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 2,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "notcam_intro",
+      "question": "what is NOTCAM?",
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5μm). [D-040f2aa4494499c5-C0] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 35983,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C2",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C26",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C31",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C3",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C27",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "d45b4ea03848ec8a9337ae6964dc651d494c6911cb9f7e86a08156d4631cd944",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "notcam_below",
+      "question": "can the instrument be used to observer at 500nm?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.8",
+        "missing required facet: 2\\.5"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 19533,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C14",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "OB generator",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ef9247b197fb6211-C2",
+          "file": "observing-seq-tcs-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/tcs-seq-scripts.html",
+          "section": "TCS SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C3",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C37",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Domeflats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ef9247b197fb6211-C3",
+          "file": "observing-seq-tcs-seq-scripts-html.md",
+          "url": "https://www.not.iac.es/observing/seq/tcs-seq-scripts.html",
+          "section": "TCS SEQUENCER Script Reference",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "f56caf157f1aef3e9d7b0234d7641250772cfd26747a286aba8f0d36490dda6a",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "unsupported_value_or_unit"
+        ],
+        "initialRejectionReasons": [
+          "unsupported_value_or_unit"
+        ]
+      }
+    },
+    {
+      "id": "notcam_noun_followup",
+      "question": "What wavelength range does the camera cover?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.8",
+        "missing required facet: 2\\.5"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 22223,
+      "sources": [
+        {
+          "citationId": "D-bd277993301bc156-C0",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C5",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "The grism",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c27701a574a87132-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C17",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "WFC + 128-micron slit (no grism)",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C116",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Spectroscopy with OB generated scripts",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C125",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Note on focus",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C1",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c27701a574a87132-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "e3c591a3369f2246f583c62a8183110f87fe5c3745df5b5a42f49aa9d00b66be",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "claim_validation_failed",
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0,
+        "rejectionReasons": [
+          "insufficient_semantic_anchors"
+        ],
+        "initialRejectionReasons": [
+          "insufficient_semantic_anchors"
+        ]
+      }
+    },
+    {
+      "id": "notcam_above",
+      "question": "Can it observe at 3000nm?",
+      "answer": "The retrieved documentation did not establish a supported answer to this question.",
+      "passed": false,
+      "errors": [
+        "wrong abstention status"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 12447,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C3",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C0",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "Commissioning of the spectroscopic mode of NOTcam",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C0",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C2",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "70497125d4334dc366166c2ead7e8b9016ed55f55ded10d53e4fe6619f0edae2",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": "model_found_no_support",
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "unsupported_value_or_unit"
+        ]
+      }
+    },
+    {
+      "id": "notcam_inside",
+      "question": "Can it observe at 1000nm?",
+      "answer": "NOTCam is capable of low-resolution spectroscopy in the Y, J, H, and K bands. [D-040f2aa4494499c5-C0] (reference)",
+      "passed": false,
+      "errors": [
+        "missing required facet: within|inside|yes"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 30996,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C106",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Manual observing with template scripts",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C0",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C3",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C0",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "Commissioning of the spectroscopic mode of NOTcam",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C105",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Manual observing with template scripts",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "6357ab72db95f5d8224dfccb62c163207aefbe2fe1f17654aa2507114695e474",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "notcam_uses",
+      "question": "What is NOTCAM used for?",
+      "answer": "NOTCAM is a multi-mode instrument for use in the short-wave infrared region of the electromagnetic spectrum (0.8 - 2.5μm). [D-040f2aa4494499c5-C0] (reference)",
+      "passed": false,
+      "errors": [
+        "missing required facet: imaging",
+        "missing required facet: spectro"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 34463,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C2",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C2",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C31",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C3",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Preparing NOTCam Observations",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bd277993301bc156-C3",
+          "file": "instruments-notcam-spectroscopy.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/",
+          "section": "Spectroscopy with NOTCAM",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C30",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "bad3af937ef59902d073d1c779fe14cbb3e02a20fc62a65023bed72bdf3ac81b",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [
+          "quote_not_in_source"
+        ]
+      }
+    },
+    {
+      "id": "notcam_wide_pixels",
+      "question": "What is the wide-field imaging pixel scale of NOTCAM?",
+      "answer": "The wide-field imaging pixel scale of NOTCAM is 0.234¢/pixel. [D-040f2aa4494499c5-C0] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 11499,
+      "sources": [
+        {
+          "citationId": "D-c27701a574a87132-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C62",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Circumstantial info for target acquisition",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C30",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C3",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Preparing NOTCam Observations",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C0",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "Commissioning of the spectroscopic mode of NOTcam",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5eab51cd8ea579e9-C1",
+          "file": "instruments-notcam.md",
+          "url": "https://www.not.iac.es/instruments/notcam/",
+          "section": "The Nordic Optical Telescope near-infrared Camera and spectrograph",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c27701a574a87132-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "ca1982b07fffb51bbe7280d57043386237ec9b359b09cfa8e12a39b18eeb2910",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "notcam_hr_pixels",
+      "question": "What pixel scale does the high-resolution imaging camera on NOTCAM provide?",
+      "answer": "The high-resolution imaging camera on NOTCAM provides a pixel scale of 0.078\"/pixel. [D-040f2aa4494499c5-C0] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 11349,
+      "sources": [
+        {
+          "citationId": "D-040f2aa4494499c5-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C62",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Circumstantial info for target acquisition",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c27701a574a87132-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C30",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Starting the NOTCam observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C5",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "The grism",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc1ff08294b7807c-C0",
+          "file": "instruments-notcam-spectroscopy-speccomm-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/speccomm.html",
+          "section": "Commissioning of the spectroscopic mode of NOTcam",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3e61e1f8f74d841e-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-40048f8a97f609b5-C3",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Preparing NOTCam Observations",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-040f2aa4494499c5-C1",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "NOTCam - an overview",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c27701a574a87132-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "d011f6d67f1eea6ff2ba101390ef331f57804ec407320f770f482161819e79bb",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "alfosc_uses",
+      "question": "What is ALFOSC used for?",
+      "answer": "ALFOSC is used for imaging, low/medium resolution spectroscopy, and polarimetry. [D-18ed928b3b44249a-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 14050,
+      "sources": [
+        {
+          "citationId": "D-18ed928b3b44249a-C5",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-18ed928b3b44249a-C1",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-529a3817879e9a75-C9",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`alfosc.exit`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-529a3817879e9a75-C111",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`read_alfosc_setup`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C10",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Overview of everyday afternoon tasks",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ccbdf11d1418a440-C1",
+          "file": "instruments-alfosc-mos-mode.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/mos-mode/",
+          "section": "General Documentation",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b389200fd3e71786-C0",
+          "file": "instruments-alfosc-seq-alfosc-seq-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq.html",
+          "section": "Guide to the ALFOSC Sequencer",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ae7c4ae35211715a-C2",
+          "file": "instruments-alfosc-seq-alfosc-seq-start-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq-start.html",
+          "section": "Starting the ALFOSC observing system",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-18ed928b3b44249a-C4",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ae2b2b8ad259b70a-C9",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "Overview of everyday afternoon tasks",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "56621b581057c33d690b0d4da7f1b4c5745daf1651a4f7ea1fdf85275a3e9604",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    },
+    {
+      "id": "alfosc_fov",
+      "question": "How large is the imaging field of view?",
+      "answer": "The imaging field of view is 6.4x6.4 arcminutes. [D-18ed928b3b44249a-C1]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 11607,
+      "sources": [
+        {
+          "citationId": "D-18ed928b3b44249a-C1",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-18ed928b3b44249a-C0",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8dda6c46ef65885a-C6",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "Exposure Time Calculator",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-529a3817879e9a75-C54",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`focus`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bbe3327ff684805d-C1",
+          "file": "instruments-alfosc-fov-fov-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fov/fov.html",
+          "section": "Vignetting",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cff250af5067a6ed-C9",
+          "file": "instruments-fits-header.md",
+          "url": "https://www.not.iac.es/instruments/FITS-header/",
+          "section": "**DETNAME and PIXSIZE values incorrect for ALFOSC fast-photometry after 2003-09-24**",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-529a3817879e9a75-C64",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`focuswindow`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-763956b41131a1d2-C0",
+          "file": "instruments-alfosc-mos-mode-distortion-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/mos-mode/distortion.html",
+          "section": "Distortion in the field of ALFOSC with CCD#8",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-18ed928b3b44249a-C2",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v1",
+        "promptSha256": "039003d00d75854e18e7184743e8467813a72f1b39736bf7549ee3f1d2dc162e",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "recovery-2026-09-30-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": []
+      }
+    }
+  ]
+}

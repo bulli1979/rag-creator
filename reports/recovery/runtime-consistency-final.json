@@ -1,0 +1,59 @@
+{
+  "verifiedAt": "2026-10-01T09:56:55.933600+00:00",
+  "imageId": "sha256:72251c9be6666ec2dcef3d2f373f2e140d5dff6c11d91cecbbd7e05115b631cb",
+  "appPythonSha256": "b0ad40675d651f9f0b2072e0d664cc242d4ece65b6e06bfd052a857c6ee75dab",
+  "environment": "recovery-mxbai",
+  "table": "public.rag_recovery_mxbai_20260930",
+  "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+  "health": {
+    "postgres": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "vectorDatabase": {
+      "status": "ok",
+      "message": "Postgres erreichbar."
+    },
+    "pythonWorker": {
+      "status": "ok",
+      "message": "Python Worker ist bereit."
+    },
+    "claimVerifier": {
+      "status": "ok",
+      "model": "cross-encoder/nli-deberta-v3-base",
+      "revision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+      "localOnly": true
+    }
+  },
+  "activeChunks": 5478,
+  "activeSources": 482,
+  "activeDocuments": 482,
+  "minVectorDimensions": 1024,
+  "maxVectorDimensions": 1024,
+  "activeCorpusVersions": [
+    "recovery-2026-09-30-v9"
+  ],
+  "sourcesWithMultipleActiveVersions": 0,
+  "exactDuplicateIndexRows": 379,
+  "headingOnlyIndexRows": 167,
+  "activeCSCChunks": 0,
+  "unresolvedCIDChunks": 0,
+  "smoke": {
+    "answer": "Documented observing configuration for FIES:\n\n- fiber 4 \u2014 high-res \u2014 R=65000 \u2014 1.3 arcsec [D-3984d286e5e844ca-C20]",
+    "metrics": {
+      "elapsedMs": 126,
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "tokensPerSecond": 0.0,
+      "abstained": false
+    },
+    "trace": {
+      "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+      "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+      "corpusVersion": "recovery-2026-09-30-v9",
+      "model": "command-r-rag:35b",
+      "answerMethod": "complete-table-reference-rows-v1"
+    }
+  }
+}

@@ -47,6 +47,8 @@ def compare_wavelength(query: str, evidence: list[dict], language: str = "en") -
         rf"(?:what|which) is (?:the )?(?:wavelength|spectral) range (?:of|for) (?:the )?{name}[?.!]*",
         rf"what is (?:the )?{name}(?:'s)? (?:wavelength|spectral) range[?.!]*",
     ))
+    range_question = range_question or bool(re.search(
+        r"\b(?:what|which) (?:wavelength|spectral) range\b.*\b(?:cover|observe|detect)\b", query, re.I))
     quantities = list(_QUANTITY.finditer(query))
     if not range_question and (len(quantities) != 1 or not _QUESTION.search(query) or not _OBSERVE.search(query)):
         return None
@@ -54,6 +56,36 @@ def compare_wavelength(query: str, evidence: list[dict], language: str = "en") -
     # instrument interval. Leave those questions to ordinary grounded generation.
     if re.search(r"\b(?:filter\w*|mode\w*|spectro\w*|resolution|safe\w*|calibrat\w*|only|not|without|except)\b", query, re.I):
         return None
+    if range_question and language=='en':
+        # An instrument landing paragraph can establish the subject in its
+        # first sentence and the complete range in the next. Preserve adjacent
+        # qualified extended coverage instead of conflating it with gap-free
+        # coverage. Never use a calibration/filter link elsewhere on the page.
+        excerpts=[]
+        for item in evidence:
+            if (item.get('instrument','').upper()!=instrument or item.get('status') not in ('active','current')
+                    or item.get('sourceRole') not in ('instrument_landing','current_reference')):
+                continue
+            for paragraph in re.split(r'\n\s*\n',item.get('content','')):
+                sentences=re.split(r'(?<=[.!?])\s+',' '.join(paragraph.split()))
+                for i,sentence in enumerate(sentences):
+                    if (classify_query(' '.join(sentences[:i])).instruments!=named
+                            or not re.search(r'\bentire (?:spectral|wavelength) range\b',sentence,re.I)
+                            or re.search(r'\b(?:filter|calibration|pixel|planned|proposed)\b',sentence,re.I)):
+                        continue
+                    matches=list(_RANGE.finditer(sentence))
+                    if len(matches)!=1:
+                        continue
+                    extension=sentences[i+1] if i+1<len(sentences) and re.match(r'Extended coverage\b',sentences[i+1],re.I) else ''
+                    if extension and (not re.search(r'[.!?]$',extension) or not _QUANTITY.search(extension)):
+                        continue
+                    excerpt=sentence+(' '+extension if extension else '')
+                    if len(excerpt)<700:
+                        excerpts.append((item,excerpt))
+        if excerpts and len({text for _,text in excerpts})==1:
+            item,excerpt=excerpts[0]
+            return WavelengthAnswer(ValidationResult(f"{instrument} — {excerpt} [{item['citationId']}]",1,0,0,False),
+                                    {'operation':'instrument-range-reference-excerpt-v1','citationId':item['citationId'],'quote':excerpt})
     quantity = None if range_question else quantities[0]
     requested = None
     if quantity:
@@ -71,7 +103,11 @@ def compare_wavelength(query: str, evidence: list[dict], language: str = "en") -
                 or item.get("status", "").lower() not in ("active", "current")
                 or not item.get("authority", "").startswith(("tier_1", "tier_2"))):
             continue
-        for sentence in re.split(r"(?<=[.!?])\s+|\n", item.get("content", "")):
+        # Source line wrapping is layout, not a sentence/subject boundary. Keep
+        # paragraph boundaries but join wrapped prose before interval parsing.
+        sentences = [sentence for paragraph in re.split(r"\n\s*\n", item.get("content", ""))
+                     for sentence in re.split(r"(?<=[.!?])\s+", " ".join(paragraph.split()))]
+        for sentence in sentences:
             if classify_query(sentence).instruments != named:
                 continue
             if not re.search(r"\b(?:wavelength\w*|infrared|spectral|cover\w*|wellenlänge\w*)\b", sentence, re.I):

@@ -1,0 +1,16 @@
+[
+ {"question":"What is NOTCAM?","sources":["instruments-notcam-overview-html.md"]},
+ {"question":"What wavelength range does NOTCAM cover?","sources":["instruments-notcam-overview-html.md"]},
+ {"question":"How many science fibers does FIES currently have?","sources":["observing-cookbook-current-cookbook-php-instrument-fies.md"]},
+ {"question":"What on-sky aperture does FIES fiber 4 have?","sources":["observing-cookbook-current-cookbook-php-instrument-fies.md"]},
+ {"question":"What is the focal plane scale of the Nordic Optical Telescope?","sources":["telescope-technical-details-html.md"]},
+ {"question":"What times should I avoid the ORM mountain road in winter?","sources":["observing-guide-ormsafetyinformation-pdf.md"]},
+ {"question":"What are the PolCor coronagraphic disk diameters?","sources":["instruments-polcor.md","instruments-polcor-polcor-2-pdf.md"]},
+ {"question":"What is the physical pixel size of SITe SI-003A CCD?","sources":["instruments-detectors-ccd1-003datsh-pdf.md"]},
+ {"question":"What readout speeds did the ALFOSC detector controller introduced in 2011 provide?","sources":["instruments-development-alfosc-controller-report-pdf.md"]},
+ {"question":"What fundamental frequency was the pick-up noise of the ALFOSC controller?","sources":["instruments-development-alfosc-controller-report-pdf.md"]},
+ {"question":"What is the ALFOSC grism 18 central wavelength and dispersion?","sources":["instruments-alfosc-grisms.md","optic_elements.md"]},
+ {"question":"How does an observer move two stars into the ALFOSC slit using slitrot?","sources":["instruments-alfosc-arbang-html.md"]},
+ {"question":"How do I take NOTCAM dark frames?","sources":["observing-cookbook-current-cookbook-php-instrument-notcam.md","instruments-notcam-guide-calib.html.md","instruments-notcam-guide-calib-html.md"]},
+ {"question":"How can I copy my observing data home?","sources":["observing-cookbook-current-cookbook-php-instrument-notcam.md","observing-cookbook-current-cookbook-php-instrument-fies.md"]}
+]

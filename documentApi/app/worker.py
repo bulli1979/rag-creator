@@ -129,11 +129,15 @@ def parse_document(
 
     if extension in {".md", ".txt"}:
         try:
-            with open(input_path, "r", encoding="utf-8", errors="ignore") as fh:
+            with open(input_path, "r", encoding="utf-8", errors="replace") as fh:
                 text = fh.read()
         except OSError:
             text = ""
-    elif partition is not None and extension in {".pdf", ".docx", ".pptx", ".html"}:
+    elif extension in {".html", ".htm"}:
+        from .html_processing import html_to_markdown
+        with open(input_path, "r", encoding="utf-8", errors="replace") as fh:
+            text = html_to_markdown(fh.read())
+    elif partition is not None and extension in {".pdf", ".docx", ".pptx"}:
         try:
             elements = partition(filename=input_path)
             text = "\n\n".join(str(el) for el in elements if str(el).strip())
@@ -173,6 +177,8 @@ def parse_document(
             "ok": False,
             "error": "Parsing fehlgeschlagen: PDF-Binaerdaten erkannt statt extrahiertem Text.",
         }
+    if '(cid:' in text or text.count('�')>=3 or re.search(r'[\x00-\x08\x0b\x0e-\x1f]',text):
+        return {'ok':False,'error':'Document contains unresolved extraction/glyph damage; review the original source before indexing.'}
 
     # Kopf-URL aus Rohdatei lesen: unstructured kann bei MD/HTML <a href> entfernen.
     header_url: str | None = None
@@ -220,7 +226,15 @@ def _get_model(model_name: str) -> Any:
     if model_name not in _MODEL_CACHE:
         import torch
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        _MODEL_CACHE[model_name] = SentenceTransformer(model_name, device=device)
+        if model_name == "mixedbread-ai/mxbai-embed-large-v1":
+            from .config import get_base_directory
+            _MODEL_CACHE[model_name] = SentenceTransformer(
+                model_name, device=device, revision="b33106f585b9ce46904ad7443a3b52b7a63e231c",
+                cache_folder=str(get_base_directory()/"model_cache"),
+                local_files_only=True, trust_remote_code=False,
+                model_kwargs={"use_safetensors":True})
+        else:
+            _MODEL_CACHE[model_name] = SentenceTransformer(model_name, device=device)
     return _MODEL_CACHE[model_name]
 
 
@@ -247,6 +261,14 @@ def _encode_one_batch(
         batch_size=min(internal_batch_size, max(8, len(batch))),
     )
     return _vectors_from_encode_output(encoded)
+
+
+def embed_queries(model_name: str, texts: list[str]) -> dict[str, Any]:
+    # The documented retrieval instruction belongs only on queries, never on
+    # documents. Raw/resolved queries remain intact in the encrypted audit.
+    if model_name == "mixedbread-ai/mxbai-embed-large-v1":
+        texts = ["Represent this sentence for searching relevant passages: " + text for text in texts]
+    return embed_texts(model_name, texts)
 
 
 def embed_texts(model_name: str, texts: list[str]) -> dict[str, Any]:

@@ -10,19 +10,22 @@ import hashlib
 import re
 from collections import Counter
 from dataclasses import dataclass
+from .source_policy import INSTRUMENTS, annotate_source, operational_priority
 
 
 _TOKEN_RE = re.compile(r"[a-zA-Z0-9_\-/\.]+")
 _NUMBER_RE = re.compile(r"[-+]?\d+(?:\.\d+)?")
-_INSTRUMENTS = ("ALFOSC", "NOTCAM", "FIES", "STANCAM", "DIPOL-UF", "SOFIN", "SIRCA", "POLCOR", "MOSCA", "LUCKYCAM", "TURPOL")
+_INSTRUMENTS = INSTRUMENTS
 _HISTORICAL_RE = re.compile(r"\b(historical|history|old|previous|former|archived|superseded|in the past|fr[uü]her|historisch|alt(?:e|en|er|es)?|ehemalig)\b", re.I)
 _PROCEDURE_RE = re.compile(r"\b(procedure|steps|how to|start|startup|shutdown|operate|calibrat|verfahren|anleitung|schritte)\w*\b", re.I)
 _TROUBLE_RE = re.compile(r"\b(fault|error|fail|troubleshoot|problem|st[oö]rung|fehler)\w*\b", re.I)
 _SAFETY_RE = re.compile(r"\b(safety|warning|danger|hazard|safe|sicher|gefahr|warnung)\w*\b", re.I)
+_QUERY_FILLER = frozenset("what which how is are does do the a an of for at in on with i mean different please tell me about available its it has have used use can could".split())
 
 
 def _tokenize(text: str) -> set[str]:
-    return {token.lower() for token in _TOKEN_RE.findall(text or "") if len(token) > 1}
+    normalized = re.sub(r"\bfib(?:er|re)s?\b", "fiber", text or "", flags=re.I)
+    return {token.lower() for token in _TOKEN_RE.findall(normalized) if len(token) > 1}
 
 
 def _extract_numbers(text: str) -> set[str]:
@@ -39,7 +42,7 @@ class QueryIntent:
 def classify_query(query: str) -> QueryIntent:
     instruments = frozenset(
         name for name in _INSTRUMENTS
-        if re.search(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", query, re.I)
+        if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", query, re.I)
     )
     categories: set[str] = set()
     if _PROCEDURE_RE.search(query):
@@ -48,6 +51,11 @@ def classify_query(query: str) -> QueryIntent:
         categories.add("troubleshooting")
     if _SAFETY_RE.search(query):
         categories.add("safety")
+    if re.search(r"\b(?:report|paper|design|introduced|commissioning|measured|wavefront|contamination)\b|readout noise|pick[ -]?up noise|dark current|\b(?:19|20)\d{2}\b", query, re.I):
+        categories.add("technical_reference")
+    if (instruments and re.search(r"\b(?:wavelength|spectral) range\b",query,re.I)
+            and not re.search(r"\b(?:filter|mode|spectroscopy|resolution|historical|old)\b",query,re.I)):
+        categories.add("overview")
     if (instruments and re.search(r"\b(?:can|could|kann|könnte)\b", query, re.I)
             and re.search(r"\b(?:observ\w*|detect\w*|used|wavelength\w*|wellenlänge\w*)\b", query, re.I)
             and re.search(r"\d\s*(?:nm|[µμu]m|(?:nano|micro)met(?:er|re)s?)\b", query, re.I)):
@@ -87,7 +95,7 @@ def _rerank_chunks(
     source_boosts: dict[str, float] | None = None,
 ) -> list[dict]:
     """Original hybrid ranking, retained for baseline comparisons."""
-    tokens, numbers = _tokenize(query), _extract_numbers(query)
+    tokens, numbers = _tokenize(query) - _QUERY_FILLER, _extract_numbers(query)
     scored = [
         (_boosted_score(_base_score(tokens, numbers, chunk), chunk, source_boosts), chunk)
         for chunk in chunks
@@ -136,20 +144,34 @@ def select_evidence(
     are still eligible for ordinary queries, but ranked behind current guidance.
     """
     intent = classify_query(query)
-    tokens, numbers = _tokenize(query), _extract_numbers(query)
+    tokens, numbers = _tokenize(query) - _QUERY_FILLER, _extract_numbers(query)
     matching_instrument = bool(intent.instruments) and any(
         str(chunk.get("instrument", "")).upper() in intent.instruments for chunk in chunks
     )
     scored: list[tuple[float, int, dict]] = []
     for position, chunk in enumerate(chunks):
+        chunk = annotate_source(chunk)
         if not str(chunk.get("text", "")).strip():
             continue
-        if float(chunk.get("similarity", 0.0) or 0.0) < min_similarity:
+        if chunk.get("contentTypes") == ["heading"]:
+            continue
+        if "(cid:" in str(chunk.get("text", "")):
+            continue
+        if float(chunk.get("similarity", 0.0) or 0.0) < min_similarity and not (chunk.get("referenceInventory") or chunk.get('exactReference')):
             continue
         instrument = str(chunk.get("instrument", "")).upper()
         if matching_instrument and instrument not in intent.instruments and instrument not in ("", "[MISSING]", "GENERAL"):
             continue
         score = _boosted_score(_base_score(tokens, numbers, chunk), chunk, source_boosts)
+        score += operational_priority(chunk, reference_intent=intent.historical or "technical_reference" in intent.categories)
+        if chunk.get("completeTables") and tokens & _tokenize(str(chunk.get("text", ""))):
+            score += .12
+        if chunk.get("referenceInventory"):
+            score += .25
+        if chunk.get('exactReference'):
+            score += .40
+        if chunk.get('linkedReference') and 'technical_reference' in intent.categories:
+            score += .20
         status = str(chunk.get("status", "active")).lower()
         authority = str(chunk.get("authority", "")).lower()
         if intent.instruments and instrument in intent.instruments:

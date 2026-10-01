@@ -229,6 +229,7 @@ class QdrantEmbeddedVectorStore:
                         "previous_section": payload.get("previousSection", ""),
                         "next_section": payload.get("nextSection", ""),
                         "content_types": payload.get("contentTypes", []),
+                        "complete_tables": payload.get("completeTables", []),
                     },
                 )
             )
@@ -338,6 +339,7 @@ class QdrantEmbeddedVectorStore:
                     "sourceId": p.get("source_id", ""),
                     "canonicalLocation": p.get("canonical_location", ""),
                     "corpusVersion": p.get("corpus_version", ""),
+                    "completeTables": p.get("complete_tables", []),
                     "similarity": float(score) if score is not None else 0.0,
                 }
             )
@@ -395,6 +397,7 @@ class QdrantEmbeddedVectorStore:
                     "sourceId": p.get("source_id", ""),
                     "canonicalLocation": p.get("canonical_location", ""),
                     "corpusVersion": p.get("corpus_version", ""),
+                    "completeTables": p.get("complete_tables", []),
                     "similarity": float(score) if score is not None else 0.0,
                 }
             )

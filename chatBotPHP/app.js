@@ -1,6 +1,6 @@
-// HTTPS deployments use the same-origin PHP proxy to avoid mixed-content requests.
-// Plain HTTP and file-based development can call the local API directly.
-const PROXY_MODE = window.location.protocol === 'https:';
+// Served PHP pages use their same-origin proxy on both HTTP and HTTPS.
+// Only file-based development talks directly to the local API.
+const PROXY_MODE = window.location.protocol !== 'file:';
 const API_BASE   = PROXY_MODE ? '.' : 'http://127.0.0.1:8000';
 
 const els = {
@@ -38,7 +38,7 @@ function generateLogId() {
 }
 
 async function flushLogs() {
-  if (pendingLogs.length === 0) return;
+  if (pendingLogs.length === 0 || !PROXY_MODE) return;
   const entries = [...pendingLogs];
   pendingLogs = [];
 
@@ -62,9 +62,9 @@ async function checkHealth() {
   const url = PROXY_MODE ? `${API_BASE}/proxy.php` : `${(els.apiBaseUrl?.value?.trim().replace(/\/$/, '') ?? API_BASE)}/api/health`;
   try {
     const res = await fetch(url, {
-      method: "POST",
+      method: PROXY_MODE ? "POST" : "GET",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ health_check: true })
+      ...(PROXY_MODE ? { body: JSON.stringify({ health_check: true }) } : {}),
     });
     if (!res.ok) { setHealth(false, "Backend unreachable"); return; }
     const txt = await res.text();
@@ -72,6 +72,13 @@ async function checkHealth() {
     try { data = JSON.parse(txt); } catch { setHealth(false, "Unresponsive backend"); return; }
     // If it returned an error from proxy.php or API
     if (data.error || (res.status >= 400 && res.status < 500)) { setHealth(false, "Backend unavailable"); return; }
+    const components = [data.vectorDatabase || data.postgres, data.pythonWorker].filter(Boolean);
+    if (!components.length || components.some(component => component.status !== 'ok')) {
+      setHealth(false, "Backend not ready"); return;
+    }
+    if (data.claimVerifier && data.claimVerifier.status !== 'ok') {
+      setHealth(false, "Claim verifier not ready"); return;
+    }
     setHealth(true, "Backend ready");
   } catch {
     setHealth(false, "Cannot reach backend");
@@ -141,7 +148,7 @@ async function onAsk() {
     const logId = generateLogId();
     const sources = citedChunks.map(({ text, ...meta }) => {
       const urlMatch = (text || '').match(/https?:\/\/\S+/);
-      return { ...meta, url: urlMatch ? urlMatch[0] : (meta.fileName || meta.file_name || '') };
+      return { ...meta, url: meta.canonicalLocation || meta.source || (urlMatch ? urlMatch[0] : (meta.fileName || meta.file_name || '')) };
     });
     pendingLogs.push({
       id: logId,
@@ -249,6 +256,19 @@ function appendAssistantBubble(answer, chunks, logId, question, sources) {
       const status = chunk.status && chunk.status !== 'active' ? ` | ${chunk.status}` : '';
       const authority = chunk.authority && !String(chunk.authority).startsWith('tier_1') ? ` | ${chunk.authority}` : '';
       item.innerHTML = `<div class="source-meta">${escapeHtml(citationId)} | ${escapeHtml(title)}${escapeHtml(status)}${escapeHtml(authority)}</div><p class="source-text">${escapeHtml(chunk.text || '')}</p>`;
+      const canonical = chunk.canonicalLocation || chunk.source_url || '';
+      try {
+        const url = new URL(canonical);
+        if (url.protocol === 'https:' || url.protocol === 'http:') {
+          const link = document.createElement('a');
+          link.href = url.href;
+          link.textContent = 'Open original documentation';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          item.querySelector('.source-meta').appendChild(document.createElement('br'));
+          item.querySelector('.source-meta').appendChild(link);
+        }
+      } catch (_) { /* Local/URN source identities are not web links. */ }
       details.appendChild(item);
     });
     wrap.appendChild(details);

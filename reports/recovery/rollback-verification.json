@@ -1,0 +1,19 @@
+{
+  "rollbackEnvironment": "default",
+  "rollbackEmbeddingModel": "all-MiniLM-L6-v2",
+  "rollbackConnection": "ok",
+  "rollbackSmoke": {
+    "answer": "Documented observing configuration for FIES:\n\n- fiber 4 \u2014 high-res \u2014 R=65000 \u2014 1.3 arcsec [D-a39f4ae979003e98-C20]",
+    "abstained": false,
+    "indexId": "default:postgres:public.rag_documents",
+    "corpusVersion": "recovery-2026-09-30-v3"
+  },
+  "originalSettingsRestored": true,
+  "restoredConnection": "ok",
+  "restoredSmoke": {
+    "answer": "Documented observing configuration for FIES:\n\n- fiber 4 \u2014 high-res \u2014 R=65000 \u2014 1.3 arcsec [D-3984d286e5e844ca-C20]",
+    "abstained": false,
+    "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+    "corpusVersion": "recovery-2026-09-30-v9"
+  }
+}

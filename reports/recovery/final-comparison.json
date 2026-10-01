@@ -1,0 +1,60 @@
+{
+  "beforeReport": "reports/recovery/before-7891d6a.json",
+  "afterReport": "reports/recovery/after-final-2026-10-01.json",
+  "implementationSha256": "0811e1499069111ec73690c2b6ebbebd9693b7cccdb5aef7ae186e47e05de095",
+  "corePassed": 56,
+  "coreTotal": 57,
+  "commonCases": 31,
+  "beforeCommonPassed": 12,
+  "afterCommonPassed": 30,
+  "commonRegressions": [],
+  "failedCoreCases": [
+    "operational_sequence"
+  ],
+  "beforeCommonLatency": {
+    "n": 31,
+    "medianMs": 11927,
+    "p95Ms": 32571,
+    "maxMs": 35260
+  },
+  "afterCommonLatency": {
+    "n": 31,
+    "medianMs": 97,
+    "p95Ms": 30087,
+    "maxMs": 33987
+  },
+  "afterCoreLatency": {
+    "n": 57,
+    "medianMs": 125,
+    "p95Ms": 23070,
+    "maxMs": 33987
+  },
+  "afterAllLatency": {
+    "n": 81,
+    "medianMs": 126,
+    "p95Ms": 23070,
+    "maxMs": 93712
+  },
+  "afterLegacyLatency": {
+    "n": 24,
+    "medianMs": 134.5,
+    "p95Ms": 58811,
+    "maxMs": 93712
+  },
+  "sourceDerivedNoGenerationLatency": {
+    "n": 51,
+    "medianMs": 106,
+    "p95Ms": 190,
+    "maxMs": 209
+  },
+  "modelGenerationLatency": {
+    "n": 6,
+    "medianMs": 20073.5,
+    "p95Ms": 33987,
+    "maxMs": 33987
+  },
+  "exactDuplicateContextRows": 0,
+  "legacyDiagnosticRows": 24,
+  "legacyDiagnosticAbstentions": 4,
+  "legacyScore": "Unscored; see manual review in RECOVERY_REPORT.md"
+}

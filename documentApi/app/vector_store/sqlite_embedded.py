@@ -97,6 +97,7 @@ class SqliteEmbeddedVectorStore:
                     "previous_section": "TEXT NOT NULL DEFAULT ''",
                     "next_section": "TEXT NOT NULL DEFAULT ''",
                     "content_types": "TEXT NOT NULL DEFAULT '[]'",
+                    "complete_tables": "TEXT NOT NULL DEFAULT '[]'",
                 }
                 for column, column_ddl in additions.items():
                     if column not in existing:
@@ -162,8 +163,8 @@ class SqliteEmbeddedVectorStore:
             text_content, tags, source, file_name, source_id, content_hash,
             version, is_active, canonical_location, corpus_version,
             category, instrument, authority, document_status, section, heading_path,
-            parent_section, previous_section, next_section, content_types
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            parent_section, previous_section, next_section, content_types, complete_tables
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(point_id) DO UPDATE SET
             document_id = excluded.document_id,
             chunk_index = excluded.chunk_index,
@@ -189,7 +190,8 @@ class SqliteEmbeddedVectorStore:
             parent_section = excluded.parent_section,
             previous_section = excluded.previous_section,
             next_section = excluded.next_section,
-            content_types = excluded.content_types"""
+            content_types = excluded.content_types,
+            complete_tables = excluded.complete_tables"""
         rows: list[tuple] = []
         for vector, payload in zip(vectors, payloads):
             chunk_ix = int(payload["chunkIndex"])
@@ -222,6 +224,7 @@ class SqliteEmbeddedVectorStore:
                     payload.get("previousSection", ""),
                     payload.get("nextSection", ""),
                     json.dumps(payload.get("contentTypes", [])),
+                    json.dumps(payload.get("completeTables", [])),
                 )
             )
         with self._lock:
@@ -298,7 +301,7 @@ class SqliteEmbeddedVectorStore:
             conn = self._connect()
             try:
                 cur = conn.execute(
-                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version FROM "{t}" WHERE is_active = 1'
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables FROM "{t}" WHERE is_active = 1'
                 )
                 all_rows = cur.fetchall()
             finally:
@@ -337,6 +340,7 @@ class SqliteEmbeddedVectorStore:
                     "sourceId": row[16],
                     "canonicalLocation": row[17],
                     "corpusVersion": row[18],
+                    "completeTables": json.loads(row[19]),
                     "similarity": sim,
                 }
             )
@@ -360,7 +364,7 @@ class SqliteEmbeddedVectorStore:
             conn = self._connect()
             try:
                 cur = conn.execute(
-                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version FROM "{t}"'
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables FROM "{t}"'
                     f' WHERE is_active = 1 AND lower(file_name) LIKE ?',
                     (f"%{pat}%",),
                 )
@@ -397,6 +401,7 @@ class SqliteEmbeddedVectorStore:
                 "sourceId": row[16],
                 "canonicalLocation": row[17],
                 "corpusVersion": row[18],
+                "completeTables": json.loads(row[19]),
                 "similarity": sim,
             }
             for sim, row in scored[: max(1, top_k)]

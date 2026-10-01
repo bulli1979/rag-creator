@@ -22,8 +22,14 @@ from .grounding import PROMPT_VERSION, build_system_prompt, prepare_evidence, va
 from .models import AppSettings, ChatMessage, ChatRequest, ChatResponse, ChatSettings
 from .services.thread_pool import run_in_worker_pool
 from .vector_store.protocol import VectorStore
-from .worker import embed_texts
+from .worker import embed_queries
 from .wavelength_reasoning import compare_wavelength
+from .reference_answers import answer_reference
+from .literal_answers import answer_literal
+from .semantic_support import entails, available as semantic_available, REVISION as SEMANTIC_REVISION
+from .operational_answers import answer_operational
+from .sourced_procedures import answer_procedure
+from .component_tables import answer_component_table
 
 
 _MAX_QUERY_CHARS = 8_000
@@ -121,7 +127,7 @@ class ChatService:
                                 metrics={"elapsedMs": elapsed_ms, "abstained": True}, trace=trace)
 
         query_embedding = await run_in_worker_pool(
-            embed_texts, self._settings.embedding_model, [retrieval_query]
+            embed_queries, self._settings.embedding_model, [retrieval_query]
         )
         if not query_embedding.get("ok") or not query_embedding.get("vectors"):
             elapsed_ms = max(1, int((time.perf_counter() - started_at) * 1000))
@@ -134,7 +140,7 @@ class ChatService:
             self._record(trace, {"query": query, "retrievalQuery": retrieval_query,
                                  "history": history_payload, "embeddingFailed": True})
             return ChatResponse(
-                answer="Embedding der Anfrage fehlgeschlagen.",
+                answer="Embedding der Anfrage fehlgeschlagen." if preferred_language=='de' else "The query could not be embedded. Please retry.",
                 context_chunks=[],
                 encrypted_payload="",
                 metrics={"elapsedMs": elapsed_ms, "abstained": True},
@@ -156,20 +162,129 @@ class ChatService:
         # similarity favors filter tables or old design reports. This retrieves
         # corpus evidence, not a hard-coded answer, and retains the similarity floor.
         intent = classify_query(retrieval_query)
-        if "overview" in intent.categories:
+        if re.search(r'\bgrism\b|\bG#\d+',retrieval_query,re.I) and not intent.instruments:
+            candidate_chunks.extend(self._vs.search_by_filename(
+                table_name=active_pg.db_table_name,pattern='-grisms.md',query_vector=query_vector,top_k=256))
+        if intent.instruments:
             existing = {(c["documentId"], c["chunkIndex"]) for c in candidate_chunks}
             for instrument in sorted(intent.instruments):
-                overview = self._vs.search_by_filename(
-                    table_name=active_pg.db_table_name,
-                    pattern=f"instruments-{instrument.lower()}-overview",
-                    query_vector=query_vector,
-                    top_k=2,
-                )
-                for chunk in overview:
-                    key = (chunk["documentId"], chunk["chunkIndex"])
-                    if key not in existing:
-                        candidate_chunks.append(chunk)
-                        existing.add(key)
+                # Source anchors are evidence routes, never answer templates.
+                # The landing page filename does not include 'overview'.
+                patterns = (f"instruments-{instrument.lower()}.md",
+                            f"instruments-{instrument.lower()}-overview",
+                            f"cookbook-php-instrument-{instrument.lower()}")
+                if re.search(r'\bgrism\b|\bG#\d+',retrieval_query,re.I):
+                    patterns+=(f'instruments-{instrument.lower()}-grisms.md',)
+                if re.search(r'\bcommand\b',retrieval_query,re.I):
+                    patterns+=('sequencer_reference.md',)
+                for pattern in patterns:
+                    command_catalog = pattern == 'sequencer_reference.md'
+                    component_catalog = pattern.endswith('-grisms.md')
+                    setting_table = 'cookbook' in pattern and bool(re.search(r'\b[a-z]+(?:-[a-z]+)+\b',retrieval_query,re.I))
+                    reference_inventory = ("cookbook" in pattern and re.search(r"\bfib(?:er|re)s?\b", retrieval_query,re.I)
+                                           and re.search(r"how many|resolution|resolving|diameter|aperture|size|used for",retrieval_query,re.I))
+                    anchored = self._vs.search_by_filename(
+                        table_name=active_pg.db_table_name, pattern=pattern,
+                        query_vector=query_vector, top_k=2048 if command_catalog else 256 if reference_inventory or setting_table or component_catalog else 4,
+                    )
+                    for chunk in anchored:
+                        if setting_table and not reference_inventory:
+                            fields=re.findall(r'\b[a-z]+(?:-[a-z]+)+\b',retrieval_query.lower())
+                            tables=chunk.get('completeTables',[])
+                            if any(all(re.search(r'(?<!\w)'+re.escape(f)+r'(?!\w)',table,re.I) for f in fields)
+                                   and re.search(r'^\|\s*instrument\s*\|',table,re.I|re.M) for table in tables):
+                                chunk={**chunk,'exactReference':True}
+                            elif chunk not in anchored[:4]:
+                                continue
+                        if command_catalog:
+                            from .source_policy import annotate_source
+                            chunk=annotate_source(chunk)
+                            command=str(chunk.get('section','')).strip('` ')
+                            if (chunk.get('instrument','').upper()!=instrument
+                                    or not re.fullmatch(r'[a-z][a-z0-9_.-]+',command,re.I)
+                                    or not re.search(r'(?<!\w)'+re.escape(command)+r'(?!\w)',retrieval_query,re.I)):
+                                continue
+                            chunk={**chunk,'exactReference':True}
+                        if reference_inventory:
+                            from .table_facts import derived_facts
+                            from .source_policy import annotate_source
+                            candidate = annotate_source(chunk)
+                            if candidate.get("status") not in ("active","current"):
+                                continue
+                            if any(fact["entity"] == "fiber" for table in chunk.get("completeTables",[]) for fact in derived_facts(table)):
+                                chunk = {**chunk,"referenceInventory":True}
+                            elif chunk not in anchored[:4]:
+                                continue
+                        key = (chunk["documentId"], chunk["chunkIndex"])
+                        if key not in existing:
+                            candidate_chunks.append(chunk)
+                            existing.add(key)
+                        elif chunk.get("referenceInventory") or chunk.get('exactReference'):
+                            for existing_chunk in candidate_chunks:
+                                if (existing_chunk["documentId"],existing_chunk["chunkIndex"]) == key:
+                                    if chunk.get('referenceInventory'):
+                                        existing_chunk['referenceInventory'] = True
+                                    if chunk.get('exactReference'):
+                                        existing_chunk['exactReference'] = True
+
+        # Data handling is a documented operating domain. Its instrument
+        # cookbook entries are only pointers; retrieve the indexed shared guide,
+        # never fetch arbitrary links or insert an answer from a template.
+        if re.search(r'\bdata\b', retrieval_query, re.I) and re.search(
+                r'\b(?:download\w*|shar\w*|access|team|server|principal investigator|PI)\b', retrieval_query, re.I):
+            existing = {(c['documentId'], c['chunkIndex']) for c in candidate_chunks}
+            for chunk in self._vs.search_by_filename(
+                    table_name=active_pg.db_table_name, pattern='observing-tools-datadownload-html.md',
+                    query_vector=query_vector, top_k=8):
+                if (chunk['documentId'], chunk['chunkIndex']) not in existing:
+                    candidate_chunks.append(chunk)
+                    existing.add((chunk['documentId'], chunk['chunkIndex']))
+
+        # General telescope specifications have no instrument tag; explicitly
+        # include their indexed reference for technical-property questions.
+        if (not intent.instruments and re.search(r'\btelescope\b',retrieval_query,re.I)
+                and re.search(r'\b(?:scale|field|aperture|weight|diameter|focus|focal)\b',retrieval_query,re.I)):
+            candidate_chunks.extend(self._vs.search_by_filename(
+                table_name=active_pg.db_table_name,pattern='telescope-technical-details-html.md',
+                query_vector=query_vector,top_k=6))
+
+        # Follow documentation references only to an already-indexed official
+        # source. No network fetch, arbitrary host or document instruction can
+        # cause an external request. Link labels must match the actual topic.
+        from .linked_references import matching_reference_links
+        for pattern,url in matching_reference_links(retrieval_query,candidate_chunks):
+            for linked in self._vs.search_by_filename(
+                    table_name=active_pg.db_table_name,pattern=pattern,query_vector=query_vector,top_k=3):
+                from .linked_references import canonical_key
+                if canonical_key(linked.get('canonicalLocation','')) == canonical_key(url):
+                    candidate_chunks.append({**linked,'linkedReference':True})
+
+        # Scoped technical/policy lookups must not stop at a report introduction.
+        # Expand only topic-matched indexed sources, not the whole corpus.
+        from .reference_focus import focused_sources, property_match
+        for filename in focused_sources(retrieval_query, candidate_chunks):
+            scoped_chunks = self._vs.search_by_filename(
+                    table_name=active_pg.db_table_name, pattern=filename,
+                    query_vector=query_vector, top_k=256)
+            from .grounding import _identifier_numbers
+            scope_ids = sorted(_identifier_numbers(' '.join(c.get('text','') for c in scoped_chunks)))
+            for chunk in scoped_chunks:
+                if property_match(retrieval_query, chunk.get('text', '')):
+                    candidate_chunks.append({**chunk, 'exactReference': True, 'focusedReference': True,
+                                             'focusedScopeIdentifiers': scope_ids})
+
+        # Exact numbered-table routes use source structure, not embeddings alone:
+        # a requested component can be far down a long table whose prose does
+        # not contain the component's nickname from the question.
+        component=re.search(r'\bgrism\s*(?:#|number\s*)?(\d+)\b|\bG#(\d+)\b',retrieval_query,re.I)
+        if component:
+            identifier=component[1] or component[2]
+            properties=[p for p in ('central','dispersion','resolution') if re.search(r'\b'+p+r'\b',retrieval_query,re.I)]
+            for chunk in candidate_chunks:
+                if properties and any(all(p in table.lower() for p in properties)
+                                      and re.search(r'^\|\s*'+re.escape(identifier)+r'(?:\s+[a-z])?\s*\|',table,re.I|re.M)
+                                      for table in chunk.get('completeTables',[])):
+                    chunk['exactReference']=True
 
         # Guarantee every *effectively* boosted source appears in the candidate pool.
         # Only patterns with multiplier != 1.0 are considered — weight=1.0 is a no-op
@@ -208,6 +323,50 @@ class ChatService:
             min_similarity=self._chat_settings.min_evidence_similarity,
         )
 
+        # Complete an interrupted procedure/table within its own section and
+        # version, with a bounded two-chunk allowance. Never cross into a spare
+        # configuration, a new topic, or an inactive source version.
+        expanded = []
+        seen = {(c["documentId"], c["chunkIndex"]) for c in context_chunks}
+        inspected = set()
+        from .source_policy import annotate_source
+        for selected in context_chunks:
+            if len(expanded) >= 2:
+                break
+            structured = bool(set(selected.get("contentTypes", [])) & {"table", "list", "code", "warning"})
+            doc_id = selected["documentId"]
+            if doc_id in inspected:
+                continue
+            inspected.add(doc_id)
+            neighbors = self._vs.search_by_filename(
+                table_name=active_pg.db_table_name, pattern=selected["fileName"],
+                query_vector=query_vector, top_k=256,
+            )
+            for neighbor in sorted(neighbors, key=lambda c: abs(c["chunkIndex"]-selected["chunkIndex"])):
+                key = (neighbor["documentId"], neighbor["chunkIndex"])
+                neighbor = annotate_source(neighbor)
+                headings = selected.get("headingPath", [])
+                neighbor_headings = neighbor.get("headingPath", [])
+                same_section = structured and neighbor_headings == headings
+                child_table = (headings and neighbor_headings[:len(headings)] == headings
+                               and bool(neighbor.get("completeTables"))
+                               and neighbor.get("status") == selected.get("status"))
+                if (key in seen or neighbor["documentId"] != doc_id
+                        or abs(neighbor["chunkIndex"]-selected["chunkIndex"]) != 1
+                        or not (same_section or child_table)
+                        or neighbor.get("contentTypes") == ["heading"]):
+                    continue
+                from .evidence_selection import _duplicate_key, _near_duplicate
+                if any(_duplicate_key(neighbor) == _duplicate_key(other)
+                       or _near_duplicate(neighbor.get('text', ''), other.get('text', ''))
+                       for other in [*context_chunks, *expanded]):
+                    continue
+                expanded.append({**neighbor, "neighborExpansion": True})
+                seen.add(key)
+                if len(expanded) >= 2:
+                    break
+        context_chunks.extend(expanded)
+
         retrieval_ms = max(1, int((time.perf_counter() - started_at) * 1000) - embedding_ms)
         corpus_versions = sorted({str(c.get("corpusVersion", "")) for c in context_chunks if c.get("corpusVersion")})
         trace_base = {
@@ -232,11 +391,9 @@ class ChatService:
                 and bool(re.search(r"[äöüß]|\b(?:wie|wo|warum|welche|welcher|kann|ich|nicht|für)\b", query, re.I))
             )
             answer = (
-                "Ich konnte in den aktuellen Dokumenten keine ausreichend zuverlässigen Belege finden. "
-                "Kannst du Instrument oder Verfahren genauer benennen?"
+                "Ich konnte im aktiven Dokumentenbestand keine ausreichenden Belege für diese Frage finden."
                 if german else
-                "I could not find sufficiently reliable evidence in the current documents. "
-                "Could you clarify the instrument or procedure?"
+                "I could not find documentation supporting this question in the active corpus."
             )
             elapsed_ms = max(1, int((time.perf_counter() - started_at) * 1000))
             trace = {**trace_base, "promptSha256": "", "abstained": True, "elapsedMs": elapsed_ms,
@@ -290,6 +447,11 @@ class ChatService:
         for msg in history:
             messages.append({"role": msg.role, "content": msg.content})
         user_content = query if not language_user_suffix else f"{query}\n\n{language_user_suffix}"
+        user_content += "\nReturn the required JSON claim/evidence object, answering this question rather than a related question."
+        if re.search(r"\bused for\b|\bcapabilities\b", retrieval_query, re.I):
+            user_content += " State the supported observing capabilities/modes, not just an instrument definition."
+        if "procedure" in intent.categories or re.search(r"\bsequence\b|\bsteps\b", retrieval_query, re.I):
+            user_content += " Include the complete ordered procedure supported by the evidence; do not omit prerequisite or recovery steps."
         messages.append({"role": "user", "content": user_content})
         prompt_hash = hashlib.sha256(
             json.dumps(messages, ensure_ascii=False, sort_keys=True).encode("utf-8")
@@ -298,7 +460,12 @@ class ChatService:
         generation_started = time.perf_counter()
         raw_answer = ""
         error_type = ""
-        checked_answer = compare_wavelength(retrieval_query, evidence, answer_language)
+        checked_answer = (answer_operational(retrieval_query, evidence, answer_language)
+                          or answer_procedure(retrieval_query,evidence,answer_language)
+                          or answer_reference(retrieval_query, evidence, answer_language)
+                          or answer_component_table(retrieval_query,evidence,answer_language)
+                          or compare_wavelength(retrieval_query, evidence, answer_language)
+                          or answer_literal(retrieval_query, evidence, answer_language))
         prompt_tokens = completion_tokens = total_tokens = 0
         if checked_answer is None:
             try:
@@ -325,23 +492,29 @@ class ChatService:
         generation_ms = max(1, int((time.perf_counter() - generation_started) * 1000)) if checked_answer is None else 0
 
         validation_started = time.perf_counter()
-        validation = checked_answer.validation if checked_answer else validate_and_render(
-            raw_answer, evidence, answer_language, historical_intent=intent.historical
+        validation = checked_answer.validation if checked_answer else await run_in_worker_pool(
+            validate_and_render, raw_answer, evidence, answer_language,
+            historical_intent=intent.historical or "technical_reference" in intent.categories,
+            question=retrieval_query, semantic_check=entails,
         )
         validation_ms = max(1, int((time.perf_counter() - validation_started) * 1000))
         initial_validation = validation
         generation_attempts = 0 if checked_answer else 1
         model_outputs = [] if checked_answer else [raw_answer]
-        if validation.abstained and validation.rejected_claims > 0 and not error_type:
+        if validation.rejected_claims > 0 and not error_type:
             # Repair a failed structured response once. Do not retry deliberate
             # empty-claims abstentions, and validate the correction identically.
             messages.extend([
                 {"role": "assistant", "content": raw_answer},
                 {"role": "user", "content": (
                     "Your claims failed citation/support validation. Return a corrected JSON object. "
+                    + "Rejected checks: " + ", ".join(validation.rejection_reasons) + ". " +
                     "Use concise complete sentences closely following the supplied evidence. "
                     "Do not expand acronyms or add unsupported wording. For each claim use one brief "
                     "exact quote copied from its cited evidence, preserving numbers, units and punctuation. "
+                    "Identifiers and dates in the user's question are not evidence: omit their restatement "
+                    "if your cited item does not establish them. Still report requested values that the "
+                    "source does establish, naming the documented subject rather than inventing its identity. "
                     "Remove claims you cannot support; if none remain, return {\"claims\":[]}."
                 )},
             ])
@@ -370,10 +543,20 @@ class ChatService:
                 _logger.exception("chat model correction request failed")
             generation_ms += max(1, int((time.perf_counter() - retry_started) * 1000))
             validation_started = time.perf_counter()
-            validation = validate_and_render(
-                raw_answer, evidence, answer_language, historical_intent=intent.historical
+            corrected = await run_in_worker_pool(validate_and_render,
+                raw_answer, evidence, answer_language, historical_intent=intent.historical or "technical_reference" in intent.categories,
+                question=retrieval_query, semantic_check=entails,
             )
+            # A failed correction must not erase already verified facts.
+            if not corrected.abstained or validation.abstained:
+                validation=corrected
             validation_ms += max(1, int((time.perf_counter() - validation_started) * 1000))
+        if validation.abstained and checked_answer is None:
+            from .source_excerpts import answer_excerpt
+            excerpt=answer_excerpt(retrieval_query,evidence,answer_language)
+            if excerpt:
+                checked_answer=excerpt
+                validation=excerpt.validation
         answer = validation.answer
         if error_type:
             answer = (
@@ -398,11 +581,16 @@ class ChatService:
             "totalTokens": total_tokens,
             "acceptedClaims": validation.accepted_claims,
             "rejectedClaims": validation.rejected_claims,
+            "resolvedExcerpts": validation.resolved_excerpts,
             "invalidCitations": validation.invalid_citations,
             "generationAttempts": generation_attempts,
             "initialRejectedClaims": initial_validation.rejected_claims,
             "initialInvalidCitations": initial_validation.invalid_citations,
-            "answerMethod": "wavelength-range-v1" if checked_answer else "validated-model-claims",
+            "rejectionReasons": list(validation.rejection_reasons),
+            "initialRejectionReasons": list(initial_validation.rejection_reasons),
+            "abstentionReason": ("model_unavailable" if error_type else "claim_validation_failed" if validation.rejected_claims else "model_found_no_support") if abstained else None,
+            "answerMethod": checked_answer.derivation["operation"] if checked_answer else "validated-model-claims",
+            "semanticChecker": "local-nli-" + SEMANTIC_REVISION if not checked_answer and semantic_available() else "deterministic",
         }
         if error_type:
             trace["generationErrorType"] = error_type

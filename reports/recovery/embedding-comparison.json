@@ -1,0 +1,332 @@
+{
+  "corpusSha256": "bd4f55a4d38763a36bc199f0c455981990aad07ac9b2f6fb8255d41c3b9e198b",
+  "chunks": 5310,
+  "models": [
+    {
+      "model": "all-MiniLM-L6-v2",
+      "elapsedSeconds": 4.87,
+      "sourceRecallAt10": 0.7142857142857143,
+      "sourceRecallAt64": 1.0,
+      "mrr": 0.486287657920311,
+      "results": [
+        {
+          "question": "What is NOTCAM?",
+          "firstRelevantRank": 12,
+          "top5": [
+            "instruments-notcam-mounting.md",
+            "instruments-notcam-milestones-html.md",
+            "instruments-notcam-reports-status-98-10-html.md",
+            "instruments-notcam-eng-grade-arr-html.md",
+            "instruments-notcam-council-rep-2002-04-12-html.md"
+          ]
+        },
+        {
+          "question": "What wavelength range does NOTCAM cover?",
+          "firstRelevantRank": 5,
+          "top5": [
+            "instruments-development-jhtspecupgrades-pdf.md",
+            "instruments-notcam-milestones-html.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "instruments-instruments-html.md",
+            "instruments-notcam-overview-html.md"
+          ]
+        },
+        {
+          "question": "How many science fibers does FIES currently have?",
+          "firstRelevantRank": 25,
+          "top5": [
+            "instruments-fies.md",
+            "instruments-fies-devel.md",
+            "instruments-fies-fies-commd-html.md",
+            "instruments-fies-fies-commd-html.md",
+            "instruments-fies-fies-comm-html.md"
+          ]
+        },
+        {
+          "question": "What on-sky aperture does FIES fiber 4 have?",
+          "firstRelevantRank": 49,
+          "top5": [
+            "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+            "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+            "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md",
+            "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+            "instruments-fies-fies-comm-html.md"
+          ]
+        },
+        {
+          "question": "What is the focal plane scale of the Nordic Optical Telescope?",
+          "firstRelevantRank": 2,
+          "top5": [
+            "instruments-notcam-opticaldesign-pdf.md",
+            "telescope-technical-details-html.md",
+            "instruments-fies-devel-skew-readout-arto-skewpaper-050412-pdf.md",
+            "instruments-development-scs-pdf.md",
+            "instruments-notcam-opticaldesign-pdf.md"
+          ]
+        },
+        {
+          "question": "What times should I avoid the ORM mountain road in winter?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "observing-guide-ormsafetyinformation-pdf.md",
+            "observing-guide-health-safety-html.md",
+            "observing-guide-health-safety-html.md",
+            "observing-guide-health-safety-html.md",
+            "observing-guide-health-safety-html.md"
+          ]
+        },
+        {
+          "question": "What are the PolCor coronagraphic disk diameters?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-polcor.md",
+            "instruments-polcor-polcor-2-pdf.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "optic_elements.md"
+          ]
+        },
+        {
+          "question": "What is the physical pixel size of SITe SI-003A CCD?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-detectors-ccd1-003datsh-pdf.md",
+            "instruments-detectors-ccd1-s103xa-family-pdf.md",
+            "instruments-detectors-ccd1.md",
+            "instruments-detectors-ccd1-003datsh-pdf.md",
+            "instruments-detectors-ccd1-s103xa-family-pdf.md"
+          ]
+        },
+        {
+          "question": "What readout speeds did the ALFOSC detector controller introduced in 2011 provide?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md"
+          ]
+        },
+        {
+          "question": "What fundamental frequency was the pick-up noise of the ALFOSC controller?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-alfosc-speccounts-html.md"
+          ]
+        },
+        {
+          "question": "What is the ALFOSC grism 18 central wavelength and dispersion?",
+          "firstRelevantRank": 2,
+          "top5": [
+            "instruments-development-scs-pdf.md",
+            "optic_elements.md",
+            "optic_elements.md",
+            "optic_elements.md",
+            "optic_elements.md"
+          ]
+        },
+        {
+          "question": "How does an observer move two stars into the ALFOSC slit using slitrot?",
+          "firstRelevantRank": 14,
+          "top5": [
+            "sequencer_reference.md",
+            "instruments-alfosc-remoteobserving-remoteobs-html.md",
+            "instruments-alfosc-slitpos-html.md",
+            "telescope-wfs-wfs-html.md",
+            "sequencer_reference.md"
+          ]
+        },
+        {
+          "question": "How do I take NOTCAM dark frames?",
+          "firstRelevantRank": 7,
+          "top5": [
+            "instruments-notcam-calib-plan-v2-0-pdf.md",
+            "instruments-notcam-calibration-html.md",
+            "instruments-notcam-calibration-html.md",
+            "instruments-notcam-calib-plan-v2-0-pdf.md",
+            "observing-seq-notcam-seq-commands-html.md"
+          ]
+        },
+        {
+          "question": "How can I copy my observing data home?",
+          "firstRelevantRank": 4,
+          "top5": [
+            "observing-tools-datatransfer-html.md",
+            "observing-cookbook-current-cookbook-php-instrument-stancam.md",
+            "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+            "observing-cookbook-current-cookbook-php-instrument-fies.md",
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "elapsedSeconds": 99.34,
+      "sourceRecallAt10": 0.8571428571428571,
+      "sourceRecallAt64": 1.0,
+      "mrr": 0.6376795162509448,
+      "results": [
+        {
+          "question": "What is NOTCAM?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-notcam-overview-html.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "instruments-development-scs-pdf.md",
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+            "instruments-fits-header-mef-new-keywords-html.md"
+          ]
+        },
+        {
+          "question": "What wavelength range does NOTCAM cover?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-notcam-overview-html.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+            "instruments-development-jhtspecupgrades-pdf.md"
+          ]
+        },
+        {
+          "question": "How many science fibers does FIES currently have?",
+          "firstRelevantRank": 3,
+          "top5": [
+            "instruments-fies-devel-fies-drift-report-pdf.md",
+            "instruments-fies-devel.md",
+            "observing-cookbook-current-cookbook-php-instrument-fies.md",
+            "instruments-fies-fies-commd-html.md",
+            "instruments-fies-devel.md"
+          ]
+        },
+        {
+          "question": "What on-sky aperture does FIES fiber 4 have?",
+          "firstRelevantRank": 42,
+          "top5": [
+            "instruments-fies-fies-comm-html.md",
+            "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+            "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+            "instruments-fies-devel-fies-drift-report-pdf.md",
+            "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md"
+          ]
+        },
+        {
+          "question": "What is the focal plane scale of the Nordic Optical Telescope?",
+          "firstRelevantRank": 27,
+          "top5": [
+            "instruments-notcam-opticaldesign-pdf.md",
+            "instruments-development-scs-pdf.md",
+            "instruments-notcam-opticaldesign-pdf.md",
+            "instruments-sofin-florence-stokesmeter-pdf.md",
+            "instruments-development-dataacquserreq-pdf.md"
+          ]
+        },
+        {
+          "question": "What times should I avoid the ORM mountain road in winter?",
+          "firstRelevantRank": 2,
+          "top5": [
+            "observing-guide-health-safety-html.md",
+            "observing-guide-ormsafetyinformation-pdf.md",
+            "observing-guide-health-safety-html.md",
+            "observing-guide-health-safety-html.md",
+            "observing-guide-ormsafetyinformation-pdf.md"
+          ]
+        },
+        {
+          "question": "What are the PolCor coronagraphic disk diameters?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-polcor.md",
+            "instruments-polcor-polcor-2-pdf.md",
+            "instruments-polcor.md",
+            "instruments-polcor-polcor-2-pdf.md",
+            "instruments-polcor-polcor-2-pdf.md"
+          ]
+        },
+        {
+          "question": "What is the physical pixel size of SITe SI-003A CCD?",
+          "firstRelevantRank": 2,
+          "top5": [
+            "instruments-detectors-ccd1.md",
+            "instruments-detectors-ccd1-003datsh-pdf.md",
+            "instruments-detectors-ccd1-s103xa-family-pdf.md",
+            "instruments-detectors-gen3-ccdgen3-html.md",
+            "instruments-fies-devel-fiesccde2v-pdf.md"
+          ]
+        },
+        {
+          "question": "What readout speeds did the ALFOSC detector controller introduced in 2011 provide?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-detectors-mosca-index-html.md",
+            "instruments-development-alfosc-controller-report-pdf.md"
+          ]
+        },
+        {
+          "question": "What fundamental frequency was the pick-up noise of the ALFOSC controller?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md",
+            "instruments-development-alfosc-controller-report-pdf.md"
+          ]
+        },
+        {
+          "question": "What is the ALFOSC grism 18 central wavelength and dispersion?",
+          "firstRelevantRank": 5,
+          "top5": [
+            "instruments-development-scs-pdf.md",
+            "instruments-alfosc-grisms-grism17-html.md",
+            "instruments-alfosc-grisms-grism16-html.md",
+            "instruments-alfosc-grisms-grism18-20-html.md",
+            "instruments-alfosc-grisms.md"
+          ]
+        },
+        {
+          "question": "How does an observer move two stars into the ALFOSC slit using slitrot?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "instruments-alfosc-arbang-html.md",
+            "instruments-alfosc-slitpos-html.md",
+            "instruments-alfosc-slitpos-html.md",
+            "instruments-alfosc-remoteobserving-remoteobs-html.md",
+            "sequencer_reference.md"
+          ]
+        },
+        {
+          "question": "How do I take NOTCAM dark frames?",
+          "firstRelevantRank": 3,
+          "top5": [
+            "observing-seq-notcam-seq-commands-html.md",
+            "instruments-notcam-calibration-html.md",
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+            "instruments-development-ir-user-requirements-pdf.md",
+            "instruments-notcam-calib-plan-v2-0-pdf.md"
+          ]
+        },
+        {
+          "question": "How can I copy my observing data home?",
+          "firstRelevantRank": 1,
+          "top5": [
+            "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+            "observing-cookbook-current-cookbook-php-instrument-stancam.md",
+            "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+            "observing-cookbook-current-cookbook-php-instrument-fies.md",
+            "instruments-alfosc-remoteobserving-remoteobs-html.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

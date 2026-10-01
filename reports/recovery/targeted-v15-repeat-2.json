@@ -1,0 +1,678 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "61a157760a2999264febce716b97fe3e5782072eb83f26ff5562521a0863d41a",
+  "implementationSha256": "993e7a7d0e69698824d71303630033ac655d00ceb9b75e11e22a311dfac8d948",
+  "expectedCoreTotal": 6,
+  "expectedLegacyTotal": 0,
+  "complete": true,
+  "selectedCaseIds": [
+    "alfosc_historical_pickup",
+    "alfosc_pickup_legacy_wording",
+    "alfosc_pickup_paraphrase",
+    "alfosc_uif_unspecified_error",
+    "site_ccd_pixel",
+    "site_ccd_pixel_parenthesis"
+  ],
+  "corePassed": 6,
+  "coreTotal": 6,
+  "results": [
+    {
+      "id": "site_ccd_pixel",
+      "question": "What is the physical pixel size in microns of the SITe SI-003A CCD?",
+      "answer": "Cited detector specification (SI-003A): Pixel Size 24 µm x 24 µm. [D-54806cbf7bcc0960-C18]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 181,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-9fec70b291e85985-C1",
+          "file": "instruments-detectors-ccd1.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0360efd981c8c42b-C4",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "ALFOSC grisms",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-54806cbf7bcc0960-C2",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-853c182da2956208-C1",
+          "file": "instruments-detectors-mosca-ccd9101112.md",
+          "url": "https://www.not.iac.es/instruments/detectors/mosca/CCD9101112",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a0118c657de7f5d3-C0",
+          "file": "instruments-stancam-streadout-html.md",
+          "url": "https://www.not.iac.es/instruments/stancam/streadout.html",
+          "section": "SITe CCD#1 Read out times:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c8ea9f0045314fb8-C1",
+          "file": "instruments-detectors-mosca-index-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/mosca/index.html",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-54806cbf7bcc0960-C18",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f836d9766bee4a18-C16",
+          "file": "instruments-detectors-ccd1-s103xa-family-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/S103xA_family.pdf",
+          "section": "S103Xa Family",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9fec70b291e85985-C2",
+          "file": "instruments-detectors-ccd1.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0360efd981c8c42b-C5",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "ALFOSC grisms",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "b7fd1ab469760c0de03999661d3d471fbe26b150be943c234265b25145196b9d",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "named-detector-pixel-dimensions-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "site_ccd_pixel_parenthesis",
+      "question": "What is the physical pixel size (in microns) of the SITe SI-003A CCD?",
+      "answer": "Cited detector specification (SI-003A): Pixel Size 24 µm x 24 µm. [D-54806cbf7bcc0960-C18]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 184,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-9fec70b291e85985-C1",
+          "file": "instruments-detectors-ccd1.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0360efd981c8c42b-C4",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "ALFOSC grisms",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-54806cbf7bcc0960-C2",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a0118c657de7f5d3-C0",
+          "file": "instruments-stancam-streadout-html.md",
+          "url": "https://www.not.iac.es/instruments/stancam/streadout.html",
+          "section": "SITe CCD#1 Read out times:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-853c182da2956208-C1",
+          "file": "instruments-detectors-mosca-ccd9101112.md",
+          "url": "https://www.not.iac.es/instruments/detectors/mosca/CCD9101112",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c8ea9f0045314fb8-C1",
+          "file": "instruments-detectors-mosca-index-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/mosca/index.html",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-54806cbf7bcc0960-C18",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f836d9766bee4a18-C16",
+          "file": "instruments-detectors-ccd1-s103xa-family-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/S103xA_family.pdf",
+          "section": "S103Xa Family",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9fec70b291e85985-C2",
+          "file": "instruments-detectors-ccd1.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/",
+          "section": "Summary:",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0360efd981c8c42b-C5",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "ALFOSC grisms",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "58a8c8884d96070925c9335287905c9c82cc9ded6b4008a9fa270dae2b9fa1db",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "named-detector-pixel-dimensions-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "alfosc_historical_pickup",
+      "question": "According to the ALFOSC controller test report, what fundamental frequency was measured for the pick-up noise?",
+      "answer": "Historical/technical report (not current operating guidance): From a frequency analysis of the raw pixel data the fundamental frequency of the noise is 13.28KHz (assuming the readout speeds of 200 and 400 kpix/sec are precise). [D-8bbaf408407c876c-C15]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 208,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-8bbaf408407c876c-C15",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C130",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-622f13642c3860ed-C1",
+          "file": "instruments-detectors-ccd8-alfosc-e2v-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/alfosc_e2v.pdf",
+          "section": "Read-out noise (page 3)",
+          "status": "historical",
+          "authority": "tier_3_historical_record"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C41",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Starting the ALFOSC observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8bbaf408407c876c-C14",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-622f13642c3860ed-C0",
+          "file": "instruments-detectors-ccd8-alfosc-e2v-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/alfosc_e2v.pdf",
+          "section": "ALFOSC Camera: E2V CCD42-40-1-B83, September 2003",
+          "status": "historical",
+          "authority": "tier_3_historical_record"
+        },
+        {
+          "citationId": "D-802998b9670b265e-C0",
+          "file": "instruments-alfosc-blockers-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/blockers.html",
+          "section": "ALFOSC 2nd-order blocking filters",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C5",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C129",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C4",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "3b41c18c5efc54e70ded55d9ea749481fed1e14132c180130d8f23fde5cf03e1",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "alfosc_pickup_legacy_wording",
+      "question": "What is the fundamental frequency of the pick-up noise observed with the ALFOSC controller?",
+      "answer": "Historical/technical report (not current operating guidance): From a frequency analysis of the raw pixel data the fundamental frequency of the noise is 13.28KHz (assuming the readout speeds of 200 and 400 kpix/sec are precise). [D-8bbaf408407c876c-C15]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 227,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-8bbaf408407c876c-C15",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C130",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C89",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Observing using OB",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-622f13642c3860ed-C1",
+          "file": "instruments-detectors-ccd8-alfosc-e2v-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/alfosc_e2v.pdf",
+          "section": "Read-out noise (page 3)",
+          "status": "historical",
+          "authority": "tier_3_historical_record"
+        },
+        {
+          "citationId": "D-8bbaf408407c876c-C14",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-802998b9670b265e-C0",
+          "file": "instruments-alfosc-blockers-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/blockers.html",
+          "section": "ALFOSC 2nd-order blocking filters",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-622f13642c3860ed-C0",
+          "file": "instruments-detectors-ccd8-alfosc-e2v-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/alfosc_e2v.pdf",
+          "section": "ALFOSC Camera: E2V CCD42-40-1-B83, September 2003",
+          "status": "historical",
+          "authority": "tier_3_historical_record"
+        },
+        {
+          "citationId": "D-51b7aa37856c9812-C1",
+          "file": "instruments-adc-html.md",
+          "url": "https://www.not.iac.es/instruments/adc.html",
+          "section": "ADC transmission as observed",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C129",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "9802c603c61c842cc6bca341a6f8a2aff608ba47f97cf41f2cc660fb0b0da07f",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "alfosc_pickup_paraphrase",
+      "question": "What fundamental frequency does the ALFOSC report give for pickup noise?",
+      "answer": "Historical/technical report (not current operating guidance): From a frequency analysis of the raw pixel data the fundamental frequency of the noise is 13.28KHz (assuming the readout speeds of 200 and 400 kpix/sec are precise). [D-8bbaf408407c876c-C15]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 214,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-8bbaf408407c876c-C15",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C130",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-802998b9670b265e-C0",
+          "file": "instruments-alfosc-blockers-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/blockers.html",
+          "section": "ALFOSC 2nd-order blocking filters",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C5",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5c5c30785571452b-C198",
+          "file": "instruments-development-notfitsv101-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTfitsV101.pdf",
+          "section": "Notfitsv101",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-8bbaf408407c876c-C14",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C47",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Spectroscopy",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9bed977b788ddc1b-C105",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`quickspec`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C129",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Tables for Instrument Settings",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C4",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "194398209ca14ca3965ae7932654b651ddb9e4ade3f014c5ec28310bf3b4f44b",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "alfosc_uif_unspecified_error",
+      "question": "What should an observer do if the ALFOSC UIF fails to start with an error message?",
+      "answer": "Please provide the exact error message. The cited guide gives a conditional remedy for \"The ALFOSC UIF did not start. Restart the observing system.\"; an unspecified startup error does not establish that this remedy applies. [D-c4a919f6f9136951-C125]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 240,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-c4a919f6f9136951-C125",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Troubleshooting ALFOSC",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C43",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Starting the ALFOSC observing system",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9bed977b788ddc1b-C117",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`reset-log`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9bed977b788ddc1b-C111",
+          "file": "sequencer_reference.md",
+          "url": "urn:notbot:path:sequencer_reference.md",
+          "section": "`read_alfosc_setup`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C3",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C0",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-123a50c626685492-C0",
+          "file": "instruments-alfosc-fixed-setup-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fixed_setup.html",
+          "section": "ALFOSC fixed set-up for P73",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-7558c705b4158fa8-C10",
+          "file": "instruments-alfosc-seq-alfosc-ccd3-problems-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-ccd3-problems.html",
+          "section": "Specific solutions to known problems",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C126",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Troubleshooting ALFOSC",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-ac2b63e3e265d738-C2",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "The ALFOSC Page",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "b938f117f9f9aca9ddc84e42d8e1f5f8c235018e29bc55a6c1cdb5a304782464",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "conditional-error-clarification-v1",
+        "abstentionReason": "model_found_no_support",
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    }
+  ]
+}

@@ -83,6 +83,13 @@ class LifecycleTests(unittest.TestCase):
             self.assertEqual(conn.execute("SELECT count(*) FROM docs").fetchone()[0], 2)
             self.assertEqual(conn.execute("SELECT count(*) FROM docs WHERE is_active = 1").fetchone()[0], 1)
 
+    def test_complete_table_scope_roundtrips_in_vector_payload(self) -> None:
+        table="| fiber | role |\n| --- | --- |\n| fiber 4 | science |"
+        p={**payload("source","v1",1,table),"completeTables":[table]}
+        self.store.replace_source_chunks("docs","source","v1",[[1.0,0.0]],[p])
+        result=self.store.similarity_search("docs",[1.0,0.0])[0]
+        self.assertEqual(result["completeTables"],[table])
+
     def test_structural_metadata_round_trip(self) -> None:
         item = payload("source", "v1", 1, "procedure")
         item.update({

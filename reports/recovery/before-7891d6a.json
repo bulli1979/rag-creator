@@ -1,0 +1,3473 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "44d1124249f11d390a6673c4d4a84d8656ad322f9b3413f9f83feba834efb68f",
+  "corePassed": 12,
+  "coreTotal": 31,
+  "results": [
+    {
+      "id": "fies_intro",
+      "question": "what is FIES",
+      "answer": "FIES is a cross-dispersed, high-resolution echelle spectrograph at the 2.56m Nordic Optical Telescope. [D-277add1da61f1e2c-C5] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 8188,
+      "sources": [
+        {
+          "citationId": "D-ff527ae652d6d65e-C1",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-277add1da61f1e2c-C5",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C2",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc2cd06dfb3f3504-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page3-4.pdf",
+          "section": "Bundled Optical Design 09112017 Page3 4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "7ed7a1c87b503b18575ac7edc46722860e3b6459d93483e58978e9e46e119302",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "fies_typo_followup",
+      "question": "how many fivers are available?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4",
+        "missing required facet: calibration|science|on.sky"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 9839,
+      "sources": [
+        {
+          "citationId": "D-5491aff8683dd72c-C228",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "Others (74 total, 69 available)",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "5e565a74035d284dd9e47097b2845e73e0039d5f6ae9aeb519625beea75294ce",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_count",
+      "question": "How many science fibres does FIES currently have?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 11927,
+      "sources": [
+        {
+          "citationId": "D-b71d400d843f6da4-C1",
+          "file": "instruments-fies-devel-opticaldocumentationfiesfiberunitsbc-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/OpticalDocumentationFIESfiberunitsBC-2.pdf",
+          "section": "Opticaldocumentationfiesfiberunitsbc 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-83d1dfd43de9ada2-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page2.pdf",
+          "section": "Bundled Optical Design 09112017 Page2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C0",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C1",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "bb543fe81afb184196d5f6474df8f8960a7352027a9160a659d6365742d80b94",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_clarified",
+      "question": "i mean fibers on FIES",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4",
+        "missing required facet: calibration|science|on.sky"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 11092,
+      "sources": [
+        {
+          "citationId": "D-46b9987282f39d02-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page7-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page7.pdf",
+          "section": "Bundled Optical Design 09112017 Page7",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b71d400d843f6da4-C1",
+          "file": "instruments-fies-devel-opticaldocumentationfiesfiberunitsbc-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/OpticalDocumentationFIESfiberunitsBC-2.pdf",
+          "section": "Opticaldocumentationfiesfiberunitsbc 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-277add1da61f1e2c-C17",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-289a9a2a28e7a9a9-C1",
+          "file": "instruments-fies-devel-fies-drift-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_drift_report.pdf",
+          "section": "Fies Drift Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-83d1dfd43de9ada2-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page2.pdf",
+          "section": "Bundled Optical Design 09112017 Page2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "1fd108c56a49fcbdfe8bdd12b6652858aa52e14479f0701d313b3e10ea8e5984",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_resolution_followup",
+      "question": "what resolution does the different fibers offer?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 25[ ,]?000",
+        "missing required facet: 45[ ,]?000|46[ ,]?000",
+        "missing required facet: 65[ ,]?000|67[ ,]?000"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 35260,
+      "sources": [
+        {
+          "citationId": "D-277add1da61f1e2c-C15",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-33b829c1529ecd5f-C4",
+          "file": "instruments-fies-devel-telting2014fies-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/telting2014FIES.pdf",
+          "section": "Telting2014Fies",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C13",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C8",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C15",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "ba8da6e934bb6aca7266725e88f5e9b3c891aab485e5314d149c549a54b825ff",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_aperture_reported",
+      "question": "what is the size in arcsec on sky for the high res FIES fiber (#4)?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 1\\.3",
+        "missing required facet: arcsec|arcsecond"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 16266,
+      "sources": [
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C11",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C7",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C37",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C19",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C16",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "754530822a5651b6dbed4e9ef75fbf5c7a5f705d085b6fdf2be6795a955dc5fa",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_aperture_paraphrase",
+      "question": "And the diameter on the sky of fibre number 4?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 1\\.3",
+        "missing required facet: arcsec|arcsecond"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 16787,
+      "sources": [
+        {
+          "citationId": "D-ff527ae652d6d65e-C37",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C7",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-277add1da61f1e2c-C17",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C11",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-335909843aec0537-C18",
+          "file": "instruments-fies-devel-fies-5ms-precision-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_5ms_precision.pdf",
+          "section": "Fies 5Ms Precision",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "730075d2a56afafd8f7780d6c8bef4aed843261e780975a599bc9b84490ccf5a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_low_aperture",
+      "question": "What is the on-sky aperture of FIES fibre #1?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 2\\.5|2\\.6",
+        "missing required facet: arcsec|arcsecond"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 27090,
+      "sources": [
+        {
+          "citationId": "D-fc2cd06dfb3f3504-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page3-4.pdf",
+          "section": "Bundled Optical Design 09112017 Page3 4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-83d1dfd43de9ada2-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page2.pdf",
+          "section": "Bundled Optical Design 09112017 Page2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C11",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C7",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C29",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "182df42c63cf9974739bfff5147d734e7033b1f641847f28fe2db64209a6c980",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_med_resolution",
+      "question": "What resolving power does FIES science fibre #3 offer?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 45[ ,]?000|46[ ,]?000"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 31221,
+      "sources": [
+        {
+          "citationId": "D-ff527ae652d6d65e-C8",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc2cd06dfb3f3504-C1",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page3-4.pdf",
+          "section": "Bundled Optical Design 09112017 Page3 4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C7",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C11",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-289a9a2a28e7a9a9-C1",
+          "file": "instruments-fies-devel-fies-drift-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_drift_report.pdf",
+          "section": "Fies Drift Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "4244057aeea50d6321ea830354a6a3822f86f91e9efc70dac4386bda5ca1bf82",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_calibration",
+      "question": "What is FIES fibre #5 used for?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: calibration|ThAr|thorium"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 30140,
+      "sources": [
+        {
+          "citationId": "D-46b9987282f39d02-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page7-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page7.pdf",
+          "section": "Bundled Optical Design 09112017 Page7",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b71d400d843f6da4-C1",
+          "file": "instruments-fies-devel-opticaldocumentationfiesfiberunitsbc-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/OpticalDocumentationFIESfiberunitsBC-2.pdf",
+          "section": "Opticaldocumentationfiesfiberunitsbc 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C11",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ff527ae652d6d65e-C7",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "190efe003eee71fec06c2615538f7c8f8f8e4cdce92d8810d345df85c2eef00b",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_unknown_fibre",
+      "question": "What on-sky aperture does FIES fibre #99 have?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 17869,
+      "sources": [
+        {
+          "citationId": "D-fc2cd06dfb3f3504-C1",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page3-4.pdf",
+          "section": "Bundled Optical Design 09112017 Page3 4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C1",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc2cd06dfb3f3504-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page3-4-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page3-4.pdf",
+          "section": "Bundled Optical Design 09112017 Page3 4",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-83d1dfd43de9ada2-C0",
+          "file": "instruments-fies-bundled-bundled-optical-design-09112017-page2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/bundleD/bundleD-optical-design-09112017-page2.pdf",
+          "section": "Bundled Optical Design 09112017 Page2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b71d400d843f6da4-C1",
+          "file": "instruments-fies-devel-opticaldocumentationfiesfiberunitsbc-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/OpticalDocumentationFIESfiberunitsBC-2.pdf",
+          "section": "Opticaldocumentationfiesfiberunitsbc 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "216782f6ced1361bc11db6367c622379f30a188b98229dc965cab0e894f3ab32",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "notcam_intro",
+      "question": "what is NOTCAM?",
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared region of the electromagnetic spectrum (0.8 - 2.5μm). [D-299957ac5a5e3c2c-C0] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 10033,
+      "sources": [
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-6430a1455ef60959-C0",
+          "file": "instruments-notcam-council-rep-2002-04-12-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/Council-rep.2002-04-12.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b8dff6eee1657534-C0",
+          "file": "instruments-notcam-stcreport-2001-09-28-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/STCreport.2001-09-28.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-7e8f35519c04df6e-C0",
+          "file": "instruments-notcam-mounting.md",
+          "url": "https://www.not.iac.es/instruments/notcam/Mounting",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C30",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "73c127feb788d7c59cf8d53144cff6018d61f781eb94c7229e62ee206d5633ac",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "notcam_below",
+      "question": "can the instrument be used to observer at 500nm?",
+      "answer": "No. 500nm (= 0.5 µm) is below NOTCAM's documented wavelength range (0.8–2.5 µm). [D-299957ac5a5e3c2c-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 47,
+      "sources": [
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C41",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a774cdbaf5a148e1-C16",
+          "file": "instruments-notcam-calib-plan-v2-0-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/calib_plan.v2.0.pdf",
+          "section": "Calib Plan.V2.0",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C60",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c9e1deea40ed633-C0",
+          "file": "instruments-notcam-reports-status-97-04-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-97-04.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "d1f5ae6e803772e6b8bb87f192ce84ea5d6e714901537bc0504ce2245ec166a7",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "wavelength-range-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "notcam_noun_followup",
+      "question": "What wavelength range does the camera cover?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.8",
+        "missing required facet: 2\\.5"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 18791,
+      "sources": [
+        {
+          "citationId": "D-bcc154c25064bbc5-C12",
+          "file": "instruments-development-jhtspecupgrades-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/JHTspecUpgrades.pdf",
+          "section": "Jhtspecupgrades",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C37",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5416c4f6babf51f8-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-bcc154c25064bbc5-C6",
+          "file": "instruments-development-jhtspecupgrades-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/JHTspecUpgrades.pdf",
+          "section": "Jhtspecupgrades",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b368e6913627fe03-C10",
+          "file": "instruments-notcam-filters.md",
+          "url": "https://www.not.iac.es/instruments/notcam/filters/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "90517498aae7b70a5c83297d01886917cf2b97ff260f710d8cf44f65354e7c1a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "notcam_above",
+      "question": "Can it observe at 3000nm?",
+      "answer": "No. 3000nm (= 3 µm) is above NOTCAM's documented wavelength range (0.8–2.5 µm). [D-299957ac5a5e3c2c-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 50,
+      "sources": [
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C0",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c9e1deea40ed633-C0",
+          "file": "instruments-notcam-reports-status-97-04-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-97-04.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-60b151bc9def7cd1-C0",
+          "file": "instruments-notcam-arrival-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/arrival.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-2f26e176f06144d2-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "a17b71d3b400051c00730d7f36e989e2e7e19e6d816dc3683e25f6ba51451408",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "wavelength-range-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "notcam_inside",
+      "question": "Can it observe at 1000nm?",
+      "answer": "1000nm (= 1 µm) is within NOTCAM's documented wavelength range (0.8–2.5 µm). This alone does not confirm availability of a particular filter or mode. [D-299957ac5a5e3c2c-C0]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 48,
+      "sources": [
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c9e1deea40ed633-C0",
+          "file": "instruments-notcam-reports-status-97-04-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-97-04.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C0",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-60b151bc9def7cd1-C0",
+          "file": "instruments-notcam-arrival-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/arrival.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-2f26e176f06144d2-C3",
+          "file": "instruments-notcam-spectroscopy-zband-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/spectroscopy/zband.html",
+          "section": "Comparison to ALFOSC",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "8dcf9ade642faf9d7e842a1ec84b5e5641b7cdb92e5d9f039af15f587218ff1a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "inherited",
+        "answerMethod": "wavelength-range-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "notcam_uses",
+      "question": "What is NOTCAM used for?",
+      "answer": "NOTCam is a multi-mode instrument for use in the short-wave infrared (SWIR) region of the electromagnetic spectrum (0.8 - 2.5μm). It is capable of wide field imaging, high resolution imaging, and low-resolution and medium-resolution spectroscopy. [D-299957ac5a5e3c2c-C0] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 27122,
+      "sources": [
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C60",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C30",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-46cb0459d2c7cfe0-C0",
+          "file": "instruments-notcam-notcam-cryovac-node6-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/notcam_cryovac/node6.html",
+          "section": "Cooling",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-527443d0d25e4a66-C0",
+          "file": "instruments-notcam-reports-status-96-10-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-96-10.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "653b09e95b0dd44e7b895f89d8df4857d552425b9420add1fb48d5b2e698a862",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "notcam_wide_pixels",
+      "question": "What is the wide-field imaging pixel scale of NOTCAM?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.234",
+        "missing required facet: pixel"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 18837,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C79",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C63",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c9e1deea40ed633-C0",
+          "file": "instruments-notcam-reports-status-97-04-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-97-04.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "05a47398662eb388d0ca39430fa3c4c87004121055e8ca408d41bc4e1e1c2b31",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "notcam_hr_pixels",
+      "question": "What pixel scale does the high-resolution imaging camera on NOTCAM provide?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.078",
+        "missing required facet: pixel"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 32571,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C63",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C79",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-299957ac5a5e3c2c-C0",
+          "file": "instruments-notcam-overview-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/overview.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5c9e1deea40ed633-C0",
+          "file": "instruments-notcam-reports-status-97-04-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/reports/status-97-04.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "6e6c8a99c26a951ab1568a4b3588634045103287d71246c7fb17e3f7ebb4df51",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "alfosc_uses",
+      "question": "What is ALFOSC used for?",
+      "answer": "ALFOSC is used for imaging, low/medium resolution spectroscopy, and polarimetry. [D-ce20edd645d15d54-C1] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 10305,
+      "sources": [
+        {
+          "citationId": "D-f93ccac9387f0843-C1",
+          "file": "instruments-alfosc-seq-alfosc-seq-start-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq-start.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-d3e16a6e34a3cf7a-C0",
+          "file": "instruments-alfosc-fies4alfosc-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fies4alfosc.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-213cd62cdb2f554b-C0",
+          "file": "instruments-alfosc-seq-alfosc-fitswriter-daemon-restart-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-fitswriter-daemon-restart.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-41be7b4a6dbf1e60-C0",
+          "file": "instruments-alfosc-seq-alfosc-seq-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ce20edd645d15d54-C1",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "6ddfdcbcf6083589697e35ff53e32c42f47bd1251af2f8506662723e60bc17a2",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "alfosc_fov",
+      "question": "How large is the imaging field of view?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 6\\.4",
+        "missing required facet: arcmin|arcminute"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 11086,
+      "sources": [
+        {
+          "citationId": "D-0080f2380449e946-C14",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C44",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-a774cdbaf5a148e1-C36",
+          "file": "instruments-notcam-calib-plan-v2-0-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/calib_plan.v2.0.pdf",
+          "section": "Calib Plan.V2.0",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fc9c4473b53c860d-C2",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5416c4f6babf51f8-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "74122e5fdd49e37ef3a49d48b0d00f3304bd0da3316ab88030b829aa6dbec10a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "topic_switch",
+      "question": "What is FIES?",
+      "answer": "FIES is a cross-dispersed, high-resolution echelle spectrograph at the 2.56m Nordic Optical Telescope. [D-277add1da61f1e2c-C5] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 8339,
+      "sources": [
+        {
+          "citationId": "D-ff527ae652d6d65e-C1",
+          "file": "instruments-fies-fies-comm-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-comm.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fa981675823bcf3d-C0",
+          "file": "instruments-fies-screenshotfies-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/ScreenshotFIES.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ab1d5aec8ede6bb6-C2",
+          "file": "instruments-fies-fies-commd-html.md",
+          "url": "https://www.not.iac.es/instruments/fies/fies-commD.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-cd31d2bd8e82a6f7-C2",
+          "file": "instruments-fies.md",
+          "url": "https://www.not.iac.es/instruments/fies/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-277add1da61f1e2c-C5",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "4d06db66e3a279688d059b716237af70a379dce2a51b2a8a1240cf2c69eae5aa",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "ambiguous_instrument",
+      "question": "Can the instrument observe at 500nm?",
+      "answer": "Which instrument do you mean? Please name it explicitly.",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 7,
+      "sources": [],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "unknown",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "ambiguous",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": null,
+        "acceptedClaims": null
+      }
+    },
+    {
+      "id": "corpus_gap",
+      "question": "How do I recalibrate the NOT quantum teleporter?",
+      "answer": "I could not find sufficiently reliable evidence in the current documents. Could you clarify the instrument or procedure?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 27,
+      "sources": [],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "unknown",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": null,
+        "rejectedClaims": null,
+        "acceptedClaims": null
+      }
+    },
+    {
+      "id": "unsupported_spec",
+      "question": "What is the mass of NOTCAM to the nearest gram?",
+      "answer": "I could not find sufficiently reliable evidence in the current documents. Could you clarify the instrument or procedure?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 27,
+      "sources": [],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "unknown",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": null,
+        "rejectedClaims": null,
+        "acceptedClaims": null
+      }
+    },
+    {
+      "id": "telescope_scale",
+      "question": "What is the focal plane scale of the Nordic Optical Telescope in arcsec/mm?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 7\\.33",
+        "missing required facet: arcsec|arcsecond"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 29289,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C2",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C7",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fbfc3dcb4d30a082-C15",
+          "file": "instruments-fies-devel-skew-readout-arto-skewpaper-050412-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/skew-readout/arto/skewpaper_050412.pdf",
+          "section": "Skewpaper 050412",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C0",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "e56188a39bd9dc9dd2e99fb2ec05c41ddee4256ec7d209780631f905b67c0ecd",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "operational_sequence",
+      "question": "Explain the sequence of events when teloffset runs while the telescope is already being autoguided.",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: guideprobe|guide probe",
+        "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+        "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 24473,
+      "sources": [
+        {
+          "citationId": "D-631afba79af59c5a-C46",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4fe39a133b3c7cf3-C1",
+          "file": "telescope-tcs-tcs-new-autopositioning-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_New_Autopositioning.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-631afba79af59c5a-C15",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C10",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bcfbcbb9d155dac7-C53",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "18c247a13039f89a1a8cf1a9dfa6eb2ee58a9192b9bbc1068cb9cd8d67f01a20",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "safety_humidity",
+      "question": "According to the current observing cookbook, what must I do if humidity is above 90 percent?",
+      "answer": "I could not find sufficiently reliable evidence in the current documents. Could you clarify the instrument or procedure?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: close",
+        "missing required facet: telescope|dome|observ"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 39,
+      "sources": [],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "unknown",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": null,
+        "rejectedClaims": null,
+        "acceptedClaims": null
+      }
+    },
+    {
+      "id": "safety_override",
+      "question": "Can I bypass the telescope safety interlock to keep observing in high humidity?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 19054,
+      "sources": [
+        {
+          "citationId": "D-631afba79af59c5a-C15",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bcfbcbb9d155dac7-C36",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-84ad2cf05dd2a7e1-C71",
+          "file": "telescope-tcs-tcs-new-errormessagelist-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_NEW_errormessagelist.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-84ad2cf05dd2a7e1-C63",
+          "file": "telescope-tcs-tcs-new-errormessagelist-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_NEW_errormessagelist.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C19",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "1a77867c7b209199a6d63f8fe63cd51b2af3a2a8dc3ebe9ede4d9781a4ccc098",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "site_winter",
+      "question": "During winter, what hours should visitors avoid using the ORM mountain road?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 9[:.]30|09[:.]30",
+        "missing required facet: 18[:.]00|6.*p\\.?m"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 21793,
+      "sources": [
+        {
+          "citationId": "D-62e69eb0760b1871-C3",
+          "file": "observing-guide-ormsafetyinformation-pdf.md",
+          "url": "https://www.not.iac.es/observing/guide/ORMSafetyInformation.pdf",
+          "section": "Ormsafetyinformation",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-7885a44fa82024bd-C1",
+          "file": "observing-guide-health-safety-html.md",
+          "url": "https://www.not.iac.es/observing/guide/health_safety.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "0388eb761d43be9e7132b4ccff64f1464aaf9afed4124c5662a84c974dbd834c",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "fies_german",
+      "question": "Welchen Durchmesser in Bogensekunden hat die FIES-Faser Nummer 4 am Himmel?",
+      "answer": "Ich konnte in den aktuellen Dokumenten keine ausreichend zuverlässigen Belege finden. Kannst du Instrument oder Verfahren genauer benennen?",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 1[.,]3",
+        "missing required facet: Bogensekund|arcsec"
+      ],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": true,
+      "elapsedMs": 39,
+      "sources": [],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "unknown",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": null,
+        "abstentionReason": null,
+        "generationAttempts": null,
+        "rejectedClaims": null,
+        "acceptedClaims": null
+      }
+    },
+    {
+      "id": "legacy_01",
+      "question": "What are the central wavelength and dispersion for the BLUENOT (G#18) VPHG grism?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The central wavelength is 430 nm and the dispersion is 0.918 Å/px.",
+      "abstained": true,
+      "elapsedMs": 16561,
+      "sources": [
+        {
+          "citationId": "D-5491aff8683dd72c-C210",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "#408: Grism_#10",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bcc154c25064bbc5-C24",
+          "file": "instruments-development-jhtspecupgrades-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/JHTspecUpgrades.pdf",
+          "section": "Jhtspecupgrades",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5491aff8683dd72c-C218",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "#417: Grism_#18",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-01bc4d8e731f23f7-C7",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "Echelle mode",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-01bc4d8e731f23f7-C4",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "Notes to the tables",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "7f1f09888b48c6fd3c3f5e982f821eb6896d24dd0d10d9db4afd683e4a1fe3c2",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_02",
+      "question": "Beyond what specific wavelength does ALFOSC grism #4 suffer from severe second-order contamination?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "It suffers from severe contamination beyond ~5800 Å.",
+      "abstained": true,
+      "elapsedMs": 16053,
+      "sources": [
+        {
+          "citationId": "D-0080f2380449e946-C28",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-1e76e9b66ec3cffd-C1",
+          "file": "instruments-alfosc-ccd8xxccd7-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/ccd8xxccd7.html",
+          "section": "New ALFOSC CCD #8",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c5300c8052b21963-C0",
+          "file": "instruments-alfosc-fringecorrect-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fringecorrect.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-01bc4d8e731f23f7-C0",
+          "file": "instruments-alfosc-grisms.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b60530844aa59777-C0",
+          "file": "instruments-alfosc-grisms-3-4-5-pdf.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/grisms/3+4+5.pdf",
+          "section": "3+4+5",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "9ef87e315f31497a5a8626d6b304eee560569b1e89ab9abde3deed8a02b1a54a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_03",
+      "question": "What is the plate scale for ALFOSC mentioned in the 2nd-order contamination report?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The scale is 0.19 arcseconds per pixel.",
+      "abstained": true,
+      "elapsedMs": 25326,
+      "sources": [
+        {
+          "citationId": "D-ea035ec923c2b14a-C2",
+          "file": "instruments-alfosc-polarimetry-signaltonoise-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/polarimetry/signaltonoise.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e8eafba9fd2b635d-C3",
+          "file": "instruments-alfosc-polarimetry-general-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/polarimetry/general.html",
+          "section": "Practical info",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-4b35f6852075a8af-C0",
+          "file": "instruments-alfosc-blockers-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/blockers.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ce20edd645d15d54-C1",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-87654dfcdac926f4-C7",
+          "file": "instruments-alfosc-mos-mode-mos-announce-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/mos-mode/mos-announce.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "b43be50058bb85b2929b01636a44b76664d3d6d1c3a00b44c2938eea91d1be00",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_04",
+      "question": "What is the physical pixel size (in microns) of the SITe SI-003A CCD?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "Each pixel measures 24 µm x 24 µm.",
+      "abstained": true,
+      "elapsedMs": 21061,
+      "sources": [
+        {
+          "citationId": "D-553d5319c379a1e8-C0",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-553d5319c379a1e8-C3",
+          "file": "instruments-detectors-ccd1-003datsh-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/003datsh.pdf",
+          "section": "003Datsh",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-b5f90b238db99026-C0",
+          "file": "instruments-detectors-ccd1-s103xa-family-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD1/S103xA_family.pdf",
+          "section": "S103Xa Family",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3c0c00b95d9f8caa-C0",
+          "file": "instruments-detectors-ccd7.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD7/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-afe636225d186032-C0",
+          "file": "instruments-detectors-ccd8.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "8077e10ea6065bd8d2407f1f4b4718bac843a2a670b7237705b31c2a4bca23c5",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_05",
+      "question": "What is the pixel scale of the relay optics for the PolCor \"\"Lucky\"\" instrument?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The relay optics have a pixel scale of 0.12 arcsec/pixel.",
+      "abstained": true,
+      "elapsedMs": 16334,
+      "sources": [
+        {
+          "citationId": "D-f555114875e7106d-C2",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-12b9cdb30b48adb5-C2",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C2",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C44",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-5491aff8683dd72c-C27",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "#130: 381_8",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "145cf61c9eccf489122f1b6f359926dc06f9ebedf7373fac672ae3f6c7806601",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_06",
+      "question": "What are the three available sizes for coronagraphic disks in the PolCor instrument?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The disks are available in diameters of 1.5, 3, and 6 arcseconds.",
+      "abstained": true,
+      "elapsedMs": 176208,
+      "sources": [
+        {
+          "citationId": "D-12b9cdb30b48adb5-C2",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f555114875e7106d-C0",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-12b9cdb30b48adb5-C0",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f555114875e7106d-C2",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5491aff8683dd72c-C315",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "#509: Pol_1.4\"",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "d53fa8fccb8791abc11bc418280db6b52078a69f5c9241bf125563dc00fc1ce5",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_07",
+      "question": "What are the four readout speeds provided by the ALFOSC detector controller (CCD3) introduced in 2011?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The speeds are 113, 200, 400, and 800 kpix/sec.",
+      "abstained": true,
+      "elapsedMs": 31584,
+      "sources": [
+        {
+          "citationId": "D-4c17f0a7af37764c-C3",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-4c17f0a7af37764c-C5",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f74c391aeac6dcff-C0",
+          "file": "instruments-alfosc-timing-analysis-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/timing_analysis.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-d610506836150687-C6",
+          "file": "instruments-alfosc-seq-alfosc-ccd3-problems-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-ccd3-problems.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-22e9ee2642daed60-C0",
+          "file": "instruments-alfosc-fov-fov-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fov/fov.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "c2ae6dea9ed25299d456a7f739f73b91b1c05dac0b547454a785d6f29d4499be",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_08",
+      "question": "What is the fundamental frequency of the pick-up noise observed with the ALFOSC controller?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The frequency is 13.28 KHz.",
+      "abstained": true,
+      "elapsedMs": 20613,
+      "sources": [
+        {
+          "citationId": "D-4c17f0a7af37764c-C16",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-8c262caa6e09f7dc-C6",
+          "file": "instruments-alfosc-speccounts-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/speccounts.html",
+          "section": "Spatial scale and read-out noise",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-4c17f0a7af37764c-C11",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-99d537164b29b043-C4",
+          "file": "instruments-alfosc-fastphot-rtp-guide-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fastphot/rtp-guide.html",
+          "section": "Basic startup options",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-2d6ec465498536bf-C18",
+          "file": "instruments-alfosc-polarimetry-setup-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/polarimetry/setup.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "4acb6fe22ed8b7f20fe8e8cea435e1b95c5b057903882ec2776bad3b438a36be",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_09",
+      "question": "What is the measured readout noise (RON) for Amplifier A in high-gain mode for the E2V CCD42-40?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The RON is 3.25 ± 0.05 e-.",
+      "abstained": true,
+      "elapsedMs": 21824,
+      "sources": [
+        {
+          "citationId": "D-f80947be0db9cfa5-C6",
+          "file": "instruments-detectors-ccd13-fies-e2v-1064-17-04-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD13/fies_e2v_1064-17-04.pdf",
+          "section": "Fies E2V 1064 17 04",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e00c4a3494185f02-C36",
+          "file": "instruments-fies-devel-fiesccde2v-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIESccdE2V.pdf",
+          "section": "Fiesccde2V",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-afe636225d186032-C0",
+          "file": "instruments-detectors-ccd8.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f80947be0db9cfa5-C36",
+          "file": "instruments-detectors-ccd13-fies-e2v-1064-17-04-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD13/fies_e2v_1064-17-04.pdf",
+          "section": "Fies E2V 1064 17 04",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0ce4a3010fcda1f8-C0",
+          "file": "instruments-detectors-ccd13.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD13/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "5791cd2a5a96caa869bdc83d370bcad109b586c4657583e26ee37714c40288d2",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_10",
+      "question": "At what temperature must the ALFOSC E2V (non-AIMO type) CCD be cooled to suppress dark current for RON-limited noise in long exposures?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "It must be cooled to -120°C.",
+      "abstained": true,
+      "elapsedMs": 13867,
+      "sources": [
+        {
+          "citationId": "D-d1e871d72d83cc90-C0",
+          "file": "instruments-alfosc-bias-bias-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/bias/bias.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ce20edd645d15d54-C1",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-730944871ee11ffe-C7",
+          "file": "instruments-detectors-ccd14-alfosc-cam2016-pdf.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD14/ALFOSC_cam2016.pdf",
+          "section": "Alfosc Cam2016",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-8c262caa6e09f7dc-C6",
+          "file": "instruments-alfosc-speccounts-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/speccounts.html",
+          "section": "Spatial scale and read-out noise",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-9435d7ef7a20a7ac-C2",
+          "file": "instruments-detectors-ccd8-biasccd8-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/biasccd8.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "2d6350e2e5a7b95e9cdb6a4ca5dc7ea46de60e2c285589ebfa282c766f050dba",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_11",
+      "question": "What is the focal plane scale of the 2.56-meter Nordic Optical Telescope?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The scale is 7.33 arcsec/mm.",
+      "abstained": true,
+      "elapsedMs": 20329,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e5d5f3049bca1455-C149",
+          "file": "instruments-sofin-florence-stokesmeter-pdf.md",
+          "url": "https://www.not.iac.es/instruments/sofin/florence/stokesmeter.pdf",
+          "section": "Stokesmeter",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C2",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-277add1da61f1e2c-C5",
+          "file": "instruments-fies-devel-fies-fibre-injection-upgrade-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/FIES_fibre_injection_upgrade.pdf",
+          "section": "Fies Fibre Injection Upgrade",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-e5d5f3049bca1455-C174",
+          "file": "instruments-sofin-florence-stokesmeter-pdf.md",
+          "url": "https://www.not.iac.es/instruments/sofin/florence/stokesmeter.pdf",
+          "section": "Stokesmeter",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "3130e070e2422f5f38d19ff10b65833c22a608d981b17a7a6c1277bb819335ca",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_12",
+      "question": "According to wavefront sensor analysis 100nm of measured astigmatism is equivalent to how many units on the Telescope Control System (TCS)?\"",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "100nm is equivalent to -0.43 on the TCS.",
+      "abstained": true,
+      "elapsedMs": 11036,
+      "sources": [
+        {
+          "citationId": "D-e47c839927577b1d-C1",
+          "file": "instruments-mosaic-mosca-foc-off-content-html.md",
+          "url": "https://www.not.iac.es/instruments/mosaic/mosca-foc-off_content.html",
+          "section": "MOSCA Focus offsets",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-500b816025f8b219-C14",
+          "file": "telescope-tti-not-alignment-report-2023-v1-pdf.md",
+          "url": "https://www.not.iac.es/telescope/tti/NOT_alignment_report_2023_v1.pdf",
+          "section": "Not Alignment Report 2023 V1",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C38",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-477c0a65df623708-C6",
+          "file": "observing-seq-tcs-seq-commands-html.md",
+          "url": "https://www.not.iac.es/observing/seq/tcs-seq-commands.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-500b816025f8b219-C48",
+          "file": "telescope-tti-not-alignment-report-2023-v1-pdf.md",
+          "url": "https://www.not.iac.es/telescope/tti/NOT_alignment_report_2023_v1.pdf",
+          "section": "Not Alignment Report 2023 V1",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "3e4456c107d5374d9b8e3739d1d92b608ac88f4c93074943538c3fa870c54d53",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 0,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_13",
+      "question": "What is the maximum total weight allowed for an instrument mounted at the Cassegrain focus of the NOT?",
+      "answer": "The maximum total weight of an instrument mounted at Cassegrain is approximately 250 kilograms. [D-0080f2380449e946-C11] (reference)",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The maximum weight is approximately 250 kg.",
+      "abstained": false,
+      "elapsedMs": 8603,
+      "sources": [
+        {
+          "citationId": "D-0080f2380449e946-C11",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C1",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-500b816025f8b219-C33",
+          "file": "telescope-tti-not-alignment-report-2023-v1-pdf.md",
+          "url": "https://www.not.iac.es/telescope/tti/NOT_alignment_report_2023_v1.pdf",
+          "section": "Not Alignment Report 2023 V1",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-6605260b3c707c0c-C3",
+          "file": "telescope-tti.md",
+          "url": "https://www.not.iac.es/telescope/tti",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "4e46e028ed83f2af5547ca2cbb07063f5c8add6c3a55f27155681b9031fd6cb2",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "legacy_14",
+      "question": "During the winter period (November to April) travelers are advised not to use the ORM mountain road before and after which specific times?",
+      "answer": "Travelers are advised not to use the ORM mountain road before 9:30 in the morning or after 18:00, especially at dark hours. [D-62e69eb0760b1871-C3]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "Not before 9:30 in the morning or after 18:00.",
+      "abstained": false,
+      "elapsedMs": 9735,
+      "sources": [
+        {
+          "citationId": "D-62e69eb0760b1871-C3",
+          "file": "observing-guide-ormsafetyinformation-pdf.md",
+          "url": "https://www.not.iac.es/observing/guide/ORMSafetyInformation.pdf",
+          "section": "Ormsafetyinformation",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-7885a44fa82024bd-C2",
+          "file": "observing-guide-health-safety-html.md",
+          "url": "https://www.not.iac.es/observing/guide/health_safety.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "f14cf7234ea1c91eadbb94cae6ca66c81ec40d8f1891a115714a6dcc43ed2d26",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 1,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1
+      }
+    },
+    {
+      "id": "legacy_15",
+      "question": "What is the initial maximum duration allowed for a \"Large Observing Proposal\" at the NOT?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The maximum is 3 years.",
+      "abstained": true,
+      "elapsedMs": 17461,
+      "sources": [
+        {
+          "citationId": "D-dbc84423be93e9c0-C3",
+          "file": "observing-largeproposals-node2-html.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/node2.html",
+          "section": "Rules and Requirements",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-91a88adfafed4ff8-C3",
+          "file": "observing-proposals.md",
+          "url": "https://www.not.iac.es/observing/proposals/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-91a88adfafed4ff8-C6",
+          "file": "observing-proposals.md",
+          "url": "https://www.not.iac.es/observing/proposals/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b13dc68acaa69b65-C1",
+          "file": "observing-rules-allocationpolicies-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/AllocationPolicies.pdf",
+          "section": "Allocationpolicies",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b5bf6acfca4016d0-C7",
+          "file": "observing-service.md",
+          "url": "https://www.not.iac.es/observing/service/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "24ee62e0310ca065fcec557d1ebf860751f9f25d215a491d8d3483b5b772488f",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_16",
+      "question": "What is the maximum field of view diameter (in arcminutes) for the Nordic Optical Telescope?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The maximum diameter is 30 arcmin.",
+      "abstained": true,
+      "elapsedMs": 15741,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-500b816025f8b219-C20",
+          "file": "telescope-tti-not-alignment-report-2023-v1-pdf.md",
+          "url": "https://www.not.iac.es/telescope/tti/NOT_alignment_report_2023_v1.pdf",
+          "section": "Not Alignment Report 2023 V1",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C7",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5416c4f6babf51f8-C0",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C25",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "94163babdbb8f5e8e5355516dce1309e4c9aea48edd5a0b94252481668507bed",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_17",
+      "question": "What is the focal plane scale of the Nordic Optical Telescope in arcsec/mm?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The focal plane scale is 7.33 arcsec/mm.",
+      "abstained": true,
+      "elapsedMs": 25123,
+      "sources": [
+        {
+          "citationId": "D-5416c4f6babf51f8-C1",
+          "file": "instruments-notcam-opticaldesign-pdf.md",
+          "url": "https://www.not.iac.es/instruments/notcam/OpticalDesign.pdf",
+          "section": "Opticaldesign",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C2",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0080f2380449e946-C7",
+          "file": "instruments-development-scs-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/SCS.pdf",
+          "section": "Scs",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fbfc3dcb4d30a082-C15",
+          "file": "instruments-fies-devel-skew-readout-arto-skewpaper-050412-pdf.md",
+          "url": "https://www.not.iac.es/instruments/fies/devel/skew-readout/arto/skewpaper_050412.pdf",
+          "section": "Skewpaper 050412",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-a214ac1b678a1d8a-C0",
+          "file": "telescope-technical-details-html.md",
+          "url": "https://www.not.iac.es/telescope/technical-details.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "2da52ac48963c363eda60bdbcfafbf30ecc7c36693b6f3f2562ff7a6b3e7cdb7",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_18",
+      "question": "Can you list the 4 readout speeds for the new detector controller?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The new detector controller for ALFOSC provides the following four readout speeds 113 kpix/sec, 200 kpix/sec, 400 kpix/sec, and 800 kpix/sec.",
+      "abstained": true,
+      "elapsedMs": 31502,
+      "sources": [
+        {
+          "citationId": "D-4c17f0a7af37764c-C3",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-4c17f0a7af37764c-C8",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3ebda99a755175c6-C0",
+          "file": "instruments-detectors-ccd14.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD14/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c33fbc2e9b5f07a0-C3",
+          "file": "instruments-development-ir-user-requirements-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/IR_user_requirements.pdf",
+          "section": "Ir User Requirements",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-c33fbc2e9b5f07a0-C2",
+          "file": "instruments-development-ir-user-requirements-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/IR_user_requirements.pdf",
+          "section": "Ir User Requirements",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "26c58c10f1a4cd1456d2dbe86dde7b209ef3209071c498f14eecb6fb951e5016",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_19",
+      "question": "What are the three available diameters for coronagraphic disks in the PolCor instrument?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The diameters are 1.5 and 3 and 6 arcseconds.",
+      "abstained": true,
+      "elapsedMs": 40731,
+      "sources": [
+        {
+          "citationId": "D-12b9cdb30b48adb5-C2",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f555114875e7106d-C0",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f555114875e7106d-C2",
+          "file": "instruments-polcor.md",
+          "url": "https://www.not.iac.es/instruments/polcor/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-12b9cdb30b48adb5-C0",
+          "file": "instruments-polcor-polcor-2-pdf.md",
+          "url": "https://www.not.iac.es/instruments/polcor/PolCor-2.pdf",
+          "section": "Polcor 2",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-5491aff8683dd72c-C315",
+          "file": "optic_elements.md",
+          "url": "cron:optic_elements.md",
+          "section": "#509: Pol_1.4\"",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "2fd66e987655cd7ff2ebed8b0b5bf841d3376b60409057235aaed835b66d0ebd",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_20",
+      "question": "What is the default focus position (foc-pos) and TV focus (tv-foc) for the ALFOSC instrument?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "According to the instrument settings table, the default foc-pos is 26630 and the tv-foc is 510.",
+      "abstained": true,
+      "elapsedMs": 58903,
+      "sources": [
+        {
+          "citationId": "D-bdb1faabd8b024b1-C3",
+          "file": "instruments-alfosc-polarimetry-focusfapol-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/polarimetry/focusfapol.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-d3b93afbeacf7098-C54",
+          "file": "sequencer_reference.md",
+          "url": "cron:sequencer_reference.md",
+          "section": "`focus`",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bcfbcbb9d155dac7-C55",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-d3e16a6e34a3cf7a-C3",
+          "file": "instruments-alfosc-fies4alfosc-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/fies4alfosc.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-ce20edd645d15d54-C3",
+          "file": "instruments-alfosc.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "be3fcea6c84d5f85bc30dfcd65140ac375a9a14e0a81eb69db50a9e895c24e6e",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 2,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_21",
+      "question": "Explain the complete sequence of events that occurs when the teloffset program is executed while the telescope is already being autoguided.",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The sequence is: 1) Connect to the TCS, 2) Get field rotation and check autoguiding, 3) Calculate guideprobe movement, 4) Check movement limits, 5) Switch autoguiding off, 6) Move the telescope and guideprobe, 7) Wait for movement to finish and tracking to stabilize, and 8) Switch autoguiding back on.",
+      "abstained": true,
+      "elapsedMs": 25276,
+      "sources": [
+        {
+          "citationId": "D-4fe39a133b3c7cf3-C1",
+          "file": "telescope-tcs-tcs-new-autopositioning-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_New_Autopositioning.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8afdc2e232638f0d-C10",
+          "file": "observing-cookbook-current-cookbook-php-instrument-fies.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=FIES",
+          "section": "FIES Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-631afba79af59c5a-C46",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-631afba79af59c5a-C15",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4fe39a133b3c7cf3-C0",
+          "file": "telescope-tcs-tcs-new-autopositioning-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_New_Autopositioning.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "0bef72370e3805973cfd58757f0ba7666b6172bd1336b542cec172b369b9070c",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_22",
+      "question": "Describe the process an observer must follow to interactively identify a target for spectroscopy during an Observing Block (OB) execution.",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The observer identifies the target on the acquisition image by placing the mouse cursor over it and pressing a+q for point sources or x+q for extended sources.",
+      "abstained": true,
+      "elapsedMs": 32726,
+      "sources": [
+        {
+          "citationId": "D-c5b639aa6e72b0e7-C4",
+          "file": "observing-tools-php.md",
+          "url": "https://www.not.iac.es/observing/tools.php",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-bcfbcbb9d155dac7-C11",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-3d65b7c0ddfd0891-C14",
+          "file": "instruments-notcam-milestones-html.md",
+          "url": "https://www.not.iac.es/instruments/notcam/milestones.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-3af60f68270c0ebd-C0",
+          "file": "observing-too.md",
+          "url": "https://www.not.iac.es/observing/too/",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-8bac264c9fd197f9-C0",
+          "file": "observing-tools-overheads-html.md",
+          "url": "https://www.not.iac.es/observing/tools/overheads.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "ea98f11b68d94268bbd0f9d868c64c0fdf950813a8182d30a41e27bf1985f205",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_23",
+      "question": "Under what specific weather conditions (wind speed and humidity) must the telescope be closed immediately?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The telescope must be closed if the humidity reaches 90% or the wind speed reaches 20 m/s.",
+      "abstained": true,
+      "elapsedMs": 33373,
+      "sources": [
+        {
+          "citationId": "D-bcfbcbb9d155dac7-C36",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "NOTCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-84ad2cf05dd2a7e1-C74",
+          "file": "telescope-tcs-tcs-new-errormessagelist-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_NEW_errormessagelist.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-84ad2cf05dd2a7e1-C75",
+          "file": "telescope-tcs-tcs-new-errormessagelist-html.md",
+          "url": "https://www.not.iac.es/telescope/tcs/TCS_NEW_errormessagelist.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-631afba79af59c5a-C15",
+          "file": "observing-cookbook-current-cookbook-php-instrument-mosca.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=MOSCA",
+          "section": "MOSCA Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-4ed5bdb2b42ba997-C15",
+          "file": "observing-cookbook-current-cookbook-php-instrument-stancam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=StanCam",
+          "section": "StanCam Cookbook",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "636d1974640aaa914558e369b1c24637db9232707936d9f79a21300d3a60fb12",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "standalone",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 2,
+        "acceptedClaims": 0
+      }
+    },
+    {
+      "id": "legacy_24",
+      "question": "What should an observer do if the ALFOSC UIF fails to start with an error message?",
+      "answer": "I could not verify an answer from the supplied documents. Could you clarify the question?",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": true,
+      "reference": "The observer should power cycle the motor controller and ensure all network cables are properly connected.",
+      "abstained": true,
+      "elapsedMs": 42397,
+      "sources": [
+        {
+          "citationId": "D-d610506836150687-C2",
+          "file": "instruments-alfosc-seq-alfosc-ccd3-problems-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-ccd3-problems.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f93ccac9387f0843-C0",
+          "file": "instruments-alfosc-seq-alfosc-seq-start-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq-start.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-d610506836150687-C1",
+          "file": "instruments-alfosc-seq-alfosc-ccd3-problems-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-ccd3-problems.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-fb4316c23eb5eba1-C4",
+          "file": "instruments-alfosc-remoteobserving-remoteobs-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/remoteobserving/remoteobs.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-f93ccac9387f0843-C3",
+          "file": "instruments-alfosc-seq-alfosc-seq-start-html.md",
+          "url": "https://www.not.iac.es/instruments/alfosc/SEQ/alfosc-seq-start.html",
+          "section": "Nordic Optical Telescope",
+          "status": "active",
+          "authority": "tier_2_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "phase5-structured-v3",
+        "promptSha256": "714724a10af84b7b73fa027b32ba16864bcf58d09261413215bf5647d0de072a",
+        "model": "command-r:35b",
+        "embeddingModel": "all-MiniLM-L6-v2",
+        "corpusVersion": "fresh-crawl-2026-09-29-curated-v2",
+        "indexId": "default:postgres:public.rag_documents",
+        "contextResolution": "explicit",
+        "answerMethod": "validated-model-claims",
+        "abstentionReason": null,
+        "generationAttempts": 2,
+        "rejectedClaims": 1,
+        "acceptedClaims": 0
+      }
+    }
+  ]
+}

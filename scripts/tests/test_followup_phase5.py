@@ -56,6 +56,12 @@ class WavelengthReasoningTests(unittest.TestCase):
         self.assertEqual(result.derivation["relation"], "below")
         self.assertIn("0.8 - 2.5µm", result.derivation["quote"])
 
+    def test_wrapped_overview_prose_keeps_instrument_subject(self):
+        source = "NOTCam is a multi-mode instrument for use in the short-wave infrared\nregion of the electromagnetic spectrum (0.8 - 2.5µm). It has 1024 pixels."
+        result = compare_wavelength("Can NOTCAM observe at 500nm?", self.evidence(content=source))
+        self.assertEqual(result.derivation["relation"], "below")
+        self.assertIsNotNone(compare_wavelength("NOTCAM: What wavelength range does the camera cover?", self.evidence(content=source)))
+
     def test_direct_range_question_uses_same_checked_source(self):
         for question in ("Which wavelength range does NOTCAM cover?", "What is NOTCAM's wavelength range?"):
             with self.subTest(question=question):
@@ -86,6 +92,20 @@ class WavelengthReasoningTests(unittest.TestCase):
             instrument="FIES", content="FIES covers wavelengths from 370 to 830 nm."))
         self.assertEqual(result.derivation["relation"], "within")
         self.assertIn("FIES", result.validation.answer)
+
+    def test_landing_range_keeps_gap_free_and_extended_coverage_distinct(self):
+        source=('FIES is a high-resolution spectrograph. The entire spectral range 390-810 nm is covered without gaps. '
+                'Extended coverage up to 910 nm is available with minor inter-order wavelength gaps.')
+        evidence=self.evidence(instrument='FIES',sourceRole='instrument_landing',content=source)
+        result=compare_wavelength('What wavelength range does FIES cover?',evidence)
+        self.assertIn('390-810 nm',result.validation.answer)
+        self.assertIn('without gaps',result.validation.answer)
+        self.assertIn('910 nm',result.validation.answer)
+        self.assertIn('minor inter-order wavelength gaps',result.validation.answer)
+        self.assertIsNone(compare_wavelength('What wavelength range does FIES cover?',self.evidence(
+            instrument='FIES',sourceRole='instrument_landing',content=source.replace('FIES is','NOTCAM is'))))
+        self.assertIsNone(compare_wavelength('What wavelength range does FIES cover?',self.evidence(
+            instrument='FIES',sourceRole='instrument_landing',content=source.replace('entire spectral','filter spectral'))))
 
     def test_unsafe_evidence_is_not_used(self):
         for changes in ({"status": "historical"}, {"authority": "tier_4_unreviewed"},

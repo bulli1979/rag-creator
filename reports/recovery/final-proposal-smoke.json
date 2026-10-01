@@ -1,0 +1,231 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "097544417c4e13f4417694aaa8cb219f832ffd9450cc8223a79ad0b2520d1167",
+  "implementationSha256": "40403d6abdcdc3c3be0d16f22b3658205b78843e03ada594cc34f6d8b624054a",
+  "corePassed": 2,
+  "coreTotal": 2,
+  "results": [
+    {
+      "id": "large_proposal_initial_duration",
+      "question": "What is the initial maximum duration allowed for a \"Large Observing Proposal\" at the NOT?",
+      "answer": "Cited reference (not a statement of current operating policy): The proposals can initially only apply for a maximum of 3 years. [D-817534752c8f2d5a-C1] This establishes the initial duration only; consult the complete rules for extensions.",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 955,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-817534752c8f2d5a-C1",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C67",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C17",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Overheads",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C0",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-94190d1a94f6c58c-C5",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0962b40719236cec-C1",
+          "file": "observing-largeproposals.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/",
+          "section": "**Large Observing Proposals**",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C16",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C12",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C2",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C66",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "3310d55d651ae36fe8a71177235fae595a0d93630e0c9b07503e426983f5f817",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    },
+    {
+      "id": "large_proposal_duration_paraphrase",
+      "question": "What is the initial maximum duration of a Large Observing Proposal?",
+      "answer": "Cited reference (not a statement of current operating policy): The proposals can initially only apply for a maximum of 3 years. [D-817534752c8f2d5a-C1] This establishes the initial duration only; consult the complete rules for extensions.",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 103,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-817534752c8f2d5a-C1",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C67",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C17",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Overheads",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-94190d1a94f6c58c-C5",
+          "file": "instruments-luckycam.md",
+          "url": "https://www.not.iac.es/instruments/luckycam/",
+          "section": "LuckyCam",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C0",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-0962b40719236cec-C1",
+          "file": "observing-largeproposals.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/",
+          "section": "**Large Observing Proposals**",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C21",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-b3aafb0f9704a7ac-C12",
+          "file": "observing-rules-observingtimeandcontributions-pdf.md",
+          "url": "https://www.not.iac.es/observing/rules/ObservingTimeAndContributions.pdf",
+          "section": "Observingtimeandcontributions",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-817534752c8f2d5a-C2",
+          "file": "observing-largeproposals-largeproposalsrules-pdf.md",
+          "url": "https://www.not.iac.es/observing/largeproposals/LargeProposalsRules.pdf",
+          "section": "Largeproposalsrules",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-9e122ed87d2b89a6-C66",
+          "file": "observing-cookbook-current-cookbook-php-instrument-notcam.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=NOTCam",
+          "section": "Sky flats",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "dc74291f7910828371a34f42d83bbf52476ed2f1133134b4b20eca456084558f",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "standalone",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    }
+  ]
+}

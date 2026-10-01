@@ -1,0 +1,43 @@
+{
+  "beforeReport": "reports/recovery/before-7891d6a.json",
+  "afterReport": "reports/recovery/after-final-2026-10-01.json",
+  "implementationSha256": "c892dc6cf8abeca0282755e73a69d7a6047076031e61f73bc0cca4c958cbbb98",
+  "corePassed": 50,
+  "coreTotal": 51,
+  "commonCases": 31,
+  "beforeCommonPassed": 12,
+  "afterCommonPassed": 30,
+  "commonRegressions": [],
+  "failedCoreCases": [
+    "operational_sequence"
+  ],
+  "beforeCommonLatency": {
+    "n": 31,
+    "medianMs": 11927,
+    "p95Ms": 32571
+  },
+  "afterCommonLatency": {
+    "n": 31,
+    "medianMs": 102,
+    "p95Ms": 30663
+  },
+  "afterCoreLatency": {
+    "n": 51,
+    "medianMs": 106,
+    "p95Ms": 22386
+  },
+  "sourceDerivedNoGenerationLatency": {
+    "n": 41,
+    "medianMs": 99,
+    "p95Ms": 169
+  },
+  "modelGenerationLatency": {
+    "n": 10,
+    "medianMs": 18247.0,
+    "p95Ms": 64191
+  },
+  "exactDuplicateContextRows": 0,
+  "legacyDiagnosticRows": 24,
+  "legacyDiagnosticAbstentions": 4,
+  "legacyScore": "Unscored; see manual review in RECOVERY_REPORT.md"
+}

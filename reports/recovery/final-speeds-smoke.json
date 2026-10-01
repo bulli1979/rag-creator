@@ -1,0 +1,120 @@
+{
+  "applicationCommit": "7891d6ae86c4afa1f9c48513974f371f89b5cc67",
+  "casesSha256": "4c4adc5aa302e89c9d49e6cad87a1abee920d931be16ba38eae455a5e139e366",
+  "implementationSha256": "ff9f0b972762e6743fc71641063fddaafda21da773b4bd3b18d4adf17603143a",
+  "corePassed": 1,
+  "coreTotal": 1,
+  "results": [
+    {
+      "id": "alfosc_report_readout_speeds",
+      "question": "What are the four readout speeds provided by the ALFOSC detector controller (CCD3) introduced in 2011?",
+      "answer": "Historical/technical report (not current operating guidance): The new detector controller provides 4 different speeds (113, 200, 400 and 800 kpix/sec), where the 200 kpix/sec speed was specifically defined in the user requirements. Most of the tests and results given below refer to those obtained with the 200 kpix/sec speed using amplifier A which we have adopted for the moment as the standard readout speed. [D-8bbaf408407c876c-C2]",
+      "passed": true,
+      "errors": [],
+      "diagnosticOnly": false,
+      "reference": null,
+      "abstained": false,
+      "elapsedMs": 932,
+      "exactDuplicateContextRows": 0,
+      "sources": [
+        {
+          "citationId": "D-8bbaf408407c876c-C2",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-8bbaf408407c876c-C11",
+          "file": "instruments-development-alfosc-controller-report-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/ALFOSC_Controller_Report.pdf",
+          "section": "Alfosc Controller Report",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C149",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "The ALFOSC CCD and its controller",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C9",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C2",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-c4a919f6f9136951-C90",
+          "file": "observing-cookbook-current-cookbook-php-instrument-alfosc.md",
+          "url": "https://www.not.iac.es/observing/cookbook/current/Cookbook.php?instrument=ALFOSC",
+          "section": "Imaging manually",
+          "status": "active",
+          "authority": "tier_1_authoritative"
+        },
+        {
+          "citationId": "D-e5c280d996fd1eeb-C2",
+          "file": "instruments-development.md",
+          "url": "https://www.not.iac.es/instruments/development/",
+          "section": "Development studies",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-4d0daec7e54f72d7-C0",
+          "file": "instruments-detectors-ccd8-linearity-html.md",
+          "url": "https://www.not.iac.es/instruments/detectors/CCD8/linearity.html",
+          "section": "ALFOSC CCD8 linearity with ccd3-controller",
+          "status": "active",
+          "authority": "tier_2_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C8",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        },
+        {
+          "citationId": "D-66f9bbe66359c2af-C10",
+          "file": "instruments-development-notcam-readout-modes-pdf.md",
+          "url": "https://www.not.iac.es/instruments/development/NOTCam_readout_modes.pdf",
+          "section": "Notcam Readout Modes",
+          "status": "reference_only",
+          "authority": "tier_2_design_reference"
+        }
+      ],
+      "trace": {
+        "promptVersion": "operational-recovery-v2",
+        "promptSha256": "671749eba31afa0e0e0b2b69043d712065a088502a21a4dff8f4a0b8982a4758",
+        "model": "command-r-rag:35b",
+        "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+        "corpusVersion": "recovery-2026-09-30-v9",
+        "indexId": "recovery-mxbai:postgres:public.rag_recovery_mxbai_20260930",
+        "contextResolution": "explicit",
+        "answerMethod": "scoped-reference-property-excerpt-v1",
+        "abstentionReason": null,
+        "generationAttempts": 0,
+        "rejectedClaims": 0,
+        "acceptedClaims": 1,
+        "rejectionReasons": [],
+        "initialRejectionReasons": [],
+        "semanticChecker": "deterministic"
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import json
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -37,6 +38,7 @@ class MarkdownBlock:
     text: str
     heading_path: list[str]
     kind: str
+    complete: bool = True
 
 
 @dataclass
@@ -58,7 +60,11 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
         if ":" not in line or line[:1].isspace():
             continue
         key, value = line.split(":", 1)
-        metadata[key.strip()] = value.strip().strip('"').strip("'")
+        value = value.strip()
+        try:
+            metadata[key.strip()] = str(json.loads(value)) if value.startswith('"') else value.strip("'")
+        except ValueError:
+            metadata[key.strip()] = value.strip('"').strip("'")
     return metadata, "\n".join(lines[end + 1 :]).strip()
 
 
@@ -82,6 +88,12 @@ def scrub_sensitive_text(text: str) -> str:
             and len(digits) >= 9
             and len(re.findall(r"[\s()-]", value)) >= 2
         )
+        # Signed declinations in actual TCS catalogue commands are not phone
+        # numbers. An explicit contact label always takes precedence.
+        line_prefix=text[text.rfind('\n',0,match.start())+1:match.start()]
+        coordinate_command=bool(re.search(r'\b(?:append-object|add-object)\b',line_prefix,re.I))
+        if coordinate_command and not explicit_context:
+            return value
         if not (explicit_context or international_format):
             return value
         return "[phone removed]"
@@ -147,6 +159,7 @@ def markdown_blocks(text: str, default_title: str = "Document") -> list[Markdown
     lines = text.splitlines()
     blocks: list[MarkdownBlock] = []
     headings: list[str] = [default_title]
+    heading_levels: list[tuple[int,str]] = []
     current: list[str] = []
     in_fence = False
     fence_token = ""
@@ -166,11 +179,12 @@ def markdown_blocks(text: str, default_title: str = "Document") -> list[Markdown
             flush()
             level = len(heading.group(1))
             title = heading.group(2).strip()
-            if headings == [default_title] and level == 1:
-                headings = [title]
-            else:
-                base = [] if headings == [default_title] else headings[: level - 1]
-                headings = base + [title]
+            # Markdown may start at H2 or skip heading levels. Array length is
+            # not heading depth: it incorrectly nested every subsequent H3
+            # command beneath the first H3 in a catalogue starting with H2.
+            heading_levels=[entry for entry in heading_levels if entry[0]<level]
+            heading_levels.append((level,title))
+            headings=[entry[1] for entry in heading_levels]
             blocks.append(MarkdownBlock(line, list(headings), "heading"))
             index += 1
             continue
@@ -266,6 +280,14 @@ def _pack_units(
 def _split_large_prose(block: MarkdownBlock, target_chars: int) -> list[MarkdownBlock]:
     if len(block.text) <= target_chars or block.kind == "heading":
         return [block]
+    # Ordinary technical tables fit the bounded evidence window and must keep
+    # row/column units with every value. Split only genuinely large tables.
+    if block.kind=='table' and len(block.text)<=6000:
+        return [block]
+    # A short keyboard-interaction instruction is one coherent operation, not
+    # independent factual sentences. Keep its confirmation/recovery ending.
+    if block.kind=='paragraph' and len(block.text)<=2400 and re.search(r'\b[a-z]\+[a-z]\b|\bCtrl[-+]\w+',block.text,re.I):
+        return [block]
     lines = block.text.splitlines()
     if block.kind == "code":
         opener = lines[0] if lines and _FENCE.match(lines[0]) else "```"
@@ -284,20 +306,15 @@ def _split_large_prose(block: MarkdownBlock, target_chars: int) -> list[Markdown
             pieces.append(MarkdownBlock("\n".join([opener, *current, closer]), block.heading_path, "code"))
         return pieces or [block]
     if block.kind == "table":
-        if any(len(line) > target_chars * 2 for line in lines):
-            cells = [
-                " ".join(cell.split())
-                for line in lines
-                for cell in line.split("|")
-                if " ".join(cell.split()) and not re.fullmatch(r"[:\- ]+", cell)
-            ]
-            result: list[MarkdownBlock] = []
-            for cell in cells:
-                prose = MarkdownBlock(cell, block.heading_path, "paragraph")
-                result.extend(_split_large_prose(prose, target_chars))
-            return result
         prefix = lines[:2] if len(lines) > 1 and _TABLE_SEPARATOR.match(lines[1]) else []
-        return _pack_units(lines[len(prefix):], block, target_chars, prefix) or [block]
+        if prefix and len(lines)>2 and re.search(r'\[[^\]]+\]',lines[2]):
+            first=lambda line:line.strip().strip('|').split('|')[0].strip().lower()
+            if first(lines[2])==first(lines[0]):
+                prefix.append(lines[2])
+        pieces = _pack_units(lines[len(prefix):], block, target_chars, prefix) or [block]
+        for piece in pieces:
+            piece.complete = len(pieces) == 1
+        return pieces
     if block.kind == "list":
         items: list[str] = []
         current: list[str] = []
@@ -324,7 +341,7 @@ def _split_large_prose(block: MarkdownBlock, target_chars: int) -> list[Markdown
             current = f"{current} {sentence}".strip()
     if current:
         pieces.append(current)
-    return [MarkdownBlock(piece, block.heading_path, block.kind) for piece in pieces]
+    return [MarkdownBlock(piece, block.heading_path, block.kind, complete=False) for piece in pieces]
 
 
 def structured_chunks(
@@ -362,7 +379,10 @@ def structured_chunks(
         if len(meaningful) < 8:
             continue
         kinds = sorted({block.kind for block in group if block.kind != "heading"}) or ["heading"]
+        if any(block.kind=='paragraph' and not block.complete for block in group):
+            kinds.append('fragment')
         metadata = {
+            "completeTables": [block.text for block in group if block.kind == "table" and block.complete],
             **metadata_source,
             "canonicalSource": metadata_source.get("source_url")
             or metadata_source.get("canonicalUrl")
