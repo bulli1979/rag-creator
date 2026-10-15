@@ -9,15 +9,23 @@ This document is the implementation source of truth for improving NOTBot. Update
 | Overall status | Operational recovery running in the local testing canary; expanded evaluation and rollback implemented; domain-owner/source-gap and production release gates remain open |
 | Plan owner | NOTBot maintainers |
 | Created | 2026-09-28 |
-| Last updated | 2026-10-01 |
+| Last updated | 2026-10-15 |
 | Working branch | `review/production-improvements-clean` |
 | Code baseline | `0c47411` (`Integrate mainline evaluation improvements`) |
 | Review input | Local `NOTBOT_QUALITY_REVIEW.md`, dated 2026-08-26 |
-| Production rollout | Local testing canary only; no main merge or push; remote PHP deployment not verified |
+| Production rollout | Local testing canary only; review-branch publication requested; no main merge or production cutover; remote PHP deployment not verified |
 
 Recovery details: [NOTBOT_RECOVERY_PLAN.md](NOTBOT_RECOVERY_PLAN.md) and
 [measured recovery report](reports/recovery/RECOVERY_REPORT.md). Earlier evidence
 rows remain as history, not claims that their runtime/corpus is still active.
+
+Current review entry point: [NOTBOT_HANDOFF.md](NOTBOT_HANDOFF.md), prepared
+2026-10-15 for the requested review-branch commit/push. Fresh checks:123 backend
+fixtures,24 evaluation-tooling fixtures and JS frontend fixtures pass; API health,
+Qwen profile, deployed/local app hash and active483-document/5479-chunk v10 index
+are reverified without runtime changes. Full HTTP/PHP/model-quality results retain
+their original dates; P6.15/P6.16 and other release gates remain open. See
+[handoff verification receipt](reports/handoff/2026-10-15-verification.json).
 
 ## How to maintain this plan
 
@@ -229,7 +237,7 @@ Goal: make evidence boundaries, authority, and citations explicit to the answeri
 | P5.1 | Define a structured context format containing document ID, title, instrument, authority, status, section, source, and content. | [x] | `app.grounding.prepare_evidence`; title falls back to a humanized filename |
 | P5.2 | Update the prompt to use the structured evidence format and prohibit unsupported claims. | [x] | `build_system_prompt`; JSON claim-and-excerpt contract and untrusted-evidence boundary |
 | P5.3 | Require citations to stable supplied document IDs. | [x] | Stable alias from versioned document ID plus chunk index; server renders supplied citations |
-| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [~] | Mechanical guards plus pinned local English NLI and independent subject/value/identifier/source-policy checks implemented; evaluated reported failures repaired. Earlier complete status was too broad: 95% human semantic citation precision is not established |
+| P5.4 | Validate that citations refer to supplied evidence and support their associated claims. | [~] | Mechanical guards plus pinned English NLI/subject/value/identifier/source-policy checks implemented. New Qwen full-generator review found correct derived counts rejected and contradictory NOTCAM command applicability accepted despite exact quotes. Those source/proof regressions need scoped repair (P6.15/P6.16);95% independent semantic precision remains unestablished. Existing source-derived/core receipts remain historical, not universal validation certification |
 | P5.5 | Clearly label historical and lower-authority evidence in generated answers. | [x] | Historical/reference/unreviewed labels; historical-only claims are rejected when current evidence is supplied unless the query explicitly requests history |
 | P5.6 | Log prompt, model, corpus, index, retrieval scores, abstention state, latency, and token counts. | [x] | Structured trace plus encrypted append-only audit in the persistent API data volume; private permissions and key persistence verified across restart |
 | P5.7 | Preserve instrument context for follow-up retrieval and allow checked wavelength comparisons from supplied ranges. | [x] | User-turn subject resolution before embedding/reranking; explicit topic switches override history; ambiguity clarifies. Direct range answers and Decimal interval comparisons cite current reviewed evidence and retain the derivation in encrypted audit. 46 fixtures and 8/8 live multi-turn checks pass. |
@@ -258,20 +266,52 @@ production acceptance.
 | P6.5 | Test an end-to-end empty-database ingestion and question-answer flow. | [x] | New empty PostgreSQL environment/table built for mxbai, versioned ingestion through v9, 482/482 done; live queries/health/latest-only checks. This is an empty index in an existing database, not full backup restore |
 | P6.6 | Perform a canary rollout using an explicit index/configuration pointer. | [~] | Local testing pointer recovery-mxbai/v10; exact image/app/corpus/config/model identity recorded. Bounded tests are not sustained telemetry or remote frontend cutover |
 | P6.7 | Verify rollback to the prior index and document the operator procedure. | [x] | Retained default/MiniLM/v3 pointer rollback and exact settings restoration passed; instructions in recovery report. Phase6 also restores original dump/catalogue/settings with old compatible image, and final-v10 backup with final image in isolated databases; original dated document-file bundle is unavailable, retained files resolve all catalogue entries |
-| P6.8 | Consider a smaller production model only after corpus and retrieval gates pass. | [ ] | Deferred; same Command R35B weights/profile retained; current recovery changes evidence, not chat model size |
+| P6.8 | Evaluate faster local models on frozen evidence; promote only after quality gates and explicit approval. | [~] | Expanded English round complete 2026-10-01: five artifacts downloaded; nine-model generator screen180/180 and in-process service224/224 complete. Qwen27 service55/56 matches control; earlier generated median7.22s vs23.44s (n5 each, not formal SLO). Initial temperature screen60 and full40-case ×3 ×3 temperatures360 now complete, zero request errors;485 attempt hashes verified after interruption.0 score99/120 (supported57/75),0.1 97/120,0.3 91/120; medians9.56/9.67/9.93s, mixed-cache sequential blocks not SLO. All settings retain false refusals and actual contradictory NOTCAM commands; no deployable winner. qwen27-quality-v1/RESULTS.md tracks recovery/reviews.24 offline fixtures pass. Task-owned engines stopped, weights retained; live app/settings/model/agents unchanged. API/PHP, post-repair control/candidate comparison, formal load/concurrency and independent domain review pending; resident256K Qwen trial separate. P6.15–P6.17 track required proof/scope repair and isolated retrieval experiments. No promotion/release approval |
 | P6.9 | Repeat supported core facts, natural paraphrases and conversation chains on the same build. | [x] | Three COMPLETE unfiltered final-v10 57-case runs: 168/171; same teloffset source gap fails each run, all other core cases pass. No supported-question false refusals/context loss in this sample. NOTCam interruption now preserves exposure-completion instruction; broader MOSCA refusal repaired with reviewed intact paragraph and scoped link routing. reports/phase6/repetition-summary.json |
 | P6.10 | Close essential operational source gaps and resolve conflicting current specifications. | [~] | User-supplied sequencer entry83 checked: X/Y offset description already indexed, not complete autoguided sequence. NOTCam counterweight0.95 recorded as owner context, not approved kg limit. Current load approval and FIES resolving-power reconciliation remain open. Conditional UIF recipe stays guarded; do not change teloffset expected answer into abstention to make suite green |
 | P6.11 | Conduct independent domain-owner answer, citation and procedural-completeness review. | [ ] | Cover every currently supported operational instrument, observing/calibration workflows, data access and site/weather guidance, not only FIES/NOTCAM. At least 95% semantic citation precision on a representative stratified sample; publish denominators. All safety/procedure cases require supported complete steps/prerequisites, correct instrument/version, and no unsafe invented action. Legacy diagnostic flags are not scores |
 | P6.12 | Establish response-time budgets and sustained local-canary monitoring before cutover. | [~] | Bounded warm serial/concurrent benchmark separates source-derived and generated answers, supported questions and gaps; stage timing/token receipts exclude prompt bodies. Final diagnostics and repeated gap questions can exceed90s. Cold machine/model starts, agreed budgets and sustained telemetry remain open. Proposed warm p95 ≤2s fact/reference, ≤45s generated, ≤90s any request are NOT approved or achieved release gates |
 | P6.13 | Reproduce a clean dependency build and full isolated backup restore. | [~] | --pull --no-cache dependency build completed; imports, offline fixtures, CUDA smoke and restored-v9 API pass, but pip check rejects nvidia-cusparselt-cu13 0.8.1 ARM platform tag. Clean image NOT promoted. Original and current-v10 private full PostgreSQL/catalogue/settings/files restore drills pass in separate isolated databases; final483 sources/5479 active chunks verified. See reports/phase6/DEPENDENCY_BUILD_FINDINGS.md and final-restore.json |
 | P6.14 | Verify actual PHP7.4 deployment and record exact release identity. | [~] | Final PHP7.4.33 isolated proxy integration13/13, PHP/JS lint and JS history/context/escaping fixtures pass; NOT an actual target/browser check. Remote server identity/access absent; browser URL policy not bypassed. Image/app/case/corpus/index/model/config receipts bind COMPLETE final evaluation; interrupted/filtered runs cannot be final reports |
+| P6.15 | Align generator claims with typed source proofs and legitimate question intent without weakening checks. | [~] | Initial31-attempt review preserved; final44-attempt replay reproduces every saved rejection:16 correct count assertions match supplied derivedFacts/exact quotes but NLI rejects,14 range claims lack lexical-topic overlap. Implement/retest scoped complete-table/range/intent proof contract; wrong roles/counts/units/IDs, incomplete sources, unsupported extras and fake citations must remain rejected. qwen27-quality-v1/rejection-review-final.json and REVIEW_FINDINGS.md; no live repair yet |
+| P6.16 | Bind procedural claims to explicit instrument applicability/exceptions and reject contradictory instructions. | [~] | Final18-answer diagnostic plus seven-answer manual review confirms real positive contradictory NOTCAM abort instructions at all temperatures (0.3:3,0.1:1,0:3), not negation-regex false positives. Generic appendix source contains explicit instrument exclusion; accepted warning and conflicting command coexist. Add/retest scoped ordinary/unsafe/negated/mixed-context fixtures and obtain independent procedure review before promotion. qwen27-quality-v1/procedure-review-final.json and PROCEDURE_REVIEW.md; no live repair yet |
+| P6.17 | Evaluate scope-preserving chunks, retrieval completeness and model-aware evidence budgets in isolated A/B tests. | [ ] | Read-only inspection and NOTBOT_RETRIEVAL_OPTIMIZATION_PLAN.md complete. Active mxbai/exact pgvector search has no ANN index; topK8, max2/source, bounded neighbour expansion. Structured parser ignores overlap; imported corpus rows can bypass re-chunking. Shadow-only experiments must retain full tables/procedures/instrument exceptions, fixed source snapshots and independent P6.15/P6.16 proof gates. No reindex/live changes yet |
 
 Suggested order: close source gaps/conflicts (P6.10), repeat critical conversations
 and obtain independent domain review (P6.9/P6.11), establish measured latency and
 canary budgets (P6.12), verify clean build/restore and the actual PHP target
-(P6.13/P6.14), then complete sustained canary/cutover (P6.6). Keep the smaller-model
-experiment (P6.8) separate and deferred; compare it on the same reviewed evidence
-and acceptance cases rather than changing corpus/retrieval/model simultaneously.
+(P6.13/P6.14), then complete sustained canary/cutover (P6.6). Following the user's
+latency objection, P6.8 is reopened as an ISOLATED experiment now: compare models
+on the same reviewed evidence and acceptance cases, keeping corpus/retrieval and
+validation fixed. See NOTBOT_MODEL_EVALUATION_PLAN.md. Benchmarking does not
+authorize a live model switch or waive remaining release gates.
+
+Owner subsequently narrowed the alternative-model work to Qwen27. Chat-parameter
+screening is complete:60 responses at temperatures0.3/0.1/0, scores12/20,
+13/20,14/20 respectively; no request errors. Temperature0 is a provisional
+quality candidate,0.1 a latency challenger, not optimized/approved replacements.
+Shared refusal/contract failures persist; zero-temperature procedure tails~40s.
+The five inspected standard coding tags share base weights/template; request
+temperature/output already belong to NOTBot settings. A lightweight runner
+profile can pin32K/draft defaults without new weights or changing coding tags.
+See `reports/model-evaluation/qwen27-chat-tuning-v1/RESULTS.md`; full English
+quality, source/contract review, independent domain and load/PHP gates remain
+open. Live fingerprints unchanged, owned engines stopped; no commit/push.
+
+2026-10-06 owner-authorized exception: the existing **testing** API on this review
+branch now uses `notbot-qwen27:testing-32k` (installed standard Qwen27 weights,
+32K context, temperature0, output2048, explicit no-thinking,180s/request and
+zero SDK automatic retries). This is not a production promotion or a finding
+of equal general quality. P6.8's earlier unchanged-runtime statement describes
+the frozen evaluation, not the current testing runtime. All123 offline fixtures
+pass; the complete HTTP bank is56/57 with the same teloffset gap (English55/56;
+one historical German case retained). Isolated PHP7.4 proxy13/13 and JS fixtures
+pass; actual target/browser verification remains open. Settings survive API
+restart; active483 documents/5479 chunks, embeddings, corpus/index and database
+settings are unchanged. Source-derived successes do not close P6.15/P6.16;
+accepted contradictory generator procedures still block release. No commit/push.
+Profile, private receipt locations and exact rollback are recorded in
+[Qwen testing profile](docs/qwen-testing-profile.md).
 
 Acceptance gates:
 

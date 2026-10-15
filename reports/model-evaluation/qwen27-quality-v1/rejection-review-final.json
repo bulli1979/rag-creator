@@ -1,0 +1,1490 @@
+{
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "frozenSha256": "6abec75642a6f16cf471789b31e3b3fe4bf2c004b1d749aff219eb7eb5b3ad06",
+  "reviewerSha256": "6615e10201432ce889204c6abc59160d21dad523e4b9aa53fc2518b54241dc81",
+  "semanticCheckerRevision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+  "scope": "Source-aware replay of fresh three-case Qwen refusals; proof diagnostics not human approval",
+  "fullBankInputs": true,
+  "liveCodeModified": false,
+  "validatorRelaxed": false,
+  "rawContentPublished": false,
+  "historicalAuditsRead": false,
+  "reviews": [
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fabricated_citation",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "330be7ee2c78340159bd532f7423193d91f5a3f168cb3b42f22da08d66f5cc10",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "330be7ee2c78340159bd532f7423193d91f5a3f168cb3b42f22da08d66f5cc10",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fabricated_citation",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 2,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "fabricated_citation",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "330be7ee2c78340159bd532f7423193d91f5a3f168cb3b42f22da08d66f5cc10",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t00",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "cd8f253598a75f7cf463918f114dcbd8faec80056fe2a257072065767637c2ae",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fabricated_citation",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unsupported_value_or_unit"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "0f78477bbda86cbe6d0383d371b25ca53e02a3e27a9cd69f7057b1b1bdd0dc45",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unsupported_value_or_unit"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "0f78477bbda86cbe6d0383d371b25ca53e02a3e27a9cd69f7057b1b1bdd0dc45",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fabricated_citation",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7453289354dac28182e841078f8f38e92d12cc74968b2e33e18bb57af4dd256e",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 2,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "5e0626b011caffddaea42479bd73bf2f29740007c6d9736d1d54de039b7b8266",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "fabricated_citation",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unsupported_value_or_unit"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "0f78477bbda86cbe6d0383d371b25ca53e02a3e27a9cd69f7057b1b1bdd0dc45",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t01",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "b3f96129e67f0ac3175b647c733ef090cd0584a3a07ed98a06c137a96ff03a23",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fabricated_citation",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "b52740a28d6819d4a7efdb828433d0b0a9c7fcbfa45faf6e37a6ed3a5c84ce56",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fies_count",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unsupported_value_or_unit"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "f812d4efbaedd07f59d0842a4385e2ea0d6a680d8536e18dfcf31cf315d52a05",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": true,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 1,
+      "attempt": 2,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 2,
+      "attempt": 2,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fabricated_citation",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fies_count",
+      "pass": 2,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [],
+      "acceptedClaims": 1,
+      "rejectedClaims": 0,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "26ef53089049963189e4f11ddad80b5ccf713661cbc75801fa0de9b817f0bfeb",
+          "supportsCount": 3,
+          "knownCitations": true,
+          "exactQuotes": false,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": true
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "13cc98bef97dcbc89959a3cbc37ba0b805447ea15aa4bdf4a789ebcd08202974",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fies_count",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "not_entailed_by_excerpt"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-table-inventory-count-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "ede480555b1b6002a42af2a6286fad6e7cdd8a40fed7b16ac49247a51186cc2f"
+      },
+      "claims": [
+        {
+          "claimSha256": "7036925e66349cca201e7d8d6dc4c0a417f5e16e649ad53d98d07f13f7f06d40",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [
+            {
+              "role": "science",
+              "assertedCount": 4,
+              "derivedCounts": [
+                4
+              ],
+              "matchesDerivedFacts": true
+            }
+          ],
+          "lexicalTopicIntersection": true,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": false,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "fabricated_citation",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [],
+      "acceptedClaims": 0,
+      "rejectedClaims": 0,
+      "emptyClaims": true,
+      "directRouteOnSameEvidence": {
+        "available": false
+      },
+      "claims": []
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 1,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "ff7564be48304eecae603639ff3fe04cc2f607180174fac78c92ecdff4ed20fd",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": false
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "id": "notcam_below",
+      "pass": 3,
+      "attempt": 2,
+      "receiptSha256": "0fbc8abfd2e3c692f553488538407a0d419a6af69def678a793fbad98ad01218",
+      "rejectionReasons": [
+        "unrelated_to_question"
+      ],
+      "acceptedClaims": 0,
+      "rejectedClaims": 1,
+      "emptyClaims": false,
+      "directRouteOnSameEvidence": {
+        "available": true,
+        "operation": "wavelength-range-v1",
+        "abstained": false,
+        "facetsPass": true,
+        "answerSha256": "b7d8d72f291b2f6b164643b70914d37dc669003fb8e8a87a91f2c29778a08d1d"
+      },
+      "claims": [
+        {
+          "claimSha256": "251611a7143ca4a01b7fe1076a15c7111a26d898aa8148020a6ac1692a2f2440",
+          "supportsCount": 1,
+          "knownCitations": true,
+          "exactQuotes": true,
+          "inventoryAssertions": [],
+          "lexicalTopicIntersection": false,
+          "claimContainsExpectedFacets": true,
+          "claimMentionsOutOfRangeOrNo": false,
+          "claimMentionsPublishedRange": true,
+          "semanticEntailment": true
+        }
+      ]
+    }
+  ]
+}

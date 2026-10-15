@@ -16,7 +16,8 @@ from app.models import ChatRequest, ChatSettings
 
 
 class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
-    async def run_chat(self, outputs: list[str], message="Describe NOTCAM's spectral region.", history=None):
+    async def run_chat(self, outputs: list[str], message="Describe NOTCAM's spectral region.", history=None,
+                       chat_settings=None):
         source = "NOTCam is a short-wave infrared instrument covering 0.8 to 2.5µm."
         vs = MagicMock()
         vs.similarity_search.return_value = [{
@@ -37,14 +38,15 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
             return next(results)
         worker = AsyncMock(side_effect=run)
         crypto = CryptoService()
-        with patch("app.chat_service.load_chat_settings", return_value=ChatSettings()), \
+        with patch("app.chat_service.load_chat_settings", return_value=chat_settings or ChatSettings()), \
                 patch("app.chat_service.load_source_boosts", return_value={}), \
-                patch("app.chat_service.OpenAI"), \
+                patch("app.chat_service.OpenAI") as client_constructor, \
                 patch("app.chat_service.entails", return_value=None), \
                 patch("app.chat_service.semantic_available", return_value=False), \
                 patch("app.chat_service.run_in_worker_pool", worker):
             service = ChatService(vs, crypto)
             response = await service.chat(ChatRequest(message=message, language="en", history=history or []))
+        self.client_constructor = client_constructor
         return response, worker, crypto
 
     @staticmethod
@@ -118,6 +120,44 @@ class ChatCorrectionTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response.trace["generationAttempts"], 2)
         self.assertEqual(response.trace["acceptedClaims"], 0)
         self.assertEqual(worker.await_count, 5)
+
+    async def test_qwen_transport_settings_apply_to_first_and_repair_requests(self) -> None:
+        settings = ChatSettings(
+            llmModel="notbot-qwen27:testing-32k", temperature=0, maxTokens=2048,
+            llmReasoningEffort="none", llmTimeoutSeconds=180, llmMaxRetries=0,
+        )
+        response, worker, _ = await self.run_chat(
+            [self.output("mm"), self.output("µm")], chat_settings=settings
+        )
+        self.assertFalse(response.metrics["abstained"])
+        self.assertEqual(response.trace["generationAttempts"], 2)
+        options = self.client_constructor.call_args.kwargs
+        self.assertEqual(options["timeout"], 180)
+        self.assertEqual(options["max_retries"], 0)
+        requests = [call.kwargs for call in worker.await_args_list if "model" in call.kwargs]
+        self.assertEqual(len(requests), 2)
+        for request in requests:
+            self.assertEqual(request["reasoning_effort"], "none")
+            self.assertEqual(request["model"], settings.llm_model)
+            self.assertEqual(request["temperature"], 0)
+            self.assertEqual(request["max_tokens"], 2048)
+            self.assertEqual(request["response_format"], {"type": "json_object"})
+
+    async def test_legacy_settings_leave_transport_defaults_unchanged(self) -> None:
+        _, worker, _ = await self.run_chat([self.output("µm")])
+        options = self.client_constructor.call_args.kwargs
+        self.assertNotIn("timeout", options)
+        self.assertNotIn("max_retries", options)
+        requests = [call.kwargs for call in worker.await_args_list if "model" in call.kwargs]
+        self.assertEqual(len(requests), 1)
+        self.assertNotIn("reasoning_effort", requests[0])
+
+    def test_transport_settings_round_trip_and_reject_invalid_values(self) -> None:
+        settings = ChatSettings(llmReasoningEffort="none", llmTimeoutSeconds=180, llmMaxRetries=0)
+        self.assertEqual(ChatSettings(**settings.model_dump(by_alias=True)), settings)
+        for values in ({"llmTimeoutSeconds": 0}, {"llmMaxRetries": -1}, {"llmReasoningEffort": "invalid"}):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                ChatSettings(**values)
 
 
 if __name__ == "__main__":

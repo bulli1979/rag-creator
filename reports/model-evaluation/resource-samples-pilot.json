@@ -1,0 +1,2469 @@
+{
+  "condition": "Shared GPU; live and agent services retained",
+  "samples": [
+    {
+      "recordedAt": "2026-10-01T13:08:52.952951+00:00",
+      "modelUnderTest": null,
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 38"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     41 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:09:08.149847+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 56"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     41 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:09:23.382586+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 53"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     40 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:09:38.722390+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     40 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:09:53.977698+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 59"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     40 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:10:09.292427+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 61"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     40 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:10:24.629727+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 62"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     39 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:10:39.964078+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 64"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     39 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:10:55.299626+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 66"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     39 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:11:10.649645+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     39 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:11:25.962183+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     38 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:11:41.188391+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     38 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:11:56.525412+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     38 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:12:11.852304+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 66"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     38 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:12:27.169344+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     37 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:12:42.460339+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "79 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     37 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:12:57.695227+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 67"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     37 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:13:13.036546+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 67"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     37 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:13:28.341798+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     36 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:13:43.663925+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     36 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:13:58.987835+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     36 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:14:14.335995+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     36 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:14:29.653404+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     35 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:14:44.985896+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     35 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:15:00.342696+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     35 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:15:15.663999+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     35 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:15:30.970301+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     34 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:15:46.279671+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     34 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:16:01.588830+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     34 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:16:16.905139+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     34 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:16:32.235943+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     33 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:16:47.565958+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     33 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:17:02.891446+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     33 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:17:18.226195+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     33 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:17:33.555860+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     32 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:17:48.865655+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     32 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:18:04.187248+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     32 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:18:19.514475+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     32 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:18:34.850573+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     31 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:18:50.178618+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     31 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:19:05.512409+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     31 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:19:20.844380+00:00",
+      "modelUnderTest": "control",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     31 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:19:36.162434+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 63"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     30 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                          ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-control:ctx32k    a55ff4656118    22 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:19:51.365997+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 57"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     30 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:20:06.576869+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     30 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:20:21.908407+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "87 %, 66"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     29 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:20:37.124337+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     29 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:20:52.438779+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 76"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     29 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:21:07.678094+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     29 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:21:23.009639+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     28 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:21:38.322387+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "90 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     28 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:21:53.646810+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     28 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:22:08.989850+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     28 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:22:24.327751+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     27 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:22:39.678572+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     27 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:22:55.003533+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 67"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     27 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:23:10.224774+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     27 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:23:25.559762+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     26 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:23:40.892769+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     26 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:23:56.250973+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     26 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:24:11.596182+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     26 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:24:26.926854+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     25 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:24:42.257907+00:00",
+      "modelUnderTest": "command-r7b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 69"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     25 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:24:57.504429+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 65"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     25 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-command-r7b:ctx32k    0087cf19e081    5.6 GB    100% GPU     8192       9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:25:12.711867+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 61"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     25 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:25:27.915682+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "90 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     24 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:25:43.254793+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 76"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     24 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:25:58.515535+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     24 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:26:13.848794+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     24 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:26:29.189644+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     23 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:26:44.550358+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     23 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:26:59.886312+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     23 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:27:15.228094+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 79"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     23 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:27:30.480914+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     22 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:27:45.811789+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "90 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     22 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:28:01.162894+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     22 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:28:16.455968+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     22 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:28:31.798165+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "90 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     21 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:28:47.121967+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     21 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:29:02.479227+00:00",
+      "modelUnderTest": "qwen35-9b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     21 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:29:17.817639+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 64"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     21 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                            ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen35-9b:ctx32k    3a73e9a7b602    6.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:29:33.013293+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     20 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:29:48.271673+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 77"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     20 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:30:03.518737+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "10 %, 67"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     20 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:30:18.735628+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 79"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     20 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:30:33.966821+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 67"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     19 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:30:49.185319+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 76"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     19 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:31:04.487996+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     19 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:31:19.806450+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     19 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:31:35.112106+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 78"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     18 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:31:50.354322+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     18 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:32:05.686140+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     18 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:32:21.004148+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     18 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:32:36.321384+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     17 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:32:51.615861+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "95 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     17 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:33:06.935550+00:00",
+      "modelUnderTest": "qwen38-27b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 64"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     17 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE     PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen38-27b:ctx32k    691f3a75645a    17 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:33:22.150137+00:00",
+      "modelUnderTest": "qwen3-4b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "96 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     16 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen3-4b:ctx32k    46d1c03f8019    5.3 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:33:37.397826+00:00",
+      "modelUnderTest": "qwen3-4b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 72"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     16 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen3-4b:ctx32k    46d1c03f8019    5.3 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:33:52.692485+00:00",
+      "modelUnderTest": "qwen3-4b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "92 %, 73"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     16 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen3-4b:ctx32k    46d1c03f8019    5.3 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:34:07.913345+00:00",
+      "modelUnderTest": "qwen3-4b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 74"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     16 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen3-4b:ctx32k    46d1c03f8019    5.3 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:34:23.182212+00:00",
+      "modelUnderTest": "qwen3-4b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     15 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-qwen3-4b:ctx32k    46d1c03f8019    5.3 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:34:38.471922+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 63"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     15 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:34:53.690849+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "90 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     15 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:35:08.926915+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 70"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     15 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:35:24.258388+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "88 %, 71"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     14 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:35:39.580569+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 66"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     14 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:35:54.813770+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "94 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     14 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:36:10.150566+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     14 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:36:25.373987+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "91 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     13 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:36:40.683176+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "0 %, 68"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     13 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:36:55.888378+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "89 %, 76"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     13 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-10-01T13:37:11.225313+00:00",
+      "modelUnderTest": "gemma4-12b",
+      "gpu": {
+        "exitCode": 0,
+        "stdout": "93 %, 75"
+      },
+      "residency": {
+        "ollama-prod": {
+          "exitCode": 0,
+          "stdout": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL"
+        },
+        "ollama-qwen-secondary": {
+          "exitCode": 0,
+          "stdout": "NAME                                     ID              SIZE     PROCESSOR    CONTEXT    UNTIL               \nqwen3.8-27b-coding-stable-256k:latest    3759e57d920d    18 GB    100% GPU     262144     13 minutes from now"
+        },
+        "notbot-model-eval-20261001": {
+          "exitCode": 0,
+          "stdout": "NAME                             ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nnotbot-eval-gemma4-12b:ctx32k    87521b4e58de    1.1 GB    100% GPU     32768      9 minutes from now"
+        }
+      }
+    }
+  ]
+}

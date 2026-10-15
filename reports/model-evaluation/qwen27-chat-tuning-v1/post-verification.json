@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-01T17:04:41Z",
+  "responses": 60,
+  "allComplete": true,
+  "requestErrors": 0,
+  "offlineFixturesPassed": 17,
+  "citationFreeAuditScoresUnchanged": true,
+  "liveSettingsSha256": "229c656e20059a19019a11393db34717a28fe8fc4e5b93ffabcff87cf86dd129",
+  "liveChatSettingsSha256": "55b869ba56cdba7f18a31e6d23af517ecf822d4d616a4425c5b97c4948bd3e4f",
+  "liveFingerprintsMatchBaseline": true,
+  "taskOwnedContainersStopped": ["notbot-model-eval-20261001", "notbot-model-download-20261001"],
+  "liveServicesRunning": ["observatory-document-api", "ollama-prod", "ollama-qwen-secondary", "ollama-dev"],
+  "tuningProfileWeightsAndTemplatesMatchBase": true,
+  "liveCodingProfilesModified": false,
+  "applicationFrontendGitDiffEmpty": true,
+  "publicReceiptCredentialAndRawPromptPatternScanMatches": 0,
+  "scanIsNotComprehensiveSecurityCertification": true,
+  "historicalChatsRead": false,
+  "approvedWinner": null,
+  "automaticPromotion": false,
+  "committed": false,
+  "pushed": false
+}

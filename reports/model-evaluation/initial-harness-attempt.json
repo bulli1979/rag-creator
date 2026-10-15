@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-01",
+  "model": "control",
+  "scored": false,
+  "complete": false,
+  "failure": "Evaluation helper import expected a repository-depth path; shallow /evaluation mount caused IndexError after the first generation.",
+  "engine_first_request_seconds": 58.931206672,
+  "engine_first_request_includes_cold_load": true,
+  "full_validated_answer_latency_available": false,
+  "repair": "Run scripts at /workspace/scripts/evaluation and smoke-test helper import inside the same image before resuming; recreate frozen input after identity instrumentation.",
+  "live_services_modified": false,
+  "notes": [
+    "This failed harness run is retained, not counted as a completed model pilot.",
+    "The measured engine request is not a full validated response or a model ranking.",
+    "Unload only the task-owned test runner control before a clean scored cold-start run."
+  ]
+}

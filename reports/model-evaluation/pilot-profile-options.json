@@ -1,0 +1,19 @@
+{
+  "scope": "Explicit safe options read from isolated profile manifests after completed pilot; native defaults preserved",
+  "profiles": [
+    {"model":"control","num_ctx":32768,"num_predict":2048,"temperature":0.3},
+    {"model":"command-r7b","num_ctx":32768,"num_predict":2048,"temperature":0.3,"actual_context":8192},
+    {"model":"qwen35-9b","num_ctx":32768,"num_predict":2048,"temperature":0.3,"presence_penalty":1.5,"top_k":20,"top_p":0.95},
+    {"model":"qwen38-27b","num_ctx":32768,"num_predict":2048,"temperature":0.3,"draft_num_predict":4,"min_p":0,"presence_penalty":0,"repeat_penalty":1,"top_k":20,"top_p":0.95},
+    {"model":"qwen3-4b","num_ctx":32768,"num_predict":2048,"temperature":0.3,"repeat_penalty":1,"top_k":20,"top_p":0.8},
+    {"model":"gemma4-12b","num_ctx":32768,"num_predict":2048,"temperature":0.3,"draft_num_predict":3,"top_k":64,"top_p":0.95}
+  ],
+  "unspecified_options_use_pinned_engine_defaults": true,
+  "sampler_normalized_ablation_complete": false,
+  "notes": [
+    "Missing explicit options are not zero; engine defaults apply.",
+    "Profile manifests and engine image are pinned in pilot/preparation receipts.",
+    "num_ctx is requested configuration, not proof of actual residency context.",
+    "Gemma engine load metadata reports main 49/49 and auxiliary 5/5 layers GPU-offloaded; ollama ps residency size alone should not be treated as full tensor-memory accounting."
+  ]
+}

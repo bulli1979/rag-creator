@@ -215,6 +215,12 @@ class ChatSettings(BaseModel):
     llm_api_key: str = Field("ollama", alias="llmApiKey")
     llm_base_url: str = Field("http://localhost:11434/v1", alias="llmBaseUrl")
     llm_model: str = Field("llama3.2", alias="llmModel")
+    # Optional transport controls: omitted values preserve the existing SDK defaults.
+    llm_reasoning_effort: Literal["none", "minimal", "low", "medium", "high"] | None = Field(
+        None, alias="llmReasoningEffort"
+    )
+    llm_timeout_seconds: float | None = Field(None, gt=0, le=600, alias="llmTimeoutSeconds")
+    llm_max_retries: int | None = Field(None, ge=0, le=5, alias="llmMaxRetries")
     temperature: float = 0.3
     max_tokens: int = Field(2048, alias="maxTokens")
     top_k: int = Field(5, alias="topK")

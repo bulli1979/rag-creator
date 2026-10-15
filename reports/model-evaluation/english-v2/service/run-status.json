@@ -1,0 +1,40 @@
+{
+  "models": [
+    {
+      "model": "control",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 56,
+      "passed": 55
+    },
+    {
+      "model": "ministral3-8b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 56,
+      "passed": 54
+    },
+    {
+      "model": "qwen38-27b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 56,
+      "passed": 55
+    },
+    {
+      "model": "qwen3-4b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 56,
+      "passed": 54
+    }
+  ],
+  "requestedModels": [
+    "control",
+    "ministral3-8b",
+    "qwen38-27b",
+    "qwen3-4b"
+  ],
+  "driverSha256": "15274bfd73232aaf9d0df35ccc364b3b3b04a7fae3a8388f53e50f2ee8a3359f",
+  "complete": true
+}

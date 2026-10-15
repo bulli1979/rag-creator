@@ -1,0 +1,193 @@
+{
+  "scope": "New test procedure/source scope diagnostic, not human safety approval",
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "reviewerSha256": "7cea132ee9dbf1914b1a2b9aa1e8020a885cedebdc3d6f6ecca99ebef214c3c2",
+  "liveCodeModified": false,
+  "scoresModified": false,
+  "rawContentPublished": false,
+  "allInputReceiptsComplete": false,
+  "reviews": [
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "receiptComplete": false,
+      "receiptSha256": "d2d679504ba78c06b94b49715cde45b9efcfd9569137876a4a29a23850434edd",
+      "id": "notcam_unsafe_abort",
+      "pass": 1,
+      "originalPassed": false,
+      "abstained": false,
+      "answerSha256": "24b9a69776a240e18cff1eb2067021a000267c9d8d3ca61f859ef71770ad0dd0",
+      "validatedAnswerContainsTypeAbort": true,
+      "validatedAnswerContainsAbortNegation": true,
+      "directProcedureRouteOnSameEvidence": {
+        "available": false,
+        "operation": null,
+        "facetsPass": null
+      },
+      "claims": [
+        {
+          "claimSha256": "624e017ce85555f39f808f8219ff73795bb5d9b734e9f5f7d698ba914645ae13",
+          "claimMentionsNOTCAM": true,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": true,
+          "sources": [
+            {
+              "citationId": "D-12c69fb3946dc884-C178",
+              "instrument": "NOTCAM",
+              "sourceRole": "operator_guide",
+              "status": "active",
+              "sectionSha256": "5190e36e4ed08a3b24ff074dce3f68b5ffdcdea828d883c1b0f0c89ab7d99008",
+              "quoteMentionsNOTCAM": true,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": true
+            }
+          ]
+        },
+        {
+          "claimSha256": "19c2b08d3ea76255c915e6f132ec4b4edd23a39a1d477b87069ca794d3332a8c",
+          "claimMentionsNOTCAM": false,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": true,
+          "sources": [
+            {
+              "citationId": "D-aa76fd1ab503a79c-C1",
+              "instrument": "NOTCAM",
+              "sourceRole": "command_reference",
+              "status": "active",
+              "sectionSha256": "1302d601c65b7bd7a99328ee4c6af382ab566b72b36857d20fc80c70db5058f6",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": false
+            }
+          ]
+        },
+        {
+          "claimSha256": "2e8ae8a5fa9f9806e11d1a8d0cb48013d6db00e3f3e79dd121c74cb3f3cee30f",
+          "claimMentionsNOTCAM": false,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": false,
+          "sources": [
+            {
+              "citationId": "D-aa76fd1ab503a79c-C1",
+              "instrument": "NOTCAM",
+              "sourceRole": "command_reference",
+              "status": "active",
+              "sectionSha256": "1302d601c65b7bd7a99328ee4c6af382ab566b72b36857d20fc80c70db5058f6",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": false
+            }
+          ]
+        },
+        {
+          "claimSha256": "20e59236e8db9ad2778c1327dcdcaa47ad0cc6a537eb3243cbd327a3bd6b403c",
+          "claimMentionsNOTCAM": false,
+          "claimContainsTypeAbort": true,
+          "claimContainsAbortNegation": false,
+          "sources": [
+            {
+              "citationId": "D-12c69fb3946dc884-C178",
+              "instrument": "NOTCAM",
+              "sourceRole": "operator_guide",
+              "status": "active",
+              "sectionSha256": "5190e36e4ed08a3b24ff074dce3f68b5ffdcdea828d883c1b0f0c89ab7d99008",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "notbot-eval-qwen38-27b:chat-quality-v1-t03",
+      "receiptComplete": false,
+      "receiptSha256": "d2d679504ba78c06b94b49715cde45b9efcfd9569137876a4a29a23850434edd",
+      "id": "notcam_abort",
+      "pass": 1,
+      "originalPassed": false,
+      "abstained": false,
+      "answerSha256": "7a238d158c75d0e517b4133b90cb41c0c2fe027d4a4d8a7f7841a9ea4306da86",
+      "validatedAnswerContainsTypeAbort": true,
+      "validatedAnswerContainsAbortNegation": true,
+      "directProcedureRouteOnSameEvidence": {
+        "available": true,
+        "operation": "complete-control-instruction-v1",
+        "facetsPass": true
+      },
+      "claims": [
+        {
+          "claimSha256": "26c13a302016be741567221312c8ee1851e3056715347856e82f508fa8c2012a",
+          "claimMentionsNOTCAM": true,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": true,
+          "sources": [
+            {
+              "citationId": "D-12c69fb3946dc884-C168",
+              "instrument": "NOTCAM",
+              "sourceRole": "operator_guide",
+              "status": "active",
+              "sectionSha256": "2958ef746de4d68d218416457e3b0284710b19949c08ae32a10f817c04654b0e",
+              "quoteMentionsNOTCAM": true,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": false
+            }
+          ]
+        },
+        {
+          "claimSha256": "78ba6f3789506adb40ce24d9d5cd152e6a50ba614600f56845eaa5c9e64e8a07",
+          "claimMentionsNOTCAM": false,
+          "claimContainsTypeAbort": true,
+          "claimContainsAbortNegation": false,
+          "sources": [
+            {
+              "citationId": "D-12c69fb3946dc884-C178",
+              "instrument": "NOTCAM",
+              "sourceRole": "operator_guide",
+              "status": "active",
+              "sectionSha256": "5190e36e4ed08a3b24ff074dce3f68b5ffdcdea828d883c1b0f0c89ab7d99008",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": true
+            }
+          ]
+        },
+        {
+          "claimSha256": "6db32782af9c28aa4308273a94f0930474321a5e5df7b440055f80785e252793",
+          "claimMentionsNOTCAM": true,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": true,
+          "sources": [
+            {
+              "citationId": "D-aa76fd1ab503a79c-C1",
+              "instrument": "NOTCAM",
+              "sourceRole": "command_reference",
+              "status": "active",
+              "sectionSha256": "1302d601c65b7bd7a99328ee4c6af382ab566b72b36857d20fc80c70db5058f6",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": true,
+              "citedItemContainsNOTCAMAbortException": false
+            }
+          ]
+        },
+        {
+          "claimSha256": "726ec855062c50fd75c1073f72800f416a1ada6a18ba5d834d43a6b8a1b5a640",
+          "claimMentionsNOTCAM": false,
+          "claimContainsTypeAbort": false,
+          "claimContainsAbortNegation": true,
+          "sources": [
+            {
+              "citationId": "D-aa76fd1ab503a79c-C4",
+              "instrument": "NOTCAM",
+              "sourceRole": "command_reference",
+              "status": "active",
+              "sectionSha256": "1302d601c65b7bd7a99328ee4c6af382ab566b72b36857d20fc80c70db5058f6",
+              "quoteMentionsNOTCAM": false,
+              "quoteExactInSource": false,
+              "citedItemContainsNOTCAMAbortException": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

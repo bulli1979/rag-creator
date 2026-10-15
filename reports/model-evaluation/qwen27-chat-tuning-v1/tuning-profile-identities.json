@@ -1,0 +1,194 @@
+{
+  "recordedAt": "2026-10-01T17:00:50.386416+00:00",
+  "models": [
+    {
+      "name": "qwen3.8:27b",
+      "manifestDigest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "sizeBytes": 17741872154,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "draft_num_predict": 4,
+        "min_p": 0,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95
+      },
+      "parametersSha256": "a5fc8dd15ec88e0171823a9b907beb222be90e0eadfbda5c01609588286935cf",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b-q4_K_M",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "notbot-eval-qwen38-27b:chat-tune-v1-t03",
+      "manifestDigest": "691f3a75645ab4d4b494da033ce409d97a0011e859b9ea93f941b590aba5e069",
+      "sizeBytes": 17741872155,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "min_p": 0,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "temperature": 0.3,
+        "top_p": 0.95,
+        "draft_num_predict": 4,
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "top_k": 20
+      },
+      "parametersSha256": "45a0cbe40287326c343be1eb269b9dc2505505185a79245bd6015a919d2c7989",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "notbot-eval-qwen38-27b:chat-tune-v1-t01",
+      "manifestDigest": "597e4c2859ab7e3457187a598b5bbb81008a3489747d85fc9e053b0e09a2a534",
+      "sizeBytes": 17741872155,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "num_predict": 2048,
+        "temperature": 0.1,
+        "top_p": 0.95,
+        "min_p": 0,
+        "num_ctx": 32768,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "top_k": 20,
+        "draft_num_predict": 4
+      },
+      "parametersSha256": "dd93faae53d08ce0743a660a0a84d9124a4c257b572a6c015923b668512618ba",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "notbot-eval-qwen38-27b:chat-tune-v1-t00",
+      "manifestDigest": "1f3fe987c6d06809159d29eb4088c6ad380f1113c8c76c05577f48086704406a",
+      "sizeBytes": 17741872153,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "draft_num_predict": 4,
+        "num_predict": 2048,
+        "repeat_penalty": 1,
+        "top_k": 20,
+        "min_p": 0,
+        "num_ctx": 32768,
+        "presence_penalty": 0,
+        "temperature": 0,
+        "top_p": 0.95
+      },
+      "parametersSha256": "71abf4f243d91a59824e8dea53eead98bec3448d2ff00a988638e6f3a98e798f",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    }
+  ],
+  "residency": {
+    "models": [
+      {
+        "name": "notbot-eval-qwen38-27b:chat-tune-v1-t03",
+        "model": "notbot-eval-qwen38-27b:chat-tune-v1-t03",
+        "size": 17536059964,
+        "digest": "691f3a75645ab4d4b494da033ce409d97a0011e859b9ea93f941b590aba5e069",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "27.3B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-01T17:10:44.797540527Z",
+        "size_vram": 17536059964,
+        "context_length": 32768
+      }
+    ]
+  },
+  "inferencePerformedByInspection": false,
+  "inspectionScope": "task-owned tuning profiles",
+  "liveProfilesModified": false,
+  "systemTextPublished": false
+}

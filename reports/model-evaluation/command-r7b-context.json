@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "model": "command-r7b:7b-12-2024-q4_K_M",
+  "profile": "notbot-eval-command-r7b:ctx32k",
+  "requested_context": 32768,
+  "profile_parameter_num_ctx": 32768,
+  "model_info_cohere2_context_length": 8192,
+  "model_info_sliding_window": 4096,
+  "observed_resident_context": 8192,
+  "engine_warning": "requested context size too large for model",
+  "completed_pilot_responses": 20,
+  "engine_log_window_utc": ["2026-10-01T13:19:40Z", "2026-10-01T13:25:05Z"],
+  "bounded_engine_release_metadata_observed_truncation": false,
+  "max_reported_prompt_tokens": 6600,
+  "max_reported_total_tokens_per_attempt": 7951,
+  "max_prompt_plus_full_2048_output_budget": 8648,
+  "full_output_budget_fits_8k_for_every_attempt": false,
+  "formal_all_bank_truncation_check_complete": false,
+  "classification": "8K-runtime candidate; not a matched-32K result",
+  "consequences": [
+    "Keep the pinned artifact and pilot failures; do not silently edit GGUF context metadata or upgrade the engine.",
+    "Qualify R7B latency with actual runtime context rather than its requested profile name.",
+    "Verify exact token/history/repair/output budget for the full bank and end-to-end use before selecting this artifact.",
+    "If the required budget exceeds 8K, investigate a separately pinned supported longer-context artifact/profile as a new experiment, with explicit download/compatibility review."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "frozenSha256": "6abec75642a6f16cf471789b31e3b3fe4bf2c004b1d749aff219eb7eb5b3ad06",
+  "reviewerSha256": "98ffbdfd6f2441b79f285cfbe0203c13e6031054631538259873d17a98581202",
+  "semanticCheckerRevision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+  "scope": "Source-aware replay of fresh three-case Qwen refusals; proof diagnostics not human approval",
+  "liveCodeModified": false,
+  "validatorRelaxed": false,
+  "rawContentPublished": false,
+  "historicalAuditsRead": false,
+  "reviews": []
+}

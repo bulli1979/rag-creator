@@ -1,0 +1,750 @@
+{
+  "scope": "Six-model generator pilot on shared GPU; not PHP latency, domain-owner review, or release approval",
+  "allPilotsComplete": true,
+  "casesSha256": "84b9e7a132caf84a6d5ecc00528ceeee138e241c5cc6f0e4e116a3732af85cd2",
+  "frozenSha256": "d7caba04be13fdaaa431e689cd0fd8be74e5c3a4ff75d3e7201f263dc66537bb",
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "harnessSha256": "21ec9406b966fe4f4c41f4087708c4da0d0318aaa23696f28de0d731b914f004",
+  "approvedWinner": null,
+  "automaticPromotion": false,
+  "formalWarmColdConcurrencyTestingComplete": false,
+  "fullEndToEndTestingComplete": false,
+  "independentDomainReviewComplete": false,
+  "models": [
+    {
+      "model": "control",
+      "baseModel": "command-r-rag:35b",
+      "state": "complete",
+      "receiptSha256": "ffce86b95830a42c4080c50a6694b71abc61d7989369f0f6fc769a2f8e4dbba2",
+      "baseManifestDigest": "529eae81d571715fd08bcd654c3a3db008fb93ab15a7369a24be7856d7f48477",
+      "responses": 20,
+      "passed": 11,
+      "supportedResponses": 14,
+      "supportedPassed": 8,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 7,
+      "repairResponses": 11,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        32768
+      ],
+      "contextMatchesRequestInSamples": true,
+      "actualContextMustBeQualified": false,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 26521.5,
+        "p95Ms": 69114,
+        "maxMs": 74669
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 26294,
+        "p95Ms": 74669,
+        "maxMs": 74669
+      },
+      "passingResponseLatencyOnly": {
+        "n": 11,
+        "p50Ms": 22580,
+        "p95Ms": 74669,
+        "maxMs": 74669
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "missing required facet: notcam\\.mdark"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "command-r7b",
+      "baseModel": "command-r7b:7b-12-2024-q4_K_M",
+      "state": "complete",
+      "receiptSha256": "a0f819273c30b8523a1f8af90cb3489d6b26caf1a22737b3b1a9ba068ae8235c",
+      "baseManifestDigest": "ff4e9696ef9f19b62e3f7d7261c95dcc9bb15a7c0398493366d851119fe2e1ef",
+      "responses": 20,
+      "passed": 10,
+      "supportedResponses": 14,
+      "supportedPassed": 8,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 8,
+      "repairResponses": 13,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        8192
+      ],
+      "contextMatchesRequestInSamples": false,
+      "actualContextMustBeQualified": true,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 8996.0,
+        "p95Ms": 33262,
+        "maxMs": 62969
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 8352,
+        "p95Ms": 62969,
+        "maxMs": 62969
+      },
+      "passingResponseLatencyOnly": {
+        "n": 10,
+        "p50Ms": 12763.0,
+        "p95Ms": 62969,
+        "maxMs": 62969
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first",
+            "missing required facet: N.*3|3.*N"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: readout\\s+mode"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen35-9b",
+      "baseModel": "qwen3.5:9b",
+      "state": "complete",
+      "receiptSha256": "d7eb7c1f94429b57a8f5042b0bb1a3c12ece19fec03408f1279f433634498b55",
+      "baseManifestDigest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "responses": 20,
+      "passed": 9,
+      "supportedResponses": 14,
+      "supportedPassed": 7,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 10,
+      "repairResponses": 12,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        32768
+      ],
+      "contextMatchesRequestInSamples": true,
+      "actualContextMustBeQualified": false,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 7317.0,
+        "p95Ms": 42193,
+        "maxMs": 42360
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 7235,
+        "p95Ms": 42360,
+        "maxMs": 42360
+      },
+      "passingResponseLatencyOnly": {
+        "n": 9,
+        "p50Ms": 4011,
+        "p95Ms": 33435,
+        "maxMs": 33435
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fies_german",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 1[.,]3",
+            "missing required facet: Bogensekund|arcsec"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first",
+            "missing required facet: N.*3|3.*N"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: notcam\\.mdark"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen38-27b",
+      "baseModel": "qwen3.8:27b",
+      "state": "complete",
+      "receiptSha256": "77f7ef81f90a25fa66767c64a5c74af3b7f0d55db77209f56c36888cfa75636d",
+      "baseManifestDigest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "responses": 20,
+      "passed": 14,
+      "supportedResponses": 14,
+      "supportedPassed": 11,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 5,
+      "repairResponses": 6,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        32768
+      ],
+      "contextMatchesRequestInSamples": true,
+      "actualContextMustBeQualified": false,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 6533.5,
+        "p95Ms": 35305,
+        "maxMs": 43059
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 6371,
+        "p95Ms": 43059,
+        "maxMs": 43059
+      },
+      "passingResponseLatencyOnly": {
+        "n": 14,
+        "p50Ms": 7685.0,
+        "p95Ms": 43059,
+        "maxMs": 43059
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "missing required facet: notcam\\.mdark"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen3-4b",
+      "baseModel": "qwen3:4b-instruct-2507-q4_K_M",
+      "state": "complete",
+      "receiptSha256": "864dda2020e7fbb3b51b6ea67434adeb910ee3de0590ee1251c157d3767029c1",
+      "baseManifestDigest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+      "responses": 20,
+      "passed": 10,
+      "supportedResponses": 14,
+      "supportedPassed": 8,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 8,
+      "repairResponses": 8,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        32768
+      ],
+      "contextMatchesRequestInSamples": true,
+      "actualContextMustBeQualified": false,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 2302.0,
+        "p95Ms": 16974,
+        "maxMs": 18717
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 2256,
+        "p95Ms": 18717,
+        "maxMs": 18717
+      },
+      "passingResponseLatencyOnly": {
+        "n": 10,
+        "p50Ms": 2302.0,
+        "p95Ms": 9918,
+        "maxMs": 9918
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gemma4-12b",
+      "baseModel": "gemma4:12b",
+      "state": "complete",
+      "receiptSha256": "cec3dda4016d60d271b7c5d7ff4ac3ad55e6006a7699c7f31b555b7598da8267",
+      "baseManifestDigest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+      "responses": 20,
+      "passed": 10,
+      "supportedResponses": 14,
+      "supportedPassed": 8,
+      "allPilotChecksPassed": false,
+      "falseRefusals": 6,
+      "repairResponses": 5,
+      "requestErrors": 0,
+      "requestedContext": 32768,
+      "sampledRuntimeContexts": [
+        32768
+      ],
+      "contextMatchesRequestInSamples": true,
+      "actualContextMustBeQualified": false,
+      "pilotLatencyAll": {
+        "n": 20,
+        "p50Ms": 5397.5,
+        "p95Ms": 28068,
+        "maxMs": 28775
+      },
+      "pilotLatencyExcludingFirstRequest": {
+        "n": 19,
+        "p50Ms": 4959,
+        "p95Ms": 28068,
+        "maxMs": 28068
+      },
+      "passingResponseLatencyOnly": {
+        "n": 10,
+        "p50Ms": 4653.5,
+        "p95Ms": 28775,
+        "maxMs": 28775
+      },
+      "passingLatencyIsNotAllRequestsSLO": true,
+      "thinkingControlVerified": false,
+      "noReasoningOutputObserved": true,
+      "failures": [
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "errors": [
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing required facet: readout\\s+mode",
+            "missing required facet: notcam\\.mdark",
+            "missing required facet: first"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "errors": [
+            "missing required facet: spectrograph"
+          ]
+        }
+      ]
+    }
+  ]
+}

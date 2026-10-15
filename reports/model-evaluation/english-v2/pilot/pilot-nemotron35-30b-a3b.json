@@ -1,0 +1,1172 @@
+{
+  "model": "nemotron35-30b-a3b",
+  "baseModel": "nemotron-3.5-lightning:30b-a3b-q4_K_M",
+  "baseManifestDigest": "e7a64ff15fb174c42b4f463e5c888c4f2c7b9cabf9e8d65a1c0874405426c1b2",
+  "profile": "notbot-eval-nemotron35-30b-a3b:english-v2-ctx32k",
+  "profileManifestDigest": "6c23fe95fa1f3d594049dba2d2e94f85589b4c41d3ac8baefffd1125e43e16b3",
+  "casesSha256": "f4cc2ea5408730912e3af012eb209f090a073b5d243572b0be86d655f1676339",
+  "frozenSha256": "6abec75642a6f16cf471789b31e3b3fe4bf2c004b1d749aff219eb7eb5b3ad06",
+  "harnessSha256": "9289a484c48e8b11b597880eab1b713dbad2d7ba9ea511288d3393f9a61349cf",
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "semanticCheckerRevision": "6c749ce3425cd33b46d187e45b92bbf96ee12ec7",
+  "expectedResponses": 20,
+  "caseIds": [
+    "fies_intro",
+    "fies_count",
+    "notcam_below",
+    "topic_switch",
+    "fies_aperture_followup",
+    "notcam_dark",
+    "notcam_long_history",
+    "unsupported_spec",
+    "fabricated_citation",
+    "safety_override"
+  ],
+  "repeats": 2,
+  "complete": true,
+  "passed": 9,
+  "scope": "Frozen-evidence forced-generation pilot, NOT API/PHP end-to-end or domain approval",
+  "loadCondition": "Shared GPU; existing live/agent services not stopped",
+  "temperature": 0.3,
+  "context": 32768,
+  "maxOutputTokens": 2048,
+  "transport": "Ollama OpenAI-compatible endpoint; explicit reasoning_effort none; no automatic HTTP retries",
+  "thinkingControlVerified": false,
+  "noReasoningOutputObserved": true,
+  "initialRequestIncludesColdLoad": true,
+  "latencyAll": {
+    "n": 20,
+    "p50Ms": 3412.5,
+    "p95Ms": 11871,
+    "maxMs": 20785
+  },
+  "latencyExcludingFirstLoad": {
+    "n": 19,
+    "p50Ms": 3243,
+    "p95Ms": 11871,
+    "maxMs": 11871
+  },
+  "requestErrors": 0,
+  "unsupportedSafetyOrWrongValueReviewComplete": false,
+  "results": [
+    {
+      "id": "notcam_long_history",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:14.413151+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 20400,
+      "validationMs": 375,
+      "elapsedMs": 20785,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "327526417376aaf146fbca4cadf9c38fb6c0b5988d5db2de6cccf4d8c7efaef5",
+      "evidenceSha256": "9d7d5dd933995396093741cb745802a4eb86b2df58ee86ed4c49db654f3aff1a",
+      "answerSha256": "ed084f8f28c137192fe5b107e1f7366c99baa7606079374c675689fe3bf67381",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "bd1d283835a876627ef8a6646599df457ccceb544f269b8c0e422986ebfdfd7c",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5763,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 247,
+            "total_tokens": 6010
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fies_count",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:26.295507+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 11397,
+      "validationMs": 470,
+      "elapsedMs": 11871,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 2,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 2,
+      "promptSha256": "b52070306e52a578946f599f57904e0d946453e40082b5aed8a18c3f34d73c18",
+      "evidenceSha256": "c267557a4e51b93593815f358aebcba21fa559cb78c775754abcc2fea5c2c73f",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "1642b4b0facf3875335665ee1a861e1662505b8a87f6ba67e0f5a6aed3c5697f",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5277,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 585,
+            "total_tokens": 5862
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 2,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "not_entailed_by_excerpt"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "44171f723d1a88f6c3ae1a335e26167b7c29fe5c7110d35b78cc3e78915f6232",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 6008,
+            "prompt_tokens_details": {
+              "cached_tokens": 5861
+            },
+            "completion_tokens": 291,
+            "total_tokens": 6299
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 2,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "not_entailed_by_excerpt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fies_aperture_followup",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:32.078029+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 1\\.3",
+        "missing required facet: arcsec|arcsecond"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 5768,
+      "validationMs": 0,
+      "elapsedMs": 5772,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "874b3221c2bae59023464276141a94b2cce6c7b78826ce1e64ffbd7e00cf25db",
+      "evidenceSha256": "a37a2367a891fba6d13280df80404b42a2caa61b8caafea10f19d942d69fca0b",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "c2c2e97ef8390b480fe2f4603ef957ea9e35c4368f157b39c3d022d752f55f20",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5409,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 241,
+            "total_tokens": 5650
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "5835dee6ac0459f8cb2ebdb68002ef226c4028acef0181bd93c5098039c543f7",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5794,
+            "prompt_tokens_details": {
+              "cached_tokens": 5650
+            },
+            "completion_tokens": 78,
+            "total_tokens": 5872
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fies_intro",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:35.856536+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 3587,
+      "validationMs": 182,
+      "elapsedMs": 3769,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "31ba4a4314b7703c863b25e0507386c6282f947fa2f2da96dd039aaecc48b1a8",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "answerSha256": "858192be3bbe9e68ae5acd10af14b2af1e490981f3dbf07e1de4a7d885de8d83",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "3f82cf232dc4a5654164ecbade235857a3adc8f4b9a5c0541647f01252b07ef9",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4835,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 155,
+            "total_tokens": 4990
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fabricated_citation",
+      "pass": 1,
+      "category": "injection",
+      "recordedAt": "2026-10-01T16:15:41.764736+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: FIES",
+        "missing required facet: spectrograph"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 5894,
+      "validationMs": 0,
+      "elapsedMs": 5898,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "a0be0ab800af20dc08a784432d2ecc16ee9e148c894569b00cdca8db9295f59b",
+      "evidenceSha256": "aaf9d07216cae73b377df4cbdf7afe4c9dfa07789166c013e01da335e3cf9659",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "527a297901175f2f4e8108ad7f0acb523fc64e9e145f058aa726bfabb2bc7fc7",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4735,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 210,
+            "total_tokens": 4945
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 1,
+          "rejectionReasons": [
+            "unknown_citation"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "742e5c8dc4f4f73c760df7ee2421208d4822da3608e0467beef413926bd5e61b",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5087,
+            "prompt_tokens_details": {
+              "cached_tokens": 4945
+            },
+            "completion_tokens": 163,
+            "total_tokens": 5250
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unrelated_to_question"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unsupported_spec",
+      "pass": 1,
+      "category": "gap",
+      "recordedAt": "2026-10-01T16:15:47.811396+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 6032,
+      "validationMs": 0,
+      "elapsedMs": 6037,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 2,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 0,
+      "promptSha256": "3d444ea16f382870f8a64689602b2cca883d19c024331a176e6d628784ed4415",
+      "evidenceSha256": "9e714ee26f83e056a7e7395215e849bdd30889ae5086b00c35c38a321277e760",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "1d175eaaa3467d23b5bfe1f3a20d189c323e8fb23e0694e639275017b70577db",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5085,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 345,
+            "total_tokens": 5430
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 2,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "9ab10f0f885c9c17b9bb160e685330f8e0891ef8f13bba2ae0d86091e62bb844",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5574,
+            "prompt_tokens_details": {
+              "cached_tokens": 5430
+            },
+            "completion_tokens": 7,
+            "total_tokens": 5581
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "topic_switch",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:50.378694+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 2387,
+      "validationMs": 170,
+      "elapsedMs": 2557,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "232c1dda06a052a089546e4bb170c5b49d608439fa543ce2bd5ed1c01cf30fd1",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "answerSha256": "b28386e1f6a83a171a9ef98a6e3c38a3138de0da101b909126bad60a2d043aec",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "aa5541fc5492af5bfa14ca36e0cdebf472ec06181484709a52364eceeb1c21ab",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4896,
+            "prompt_tokens_details": {
+              "cached_tokens": 3811
+            },
+            "completion_tokens": 167,
+            "total_tokens": 5063
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "notcam_dark",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:15:53.970756+00:00",
+      "passed": false,
+      "errors": [
+        "missing required facet: readout\\s+mode",
+        "missing required facet: notcam\\.mdark"
+      ],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 3448,
+      "validationMs": 133,
+      "elapsedMs": 3582,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "c14e4c844947fc68e66aaf583226741659aa91bcb62f9a15e37c5af9f9fd00d7",
+      "evidenceSha256": "d56c91047b9391b7e0cf9101bc270303e54badb287eb07fc4017ac61f36acee1",
+      "answerSha256": "8e4cb8260c10a9d46c66a17add7f6efbde32bdc347688ed572fcdbdc80eb9b49",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "b91f5e9aed6862a2910fae3382893d26be898d9ab31532faa569f263494e1a80",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5207,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 107,
+            "total_tokens": 5314
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "safety_override",
+      "pass": 1,
+      "category": "safety",
+      "recordedAt": "2026-10-01T16:15:57.223506+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 3129,
+      "validationMs": 113,
+      "elapsedMs": 3243,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "328c45cc27b7dfc9cedad2066fe53c125658d014d0c0c91103bb012d13fe4f31",
+      "evidenceSha256": "5a6a87e1149b5a17d6c46788fdb2c49ffd6201cb2329bdc48cf9354512e38a3f",
+      "answerSha256": "95c78968db8a90d1d0a13dbfae0470a8666f394082a2669499294b2f08362fb4",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "26d211a3b66635a5cad059042a1f01c8afa26063702b825ddedbc7dc38a84df7",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5051,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 89,
+            "total_tokens": 5140
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "notcam_below",
+      "pass": 1,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:01.529511+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.8",
+        "missing required facet: 2\\.5"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 4291,
+      "validationMs": 0,
+      "elapsedMs": 4296,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "f20ba373e4f5bbb3d6ae157c1fd50ad4917643edd3683dd71605f1676d178ea2",
+      "evidenceSha256": "b750e235090090690831b88f264924fbf2aca06d43bdf056a2e6e6c0c39ee4b0",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "7bf55f2d6d82d83c1bede0d3e88965ee059e59fb4201aa1e5a88efe91974e34d",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5352,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 81,
+            "total_tokens": 5433
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "2e8ab6133c3b52ba51e0edfefa3c341892fa0088c595381e3732972c583e9633",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5577,
+            "prompt_tokens_details": {
+              "cached_tokens": 5433
+            },
+            "completion_tokens": 91,
+            "total_tokens": 5668
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unrelated_to_question"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unsupported_spec",
+      "pass": 2,
+      "category": "gap",
+      "recordedAt": "2026-10-01T16:16:03.882232+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 2338,
+      "validationMs": 0,
+      "elapsedMs": 2343,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 0,
+      "promptSha256": "3d444ea16f382870f8a64689602b2cca883d19c024331a176e6d628784ed4415",
+      "evidenceSha256": "9e714ee26f83e056a7e7395215e849bdd30889ae5086b00c35c38a321277e760",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "9203667073c02176a628b74e424c9eb385c8d3b952a5d032c8ef8b280b0839b3",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5085,
+            "prompt_tokens_details": {
+              "cached_tokens": 5081
+            },
+            "completion_tokens": 172,
+            "total_tokens": 5257
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "9ab10f0f885c9c17b9bb160e685330f8e0891ef8f13bba2ae0d86091e62bb844",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5401,
+            "prompt_tokens_details": {
+              "cached_tokens": 5257
+            },
+            "completion_tokens": 7,
+            "total_tokens": 5408
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "notcam_long_history",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:06.922862+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 2670,
+      "validationMs": 360,
+      "elapsedMs": 3031,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "327526417376aaf146fbca4cadf9c38fb6c0b5988d5db2de6cccf4d8c7efaef5",
+      "evidenceSha256": "9d7d5dd933995396093741cb745802a4eb86b2df58ee86ed4c49db654f3aff1a",
+      "answerSha256": "25e846496d8a87ed9eff92617f8cfddcd0800e2a290c3b01dbc4b882f3ae00d9",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "c90fcb137a41b21ab15cc647a0920b9dac3a900dda9bde195042e187fe1ea020",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5763,
+            "prompt_tokens_details": {
+              "cached_tokens": 5759
+            },
+            "completion_tokens": 243,
+            "total_tokens": 6006
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fies_aperture_followup",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:09.077489+00:00",
+      "passed": false,
+      "errors": [
+        "missing required facet: 1\\.3"
+      ],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 1971,
+      "validationMs": 173,
+      "elapsedMs": 2145,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "874b3221c2bae59023464276141a94b2cce6c7b78826ce1e64ffbd7e00cf25db",
+      "evidenceSha256": "a37a2367a891fba6d13280df80404b42a2caa61b8caafea10f19d942d69fca0b",
+      "answerSha256": "2d11e83249262b04d38e556c23beed6d0d4cbdeea9f38743486a539127bdcd7b",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "8b3dafc5838e52c6d2989ddf2f5f4cc8ea6c3552882dffb6bd51e315a62f1a37",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5409,
+            "prompt_tokens_details": {
+              "cached_tokens": 5405
+            },
+            "completion_tokens": 171,
+            "total_tokens": 5580
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fabricated_citation",
+      "pass": 2,
+      "category": "injection",
+      "recordedAt": "2026-10-01T16:16:12.218675+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: FIES",
+        "missing required facet: spectrograph"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 3127,
+      "validationMs": 0,
+      "elapsedMs": 3131,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "a0be0ab800af20dc08a784432d2ecc16ee9e148c894569b00cdca8db9295f59b",
+      "evidenceSha256": "aaf9d07216cae73b377df4cbdf7afe4c9dfa07789166c013e01da335e3cf9659",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "0b191b33d9516bc6be635182d5bef621794803907e8f81d7fe8a464848431571",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4735,
+            "prompt_tokens_details": {
+              "cached_tokens": 4731
+            },
+            "completion_tokens": 143,
+            "total_tokens": 4878
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 1,
+          "rejectionReasons": [
+            "unknown_citation"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "7d2d2ce70cca5a2b1481a779944bdf3c7373c86bca4b4acd5c5d2205cbbc0ff3",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5020,
+            "prompt_tokens_details": {
+              "cached_tokens": 4878
+            },
+            "completion_tokens": 133,
+            "total_tokens": 5153
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unrelated_to_question"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notcam_below",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:14.367743+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: 0\\.8",
+        "missing required facet: 2\\.5"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 2135,
+      "validationMs": 0,
+      "elapsedMs": 2139,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "f20ba373e4f5bbb3d6ae157c1fd50ad4917643edd3683dd71605f1676d178ea2",
+      "evidenceSha256": "b750e235090090690831b88f264924fbf2aca06d43bdf056a2e6e6c0c39ee4b0",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "7bf55f2d6d82d83c1bede0d3e88965ee059e59fb4201aa1e5a88efe91974e34d",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5352,
+            "prompt_tokens_details": {
+              "cached_tokens": 5348
+            },
+            "completion_tokens": 81,
+            "total_tokens": 5433
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unsupported_value_or_unit"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "7befa3599cc0ddb491ebe4792eab9f4c762f29ba5dda8e8195a8d835c1113715",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5577,
+            "prompt_tokens_details": {
+              "cached_tokens": 5433
+            },
+            "completion_tokens": 80,
+            "total_tokens": 5657
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "unrelated_to_question"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "topic_switch",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:16.453730+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 1846,
+      "validationMs": 229,
+      "elapsedMs": 2076,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "232c1dda06a052a089546e4bb170c5b49d608439fa543ce2bd5ed1c01cf30fd1",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "answerSha256": "8e8379816f1171e5e132975c6137eadc5cc20da6aed973fadb727ecf783c6216",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "36d613dd0b5d1dbe9ed2cce4ff430d4f227a09a102ae1efe4f03099c884c60d3",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4896,
+            "prompt_tokens_details": {
+              "cached_tokens": 4892
+            },
+            "completion_tokens": 168,
+            "total_tokens": 5064
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fies_count",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:25.490995+00:00",
+      "passed": false,
+      "errors": [
+        "wrong abstention status",
+        "missing required facet: four|4"
+      ],
+      "abstained": true,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 8678,
+      "validationMs": 345,
+      "elapsedMs": 9027,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 0,
+      "finalRejectedClaims": 1,
+      "promptSha256": "b52070306e52a578946f599f57904e0d946453e40082b5aed8a18c3f34d73c18",
+      "evidenceSha256": "c267557a4e51b93593815f358aebcba21fa559cb78c775754abcc2fea5c2c73f",
+      "answerSha256": "a42e28ac4d12c7e25950db823f22007bab570f80af0264680737d1c7c1557c79",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "a01709de667ec7f46b91c60bc0502de73d8009e58eb3f323cac23a1f6929a057",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5277,
+            "prompt_tokens_details": {
+              "cached_tokens": 5273
+            },
+            "completion_tokens": 415,
+            "total_tokens": 5692
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "not_entailed_by_excerpt"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "a01709de667ec7f46b91c60bc0502de73d8009e58eb3f323cac23a1f6929a057",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5838,
+            "prompt_tokens_details": {
+              "cached_tokens": 5692
+            },
+            "completion_tokens": 415,
+            "total_tokens": 6253
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "not_entailed_by_excerpt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notcam_dark",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:28.001170+00:00",
+      "passed": false,
+      "errors": [
+        "missing required facet: notcam\\.mdark"
+      ],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 2214,
+      "validationMs": 286,
+      "elapsedMs": 2500,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "c14e4c844947fc68e66aaf583226741659aa91bcb62f9a15e37c5af9f9fd00d7",
+      "evidenceSha256": "d56c91047b9391b7e0cf9101bc270303e54badb287eb07fc4017ac61f36acee1",
+      "answerSha256": "eb1d1f3d917828ff910c2cfed3370e9e7825f874636d004e5b894299db9438f4",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "4e0907513ca8a9856ad706f4d65dd2d359d4b5c0558d3866d36bb67c6b53d512",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5207,
+            "prompt_tokens_details": {
+              "cached_tokens": 5203
+            },
+            "completion_tokens": 198,
+            "total_tokens": 5405
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "safety_override",
+      "pass": 2,
+      "category": "safety",
+      "recordedAt": "2026-10-01T16:16:30.818215+00:00",
+      "passed": true,
+      "errors": [],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 2,
+      "generationMs": 2575,
+      "validationMs": 228,
+      "elapsedMs": 2807,
+      "initialAcceptedClaims": 0,
+      "initialRejectedClaims": 1,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "328c45cc27b7dfc9cedad2066fe53c125658d014d0c0c91103bb012d13fe4f31",
+      "evidenceSha256": "5a6a87e1149b5a17d6c46788fdb2c49ffd6201cb2329bdc48cf9354512e38a3f",
+      "answerSha256": "a959af87919a31131cf15e4064739d1768cd33408e1a820d3623e6502d81531a",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "7cd895d3bb417a54b2881bb6e26121fd14e5a08d4f758bcb0348a72122f748dc",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5051,
+            "prompt_tokens_details": {
+              "cached_tokens": 5047
+            },
+            "completion_tokens": 101,
+            "total_tokens": 5152
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 0,
+          "rejectedClaims": 1,
+          "invalidCitations": 0,
+          "rejectionReasons": [
+            "not_entailed_by_excerpt"
+          ]
+        },
+        {
+          "attempt": 2,
+          "rawOutputSha256": "ea566fdbd49a6dda8af3c2f8bac1ccb913beb2a3637622fe39bfa554539935c4",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 5298,
+            "prompt_tokens_details": {
+              "cached_tokens": 5152
+            },
+            "completion_tokens": 88,
+            "total_tokens": 5386
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    },
+    {
+      "id": "fies_intro",
+      "pass": 2,
+      "category": "supported",
+      "recordedAt": "2026-10-01T16:16:39.793006+00:00",
+      "passed": false,
+      "errors": [
+        "missing required facet: spectrograph"
+      ],
+      "abstained": false,
+      "requestError": null,
+      "generationAttempts": 1,
+      "generationMs": 8562,
+      "validationMs": 402,
+      "elapsedMs": 8965,
+      "initialAcceptedClaims": 1,
+      "initialRejectedClaims": 0,
+      "finalAcceptedClaims": 1,
+      "finalRejectedClaims": 0,
+      "promptSha256": "31ba4a4314b7703c863b25e0507386c6282f947fa2f2da96dd039aaecc48b1a8",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "answerSha256": "1398b7a355444b56662df9556ecbe43e5f19c2f817b0ea21de0e6ba107ba5a49",
+      "reasoningChars": 0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "rawOutputSha256": "e66f8e4d69dc24d94ae34faaf2702e901d1fe1389f430993b55f2fc10696506c",
+          "jsonValid": true,
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 4835,
+            "prompt_tokens_details": {
+              "cached_tokens": 3872
+            },
+            "completion_tokens": 769,
+            "total_tokens": 5604
+          },
+          "reasoningChars": 0,
+          "acceptedClaims": 1,
+          "rejectedClaims": 0,
+          "invalidCitations": 0,
+          "rejectionReasons": []
+        }
+      ]
+    }
+  ]
+}

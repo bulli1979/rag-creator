@@ -1,0 +1,214 @@
+{
+  "recordedAt": "2026-10-01T16:50:40.782435+00:00",
+  "models": [
+    {
+      "name": "qwen3.8:27b",
+      "manifestDigest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "sizeBytes": 17741872154,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "top_p": 0.95,
+        "draft_num_predict": 4,
+        "min_p": 0,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "temperature": 1,
+        "top_k": 20
+      },
+      "parametersSha256": "3a4ffe97a221777a34068dfd43d75d35337645867621edc21012a2f5a17ebe2c",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b-q4_K_M",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "qwen3.8-27b-coding:latest",
+      "manifestDigest": "8b1e1604081a6332763bc1b5253378d3c53bb00ab299f76be5ea45b88bac70e9",
+      "sizeBytes": 17741872191,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "draft_num_predict": 4,
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0,
+        "num_ctx": 262144,
+        "num_predict": 65536,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "parametersSha256": "5f32d9be75c925ec6c416f7a6061fbd4607b26490ea5a825808afabf54d1365f",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8:27b",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "qwen3.8-27b-coding-stable:latest",
+      "manifestDigest": "e4080678bfa91905ed4e5baeb0d4f097a95cda6f16fe7f4dfd9849299ed6f155",
+      "sizeBytes": 17741872190,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "temperature": 1,
+        "draft_num_predict": 4,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0,
+        "num_ctx": 131072,
+        "num_predict": 8192
+      },
+      "parametersSha256": "f808e3bf14151b169fed5f9c46faace7e1d5570feb918b74e2657ff138753ec7",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8-27b-coding:latest",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "qwen3.8-27b-coding-256k:latest",
+      "manifestDigest": "3759e57d920ddcea0e4807220ec1f67cfed03ee05de5ad7c28ef4f4caafb09c9",
+      "sizeBytes": 17741872190,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "min_p": 0,
+        "num_predict": 8192,
+        "top_k": 20,
+        "top_p": 0.95,
+        "num_ctx": 262144,
+        "presence_penalty": 0,
+        "repeat_penalty": 1,
+        "temperature": 1,
+        "draft_num_predict": 4
+      },
+      "parametersSha256": "c65bda78dc79b0fa8e0a1af1f4dfa78d76d54014304e78a4032af646a14f2b42",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8-27b-coding-stable:latest",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    },
+    {
+      "name": "qwen3.8-27b-coding-stable-256k:latest",
+      "manifestDigest": "3759e57d920ddcea0e4807220ec1f67cfed03ee05de5ad7c28ef4f4caafb09c9",
+      "sizeBytes": 17741872190,
+      "weightBlobSha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "parameters": {
+        "num_predict": 8192,
+        "presence_penalty": 0,
+        "temperature": 1,
+        "draft_num_predict": 4,
+        "min_p": 0,
+        "repeat_penalty": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "num_ctx": 262144
+      },
+      "parametersSha256": "62bcfb53e7ee87cc8987614a4a911561f3c3a3aaf5065451b81f41a0ac4cb8c1",
+      "templateSha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "systemPresent": false,
+      "systemSha256": null,
+      "details": {
+        "parent_model": "qwen3.8-27b-coding-stable:latest",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "sameWeightsAsBase": true,
+      "sameTemplateAsBase": true
+    }
+  ],
+  "residency": {
+    "models": []
+  },
+  "inferencePerformed": false,
+  "liveProfilesModified": false,
+  "systemTextPublished": false
+}

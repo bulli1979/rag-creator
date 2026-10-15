@@ -1,0 +1,80 @@
+{
+  "models": [
+    {
+      "model": "control",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 11
+    },
+    {
+      "model": "ministral3-8b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 13
+    },
+    {
+      "model": "ministral3-14b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 13
+    },
+    {
+      "model": "granite42-8b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10
+    },
+    {
+      "model": "qwen3-30b-a3b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10
+    },
+    {
+      "model": "nemotron35-30b-a3b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 9
+    },
+    {
+      "model": "qwen38-27b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 12
+    },
+    {
+      "model": "qwen3-4b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10
+    },
+    {
+      "model": "command-r7b",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 11
+    }
+  ],
+  "requestedModels": [
+    "control",
+    "ministral3-8b",
+    "ministral3-14b",
+    "granite42-8b",
+    "qwen3-30b-a3b",
+    "nemotron35-30b-a3b",
+    "qwen38-27b",
+    "qwen3-4b",
+    "command-r7b"
+  ],
+  "driverSha256": "d773ab0430557cc9144134f229d1a89682df0491d6acc6a027e47b05f7e1fca0",
+  "complete": true
+}

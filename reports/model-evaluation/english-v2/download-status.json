@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "model": "ministral3-8b",
+      "tag": "ministral-3:8b",
+      "exitCode": 0
+    },
+    {
+      "model": "ministral3-14b",
+      "tag": "ministral-3:14b",
+      "exitCode": 0
+    },
+    {
+      "model": "granite42-8b",
+      "tag": "granite4.2:8b-q4_K_M",
+      "exitCode": 0
+    },
+    {
+      "model": "qwen3-30b-a3b",
+      "tag": "qwen3:30b-a3b-instruct-2507-q4_K_M",
+      "exitCode": 0
+    },
+    {
+      "model": "nemotron35-30b-a3b",
+      "tag": "nemotron-3.5-lightning:30b-a3b-q4_K_M",
+      "exitCode": 0
+    }
+  ],
+  "complete": true
+}

@@ -1,0 +1,1575 @@
+{
+  "scope": "Additional citation-ID-free text facet audit, NOT independent semantic/domain certification",
+  "casesSha256": "f4cc2ea5408730912e3af012eb209f090a073b5d243572b0be86d655f1676339",
+  "reviewerSha256": "15a172575253724a2f2f3d8ae17004b03420971c24adfbba17172d314e1de488",
+  "originalReceiptsModified": false,
+  "promptsRead": false,
+  "historicalAuditsRead": false,
+  "models": [
+    {
+      "model": "command-r7b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 11,
+      "textOnlyPassed": 11,
+      "receiptSha256": "af36a5ddf4e47761fb32825d085a508c6a9c33ab51e6bfd284c380f559c94676",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 1\\.3",
+            "missing text-only required facet: arcsec|arcsecond"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing text-only required facet: readout\\s+mode",
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 1\\.3",
+            "missing text-only required facet: arcsec|arcsecond"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "control",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 11,
+      "textOnlyPassed": 11,
+      "receiptSha256": "9f2125097546c9f71455ccbc2f870af3946efda243dc612651210f8ac13cf301",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 1\\.3",
+            "missing text-only required facet: arcsec|arcsecond"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "granite42-8b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 10,
+      "textOnlyPassed": 10,
+      "receiptSha256": "3811c11e6b314c13d84f3f70aff1287baf8a24e9a24a924c038ab34c2ca5a853",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing text-only required facet: readout\\s+mode",
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing text-only required facet: readout\\s+mode",
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "ministral3-14b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 13,
+      "textOnlyPassed": 13,
+      "receiptSha256": "70f5f14cdb255c658269a46b46d9a04a93f9f67f12bf6aa66f08cccda133f13e",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: same.*(?:exposure|integration)|(?:exposure|integration).*same",
+            "missing text-only required facet: readout\\s+mode",
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "ministral3-8b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 13,
+      "textOnlyPassed": 13,
+      "receiptSha256": "ad311a13279508a0d63b385d9ad0063798c62ceee00e49034bbdbaa5647f843b",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: imaging",
+            "missing text-only required facet: spectro"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "nemotron35-30b-a3b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 9,
+      "textOnlyPassed": 9,
+      "receiptSha256": "c7d1dcad798a78e7c80e262a09207bc66593e4e72f33f264e49f3cbfe8a86728",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 1\\.3",
+            "missing text-only required facet: arcsec|arcsecond"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: readout\\s+mode",
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 1\\.3"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "model": "qwen3-30b-a3b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 10,
+      "textOnlyPassed": 10,
+      "receiptSha256": "eb59af72e88ae82ec3434d1162eca6a5fbbbcfded5c0f3fcaad1b3e938502754",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: imaging",
+            "missing text-only required facet: spectro"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: \\bN\\b.*\\b3\\b|\\b3\\b.*\\bN\\b|at least\\s+(?:3|three)"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "qwen3-4b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 10,
+      "textOnlyPassed": 10,
+      "receiptSha256": "405064bd1446a341fd774bc6fc374e8a4d0bf7dedf92693452a8f0705674c469",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark",
+            "missing text-only required facet: first"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [],
+          "passed": false
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "model": "qwen38-27b",
+      "complete": true,
+      "responses": 20,
+      "originalPassed": 12,
+      "textOnlyPassed": 12,
+      "receiptSha256": "cd744d178dd3cf13624df95b05fc4ab62e76701bd7ce1997a99f01f63672357e",
+      "results": [
+        {
+          "id": "notcam_long_history",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "topic_switch",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "unsupported_spec",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "notcam_long_history",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_aperture_followup",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: FIES",
+            "missing text-only required facet: spectrograph"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: 0\\.8",
+            "missing text-only required facet: 2\\.5"
+          ],
+          "passed": false
+        },
+        {
+          "id": "topic_switch",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: \\b(?:four|4)\\b"
+          ],
+          "passed": false
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "originalPassed": false,
+          "additionalErrors": [
+            "missing text-only required facet: notcam\\.mdark"
+          ],
+          "passed": false
+        },
+        {
+          "id": "safety_override",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        },
+        {
+          "id": "fies_intro",
+          "pass": 2,
+          "originalPassed": true,
+          "additionalErrors": [],
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

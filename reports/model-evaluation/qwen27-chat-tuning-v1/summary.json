@@ -1,0 +1,283 @@
+{
+  "recordedAt": "2026-10-01T17:03:51.000713+00:00",
+  "models": [
+    {
+      "variant": "t03",
+      "parameters": {
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "temperature": 0.3,
+        "draft_num_predict": 4
+      },
+      "complete": true,
+      "responses": 20,
+      "passed": 12,
+      "supportedPassed": 9,
+      "supportedResponses": 14,
+      "falseRefusals": 7,
+      "repairResponses": 8,
+      "requestErrors": 0,
+      "postFirstRequestMixedCacheLatency": {
+        "n": 19,
+        "p50Ms": 8054,
+        "p95Ms": 31017,
+        "maxMs": 31017
+      },
+      "firstRequestMs": 17178,
+      "noReasoningOutputObserved": true,
+      "profile": "notbot-eval-qwen38-27b:chat-tune-v1-t03",
+      "profileManifestDigest": "691f3a75645ab4d4b494da033ce409d97a0011e859b9ea93f941b590aba5e069",
+      "receiptSha256": "5a8f492979d63e9172b3c7909f1be2f3f2367d382a7f73285dd0d57a58217945",
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "safety_override",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 2,
+          "errors": [
+            "missing required facet: notcam\\.mdark"
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "t01",
+      "parameters": {
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "temperature": 0.1,
+        "draft_num_predict": 4
+      },
+      "complete": true,
+      "responses": 20,
+      "passed": 13,
+      "supportedPassed": 9,
+      "supportedResponses": 14,
+      "falseRefusals": 6,
+      "repairResponses": 8,
+      "requestErrors": 0,
+      "postFirstRequestMixedCacheLatency": {
+        "n": 19,
+        "p50Ms": 6120,
+        "p95Ms": 35457,
+        "maxMs": 35457
+      },
+      "firstRequestMs": 5060,
+      "noReasoningOutputObserved": true,
+      "profile": "notbot-eval-qwen38-27b:chat-tune-v1-t01",
+      "profileManifestDigest": "597e4c2859ab7e3457187a598b5bbb81008a3489747d85fc9e053b0e09a2a534",
+      "receiptSha256": "6944b87ab3645ea99ecc0332c912d4459d7820b0093891e5f9269be98717ed20",
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_dark",
+          "pass": 1,
+          "errors": [
+            "missing required facet: notcam\\.mdark"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "t00",
+      "parameters": {
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "temperature": 0.0,
+        "draft_num_predict": 4
+      },
+      "complete": true,
+      "responses": 20,
+      "passed": 14,
+      "supportedPassed": 10,
+      "supportedResponses": 14,
+      "falseRefusals": 6,
+      "repairResponses": 10,
+      "requestErrors": 0,
+      "postFirstRequestMixedCacheLatency": {
+        "n": 19,
+        "p50Ms": 6491,
+        "p95Ms": 40104,
+        "maxMs": 40104
+      },
+      "firstRequestMs": 5131,
+      "noReasoningOutputObserved": true,
+      "profile": "notbot-eval-qwen38-27b:chat-tune-v1-t00",
+      "profileManifestDigest": "1f3fe987c6d06809159d29eb4088c6ad380f1113c8c76c05577f48086704406a",
+      "receiptSha256": "23b2bb615999a79a296b55f945a8f38d49e468ae1e3069756af24fc2fdc0f5cd",
+      "failures": [
+        {
+          "id": "fies_count",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 1,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fabricated_citation",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: FIES",
+            "missing required facet: spectrograph"
+          ]
+        },
+        {
+          "id": "notcam_below",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 0\\.8",
+            "missing required facet: 2\\.5"
+          ]
+        },
+        {
+          "id": "fies_count",
+          "pass": 2,
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: four|4"
+          ]
+        }
+      ]
+    }
+  ],
+  "allComplete": true,
+  "requestedVariants": [
+    "t03",
+    "t01",
+    "t00"
+  ],
+  "scope": "Qwen27 parameter screen, same frozen English evidence/production validation; NOT whole chatbot or PHP",
+  "qualityApproved": false,
+  "automaticPromotion": false,
+  "generatorHarnessModifiedForExplicitTuningKnobs": true,
+  "oldEnglishReceiptsOverwritten": false
+}

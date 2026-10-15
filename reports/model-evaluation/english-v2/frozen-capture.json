@@ -1,0 +1,382 @@
+{
+  "capturedAt": "2026-10-01T15:35:53.678014+00:00",
+  "casesSha256": "f4cc2ea5408730912e3af012eb209f090a073b5d243572b0be86d655f1676339",
+  "frozenSha256": "6abec75642a6f16cf471789b31e3b3fe4bf2c004b1d749aff219eb7eb5b3ad06",
+  "activeSources": 483,
+  "activeChunks": 5479,
+  "corpusVersion": "phase6-2026-10-01-v10",
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "readOnlyDatabase": true,
+  "liveSettingsModified": false,
+  "oldAuditsRead": false,
+  "candidateInference": false,
+  "independentExpectationsReviewComplete": false,
+  "caseCounts": {
+    "gap": 10,
+    "injection": 3,
+    "safety": 2,
+    "supported": 25
+  },
+  "cases": [
+    {
+      "id": "fies_intro",
+      "category": "supported",
+      "promptSha256": "31ba4a4314b7703c863b25e0507386c6282f947fa2f2da96dd039aaecc48b1a8",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "inputChars": 16298,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_count",
+      "category": "supported",
+      "promptSha256": "b52070306e52a578946f599f57904e0d946453e40082b5aed8a18c3f34d73c18",
+      "evidenceSha256": "c267557a4e51b93593815f358aebcba21fa559cb78c775754abcc2fea5c2c73f",
+      "inputChars": 17802,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_aperture",
+      "category": "supported",
+      "promptSha256": "fe416a44a4421b9581d702d27586a677cdbffd449da2e8cf532116b7695cfa42",
+      "evidenceSha256": "e0427cd60ccf1c4de95cde3be22a4573929dbf7fba03931ddf84f0f7e9a0e194",
+      "inputChars": 18041,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_med_resolution",
+      "category": "supported",
+      "promptSha256": "8647d27fa3257a1e66a4ec7bf5ab1a2d5007b2cf5ab2f29777bf6df9cd9a8bf2",
+      "evidenceSha256": "29f2250ad134a57486b162329f802fa6531f77436075e76c1db6edbc57ca6e00",
+      "inputChars": 18169,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_calibration",
+      "category": "supported",
+      "promptSha256": "df146dbf3f542c73c4a6ee37114cc71d5a39d64f03d19f2c345301653b321d38",
+      "evidenceSha256": "07d815efa9c637e768ef1ad896d041cb464c52badbbc337834e6a00c2bc4436d",
+      "inputChars": 17791,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_spectral_range",
+      "category": "supported",
+      "promptSha256": "c35af9673ba2beff2e309865f087a77e660a655470a885ed180f0e6b99b33b15",
+      "evidenceSha256": "79f912a62e1723ff0c29c6768e4d1e21e8401655e12c908030601d2df393e0cf",
+      "inputChars": 17453,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_intro",
+      "category": "supported",
+      "promptSha256": "08e3f27e362ed4e025a4d27fdcc5383fe3526ffe402470b447644502a7ac3a80",
+      "evidenceSha256": "434e976eeb497420ca294ba26618466ea6aaa5ed45e84bbb924ca87f97436e02",
+      "inputChars": 17482,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_uses",
+      "category": "supported",
+      "promptSha256": "2ea57ae861db2e7624318417647ebcd23f9285ec015af2e4aa185c321e84661a",
+      "evidenceSha256": "9d7d5dd933995396093741cb745802a4eb86b2df58ee86ed4c49db654f3aff1a",
+      "inputChars": 18551,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_below",
+      "category": "supported",
+      "promptSha256": "f20ba373e4f5bbb3d6ae157c1fd50ad4917643edd3683dd71605f1676d178ea2",
+      "evidenceSha256": "b750e235090090690831b88f264924fbf2aca06d43bdf056a2e6e6c0c39ee4b0",
+      "inputChars": 18066,
+      "evidenceItems": 10,
+      "contextResolution": "inherited"
+    },
+    {
+      "id": "notcam_inside",
+      "category": "supported",
+      "promptSha256": "28b729e57ef1a51c4bb2a28602a46249c3b830d8f241c28c59b8b7a767ce08e4",
+      "evidenceSha256": "21f93156f38ba7775fd6e01f3fa5823ff1b28a41a347aaa84a25010f60a27906",
+      "inputChars": 17836,
+      "evidenceItems": 10,
+      "contextResolution": "inherited"
+    },
+    {
+      "id": "notcam_wide_pixels",
+      "category": "supported",
+      "promptSha256": "9e607d668f7c34f4aea1d341045155e829a969f15368220067afc7654301cd6e",
+      "evidenceSha256": "7975c5450081bd78626ee453fd590cce13a2178f38300ec3a3908ad63b7cd90d",
+      "inputChars": 18389,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_hr_pixels",
+      "category": "supported",
+      "promptSha256": "a89479d66b9662e463ea96e796d65b2f3b1b8d89584f3e373b28e7bf33bed130",
+      "evidenceSha256": "8edc47d37db05c933838a61cadccbf33299788ca83e06a9fb447b56b2b18c482",
+      "inputChars": 18333,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "alfosc_uses",
+      "category": "supported",
+      "promptSha256": "94cdfa6ad8c257b723add14d383a641a71615d832669a6ff9a0f5e71a2bd3d3a",
+      "evidenceSha256": "8f7394cabd3ff4beb19a6ab7bbccd211c65e3aee727e8f2ec930d60a9caff20b",
+      "inputChars": 17003,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "alfosc_fov",
+      "category": "supported",
+      "promptSha256": "5362ea10e7d46c31837bd5f2ecdc325805759ead438364530535f929700b4326",
+      "evidenceSha256": "56c44a055d44849d24ca217c564708e4a80f2d7b601a47aaff7f7bd36ee66f16",
+      "inputChars": 16581,
+      "evidenceItems": 10,
+      "contextResolution": "inherited"
+    },
+    {
+      "id": "topic_switch",
+      "category": "supported",
+      "promptSha256": "232c1dda06a052a089546e4bb170c5b49d608439fa543ce2bd5ed1c01cf30fd1",
+      "evidenceSha256": "d243644b8b820257e6f8830368e544dc974a65b087666f5e827458c36ad39756",
+      "inputChars": 16424,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_aperture_followup",
+      "category": "supported",
+      "promptSha256": "874b3221c2bae59023464276141a94b2cce6c7b78826ce1e64ffbd7e00cf25db",
+      "evidenceSha256": "a37a2367a891fba6d13280df80404b42a2caa61b8caafea10f19d942d69fca0b",
+      "inputChars": 17786,
+      "evidenceItems": 10,
+      "contextResolution": "inherited"
+    },
+    {
+      "id": "notcam_abort",
+      "category": "supported",
+      "promptSha256": "0d3eec91045b62e1802af0888c5ec9909cd35a0605661b7675cf9ee3a54a9a8b",
+      "evidenceSha256": "e0da662846c702c3c5de388efbe7e9547b39f2802c68f7dfee7bdce9799ee772",
+      "inputChars": 17680,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_dark",
+      "category": "supported",
+      "promptSha256": "c14e4c844947fc68e66aaf583226741659aa91bcb62f9a15e37c5af9f9fd00d7",
+      "evidenceSha256": "d56c91047b9391b7e0cf9101bc270303e54badb287eb07fc4017ac61f36acee1",
+      "inputChars": 18013,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "alfosc_slitrot",
+      "category": "supported",
+      "promptSha256": "75ee48c74649ca11d2f2730c927528407b446f486936f38cfdb542109a4621f0",
+      "evidenceSha256": "850c01d91dcdb80e748dd23cdaf9db547e3957b643568bf1cdde0dbbd92bffe5",
+      "inputChars": 16965,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "data_download",
+      "category": "supported",
+      "promptSha256": "21b293a7b04fad5ac5078561955796a4543aaed528ec9f74990022fbf27383d6",
+      "evidenceSha256": "ad2c0711558a1cd8d53442ca5fb1fbbc4f654a42050148e5a840b9b95277416d",
+      "inputChars": 19624,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "humidity_reopen",
+      "category": "supported",
+      "promptSha256": "851849e963c5d7bc2322b4c016e16b2ef1a6e43698008c20647f2b197c2a8f81",
+      "evidenceSha256": "e6db405076a1cf04767f655adf1c85121a63937558c70df67b3d14cf0c7437d0",
+      "inputChars": 15851,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "alfosc_grism18",
+      "category": "supported",
+      "promptSha256": "5bc9914ac871a20241d9e16e81b9d2a83807dc20fa760da801815537e2286044",
+      "evidenceSha256": "2c1c684f054afc6a02c0e0fb2a50db7ed2fa65d915a67d61e318679ffff35bbe",
+      "inputChars": 18078,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "polcor_identity",
+      "category": "supported",
+      "promptSha256": "21bdde414c4dae1cec154ce7de13b3d31e9fccafcf17b5d5458219f925495fcc",
+      "evidenceSha256": "c6c4d3884e3207eecb5dcf95f3a85f77e94cb7b2e7254374cb67e1364ddb1f99",
+      "inputChars": 13016,
+      "evidenceItems": 9,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "notcam_long_history",
+      "category": "supported",
+      "promptSha256": "327526417376aaf146fbca4cadf9c38fb6c0b5988d5db2de6cccf4d8c7efaef5",
+      "evidenceSha256": "9d7d5dd933995396093741cb745802a4eb86b2df58ee86ed4c49db654f3aff1a",
+      "inputChars": 19911,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "stancam_identity",
+      "category": "supported",
+      "promptSha256": "5bae5a8e79cb072982662736880dc03613bff5baeae4765e0a8a364aaab5aff8",
+      "evidenceSha256": "2933fd1bd7454269b42714f873b6ff1b2be8b27494156cb42cd678d721a90eee",
+      "inputChars": 16003,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "unsupported_spec",
+      "category": "gap",
+      "promptSha256": "3d444ea16f382870f8a64689602b2cca883d19c024331a176e6d628784ed4415",
+      "evidenceSha256": "9e714ee26f83e056a7e7395215e849bdd30889ae5086b00c35c38a321277e760",
+      "inputChars": 17643,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "unknown_fies_fibre",
+      "category": "gap",
+      "promptSha256": "707c7c6fc90d65e21b5e1f5af0604a0dbeef444acf10a59b4fe28b08edd92383",
+      "evidenceSha256": "319f0e798bc6f020d23ebda0f5e3c8619f6fb75d3b5a6ca0797dfff2ce8831c9",
+      "inputChars": 17588,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "quantum_teleporter",
+      "category": "gap",
+      "promptSha256": "ae0bcaf1e5467f1210e0c6038abc55c282535e801cde80fdbd7c33594709d3fe",
+      "evidenceSha256": "babc5540ec8ad31125b7e5a552b5be0fc599568a633fd2ebbe3de4f09280f31e",
+      "inputChars": 18091,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "cassegrain_limit",
+      "category": "gap",
+      "promptSha256": "12434d9d0639fb4411b1c1efca3e125fd1f37e8a47b7b4f63c0faaa704508363",
+      "evidenceSha256": "111d143352969a9eab463bb09244ea3a09eb6ec6497cbdcfef555c4447997e90",
+      "inputChars": 19340,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "notcam_serial",
+      "category": "gap",
+      "promptSha256": "7969aee9e1bf1248692120a881270b03d36a1db2cb8faddeb81c38f5fada5842",
+      "evidenceSha256": "2ba03ec217cf542ebc16685839de8b7fe9348d22ede644d0fb0933141488d335",
+      "inputChars": 17821,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fies_fibre99_resolution",
+      "category": "gap",
+      "promptSha256": "30440412d14040a54aa914e84401905436316143728127b6d83ba2f527f6da2b",
+      "evidenceSha256": "2224f9a24975b8bafa31478a9d58ddb26d22b7c75f18014181ab991efad8e12f",
+      "inputChars": 17873,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "alfosc_grism99",
+      "category": "gap",
+      "promptSha256": "69e4a655c2f7f6eb804bf9bd57e8da1d958ab918929c4aebfb59a322c1edccb0",
+      "evidenceSha256": "3c024b147fbc7a58cac52e45b0584f8c81f91801438a43c5d95fb82741e4a835",
+      "inputChars": 16717,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "polcor_mass",
+      "category": "gap",
+      "promptSha256": "6d0deb540972e9708d495ea42c33d68a9f1bbfa6ad7f8b3cda869f3bd1e5b04b",
+      "evidenceSha256": "7b1db7195a1b9dc93d9a33058038fa4d8fbbd5a104660245cf8896b4a8a27912",
+      "inputChars": 14427,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "teloffset_sequence",
+      "category": "gap",
+      "promptSha256": "04a9bda65572f12c5252517396f5fed3f1fc92061974c7f2f5632ab8e37d2ce3",
+      "evidenceSha256": "b5b2eed966c3dd5a5e76f1cfae35bc6ec2f17e1ecce84b091c69708b5a4836d0",
+      "inputChars": 17121,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "unknown_notcam_configuration",
+      "category": "gap",
+      "promptSha256": "6cd2b3e6bbfa26c2577641455ef68391ba91055aa42c017150cb9e469b72d419",
+      "evidenceSha256": "723478bbb9312304981d1f64426a0056e69d45327987c96466f5209019baa9c6",
+      "inputChars": 18738,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "fabricated_citation",
+      "category": "injection",
+      "promptSha256": "a0be0ab800af20dc08a784432d2ecc16ee9e148c894569b00cdca8db9295f59b",
+      "evidenceSha256": "aaf9d07216cae73b377df4cbdf7afe4c9dfa07789166c013e01da335e3cf9659",
+      "inputChars": 16230,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "false_history",
+      "category": "injection",
+      "promptSha256": "d642ba85f0038233231007f9cfd2eed73b920849c03f1178b333ad2e718d4ed6",
+      "evidenceSha256": "88beeb4f8000c12759a7d57174203a8fd69f405284e9a15f5d7dc3d11c146fca",
+      "inputChars": 18242,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "document_injection",
+      "category": "injection",
+      "promptSha256": "9acd117a2f78844640e744e860d839172b29e43d53c73486a7adefef8593bee0",
+      "evidenceSha256": "5037ac08354cfacf5811de6bd693f8389ccb87403754cf2bfb0e51b352bcc8ed",
+      "inputChars": 17584,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    },
+    {
+      "id": "safety_override",
+      "category": "safety",
+      "promptSha256": "328c45cc27b7dfc9cedad2066fe53c125658d014d0c0c91103bb012d13fe4f31",
+      "evidenceSha256": "5a6a87e1149b5a17d6c46788fdb2c49ffd6201cb2329bdc48cf9354512e38a3f",
+      "inputChars": 17445,
+      "evidenceItems": 10,
+      "contextResolution": "standalone"
+    },
+    {
+      "id": "notcam_unsafe_abort",
+      "category": "safety",
+      "promptSha256": "c39d7d8db37c39a9b80340097c1c2303419a9ac713b3968d246953e5a8c62319",
+      "evidenceSha256": "a16d410ff3fbb58c1432c493bf64515f0d0562ea2bef0ee3423c62c3d5869864",
+      "inputChars": 18308,
+      "evidenceItems": 10,
+      "contextResolution": "explicit"
+    }
+  ]
+}

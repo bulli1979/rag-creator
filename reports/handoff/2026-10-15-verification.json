@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "scope": "Review-branch handoff verification; not release approval or a fresh full operational/model evaluation",
+  "branch": "review/production-improvements-clean",
+  "baseCommitBeforeHandoff": "adbb715acbc7c6f2d4105891cc4ffb2f40abd907",
+  "runtime": {
+    "image": "observatory-document-api:qwen-testing-20261006",
+    "imageId": "sha256:b9a5c6a3c865d560ecc454c05b6c02f0673d605f8a593bdeebb79298564296c2",
+    "appPythonSha256": "2bf49adf38c857f8bd05a5a44c3e9ad9618fabab26d489e6cb1edfd8d79db70f",
+    "matchesLocalApp": true,
+    "databaseSettingsSha256": "229c656e20059a19019a11393db34717a28fe8fc4e5b93ffabcff87cf86dd129",
+    "matchesOctober6DatabaseSettings": true,
+    "health": {
+      "postgres": "ok",
+      "vectorDatabase": "ok",
+      "pythonWorker": "ok",
+      "claimVerifier": "ok"
+    },
+    "model": "notbot-qwen27:testing-32k",
+    "modelManifestDigest": "54315d88f106c84beef29e98b122950660216c8be4bdb82c2a791c8bf1620a0c",
+    "actualContextLength": 32768,
+    "temperature": 0,
+    "maxOutputTokens": 2048,
+    "reasoningEffortRequest": "none",
+    "timeoutSecondsPerGenerationAttempt": 180,
+    "sdkAutomaticRetries": 0,
+    "environment": "recovery-mxbai",
+    "table": "public.rag_recovery_mxbai_20260930",
+    "embeddingModel": "mixedbread-ai/mxbai-embed-large-v1",
+    "activeCorpusVersions": ["phase6-2026-10-01-v10"],
+    "activeDocuments": 483,
+    "activeChunks": 5479,
+    "minVectorDimensions": 1024,
+    "maxVectorDimensions": 1024,
+    "sourcesWithMultipleActiveVersions": 0,
+    "activeCSCChunks": 0,
+    "topK": 8,
+    "primaryMaxChunksPerSource": 2,
+    "minEvidenceSimilarity": 0.3,
+    "localFrontendListeners": {"8092": false, "8093": false}
+  },
+  "freshTests": {
+    "offlineBackend": {"passed": 123, "total": 123, "networkDisabled": true},
+    "offlineEvaluationHarness": {"passed": 24, "total": 24, "networkDisabled": true},
+    "frontendFunctionFixtures": {"passed": true, "browserTest": false}
+  },
+  "historicalEvidenceNotRerunToday": {
+    "qwenHttpOperationalOctober6": {"passed": 56, "total": 57, "knownFailure": "operational_sequence"},
+    "qwenEnglishHttpSubsetOctober6": {"passed": 55, "total": 56},
+    "isolatedPhp74October6": {"passed": 13, "total": 13, "actualTarget": false},
+    "qwenGeneratorTemperature0": {"passed": 99, "total": 120, "releaseApproved": false}
+  },
+  "limits": [
+    "No fresh full HTTP, PHP target, generator quality, cold-start or load evaluation",
+    "P6.15 false-refusal and P6.16 accepted contradictory procedure defects remain open",
+    "Independent domain review, source-gap resolution and supported clean dependency build remain open",
+    "Read-only runtime checks did not restart services, reindex or change settings",
+    "Credential-pattern checks are bounded smoke checks, not security certification"
+  ],
+  "rawPromptsOrCorpusTextIncluded": false,
+  "productionReleaseApproved": false
+}

@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "name": "command-r-rag:35b",
+      "manifestDigest": "529eae81d571715fd08bcd654c3a3db008fb93ab15a7369a24be7856d7f48477",
+      "verifiedArtifactBytes": 18719506279,
+      "requiredBlobs": 6
+    },
+    {
+      "name": "qwen3.8:27b",
+      "manifestDigest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "verifiedArtifactBytes": 17741872154,
+      "requiredBlobs": 5
+    }
+  ],
+  "sourceReadOnly": true,
+  "unrelatedModelsCopied": false
+}

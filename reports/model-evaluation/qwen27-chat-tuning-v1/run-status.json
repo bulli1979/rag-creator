@@ -1,0 +1,32 @@
+{
+  "models": [
+    {
+      "variant": "t03",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 12
+    },
+    {
+      "variant": "t01",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 13
+    },
+    {
+      "variant": "t00",
+      "exitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 14
+    }
+  ],
+  "requestedVariants": [
+    "t03",
+    "t01",
+    "t00"
+  ],
+  "driverSha256": "e6896760e352e1a716f78e0d0196e0b784e6931248319284d052a4f97dc8f35e",
+  "complete": true
+}

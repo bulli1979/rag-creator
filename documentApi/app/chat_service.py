@@ -469,9 +469,18 @@ class ChatService:
         prompt_tokens = completion_tokens = total_tokens = 0
         if checked_answer is None:
             try:
+                client_options = {}
+                if self._chat_settings.llm_timeout_seconds is not None:
+                    client_options["timeout"] = self._chat_settings.llm_timeout_seconds
+                if self._chat_settings.llm_max_retries is not None:
+                    client_options["max_retries"] = self._chat_settings.llm_max_retries
+                completion_options = {}
+                if self._chat_settings.llm_reasoning_effort is not None:
+                    completion_options["reasoning_effort"] = self._chat_settings.llm_reasoning_effort
                 client = OpenAI(
                     api_key=self._chat_settings.llm_api_key,
                     base_url=self._chat_settings.llm_base_url or None,
+                    **client_options,
                 )
                 completion = await run_in_worker_pool(
                     client.chat.completions.create,
@@ -480,6 +489,7 @@ class ChatService:
                     temperature=self._chat_settings.temperature,
                     max_tokens=self._chat_settings.max_tokens,
                     response_format={"type": "json_object"},
+                    **completion_options,
                 )
                 raw_answer = completion.choices[0].message.content or ""
                 usage = getattr(completion, "usage", None)
@@ -531,6 +541,7 @@ class ChatService:
                     temperature=self._chat_settings.temperature,
                     max_tokens=self._chat_settings.max_tokens,
                     response_format={"type": "json_object"},
+                    **completion_options,
                 )
                 raw_answer = completion.choices[0].message.content or ""
                 model_outputs.append(raw_answer)

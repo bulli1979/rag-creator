@@ -1,0 +1,65 @@
+{
+  "inspection_date_utc": "2026-10-01",
+  "purpose": "Pin already-installed Qwen3.8 27B for initial model-evaluation pilot",
+  "service": "ollama-qwen-secondary",
+  "download_required": false,
+  "download_run": false,
+  "isolated_artifact_copy_complete": false,
+  "models": [
+    {
+      "name": "qwen3.8:27b",
+      "role": "Matched base-model benchmark candidate",
+      "manifest_digest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+      "size_bytes": 17741872154,
+      "parameter_size": "27.3B",
+      "format": "gguf",
+      "family": "qwen35",
+      "quantization": "Q4_K_M",
+      "weight_blob_sha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "license_sha256": "4c6a8e842ef0d8504549facfb03f1273a8d0022991519bc1888522cc1a5517d1",
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "parameters_sha256": "3a4ffe97a221777a34068dfd43d75d35337645867621edc21012a2f5a17ebe2c",
+      "system_sha256": null,
+      "profile_options": {"temperature": "1"},
+      "capabilities": ["completion", "vision", "tools", "thinking"],
+      "thinking_control_metadata": null
+    },
+    {
+      "name": "qwen3.8-27b-coding-stable-256k:latest",
+      "role": "Existing-resident serving comparator; agent service must remain unchanged",
+      "manifest_digest": "3759e57d920ddcea0e4807220ec1f67cfed03ee05de5ad7c28ef4f4caafb09c9",
+      "size_bytes": 17741872190,
+      "parameter_size": "27.3B",
+      "format": "gguf",
+      "family": "qwen35",
+      "quantization": "Q4_K_M",
+      "weight_blob_sha256": "f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d",
+      "license_sha256": "4c6a8e842ef0d8504549facfb03f1273a8d0022991519bc1888522cc1a5517d1",
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "parameters_sha256": "62bcfb53e7ee87cc8987614a4a911561f3c3a3aaf5065451b81f41a0ac4cb8c1",
+      "system_sha256": null,
+      "profile_options": {"num_ctx": "262144", "num_predict": "8192", "temperature": "1"},
+      "capabilities": ["completion", "vision", "tools", "thinking"],
+      "thinking_control_metadata": null
+    }
+  ],
+  "resident_at_inspection": {
+    "name": "qwen3.8-27b-coding-stable-256k:latest",
+    "manifest_digest": "3759e57d920ddcea0e4807220ec1f67cfed03ee05de5ad7c28ef4f4caafb09c9",
+    "context_length": 262144,
+    "processor": "100% GPU",
+    "size_vram_bytes": 18542682438
+  },
+  "base_and_resident_weight_blob_match": true,
+  "registry_alias_digest_at_inspection_short": "47951e4a6661",
+  "registry_alias_differs_from_local_pin": true,
+  "candidate_inference_run_by_this_task": false,
+  "service_modified": false,
+  "notes": [
+    "Evaluate the installed pinned revision, not a silently updated registry alias.",
+    "Residency can change; recheck immediately before an approved serving experiment.",
+    "A separate runner may load another copy despite identical weights; no shared cache is assumed.",
+    "Matched 32K model tests and existing-resident 256K serving tests require separate labels.",
+    "No private prompt, system text, credentials or historic audit data are included."
+  ]
+}

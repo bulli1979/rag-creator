@@ -1,0 +1,189 @@
+{
+  "allComplete": true,
+  "models": [
+    {
+      "model": "control",
+      "complete": true,
+      "responses": 56,
+      "passed": 55,
+      "generatedResponses": 5,
+      "generatedPassed": 4,
+      "sourceDerivedResponses": 51,
+      "sourceDerivedPassed": 51,
+      "allLatency": {
+        "n": 56,
+        "p50Ms": 195.0,
+        "p95Ms": 23441,
+        "maxMs": 67796
+      },
+      "generatedLatency": {
+        "n": 5,
+        "p50Ms": 23441,
+        "p95Ms": 67796,
+        "maxMs": 67796
+      },
+      "sourceDerivedLatency": {
+        "n": 51,
+        "p50Ms": 193,
+        "p95Ms": 273,
+        "maxMs": 601
+      },
+      "receiptSha256": "386b62deaccfefd250f3f173a6c2133c114f5f550f6560744177a186d806c5ef",
+      "failures": [
+        {
+          "id": "operational_sequence",
+          "errors": [
+            "missing required facet: guideprobe|guide probe",
+            "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+          ],
+          "abstained": false
+        }
+      ]
+    },
+    {
+      "model": "ministral3-8b",
+      "complete": true,
+      "responses": 56,
+      "passed": 54,
+      "generatedResponses": 5,
+      "generatedPassed": 3,
+      "sourceDerivedResponses": 51,
+      "sourceDerivedPassed": 51,
+      "allLatency": {
+        "n": 56,
+        "p50Ms": 217.0,
+        "p95Ms": 4834,
+        "maxMs": 34922
+      },
+      "generatedLatency": {
+        "n": 5,
+        "p50Ms": 4834,
+        "p95Ms": 34922,
+        "maxMs": 34922
+      },
+      "sourceDerivedLatency": {
+        "n": 51,
+        "p50Ms": 210,
+        "p95Ms": 296,
+        "maxMs": 437
+      },
+      "receiptSha256": "79b24d480f18866a9caa96ce18da4c3d3ba3d96cc2a376da85808e91579fddb9",
+      "failures": [
+        {
+          "id": "alfosc_fov",
+          "errors": [
+            "missing required facet: 6\\.4"
+          ],
+          "abstained": false
+        },
+        {
+          "id": "operational_sequence",
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: guideprobe|guide probe",
+            "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+            "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+          ],
+          "abstained": true
+        }
+      ]
+    },
+    {
+      "model": "qwen38-27b",
+      "complete": true,
+      "responses": 56,
+      "passed": 55,
+      "generatedResponses": 5,
+      "generatedPassed": 4,
+      "sourceDerivedResponses": 51,
+      "sourceDerivedPassed": 51,
+      "allLatency": {
+        "n": 56,
+        "p50Ms": 183.0,
+        "p95Ms": 7220,
+        "maxMs": 15443
+      },
+      "generatedLatency": {
+        "n": 5,
+        "p50Ms": 7220,
+        "p95Ms": 15443,
+        "maxMs": 15443
+      },
+      "sourceDerivedLatency": {
+        "n": 51,
+        "p50Ms": 183,
+        "p95Ms": 236,
+        "maxMs": 464
+      },
+      "receiptSha256": "262ab50c4f7eb7415531227420ea355a6099b507b1cfd0f290bf88c428bb5758",
+      "failures": [
+        {
+          "id": "operational_sequence",
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: guideprobe|guide probe",
+            "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+            "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+          ],
+          "abstained": true
+        }
+      ]
+    },
+    {
+      "model": "qwen3-4b",
+      "complete": true,
+      "responses": 56,
+      "passed": 54,
+      "generatedResponses": 5,
+      "generatedPassed": 3,
+      "sourceDerivedResponses": 51,
+      "sourceDerivedPassed": 51,
+      "allLatency": {
+        "n": 56,
+        "p50Ms": 209.0,
+        "p95Ms": 1550,
+        "maxMs": 7980
+      },
+      "generatedLatency": {
+        "n": 5,
+        "p50Ms": 1550,
+        "p95Ms": 7980,
+        "maxMs": 7980
+      },
+      "sourceDerivedLatency": {
+        "n": 51,
+        "p50Ms": 206,
+        "p95Ms": 267,
+        "maxMs": 468
+      },
+      "receiptSha256": "e4eb10f484884523ec250d46bf694e3d1cb723dfbb7bdc4349b5ac96b2a21790",
+      "failures": [
+        {
+          "id": "alfosc_fov",
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: 6\\.4",
+            "missing required facet: arcmin|arcminute"
+          ],
+          "abstained": true
+        },
+        {
+          "id": "operational_sequence",
+          "errors": [
+            "wrong abstention status",
+            "missing required facet: guideprobe|guide probe",
+            "missing required facet: (?:off|disable|stop).*guid|guid.*(?:off|disable|stop)",
+            "missing required facet: (?:on|enable|restart|restore).*guid|guid.*(?:on|enable|restart|restore)"
+          ],
+          "abstained": true
+        }
+      ]
+    }
+  ],
+  "scope": "Final in-process ChatService, English-only, real retrieval/routing, dynamic validated history; not HTTP/PHP certification",
+  "casesSha256": "0c347b7aae94b4ee362561223f9cd3f70200292114af4c5344371c423e634000",
+  "appPythonSha256": "626df80f3e89d72be7d49db3abf54c94f46b9b9cb8466155effc5f216d958a7e",
+  "uniformTransportAdapter": "Explicit reasoning_effort none, SDK retries disabled, timeout180",
+  "approvedWinner": null,
+  "automaticPromotion": false
+}

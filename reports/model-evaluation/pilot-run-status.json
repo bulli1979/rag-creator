@@ -1,0 +1,63 @@
+{
+  "requestedModels": [
+    "control",
+    "command-r7b",
+    "qwen35-9b",
+    "qwen38-27b",
+    "qwen3-4b",
+    "gemma4-12b"
+  ],
+  "modelsCompletedOrAttempted": [
+    {
+      "model": "control",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 11,
+      "requestErrors": 0
+    },
+    {
+      "model": "command-r7b",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10,
+      "requestErrors": 0
+    },
+    {
+      "model": "qwen35-9b",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 9,
+      "requestErrors": 0
+    },
+    {
+      "model": "qwen38-27b",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 14,
+      "requestErrors": 0
+    },
+    {
+      "model": "qwen3-4b",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10,
+      "requestErrors": 0
+    },
+    {
+      "model": "gemma4-12b",
+      "processExitCode": 0,
+      "complete": true,
+      "responses": 20,
+      "passed": 10,
+      "requestErrors": 0
+    }
+  ],
+  "driverSha256": "92f653f877b308a2cabcd891d7303b7b2c0c889da3404eb543ae86465b2890af",
+  "complete": true,
+  "allPilotsComplete": true
+}
