@@ -1,5 +1,7 @@
 # NOTBot operational recovery
 
+> **danka branch:** Historical record from the review branch. Referenced `reports/` files are not included in `danka`.
+
 Started: 2026-09-30. Baseline: `7891d6a`. No production/main merge or push is authorized by this work.
 
 Updated: 2026-10-01. Phase6 advances the local testing canary to corpus

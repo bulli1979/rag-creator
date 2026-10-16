@@ -162,4 +162,10 @@ Lange Texte werden bei Bedarf wegen Excel-Zelllimits gekuerzt.
 
 Ausgangspunkt: [NOTBOT_HANDOFF.md](NOTBOT_HANDOFF.md) und [NOTBOT_IMPLEMENTATION_PLAN.md](NOTBOT_IMPLEMENTATION_PLAN.md). Das Beobachter-Frontend liegt in `chatBotPHP`.
 
-Verschluesselte Chat-Auditdaten liegen im API-Volume unter `/data/chat_audit`. Ohne Konfiguration erzeugt die API dort einen privaten Schluessel; fuer Produktion kann `NOTBOT_AUDIT_KEY` gesetzt werden. Schluessel und Audit-Volume muessen gemeinsam gesichert werden; der Schluessel darf nicht ins Repository.
+Verschluesselte Chat-Auditdaten liegen im API-Volume unter `/data/chat_audit`. Ohne Konfiguration erzeugt die API dort einen privaten Schluessel; fuer Produktion kann `NOTBOT_AUDIT_KEY` gesetzt werden (beide Docker-Setups reichen die Variable durch). Schluessel und Audit-Volume muessen gemeinsam gesichert werden; der Schluessel darf nicht ins Repository.
+
+Antwortpipeline (Details in [METHODOLOGY.md](METHODOLOGY.md)): Folgefragen aufloesen, Kandidaten holen, Evidenz auswaehlen (Lexik/Zahlen, Quellen-Limit, Deduplizierung), direkt aus Quellen ableitbare Antworten ohne LLM, sonst belegte JSON-Antwort mit Zitatpruefung und einem Reparaturversuch. Zusaetzlich speichert die Datenbank jede Anfrage (Frage und Antwort im Klartext) fuer `/api/chat/requests` und Feedback.
+
+Einstellungen: `maxChunksPerSource` und `minEvidenceSimilarity` wirken auf die Auswahl. `rerankSimilarityWeight`, `rerankLexicalWeight`, `rerankNumericWeight` und `retrievalCandidateK` werden gespeichert und angezeigt, aktuell aber noch nicht von der Pipeline ausgewertet (feste Gewichtung 0,65/0,25/0,10).
+
+Das Verzeichnis `reports/` und die JSON-Konfigurationen `config/corpus_policy.v1.json` sowie `documentApi/source_boosts.json` sind in diesem Branch nicht enthalten. `source_boosts.json` ist optional (Ablage neben `settings.json` bzw. unter `/data`); ohne die Datei gibt es keine Quellen-Gewichtung.

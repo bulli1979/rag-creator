@@ -1,5 +1,14 @@
 # NOTBot review-branch handoff
 
+> **Status on the `danka` branch.** This handoff was written for `review/production-improvements-clean` and its evidence, runtime values and task statuses are **unchanged by the merge**. `danka` puts that work on top of upstream `main` (`bulli1979/rag-creator`), which changes the following:
+>
+> - Every API endpoint except `/` and `/api/auth/status` needs an `X-API-Key` header; keys are created on first start (see [install.en.md](install.en.md)). The PHP proxy and any scripts must send a key.
+> - Upstream's admin, admin-web, batch-test, family/reindex, request-log and feedback features are present. The database also stores each chat request (question and answer in plain text); this is separate from the encrypted audit described below.
+> - `ChatService` is built as `ChatService(vector_service, crypto_service, audit, database)`; the grounded pipeline is unchanged and runs in `_answer`.
+> - Documents are keyed by `(docId, environmentId)` in addition to the source versioning described below.
+> - Not included: `reports/`, `config/corpus_policy.v1.json`, `documentApi/source_boosts.json` and `scripts/evaluation/*.json`. Links below that point to them are not resolvable in this branch; take them from the review branch. `scripts/corpus_curate.py` needs the policy file, and its policy test is skipped while the file is missing.
+> - The 123-test backend count below was measured on the review branch. On `danka` that policy test is skipped, and the model, Docker and PHP results are historical.
+
 Prepared 2026-10-15 for Danuta's team. This is a **review/testing handoff, not a
 production release**. The user requested publishing the current work to
 `origin/review/production-improvements-clean`; do not merge it into `main` as

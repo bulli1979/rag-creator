@@ -1,5 +1,7 @@
 # NOTBot Improvement Implementation Plan
 
+> **danka branch:** This tracker was written on the review branch. Its evidence links into `reports/` and the JSON policy/boost files (`config/corpus_policy.v1.json`, `documentApi/source_boosts.json`) point to files that are intentionally not part of the `danka` branch; keep them from the original review branch. Task statuses describe the review branch and were not re-evaluated after merging with upstream.
+
 This document is the implementation source of truth for improving NOTBot. Update it in the same pull request as each implementation change so that task status, test evidence, metrics, and decisions remain synchronized with the code.
 
 ## Plan metadata

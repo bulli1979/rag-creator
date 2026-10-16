@@ -2,7 +2,9 @@
 """
 Batch ingest folder into RAG via API, looping through all files.
 Usage: python ingest_folder_batch.py <folder_path> [batch_size]
+Set RAG_API_KEY to a valid client API key (the API requires the X-API-Key header).
 """
+import os
 import sys
 import requests
 import json
@@ -11,6 +13,7 @@ import time
 def ingest_folder(folder_path: str, batch_size: int = 200, api_base: str = "http://127.0.0.1:8000"):
     offset = 0
     total_submitted = 0
+    headers = {"X-API-Key": os.environ["RAG_API_KEY"]} if os.environ.get("RAG_API_KEY") else {}
     
     while True:
         print(f"\n[Batch] Offset={offset}, BatchSize={batch_size}")
@@ -26,6 +29,7 @@ def ingest_folder(folder_path: str, batch_size: int = 200, api_base: str = "http
                     "batch_size": batch_size,
                 },
                 timeout=60,
+                headers=headers,
             )
             resp.raise_for_status()
             data = resp.json()

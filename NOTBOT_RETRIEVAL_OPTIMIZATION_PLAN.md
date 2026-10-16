@@ -1,5 +1,7 @@
 # NOTBot retrieval and evidence optimization experiment
 
+> **danka branch:** Experiment plan from the review branch; referenced `reports/` files are not included in `danka`.
+
 Date: 2026-10-01. Owner suggestion: optimize vector retrieval/chunking for the
 Qwen27 chatbot. Status: **inspection and plan only; no reindex or live change**.
 This is separate from the completed frozen 360-response temperature comparison.

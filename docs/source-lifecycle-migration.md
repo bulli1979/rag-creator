@@ -18,7 +18,9 @@ python scripts/source_lifecycle_admin.py migrate \
   --backup-dir /path/to/backups
 ```
 
-PostgreSQL uses additive columns through `ensure_schema`; take a database-native snapshot before deployment. Qdrant receives lifecycle payloads on newly indexed points; legacy points remain active under their document IDs until reindexed. Do not run cleanup until replacement smoke tests pass.
+PostgreSQL uses additive columns through `ensure_schema`; take a database-native snapshot before deployment.
+
+The metadata database (`index.sqlite`) is migrated when `IndexDatabase` opens it, which this script does for `--index-db`: legacy `documents` tables are rebuilt as `documents_v2` with the composite primary key `(docId, environmentId)` and the lifecycle columns above, so back up `index.sqlite` first (the script does so under `--backup-dir`). Qdrant receives lifecycle payloads on newly indexed points; legacy points remain active under their document IDs until reindexed. Do not run cleanup until replacement smoke tests pass.
 
 ## Cleanup
 

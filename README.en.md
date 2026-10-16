@@ -161,3 +161,15 @@ Long text fields are truncated where needed for Excel cell limits.
 - Before each reindex, existing vectors for `documentId` are removed from Postgres.
 - Point IDs are deterministic via `sha256(documentId + ":" + chunkIndex)`.
 - JSONL remains the editable source of truth for later reindex runs.
+
+## NOTBot review (chat backend)
+
+Start with [NOTBOT_HANDOFF.md](NOTBOT_HANDOFF.md) and [NOTBOT_IMPLEMENTATION_PLAN.md](NOTBOT_IMPLEMENTATION_PLAN.md). The observer frontend is `chatBotPHP`.
+
+Encrypted chat audit data lives in the API volume under `/data/chat_audit`. Without configuration the API creates a private key there; for production set `NOTBOT_AUDIT_KEY` (both Docker setups pass the variable through). Back up the key together with the audit volume and never commit it.
+
+Answer pipeline (details in [METHODOLOGY.md](METHODOLOGY.md)): resolve follow-ups, retrieve candidates, select evidence (lexical/numeric signals, per-source cap, deduplication), answer directly from sources where possible without the LLM, otherwise generate a cited JSON answer with quotation checks and one repair attempt. In addition, the database stores every request (question and answer in plain text) for `/api/chat/requests` and feedback.
+
+Settings: `maxChunksPerSource` and `minEvidenceSimilarity` affect evidence selection. `rerankSimilarityWeight`, `rerankLexicalWeight`, `rerankNumericWeight` and `retrievalCandidateK` are stored and shown but are currently not applied by the pipeline (fixed 0.65/0.25/0.10 blend).
+
+The `reports/` directory and the JSON configs `config/corpus_policy.v1.json` and `documentApi/source_boosts.json` are not part of this branch. `source_boosts.json` is optional (place it next to `settings.json` or under `/data`); without it no source weighting is applied.

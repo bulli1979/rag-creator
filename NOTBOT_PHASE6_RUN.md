@@ -1,5 +1,7 @@
 # Phase 6 execution — 2026-10-01
 
+> **danka branch:** Historical run record from the review branch. Referenced `reports/` files (including `reports/phase6/*` and `reports/recovery/RECOVERY_REPORT.md`) and `sequencer_reference.md` are not included in `danka`.
+
 Scope: started from commit `314c41e`, with the working-tree repairs below;
 final application hashes identify what was actually tested. Local testing only. No push,
 main merge, model replacement or remote cutover. The production API/index/settings

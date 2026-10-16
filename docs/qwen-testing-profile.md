@@ -1,5 +1,7 @@
 # Qwen testing profile
 
+> **danka branch:** Written for the review branch's deployment. Referenced `reports/` files are not included in `danka`. Every API call now needs an `X-API-Key` header (see [install.en.md](../install.en.md)), and `docker-compose.qwen-testing.yml` is an overlay on the root `docker-compose.yml`, which no longer mounts `source_boosts.json`.
+
 Activated on 2026-10-06 at the owner's request on
 `review/production-improvements-clean` (base commit `adbb715`; local changes).
 The existing **testing API** now uses Qwen instead of Command R. This is an

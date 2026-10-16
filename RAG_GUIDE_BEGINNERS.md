@@ -42,18 +42,24 @@ Your RAG system does exactly this, but with documents instead of books.
 ```
 You ask a question
     ↓
+Follow-up questions are resolved using the recent conversation
+    ↓
 Question is converted to a vector
     ↓
-Vector database searches for similar documents
+Vector database returns a wide pool of similar chunks
     ↓
-Top 10 most relevant documents are retrieved
+Chunks are re-ranked (meaning + shared words + numbers), de-duplicated and capped per source
     ↓
-Documents are given to the LLM with your question
+Facts that can be read directly from the sources (tables, lists, ranges, procedures) are answered without the LLM
     ↓
-LLM reads documents and answers based ONLY on what's in them
+Otherwise the LLM answers in JSON, citing quotations from the chunks
     ↓
-You get the answer
+Every claim is checked against its cited quotation; one repair attempt, then a source excerpt or "not found"
+    ↓
+You get the answer with sources (and an encrypted audit record is written)
 ```
+
+See [METHODOLOGY.md](METHODOLOGY.md) for the details.
 
 ---
 
@@ -94,6 +100,7 @@ You get the answer
 
 **Option 2: Via Script (Bulk Upload)**
 ```bash
+export RAG_API_KEY=your_client_key   # all /api endpoints require an API key, see "API keys" below
 python ingest_folder_batch.py "/path/to/your/documents" 200
 ```
 This uploads everything in a folder in batches of 200 files.
@@ -102,6 +109,7 @@ This uploads everything in a folder in batches of 200 files.
 ```bash
 curl -X POST http://127.0.0.1:8000/api/documents/upload-folder-path \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: $RAG_API_KEY" \
   -d '{
     "folder_path": "/path/to/documents",
     "tags": ["my_tag"],
@@ -252,7 +260,7 @@ cat > documentApi/profiles/legacy_ollama_en/settings.json << 'EOF'
     }
   ],
   "chunkSize": 1200,
-  "chunkOverlap": 200,
+  "chunkOverlap": 15,
   "embeddingModel": "all-MiniLM-L6-v2",
   "storeMarkdown": true
 }
@@ -295,6 +303,8 @@ DOCUMENT_API_PORT=8000 DOCUMENT_API_PROFILE=legacy_ollama_en node scripts/run-do
 
 Wait for: `INFO: Application startup complete.`
 
+**API keys:** on the first start the API creates a client key and an admin key and prints them **once** in the log (`Default API key (client): ...`). To choose your own, set `RAG_DEFAULT_API_KEY` and `RAG_ADMIN_API_KEY` before the first start. Send the client key in the `X-API-Key` header with every request (`export RAG_API_KEY=...` for the commands below). Only `/` and `/api/auth/status` are open.
+
 ### Step 8: Upload Your First Documents
 
 ```bash
@@ -303,7 +313,7 @@ mkdir -p ~/my_documents
 cp /path/to/your/documents/*.pdf ~/my_documents/
 cp /path/to/your/documents/*.txt ~/my_documents/
 
-# Run the ingest script
+# Run the ingest script (reads RAG_API_KEY)
 python ingest_folder_batch.py ~/my_documents 50
 ```
 
@@ -319,9 +329,11 @@ watch -n 60 'sqlite3 ~/RAGIngestStudio-legacy_ollama_en/vector_sqlite/default.sq
 # Ask a question
 curl -X POST http://127.0.0.1:8000/api/chat \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: $RAG_API_KEY" \
   -d '{
-    "question": "What are the main topics in the documents?",
-    "tags": []
+    "message": "What are the main topics in the documents?",
+    "history": [],
+    "language": "en"
   }' | python3 -m json.tool
 ```
 
@@ -369,8 +381,10 @@ pip install -r documentApi/requirements.txt
 | File | Purpose |
 |------|---------|
 | `documentApi/app/main.py` | Starts the HTTP API |
-| `documentApi/app/chat_service.py` | RAG logic (retrieve + answer) |
-| `documentApi/app/ingest_service.py` | Handles document uploading/embedding |
+| `documentApi/app/chat_service.py` | RAG logic (retrieve, select evidence, generate, validate, log) |
+| `documentApi/app/grounding.py` | Checks every claim against its cited quotation |
+| `documentApi/app/document_processing.py` | Structure-aware chunking of documents |
+| `documentApi/app/ingest_service.py` | Handles document uploading/embedding and source versions |
 | `documentApi/app/services/folder_scan.py` | Filters which file types to ingest |
 | `ingest_folder_batch.py` | Bulk upload script |
 | `documentApi/profiles/*/settings.json` | Profile configuration |
@@ -405,7 +419,7 @@ kill $(lsof -t -iTCP:8000)
 **A**: Yes! Copy the entire `~/RAGIngestStudio-legacy_ollama_en/` folder to another machine and it will work.
 
 ### Q: How do I remove a document from the database?
-**A**: Currently not supported via UI. You'd need to directly delete it from the SQLite database or delete and rebuild.
+**A**: Yes. `DELETE /api/documents/{doc_id}`, `POST /api/documents/remove-bulk` and `POST /api/documents/remove-not-ingested` remove documents (also available in the document-management UI). Re-indexing a changed source replaces its older version automatically.
 
 ### Q: What if I want to use a different embedding model?
 **A**: Edit `documentApi/profiles/legacy_ollama_en/settings.json` and change `embeddingModel` to any HuggingFace model name (e.g., `"all-mpnet-base-v2"`). Re-ingest documents.

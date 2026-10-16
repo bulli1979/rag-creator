@@ -8,6 +8,8 @@ This document details the improvements made to the NOT telescope RAG (Retrieval-
 
 > **Evaluation scope:** These figures describe the recorded 19-question local benchmark and demonstrate the effect of the tested reranking configuration. They are not a production-readiness result. The production quality review found stale and duplicate indexed versions; rerun the benchmark after source lifecycle fixes and a clean index rebuild before drawing deployment conclusions.
 
+> **Status (danka branch):** This is a historical snapshot of an earlier tuning round (all-MiniLM-L6-v2, 303 documents, `topK` 5, overlapping chunks, plain prompt-based answering). The current code differs: reranking lives in `documentApi/app/evidence_selection.py` and keeps the 0.65/0.25/0.10 blend described below, but also applies source caps, deduplication and instrument/authority preference; chunking is structure-aware without overlap; and answers are validated against cited quotations (`grounding.py`). The `rerank*Weight` and `retrievalCandidateK` fields in the chat settings are stored and shown in the UI but are **not yet applied** by the current pipeline, which uses the fixed 0.65/0.25/0.10 blend and a candidate pool of `max(topK, min(max(8×topK, 40), 120))`. See [METHODOLOGY.md](METHODOLOGY.md) for the current pipeline.
+
 ---
 
 ## 📊 Performance Improvements
@@ -28,7 +30,7 @@ This document details the improvements made to the NOT telescope RAG (Retrieval-
 ## 🔧 Technical Improvements
 
 ### 1. Hybrid Retrieval Reranking
-**File:** `documentApi/app/chat_service.py` (lines 33-57)
+**File:** `documentApi/app/evidence_selection.py` (`_base_score`, `_rerank_chunks`)
 
 **Problem:** Vector similarity alone missed relevant chunks for fact-heavy questions.
 
@@ -118,7 +120,7 @@ ocrmypdf --force-ocr <input.pdf> <input.pdf>
 
 #### Stage 3: Ingestion
 Text extracted from OCR'd PDFs is:
-1. Chunked (overlapping windows)
+1. Chunked (structure-aware Markdown chunks; the benchmark run used overlapping windows)
 2. Embedded (all-MiniLM-L6-v2, 384-dim vectors)
 3. Stored in SQLite vector database (2,475 chunks total)
 
@@ -237,7 +239,7 @@ Saved in `outputs/` directory:
 | Semantic weight | 0.65 | Primary signal: vector similarity |
 | Lexical weight | 0.25 | Boost exact term matches |
 | Numeric weight | 0.10 | Boost fact-relevant numbers |
-| Candidate pool | 4× top_k (max 30) | Wider initial search |
+| Candidate pool | `max(topK, min(max(8×topK, 40), 120))` | Wider initial search (benchmark run: 4× top_k, max 30) |
 | Final selection | top_k (5) | After reranking |
 | Context trim | 1,200 chars | Balance detail vs. noise |
 

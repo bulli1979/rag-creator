@@ -51,7 +51,6 @@ services:
     volumes:
       - rag_api_data:/data
       - ${NOTBOT_DOCUMENTS_DIR:-../NOTBot-documents/data/processed}:/documents:ro
-      - ./documentApi/source_boosts.json:/data/source_boosts.json:ro
     restart: unless-stopped
 
 volumes:

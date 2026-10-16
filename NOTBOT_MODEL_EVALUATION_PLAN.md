@@ -1,5 +1,7 @@
 # NOTBot alternative-model evaluation plan
 
+> **danka branch:** Historical plan from the review branch. Referenced `reports/` files are not included in `danka`.
+
 Date: 2026-10-01. Baseline code: adbb715 (Phase 6 technical verification).
 
 **Current testing-runtime update, 2026-10-06:** the owner requested switching

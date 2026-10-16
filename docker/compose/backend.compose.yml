@@ -16,6 +16,7 @@ services:
       DOCUMENT_API_HOST: 0.0.0.0
       RAG_DEFAULT_API_KEY: ${RAG_DEFAULT_API_KEY:-}
       RAG_ADMIN_API_KEY: ${RAG_ADMIN_API_KEY:-}
+      NOTBOT_AUDIT_KEY: ${NOTBOT_AUDIT_KEY:-}
     volumes:
       - rag_api_data:/data
     healthcheck:

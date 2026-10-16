@@ -1,5 +1,23 @@
 # Changes proposed for review
 
+## `danka` branch: merge with upstream `main`
+
+This branch is one commit on top of `bulli1979/rag-creator` `main` (`4000538`) that adds the NOTBot work below.
+
+- Keeps upstream's API-key authentication (`X-API-Key`), admin and admin-web endpoints, batch tests, environment families, request log and feedback, and its `documentHandling`, `qa_site` and `batchTest` front ends and tooling.
+- Keeps the NOTBot grounded chat pipeline: `ChatService(vector_service, crypto_service, audit, database)` answers through `_answer`, and a `chat()` wrapper adds a request ID and writes the request to the database.
+- Documents use upstream's composite key `(docId, environmentId)` together with source versioning (`sourceId`, `contentHash`, `version`, `isActive`, `canonicalLocation`, `corpusVersion`); the `documents_v2` migration carries these columns.
+- Fixes the request listing, which read a non-existent `contextChunkCount` column.
+- `ingest_folder_batch.py` sends `RAG_API_KEY` as `X-API-Key`; the Docker setups pass `NOTBOT_AUDIT_KEY`.
+- Not included: `reports/`, `config/corpus_policy.v1.json`, `documentApi/source_boosts.json` (optional, no boosts without it) and `scripts/evaluation/*.json`. The root `docker-compose.yml` no longer bind-mounts `source_boosts.json`.
+- Known gap: the `rerank*Weight` and `retrievalCandidateK` chat settings are stored but not applied by the grounded pipeline.
+
+The sections below describe the earlier review branch, which builds on `main` at `b922b39`.
+
+---
+
+# Review branch changes (earlier)
+
 This branch builds on `main` at `b922b39`. It keeps the original project structure and documentation while adding the production changes below.
 
 ## RAG quality and safety
