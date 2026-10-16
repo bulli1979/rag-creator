@@ -16,6 +16,21 @@ class UnavailableVectorStore:
     def remove_document(self, table_name: str, doc_id: str) -> None:
         raise RuntimeError(self._message)
 
+    def remove_source(self, table_name: str, source_id: str) -> None:
+        raise RuntimeError(self._message)
+
+    def replace_source_chunks(
+        self, table_name: str, source_id: str, doc_id: str,
+        vectors: list[list[float]], payloads: list[dict],
+    ) -> None:
+        raise RuntimeError(self._message)
+
+    def activate_source_version(self, table_name: str, source_id: str, doc_id: str) -> None:
+        raise RuntimeError(self._message)
+
+    def cleanup_inactive_versions(self, table_name: str, source_id: str | None = None) -> int:
+        raise RuntimeError(self._message)
+
     def upsert_document_chunks(
         self,
         table_name: str,
@@ -30,5 +45,14 @@ class UnavailableVectorStore:
         table_name: str,
         query_vector: list[float],
         top_k: int = 5,
+    ) -> list[dict]:
+        raise RuntimeError(self._message)
+
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
     ) -> list[dict]:
         raise RuntimeError(self._message)

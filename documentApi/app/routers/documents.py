@@ -26,6 +26,7 @@ async def upload_documents(
     tags: str = Form(""),
     source: str = Form("lokal"),
     embeddingModel: str = Form(""),
+    corpus_version: str = Form(""),
     svc: IngestService = Depends(get_ingest_service),
 ):
     tag_list = [t.strip() for t in tags.split(",") if t.strip()] if tags else []
@@ -33,6 +34,7 @@ async def upload_documents(
         tags=tag_list,
         source=source or "lokal",
         embeddingModel=(embeddingModel or "").strip() or None,
+        corpusVersion=corpus_version,
     )
 
     file_tuples: list[tuple[str, bytes]] = []
@@ -64,6 +66,7 @@ async def upload_folder_path(
         tags=body.tags,
         source=body.source or "lokal",
         embeddingModel=body.embedding_model,
+        corpusVersion=body.corpus_version,
     )
     try:
         result, file_count, next_offset, done = await svc.add_documents_from_folder_path(

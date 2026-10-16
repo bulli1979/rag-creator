@@ -57,14 +57,58 @@ class SqliteEmbeddedVectorStore:
             text_content TEXT NOT NULL,
             tags TEXT NOT NULL,
             source TEXT NOT NULL,
-            file_name TEXT NOT NULL
+            file_name TEXT NOT NULL,
+            source_id TEXT NOT NULL DEFAULT '',
+            content_hash TEXT NOT NULL DEFAULT '',
+            version INTEGER NOT NULL DEFAULT 1,
+            is_active INTEGER NOT NULL DEFAULT 1,
+            canonical_location TEXT NOT NULL DEFAULT '',
+            corpus_version TEXT NOT NULL DEFAULT '',
+            category TEXT NOT NULL DEFAULT '',
+            instrument TEXT NOT NULL DEFAULT '',
+            authority TEXT NOT NULL DEFAULT 'unclassified',
+            document_status TEXT NOT NULL DEFAULT 'active',
+            section TEXT NOT NULL DEFAULT '',
+            heading_path TEXT NOT NULL DEFAULT '[]',
+            parent_section TEXT NOT NULL DEFAULT '',
+            previous_section TEXT NOT NULL DEFAULT '',
+            next_section TEXT NOT NULL DEFAULT '',
+            content_types TEXT NOT NULL DEFAULT '[]'
         )"""
         with self._lock:
             conn = self._connect()
             try:
                 conn.execute(ddl)
+                existing = {row[1] for row in conn.execute(f'PRAGMA table_info("{t}")')}
+                additions = {
+                    "source_id": "TEXT NOT NULL DEFAULT ''",
+                    "content_hash": "TEXT NOT NULL DEFAULT ''",
+                    "version": "INTEGER NOT NULL DEFAULT 1",
+                    "is_active": "INTEGER NOT NULL DEFAULT 1",
+                    "canonical_location": "TEXT NOT NULL DEFAULT ''",
+                    "corpus_version": "TEXT NOT NULL DEFAULT ''",
+                    "category": "TEXT NOT NULL DEFAULT ''",
+                    "instrument": "TEXT NOT NULL DEFAULT ''",
+                    "authority": "TEXT NOT NULL DEFAULT 'unclassified'",
+                    "document_status": "TEXT NOT NULL DEFAULT 'active'",
+                    "section": "TEXT NOT NULL DEFAULT ''",
+                    "heading_path": "TEXT NOT NULL DEFAULT '[]'",
+                    "parent_section": "TEXT NOT NULL DEFAULT ''",
+                    "previous_section": "TEXT NOT NULL DEFAULT ''",
+                    "next_section": "TEXT NOT NULL DEFAULT ''",
+                    "content_types": "TEXT NOT NULL DEFAULT '[]'",
+                    "complete_tables": "TEXT NOT NULL DEFAULT '[]'",
+                }
+                for column, column_ddl in additions.items():
+                    if column not in existing:
+                        conn.execute(f'ALTER TABLE "{t}" ADD COLUMN {column} {column_ddl}')
+                conn.execute(f"UPDATE \"{t}\" SET source_id = document_id WHERE source_id = ''")
+                conn.execute(f"UPDATE \"{t}\" SET content_hash = document_id WHERE content_hash = ''")
                 conn.execute(
                     f'CREATE INDEX IF NOT EXISTS "{t}_document_id_idx" ON "{t}" (document_id)'
+                )
+                conn.execute(
+                    f'CREATE INDEX IF NOT EXISTS "{t}_source_active_idx" ON "{t}" (source_id, is_active)'
                 )
                 conn.commit()
             finally:
@@ -80,6 +124,16 @@ class SqliteEmbeddedVectorStore:
             finally:
                 conn.close()
 
+    def remove_source(self, table_name: str, source_id: str) -> None:
+        t = _sanitize_table_name(table_name)
+        with self._lock:
+            conn = self._connect()
+            try:
+                conn.execute(f'DELETE FROM "{t}" WHERE source_id = ?', (source_id,))
+                conn.commit()
+            finally:
+                conn.close()
+
     def upsert_document_chunks(
         self,
         table_name: str,
@@ -87,14 +141,30 @@ class SqliteEmbeddedVectorStore:
         vectors: list[list[float]],
         payloads: list[dict],
     ) -> None:
+        source_id = str(payloads[0].get("sourceId", doc_id)) if payloads else doc_id
+        self.replace_source_chunks(table_name, source_id, doc_id, vectors, payloads)
+
+    def replace_source_chunks(
+        self,
+        table_name: str,
+        source_id: str,
+        doc_id: str,
+        vectors: list[list[float]],
+        payloads: list[dict],
+    ) -> None:
         if len(vectors) != len(payloads):
             raise ValueError("Anzahl von Vektoren und Payloads muss identisch sein.")
+        if not vectors:
+            raise ValueError("Mindestens ein Vektor ist fuer den Source-Austausch erforderlich.")
         t = _sanitize_table_name(table_name)
         sql = f"""INSERT INTO "{t}" (
             point_id, document_id, chunk_index, embedding,
             source_path, source_modified_unix_seconds,
-            text_content, tags, source, file_name
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            text_content, tags, source, file_name, source_id, content_hash,
+            version, is_active, canonical_location, corpus_version,
+            category, instrument, authority, document_status, section, heading_path,
+            parent_section, previous_section, next_section, content_types, complete_tables
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(point_id) DO UPDATE SET
             document_id = excluded.document_id,
             chunk_index = excluded.chunk_index,
@@ -104,7 +174,24 @@ class SqliteEmbeddedVectorStore:
             text_content = excluded.text_content,
             tags = excluded.tags,
             source = excluded.source,
-            file_name = excluded.file_name"""
+            file_name = excluded.file_name,
+            source_id = excluded.source_id,
+            content_hash = excluded.content_hash,
+            version = excluded.version,
+            is_active = excluded.is_active,
+            canonical_location = excluded.canonical_location,
+            corpus_version = excluded.corpus_version,
+            category = excluded.category,
+            instrument = excluded.instrument,
+            authority = excluded.authority,
+            document_status = excluded.document_status,
+            section = excluded.section,
+            heading_path = excluded.heading_path,
+            parent_section = excluded.parent_section,
+            previous_section = excluded.previous_section,
+            next_section = excluded.next_section,
+            content_types = excluded.content_types,
+            complete_tables = excluded.complete_tables"""
         rows: list[tuple] = []
         for vector, payload in zip(vectors, payloads):
             chunk_ix = int(payload["chunkIndex"])
@@ -121,14 +208,81 @@ class SqliteEmbeddedVectorStore:
                     json.dumps(payload["tags"]),
                     payload["source"],
                     payload["fileName"],
+                    source_id,
+                    payload.get("contentHash", doc_id),
+                    int(payload.get("version", 1)),
+                    0,
+                    payload.get("canonicalLocation", ""),
+                    payload.get("corpusVersion", ""),
+                    payload.get("category", ""),
+                    payload.get("instrument", ""),
+                    payload.get("authority", "unclassified"),
+                    payload.get("documentStatus", "active"),
+                    payload.get("section", ""),
+                    json.dumps(payload.get("headingPath", [])),
+                    payload.get("parentSection", ""),
+                    payload.get("previousSection", ""),
+                    payload.get("nextSection", ""),
+                    json.dumps(payload.get("contentTypes", [])),
+                    json.dumps(payload.get("completeTables", [])),
                 )
             )
         with self._lock:
             conn = self._connect()
             try:
+                conn.execute("BEGIN IMMEDIATE")
+                conn.execute(f'DELETE FROM "{t}" WHERE document_id = ?', (doc_id,))
                 conn.executemany(sql, rows)
+                conn.execute(f'UPDATE "{t}" SET is_active = 0 WHERE source_id = ?', (source_id,))
+                conn.execute(
+                    f'UPDATE "{t}" SET is_active = 1 WHERE source_id = ? AND document_id = ?',
+                    (source_id, doc_id),
+                )
                 conn.commit()
-                _logger.info("sqlite upsert fertig: doc_id=%s… rows=%s", doc_id[:16], len(rows))
+                _logger.info("sqlite source replacement fertig: source=%s… doc=%s… rows=%s", source_id[:12], doc_id[:12], len(rows))
+            except Exception:
+                conn.rollback()
+                raise
+            finally:
+                conn.close()
+
+    def activate_source_version(self, table_name: str, source_id: str, doc_id: str) -> None:
+        t = _sanitize_table_name(table_name)
+        with self._lock:
+            conn = self._connect()
+            try:
+                conn.execute("BEGIN IMMEDIATE")
+                count = conn.execute(
+                    f'SELECT COUNT(*) FROM "{t}" WHERE source_id = ? AND document_id = ?',
+                    (source_id, doc_id),
+                ).fetchone()[0]
+                if not count:
+                    raise ValueError(f"Keine Vektoren fuer Source-Version {source_id}/{doc_id}")
+                conn.execute(f'UPDATE "{t}" SET is_active = 0 WHERE source_id = ?', (source_id,))
+                conn.execute(
+                    f'UPDATE "{t}" SET is_active = 1 WHERE source_id = ? AND document_id = ?',
+                    (source_id, doc_id),
+                )
+                conn.commit()
+            except Exception:
+                conn.rollback()
+                raise
+            finally:
+                conn.close()
+
+    def cleanup_inactive_versions(self, table_name: str, source_id: str | None = None) -> int:
+        t = _sanitize_table_name(table_name)
+        with self._lock:
+            conn = self._connect()
+            try:
+                if source_id is None:
+                    cur = conn.execute(f'DELETE FROM "{t}" WHERE is_active = 0')
+                else:
+                    cur = conn.execute(
+                        f'DELETE FROM "{t}" WHERE is_active = 0 AND source_id = ?', (source_id,)
+                    )
+                conn.commit()
+                return int(cur.rowcount or 0)
             finally:
                 conn.close()
 
@@ -147,7 +301,7 @@ class SqliteEmbeddedVectorStore:
             conn = self._connect()
             try:
                 cur = conn.execute(
-                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding FROM "{t}"'
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables FROM "{t}" WHERE is_active = 1'
                 )
                 all_rows = cur.fetchall()
             finally:
@@ -160,7 +314,7 @@ class SqliteEmbeddedVectorStore:
             if en > 0:
                 emb = emb / en
             sim = float(np.dot(q, emb))
-            scored.append((sim, row[:6]))
+            scored.append((sim, row[:6] + row[7:]))
 
         scored.sort(key=lambda x: x[0], reverse=True)
         out: list[dict] = []
@@ -173,7 +327,82 @@ class SqliteEmbeddedVectorStore:
                     "chunkIndex": row[3],
                     "sourcePath": row[4],
                     "source": row[5],
+                    "category": row[6],
+                    "instrument": row[7],
+                    "authority": row[8],
+                    "status": row[9],
+                    "section": row[10],
+                    "headingPath": json.loads(row[11]),
+                    "parentSection": row[12],
+                    "previousSection": row[13],
+                    "nextSection": row[14],
+                    "contentTypes": json.loads(row[15]),
+                    "sourceId": row[16],
+                    "canonicalLocation": row[17],
+                    "corpusVersion": row[18],
+                    "completeTables": json.loads(row[19]),
                     "similarity": sim,
                 }
             )
         return out
+
+    def search_by_filename(
+        self,
+        table_name: str,
+        pattern: str,
+        query_vector: list[float],
+        top_k: int = 2,
+    ) -> list[dict]:
+        """Return top_k chunks whose file_name contains pattern (case-insensitive), ordered by similarity."""
+        t = _sanitize_table_name(table_name)
+        q = np.asarray(query_vector, dtype=np.float64)
+        qn = np.linalg.norm(q)
+        if qn > 0:
+            q = q / qn
+        pat = pattern.lower()
+        with self._lock:
+            conn = self._connect()
+            try:
+                cur = conn.execute(
+                    f'SELECT text_content, document_id, file_name, chunk_index, source_path, source, embedding, category, instrument, authority, document_status, section, heading_path, parent_section, previous_section, next_section, content_types, source_id, canonical_location, corpus_version, complete_tables FROM "{t}"'
+                    f' WHERE is_active = 1 AND lower(file_name) LIKE ?',
+                    (f"%{pat}%",),
+                )
+                all_rows = cur.fetchall()
+            finally:
+                conn.close()
+        scored: list[tuple[float, tuple]] = []
+        for row in all_rows:
+            emb = np.asarray(json.loads(row[6]), dtype=np.float64)
+            en = np.linalg.norm(emb)
+            if en > 0:
+                emb = emb / en
+            sim = float(np.dot(q, emb))
+            scored.append((sim, row[:6] + row[7:]))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [
+            {
+                "text": row[0],
+                "documentId": row[1],
+                "fileName": row[2],
+                "chunkIndex": row[3],
+                "sourcePath": row[4],
+                "source": row[5],
+                "category": row[6],
+                "instrument": row[7],
+                "authority": row[8],
+                "status": row[9],
+                "section": row[10],
+                "headingPath": json.loads(row[11]),
+                "parentSection": row[12],
+                "previousSection": row[13],
+                "nextSection": row[14],
+                "contentTypes": json.loads(row[15]),
+                "sourceId": row[16],
+                "canonicalLocation": row[17],
+                "corpusVersion": row[18],
+                "completeTables": json.loads(row[19]),
+                "similarity": sim,
+            }
+            for sim, row in scored[: max(1, top_k)]
+        ]

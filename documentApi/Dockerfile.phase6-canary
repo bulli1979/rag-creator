@@ -1,0 +1,6 @@
+# Preserve the verified dependency image while its ARM package gate is open.
+# Operator must supply the retained base tag and verify its recorded image ID.
+# This is NOT the fresh dependency build used for P6.13.
+ARG PHASE6_BASE_IMAGE
+FROM ${PHASE6_BASE_IMAGE}
+COPY app /app/app

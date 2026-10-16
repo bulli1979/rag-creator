@@ -5,6 +5,7 @@ from .services.quiet_ml_env import apply_quiet_ml_env
 apply_quiet_ml_env()
 
 import logging
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -12,8 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .auth import api_key_auth_middleware, set_api_key_service as set_auth_api_key_service
 from .api_key_service import ApiKeyService
+from .chat_audit import ChatAudit
 from .config import ensure_directories, get_app_paths, load_settings
-from .crypto_service import CryptoService
 from .database import IndexDatabase
 from .chat_service import ChatService
 from .dependencies import set_api_key_service, set_chat_service, set_index_database, set_ingest_service
@@ -48,9 +49,9 @@ async def lifespan(app: FastAPI):
         set_api_key_service(api_key_svc)
         set_auth_api_key_service(api_key_svc)
 
-        crypto = CryptoService()
+        audit = ChatAudit(paths["base"] / "chat_audit", os.environ.get("NOTBOT_AUDIT_KEY"))
         # Nach initialize() zeigt IngestService ggf. einen neuen Vector-Store (load_settings + _rebuild).
-        chat_svc = ChatService(svc._vs, crypto, db)
+        chat_svc = ChatService(svc._vs, audit.crypto, audit, db)
         chat_svc.update_settings(svc.get_settings())
         set_chat_service(chat_svc)
         set_batch_test_service(BatchTestService(chat_svc, db))

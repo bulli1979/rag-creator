@@ -60,7 +60,7 @@ class FileStore:
         return md_path
 
     def copy_to_managed_storage(
-        self, source_path: str, file_bytes: bytes | None = None
+        self, source_path: str, file_bytes: bytes | None = None, doc_id: str | None = None
     ) -> dict:
         if file_bytes is not None:
             content = file_bytes
@@ -68,7 +68,7 @@ class FileStore:
             content = Path(source_path).read_bytes()
 
         file_hash = create_sha256(content)
-        doc_id = file_hash
+        doc_id = doc_id or file_hash
         file_name = _upload_display_name(source_path)
         leaf = file_name.split("/")[-1]
         extension = os.path.splitext(leaf)[1].lower()

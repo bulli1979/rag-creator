@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 
-from .models import overlap_chars_from_percent
+from .document_processing import structured_chunks
 from .services.quiet_ml_env import apply_quiet_ml_env
 
 apply_quiet_ml_env()
@@ -23,11 +23,14 @@ try:
 except Exception:
     PdfReader = None
 
-from sentence_transformers import SentenceTransformer
+try:
+    from sentence_transformers import SentenceTransformer
+except Exception:
+    SentenceTransformer = None  # type: ignore[assignment]
 
 _logger = logging.getLogger(__name__)
 
-_MODEL_CACHE: dict[str, SentenceTransformer] = {}
+_MODEL_CACHE: dict[str, Any] = {}
 _BINARY_OFFICE_EXTENSIONS = {".pdf", ".docx", ".pptx"}
 
 # Erste Zeilen / Kopfbereich: URL aus HTML, YAML, Markdown oder Klartext
@@ -110,20 +113,9 @@ def extract_header_canonical_url(raw_text: str, extension: str) -> str | None:
 
 
 def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> list[str]:
-    """chunk_overlap: Zeichen (bereits aus Prozent umgerechnet) oder Rohwert < chunk_size."""
-    normalized = " ".join(text.replace("\r", "\n").split())
-    if not normalized:
-        return []
-    chunks: list[str] = []
-    cursor = 0
-    overlap = max(0, min(chunk_size - 1, int(chunk_overlap)))
-    step_size = max(1, chunk_size - overlap)
-    while cursor < len(normalized):
-        chunk = normalized[cursor: cursor + chunk_size].strip()
-        if chunk:
-            chunks.append(chunk)
-        cursor += step_size
-    return chunks
+    """Compatibility wrapper for callers that only need chunk text."""
+    del chunk_overlap
+    return [chunk.text for chunk in structured_chunks(text, target_chars=chunk_size)]
 
 
 def parse_document(
@@ -135,10 +127,20 @@ def parse_document(
     text = ""
     extension = os.path.splitext(input_path)[1].lower()
 
-    if partition is not None and extension in {".pdf", ".docx", ".pptx", ".html", ".md", ".txt"}:
+    if extension in {".md", ".txt"}:
+        try:
+            with open(input_path, "r", encoding="utf-8", errors="replace") as fh:
+                text = fh.read()
+        except OSError:
+            text = ""
+    elif extension in {".html", ".htm"}:
+        from .html_processing import html_to_markdown
+        with open(input_path, "r", encoding="utf-8", errors="replace") as fh:
+            text = html_to_markdown(fh.read())
+    elif partition is not None and extension in {".pdf", ".docx", ".pptx"}:
         try:
             elements = partition(filename=input_path)
-            text = "\n".join(str(el) for el in elements if str(el).strip())
+            text = "\n\n".join(str(el) for el in elements if str(el).strip())
         except Exception:
             text = ""
 
@@ -175,6 +177,8 @@ def parse_document(
             "ok": False,
             "error": "Parsing fehlgeschlagen: PDF-Binaerdaten erkannt statt extrahiertem Text.",
         }
+    if '(cid:' in text or text.count('�')>=3 or re.search(r'[\x00-\x08\x0b\x0e-\x1f]',text):
+        return {'ok':False,'error':'Document contains unresolved extraction/glyph damage; review the original source before indexing.'}
 
     # Kopf-URL aus Rohdatei lesen: unstructured kann bei MD/HTML <a href> entfernen.
     header_url: str | None = None
@@ -188,38 +192,49 @@ def parse_document(
     else:
         header_url = extract_header_canonical_url(text, extension)
 
-    chunks = chunk_text(
+    del chunk_overlap
+    processed = structured_chunks(
         text,
-        chunk_size,
-        overlap_chars_from_percent(chunk_size, chunk_overlap)
-        if overlap_is_percent
-        else chunk_overlap,
-    )
-    chunk_prefix = f"Quelle: {header_url}\n\n" if header_url else ""
-
-    chunk_objects: list[dict[str, Any]] = []
-    for idx, chunk_value in enumerate(chunks):
-        body = f"{chunk_prefix}{chunk_value}" if chunk_prefix else chunk_value
-        meta: dict[str, Any] = {
+        target_chars=chunk_size,
+        base_metadata={
             "sourcePath": input_path,
             "extension": extension,
-            "sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+            "canonicalUrl": header_url or "",
+        },
+    )
+
+    chunk_objects: list[dict[str, Any]] = []
+    for idx, chunk in enumerate(processed):
+        meta = {
+            **chunk.metadata,
+            "sourcePath": input_path,
+            "extension": extension,
+            "sha256": hashlib.sha256(chunk.text.encode("utf-8")).hexdigest(),
         }
-        if header_url:
-            meta["canonicalUrl"] = header_url
+        canonical = meta.get("canonicalSource") or header_url
+        if canonical:
+            meta["canonicalUrl"] = canonical
         chunk_objects.append(
-            {
-                "chunkIndex": idx,
-                "text": body,
-                "metadata": meta,
-            }
+            {"chunkIndex": idx, "text": chunk.text, "metadata": meta}
         )
     return {"ok": True, "chunks": chunk_objects}
 
 
-def _get_model(model_name: str) -> SentenceTransformer:
+def _get_model(model_name: str) -> Any:
+    if SentenceTransformer is None:
+        raise RuntimeError("sentence-transformers ist nicht installiert.")
     if model_name not in _MODEL_CACHE:
-        _MODEL_CACHE[model_name] = SentenceTransformer(model_name)
+        import torch
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        if model_name == "mixedbread-ai/mxbai-embed-large-v1":
+            from .config import get_base_directory
+            _MODEL_CACHE[model_name] = SentenceTransformer(
+                model_name, device=device, revision="b33106f585b9ce46904ad7443a3b52b7a63e231c",
+                cache_folder=str(get_base_directory()/"model_cache"),
+                local_files_only=True, trust_remote_code=False,
+                model_kwargs={"use_safetensors":True})
+        else:
+            _MODEL_CACHE[model_name] = SentenceTransformer(model_name, device=device)
     return _MODEL_CACHE[model_name]
 
 
@@ -236,7 +251,7 @@ _EMBED_SUBBATCH = 128
 
 
 def _encode_one_batch(
-    model: SentenceTransformer, batch: list[str], internal_batch_size: int
+    model: Any, batch: list[str], internal_batch_size: int
 ) -> list[list[float]]:
     encoded = model.encode(
         batch,
@@ -246,6 +261,14 @@ def _encode_one_batch(
         batch_size=min(internal_batch_size, max(8, len(batch))),
     )
     return _vectors_from_encode_output(encoded)
+
+
+def embed_queries(model_name: str, texts: list[str]) -> dict[str, Any]:
+    # The documented retrieval instruction belongs only on queries, never on
+    # documents. Raw/resolved queries remain intact in the encrypted audit.
+    if model_name == "mixedbread-ai/mxbai-embed-large-v1":
+        texts = ["Represent this sentence for searching relevant passages: " + text for text in texts]
+    return embed_texts(model_name, texts)
 
 
 def embed_texts(model_name: str, texts: list[str]) -> dict[str, Any]:

@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:-pgvector/pgvector:pg16}
+    container_name: ${COMPOSE_PROJECT_NAME:-rag}-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-rag}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - rag_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-rag}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  document-api:
+    build:
+      context: ./documentApi
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_PROJECT_NAME:-rag}-document-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      RAG_DATA_ROOT: /data
+      LLM_BASE_URL: http://host.docker.internal:11434/v1
+      NOTBOT_AUDIT_KEY: ${NOTBOT_AUDIT_KEY:-}
+      VECTOR_BACKEND: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_DB: ${POSTGRES_DB:-rag}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_SCHEMA: ${POSTGRES_SCHEMA:-public}
+      POSTGRES_TABLE: ${POSTGRES_TABLE:-rag_documents}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - rag_api_data:/data
+      - ${NOTBOT_DOCUMENTS_DIR:-../NOTBot-documents/data/processed}:/documents:ro
+      - ./documentApi/source_boosts.json:/data/source_boosts.json:ro
+    restart: unless-stopped
+
+volumes:
+  rag_postgres_data:
+  rag_api_data:

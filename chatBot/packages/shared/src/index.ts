@@ -17,6 +17,7 @@ export interface ChatResponse {
   contextChunks: ContextChunk[];
   encryptedPayload: string;
   requestId?: string;
+  trace?: Record<string, unknown>;
   metrics?: {
     elapsedMs?: number;
     promptTokens?: number;
@@ -44,11 +45,21 @@ export interface ChatFeedbackRecord {
 export interface ContextChunk {
   text: string;
   documentId: string;
+  citationId?: string;
+  title?: string;
   fileName: string;
   chunkIndex: number;
   sourcePath?: string;
   source?: string;
+  sourceId?: string;
+  canonicalLocation?: string;
+  corpusVersion?: string;
+  instrument?: string;
+  category?: string;
+  authority?: string;
+  status?: string;
   similarity: number;
+  retrievalScore?: number;
 }
 
 export interface ChatSettings {
@@ -64,6 +75,8 @@ export interface ChatSettings {
   rerankLexicalWeight: number;
   /** Relative weight for numeric string overlap. */
   rerankNumericWeight: number;
+  maxChunksPerSource: number;
+  minEvidenceSimilarity: number;
   systemPrompt: string;
   encryptionKey: string;
 }

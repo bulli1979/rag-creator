@@ -1,5 +1,9 @@
 # RAG Ingest Studio + RAG Chat
 
+For the NOTBot review branch, start with [the handoff](NOTBOT_HANDOFF.md) and
+[implementation tracker](NOTBOT_IMPLEMENTATION_PLAN.md). The observer frontend
+is `chatBotPHP`; this branch is testing/review work, not a production release.
+
 **Language:** [English](README.en.md) | [German](README.md)
 
 Desktop stack (Electron + React + TypeScript + FastAPI) for local document ingestion and chat via vector retrieval:

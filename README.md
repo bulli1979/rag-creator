@@ -157,3 +157,9 @@ Lange Texte werden bei Bedarf wegen Excel-Zelllimits gekuerzt.
 - Vor jedem Reindex werden bestehende Vektoren fuer `documentId` aus Postgres entfernt.
 - Point IDs sind deterministisch via `sha256(documentId + ":" + chunkIndex)`.
 - JSONL bleibt die editierbare Truth-Quelle fuer spaetere Reindex-Laeufe.
+
+## NOTBot-Review (Chat-Backend)
+
+Ausgangspunkt: [NOTBOT_HANDOFF.md](NOTBOT_HANDOFF.md) und [NOTBOT_IMPLEMENTATION_PLAN.md](NOTBOT_IMPLEMENTATION_PLAN.md). Das Beobachter-Frontend liegt in `chatBotPHP`.
+
+Verschluesselte Chat-Auditdaten liegen im API-Volume unter `/data/chat_audit`. Ohne Konfiguration erzeugt die API dort einen privaten Schluessel; fuer Produktion kann `NOTBOT_AUDIT_KEY` gesetzt werden. Schluessel und Audit-Volume muessen gemeinsam gesichert werden; der Schluessel darf nicht ins Repository.

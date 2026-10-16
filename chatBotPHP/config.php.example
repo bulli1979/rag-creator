@@ -1,0 +1,23 @@
+<?php
+// Copy this file to config.php and fill in your values.
+// config.php is gitignored — never commit it with real credentials or hostnames.
+
+// Backend API base URL — no trailing slash.
+// Production example: 'http://your-backend-host:8000'
+define('NOTBOT_API_URL', 'http://localhost:8000');
+
+// Writable directory for conversation and feedback logs. Keep it outside the web root.
+define('NOTBOT_LOG_ROOT', '/var/log/notbot');
+
+// Access control section understood by the host site's access-control integration.
+define('NOTBOT_ACCESS_SECTION', 'NOTBOT');
+
+// Reverse-DNS suffix allowed to use the frontend. Requests are denied when empty.
+define('NOTBOT_ALLOWED_HOST_SUFFIX', 'example.org');
+
+// Uncomment to bypass access control for local development.
+// NEVER enable on the production server.
+// define('NOTBOT_DEV_MODE', true);
+
+// Optional shared footer. Leave empty when the host site does not provide one.
+define('NOTBOT_FOOTER_PATH', '');

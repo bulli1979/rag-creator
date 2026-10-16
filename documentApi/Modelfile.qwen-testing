@@ -1,0 +1,7 @@
+# Tested base manifest: 22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643
+# Shares the installed base weight blob; does not alter any coding profile.
+FROM qwen3.8:27b
+PARAMETER num_ctx 32768
+PARAMETER num_predict 2048
+PARAMETER draft_num_predict 4
+# Temperature and reasoning_effort are supplied by NOTBot's persisted chat settings.

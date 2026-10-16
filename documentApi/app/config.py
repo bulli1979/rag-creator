@@ -7,7 +7,26 @@ from pathlib import Path
 from .models import AppSettings, ChatSettings, PostgresEnvironment, migrate_overlap_value_to_percent
 
 
+def _env_str(name: str, fallback: str) -> str:
+    value = os.environ.get(name)
+    if value is None:
+        return fallback
+    value = value.strip()
+    return value if value else fallback
+
+
+def _env_int(name: str, fallback: int) -> int:
+    raw = os.environ.get(name)
+    if raw is None:
+        return fallback
+    try:
+        return int(raw.strip())
+    except Exception:
+        return fallback
+
+
 def _default_app_settings() -> AppSettings:
+    backend = _env_str("VECTOR_BACKEND", "postgres")
     return AppSettings(
         active_postgres_environment_id="default",
         postgres_environments=[
@@ -16,14 +35,14 @@ def _default_app_settings() -> AppSettings:
                 name="Standard",
                 family_id="default",
                 family_name="Standard",
-                vector_backend="postgres",
-                db_host="localhost",
-                db_port=5432,
-                db_name="rag",
-                db_user="postgres",
-                db_password="",
-                db_schema="public",
-                db_table_name="rag_documents",
+                vector_backend=backend,
+                db_host=_env_str("POSTGRES_HOST", "localhost"),
+                db_port=_env_int("POSTGRES_PORT", 5432),
+                db_name=_env_str("POSTGRES_DB", "rag"),
+                db_user=_env_str("POSTGRES_USER", "postgres"),
+                db_password=_env_str("POSTGRES_PASSWORD", ""),
+                db_schema=_env_str("POSTGRES_SCHEMA", "public"),
+                db_table_name=_env_str("POSTGRES_TABLE", "rag_documents"),
                 sqlite_file_path="",
                 qdrant_local_path="",
                 embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
@@ -55,10 +74,16 @@ def get_base_directory() -> Path:
     root = _optional_data_root()
     if root is not None:
         return root
+    explicit = os.environ.get("DOCUMENT_API_BASE_DIR", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     return Path.home() / "RAGIngestStudio"
 
 
 def get_settings_path() -> Path:
+    explicit = os.environ.get("DOCUMENT_API_SETTINGS_PATH", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     root = _optional_data_root()
     if root is not None:
         return root / "settings.json"
@@ -223,6 +248,9 @@ def save_settings(settings: AppSettings) -> AppSettings:
 
 
 def get_chat_settings_path() -> Path:
+    explicit = os.environ.get("DOCUMENT_API_CHAT_SETTINGS_PATH", "").strip()
+    if explicit:
+        return Path(explicit).expanduser()
     root = _optional_data_root()
     if root is not None:
         return root / "chat_settings.json"
@@ -258,3 +286,37 @@ def save_chat_settings(settings: ChatSettings) -> ChatSettings:
         encoding="utf-8",
     )
     return settings
+
+
+def get_source_boosts_path() -> Path:
+    """Path to source_boosts.json — lives alongside settings.json."""
+    root = _optional_data_root()
+    if root is not None:
+        return root / "source_boosts.json"
+    return _PROJECT_DIR / "source_boosts.json"
+
+
+def load_source_boosts() -> dict[str, float]:
+    """Load fileName-substring → score-multiplier map from source_boosts.json.
+
+    Keys are matched as case-insensitive substrings of chunk fileNames during reranking.
+    A multiplier > 1.0 boosts a source; < 1.0 demotes it; 1.0 is a no-op.
+    The file is re-read on every call so edits take effect without restarting the service.
+    Returns an empty dict (no boosts) if the file is absent or malformed.
+    """
+    path = get_source_boosts_path()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            return {}
+        result: dict[str, float] = {}
+        for k, v in data.items():
+            try:
+                result[str(k)] = float(v)
+            except (TypeError, ValueError):
+                pass  # skip non-numeric entries (e.g. _comment)
+        return result
+    except FileNotFoundError:
+        return {}
+    except Exception:
+        return {}

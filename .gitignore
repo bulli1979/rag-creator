@@ -9,10 +9,34 @@ apps/main/dist
 apps/main/.vite
 __pycache__
 .venv
+
+# Local environment and deployment configuration. Commit example files only.
+.env
+.env.*
+!.env*.example
+qa_site/config.php
+chatBotPHP/config.php
+**/access_control.inc.php
+
+# Runtime state written by local web/admin services.
+chatBotAdmin/data/
+
+# Local operational notes; these are not part of the distributable project.
+BACKEND_INSTALLATION.md
+FRONTEND_INSTALLATION.md
+INSTRUCTIONS-EMAIL.md
+NOTBOT_QUALITY_REVIEW.md
 venv
 RAGIngestStudio
 settings.json
 chat_settings.json
+data/
+outputs/
+# Raw evaluation Q/A includes retrieved corpus excerpts and stays local.
+reports/phase0/evaluation-*/questions_qa.csv
 batchTest/answerFolder/
 batchTest/batch_config.json
 batchTest/batch_results.xlsx
+
+# Generated evaluation output stays local.
+reports/

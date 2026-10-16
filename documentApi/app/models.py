@@ -44,6 +44,12 @@ class DocumentRecord(BaseModel):
     corpus_path: str = Field("", alias="corpusPath")
     last_indexed_at: int | None = Field(None, alias="lastIndexedAt")
     size_bytes: int = Field(0, alias="sizeBytes")
+    source_id: str = Field("", alias="sourceId")
+    content_hash: str = Field("", alias="contentHash")
+    version: int = 1
+    is_active: bool = Field(True, alias="isActive")
+    canonical_location: str = Field("", alias="canonicalLocation")
+    corpus_version: str = Field("", alias="corpusVersion")
 
     model_config = {"populate_by_name": True}
 
@@ -211,6 +217,7 @@ class UploadOptions(BaseModel):
     tags: list[str] = Field(default_factory=list)
     source: str = "lokal"
     embedding_model: str | None = Field(None, alias="embeddingModel")
+    corpus_version: str = Field("", alias="corpusVersion")
 
     model_config = {"populate_by_name": True}
 
@@ -221,6 +228,7 @@ class UploadFolderRequest(BaseModel):
     source: str = "lokal"
     embedding_model: str | None = Field(None, alias="embeddingModel")
     offset: int = 0
+    corpus_version: str = Field("", alias="corpusVersion")
     batch_size: int = Field(default=400, alias="batchSize")
 
     model_config = {"populate_by_name": True}
@@ -287,7 +295,8 @@ class ChatResponse(BaseModel):
     answer: str
     context_chunks: list[dict] = Field(default_factory=list, alias="contextChunks")
     encrypted_payload: str = Field("", alias="encryptedPayload")
-    metrics: dict[str, float | int] = Field(default_factory=dict)
+    metrics: dict[str, float | int | bool] = Field(default_factory=dict)
+    trace: dict[str, Any] = Field(default_factory=dict)
     request_id: str = Field("", alias="requestId")
 
     model_config = {"populate_by_name": True}
@@ -341,6 +350,12 @@ class ChatSettings(BaseModel):
     llm_api_key: str = Field("ollama", alias="llmApiKey")
     llm_base_url: str = Field("http://localhost:11434/v1", alias="llmBaseUrl")
     llm_model: str = Field("llama3.2", alias="llmModel")
+    # Optional transport controls: omitted values preserve the existing SDK defaults.
+    llm_reasoning_effort: Literal["none", "minimal", "low", "medium", "high"] | None = Field(
+        None, alias="llmReasoningEffort"
+    )
+    llm_timeout_seconds: float | None = Field(None, gt=0, le=600, alias="llmTimeoutSeconds")
+    llm_max_retries: int | None = Field(None, ge=0, le=5, alias="llmMaxRetries")
     temperature: float = 0.3
     max_tokens: int = Field(2048, alias="maxTokens")
     top_k: int = Field(5, alias="topK")
@@ -351,6 +366,8 @@ class ChatSettings(BaseModel):
     rerank_numeric_weight: float = Field(0.05, ge=0.0, alias="rerankNumericWeight")
     # Optional: vector-search candidate pool before rerank. None → topK*4 (max 30).
     retrieval_candidate_k: int | None = Field(None, ge=1, alias="retrievalCandidateK")
+    max_chunks_per_source: int = Field(2, ge=1, le=20, alias="maxChunksPerSource")
+    min_evidence_similarity: float = Field(0.43, ge=0.0, le=1.0, alias="minEvidenceSimilarity")
     system_prompt: str = Field(
         "You are a helpful assistant that answers questions based on provided documents. "
         "Always cite the source file name when possible. Be precise and thorough.",

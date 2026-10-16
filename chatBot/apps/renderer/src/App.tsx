@@ -38,6 +38,8 @@ const DEFAULT_SETTINGS: ChatSettings = {
   rerankSimilarityWeight: 0.9,
   rerankLexicalWeight: 0.05,
   rerankNumericWeight: 0.05,
+  maxChunksPerSource: 2,
+  minEvidenceSimilarity: 0.43,
   systemPrompt:
     "You are a helpful assistant that answers questions based on provided documents. Always cite the source file name when possible. Be precise and thorough.",
   encryptionKey: ""
@@ -358,6 +360,29 @@ export default function App() {
               max="20"
               value={settings.topK}
               onChange={(e) => setSettings((s) => ({ ...s, topK: parseInt(e.target.value) || 5 }))}
+            />
+          </div>
+
+          <div className="setting-field">
+            <label>{t("sidebar.maxChunksPerSource")}</label>
+            <input
+              type="number"
+              min="1"
+              max="20"
+              value={settings.maxChunksPerSource ?? 2}
+              onChange={(e) => setSettings((s) => ({ ...s, maxChunksPerSource: parseInt(e.target.value) || 2 }))}
+            />
+          </div>
+
+          <div className="setting-field">
+            <label>{t("sidebar.minEvidenceSimilarity")}</label>
+            <input
+              type="number"
+              min="0"
+              max="1"
+              step="0.01"
+              value={settings.minEvidenceSimilarity ?? 0.43}
+              onChange={(e) => setSettings((s) => ({ ...s, minEvidenceSimilarity: Number(e.target.value) }))}
             />
           </div>
 

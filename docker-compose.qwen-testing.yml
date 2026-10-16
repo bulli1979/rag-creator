@@ -1,0 +1,9 @@
+# Testing-only overlay. Retains existing dependencies; NOT a clean-build certification.
+# Use with docker-compose.yml; only recreate document-api, never the database.
+services:
+  document-api:
+    image: observatory-document-api:qwen-testing-20261006
+    build:
+      dockerfile: Dockerfile.phase6-canary
+      args:
+        PHASE6_BASE_IMAGE: observatory-document-api:phase6-final-20261001
